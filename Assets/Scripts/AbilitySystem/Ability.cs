@@ -56,6 +56,12 @@ public class Ability : ScriptableObject
         return 1;
 	}
 
+
+    public virtual void OnDrawGizmos()
+	{
+
+	}
+
     public struct CastData 
     {
         public Transform effectOrigin;

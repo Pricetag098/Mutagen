@@ -48,4 +48,15 @@ public class AbilityCaster : MonoBehaviour
     {
         abilities[index].Cast(castData);
     }
+
+	private void OnDrawGizmos()
+	{
+		if(!Application.isPlaying)
+            return;
+        for (int i = 0; i < abilities.Length; i++)
+        { 
+            abilities[i].OnDrawGizmos();
+        }
+
+     }
 }
