@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] InputActionProperty moveDir;
     [SerializeField] GameObject body;
-    [SerializeField] Transform orientation;
+    public Transform orientation;
 	[SerializeField] PlayerStats playerStats;
 	[SerializeField] LayerMask groundingLayer;
 	[SerializeField] float groundingRange;

@@ -10,9 +10,9 @@ class MyBlitRenderPass : ScriptableRenderPass
     Material materialToBlit;
     RenderTargetIdentifier cameraColorTargetIdent;
     RenderTargetHandle tempTexture;
-
+    bool hasMat;
     PixelShaderEffectComponent effectComponent;
-
+    
 
     public MyBlitRenderPass(string profilerTag,
       RenderPassEvent renderPassEvent, Material materialToBlit)
@@ -20,6 +20,7 @@ class MyBlitRenderPass : ScriptableRenderPass
         this.profilerTag = profilerTag;
         this.renderPassEvent = renderPassEvent;
         this.materialToBlit = materialToBlit;
+        hasMat = materialToBlit != null;
     }
 
     // This isn't part of the ScriptableRenderPass class and is our own addition.
@@ -30,7 +31,8 @@ class MyBlitRenderPass : ScriptableRenderPass
         
         VolumeStack stack = VolumeManager.instance.stack;
         effectComponent = stack.GetComponent<PixelShaderEffectComponent>();
-        if(materialToBlit != null)
+        
+        if(hasMat)
         materialToBlit.SetFloat("_scale", effectComponent.scale.value);
     }
 
