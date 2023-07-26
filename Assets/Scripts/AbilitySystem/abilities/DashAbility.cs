@@ -29,7 +29,7 @@ public class DashAbility : Ability
 	}
 	public override void Tick()
 	{
-		stam = Mathf.Clamp(stam + Time.deltaTime,0,maxStam);
+		
 		if (dashing)
 		{
 			WhileDashing();
@@ -42,6 +42,7 @@ public class DashAbility : Ability
 
 			return;
 		}
+		stam = Mathf.Clamp(stam + Time.deltaTime, 0, maxStam);
 	}
 
 	public override float GetCoolDownPercent()
