@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float walkControlForce = 1000;
 	[SerializeField] float gravityForce = 1000;
 
+	[Header("Animation Settings")]
+	[SerializeField] Optional<Animator> animator;
+	[SerializeField] string forwardVelocityParam;
+	[SerializeField] string horizontalVelocityParam;
 	Rigidbody rb;
     Vector2 inputDir;
 
@@ -103,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 		}
 		else
 		{
-			rb.AddForce(-orientation.up *gravityForce * Time.fixedDeltaTime);
+			rb.AddForce(-orientation.up *gravityForce * Time.fixedDeltaTime,ForceMode.VelocityChange);
 		}
 
 
@@ -113,6 +117,12 @@ public class PlayerMovement : MonoBehaviour
 			rb.AddForce(-rb.velocity.normalized * controlForce);
 		}
 
+
+		if (animator.Enabled)
+		{
+			animator.Value.SetFloat(forwardVelocityParam, fwVel);
+			animator.Value.SetFloat(horizontalVelocityParam, rightVel);
+		}
 	}
 
 	private void OnDrawGizmosSelected()
