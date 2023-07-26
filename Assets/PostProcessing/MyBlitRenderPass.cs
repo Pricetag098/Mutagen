@@ -27,6 +27,7 @@ class MyBlitRenderPass : ScriptableRenderPass
     public void Setup(RenderTargetIdentifier cameraColorTargetIdent)
     {
         this.cameraColorTargetIdent = cameraColorTargetIdent;
+        
         VolumeStack stack = VolumeManager.instance.stack;
         effectComponent = stack.GetComponent<PixelShaderEffectComponent>();
         if(materialToBlit != null)
