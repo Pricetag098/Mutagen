@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 	Rigidbody rb;
     Vector2 inputDir;
 
+	public Vector3 movementDir;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 	void Update()
     {
         inputDir = moveDir.action.ReadValue<Vector2>();
+		movementDir = orientation.forward * inputDir.y + orientation.right * inputDir.x;
     }
 
 	private void FixedUpdate()

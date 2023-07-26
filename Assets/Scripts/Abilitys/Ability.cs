@@ -2,13 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Ability : ScriptableObject
+[CreateAssetMenu(menuName = "Abilities/Empty")]
+public class Ability : ScriptableObject
 {
     public string abilityName;
     public Sprite icon;
-    AbilityCaster caster;
+    protected AbilityCaster caster;
 
-    public void Equip(AbilityCaster abilityCaster)
+	public enum CastTypes 
+    {
+        press,
+        hold,
+        passive,
+        disabled
+    }
+    public CastTypes castType;
+	public void Equip(AbilityCaster abilityCaster)
     {
         caster = abilityCaster;
         OnEquip();
@@ -33,19 +42,27 @@ public abstract class Ability : ScriptableObject
 
     public virtual void Tick()
     {
-
+        
     }
 
     public virtual void Cast(CastData data)
     {
 
+    
     }
+
+    public virtual float GetCoolDownPercent()
+	{
+        return 1;
+	}
 
     public struct CastData 
     {
         public Transform effectOrigin;
         public Vector3 origin;
-        public Vector3 direction;
+        public Vector3 aimDirection;
+        public Vector3 moveDirection;
+
     }
 
 }

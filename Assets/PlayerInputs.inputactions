@@ -6,13 +6,22 @@
             "id": "ade44437-8ea3-44ea-900c-3e9827c05ae2",
             "actions": [
                 {
-                    "name": "Ability1",
+                    "name": "Basic",
                     "type": "Value",
                     "id": "8c43ad53-0b22-4544-a91e-fdc625e9f9b6",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Digital",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "a8fcd493-17e1-473e-be63-4b791a0cafd7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Abillity2",
@@ -31,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Ablility4",
+                    "type": "Value",
+                    "id": "11c9040f-e774-4f35-8ada-78cb29c3a387",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -41,7 +59,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse+keyboard",
-                    "action": "Ability1",
+                    "action": "Basic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -66,6 +84,28 @@
                     "action": "Ablility3",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4cdc3f9-349d-4c0e-b62d-ab13eba89a9a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse+keyboard",
+                    "action": "Ablility4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "158a584f-4558-4017-adbe-d7e1e7efca5e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -81,15 +121,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Dash",
-                    "type": "Button",
-                    "id": "09e7ac17-93f2-48d6-b0ed-774e044407ed",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "Aim",
@@ -167,17 +198,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "0e51a1de-8000-463f-a63a-956d7a17f284",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse+keyboard",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

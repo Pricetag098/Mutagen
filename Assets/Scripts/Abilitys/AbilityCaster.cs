@@ -5,28 +5,44 @@ using UnityEngine;
 
 public class AbilityCaster : MonoBehaviour
 {
+    
     public Ability[] abilities;
-    public Animator animator;
+    public Optional<Animator> animator;
     public Health ownerHealth;
+    new public Optional<Rigidbody> rigidbody;
+    
+
+    const string baseAbilityPath = "Abilities/Empty";
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        foreach (var ability in abilities)
-        {
-            ability.Equip(this);
-        }
+        for(int i = 0; i < abilities.Length; i++)
+		{
+            if(abilities[i] == null)
+			{
+                abilities[i] = Instantiate(Resources.Load<Ability>(baseAbilityPath));
+            }
+			else
+			{
+                abilities[i] = Instantiate(abilities[i]);
+            }
+            abilities[i].Equip(this);
+            
+		}
     }
+
+    
 
     // Update is called once per frame
     void Update()
     {
-        foreach(var ability in abilities)
+        for (int i = 0; i < abilities.Length; i++)
         {
-            ability.Tick();
+            abilities[i].Tick();
         }
+        
     }
 
-    
 
     public virtual void CastAbility(int index,Ability.CastData castData)
     {
