@@ -57,7 +57,7 @@ class MyBlitRenderPass : ScriptableRenderPass
         
         if(effectComponent != null && !renderingData.cameraData.isSceneViewCamera)
 		{
-			if (effectComponent.IsActive())
+			if (effectComponent.IsActive() && renderingData.cameraData.postProcessEnabled)
 			{
                 // the actual content of our custom render pass!
                 // we apply our material while blitting to a temporary texture
