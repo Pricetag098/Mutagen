@@ -19,6 +19,8 @@ public class Leg : MonoBehaviour
     Vector3 originalPosition;
     Vector3 midPoint;
     Vector3 targetPosition;
+
+    float endYOffset=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,13 +46,14 @@ public class Leg : MonoBehaviour
             moving = true;
             originalPosition = transform.position;
 
-            targetPosition = idealLegPos.position + (idealLegPos.position - transform.position).normalized * (maxDistance * .5f);
+            targetPosition = idealLegPos.position + (idealLegPos.position - transform.position) * (maxDistance * .5f);
             RaycastHit hit;
             if (Physics.Raycast(targetPosition + Vector3.up * (Mathf.Max(originalPosition.y, targetPosition.y) + rayLength/2), Vector3.down, out hit, rayLength/2, ground))
 			{
                 targetPosition = hit.point;
+                //endYOffset = hit.point.y - idealLegPos.position.y;
 			}
-
+            endYOffset = targetPosition.y;
             midPoint = Vector3.Lerp(originalPosition, targetPosition, .5f);
             midPoint.y = Mathf.Max(originalPosition.y, targetPosition.y) + yOffset;
 		}
@@ -72,7 +75,13 @@ public class Leg : MonoBehaviour
                 return false;
 		}
         
-        return Vector3.Distance(transform.position, idealLegPos.position) > maxDistance;
+        return Vector3.Distance(transform.position, idealLegPos.position + Vector3.up * endYOffset) > maxDistance;
 
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(idealLegPos.position + Vector3.up *  endYOffset,maxDistance);
 	}
 }

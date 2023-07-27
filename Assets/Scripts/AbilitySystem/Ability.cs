@@ -8,7 +8,18 @@ public class Ability : ScriptableObject
     public string abilityName;
     public Sprite icon;
     protected AbilityCaster caster;
+    
+    [System.Flags]
+	public enum SlotMask 
+    { 
+        basic = 1,
+        dash = 2,
+        ability1 = 4,
+        ability2 = 8,
+        ability3 = 16
+    }
 
+    public SlotMask slotMask;
 	public enum CastTypes 
     {
         press,
@@ -61,6 +72,8 @@ public class Ability : ScriptableObject
 	{
 
 	}
+
+
 
     public struct CastData 
     {
