@@ -10,6 +10,8 @@ public class SecondOrderFacer : MonoBehaviour
 	public bool updateVals = true;
 	SecondOrderDynamics x, y, z;
 
+	public bool projectToFloor;
+	public LayerMask floor;
 
 	public bool fixedUpdate;
 	public Transform target;
@@ -24,38 +26,46 @@ public class SecondOrderFacer : MonoBehaviour
 	{
 		if (!fixedUpdate)
 		{
-			if (updateVals)
-			{
-				x.UpdateKVals(f, zeta, r);
-				y.UpdateKVals(f, zeta, r);
-				z.UpdateKVals(f, zeta, r);
-			}
-
-			Vector3 newPos = new Vector3(
-				x.Update(Time.deltaTime, target.forward.x),
-				y.Update(Time.deltaTime, target.forward.y),
-				z.Update(Time.deltaTime, target.forward.z));
-			transform.forward = newPos;
+			Process(Time.deltaTime);
 		}
 	}
 	private void FixedUpdate()
 	{
 		if (fixedUpdate)
 		{
-			if (updateVals)
-			{
-				x.UpdateKVals(f, zeta, r);
-				y.UpdateKVals(f, zeta, r);
-				z.UpdateKVals(f, zeta, r);
-			}
-
-			Vector3 newPos = new Vector3(
-				x.Update(Time.fixedDeltaTime, target.forward.x),
-				y.Update(Time.fixedDeltaTime, target.forward.y),
-				z.Update(Time.fixedDeltaTime, target.forward.z));
-			transform.forward = newPos;
+			Process(Time.fixedDeltaTime);
 		}
 
 
+	}
+
+	void Process(float timeStep)
+	{
+		if (updateVals)
+		{
+			x.UpdateKVals(f, zeta, r);
+			y.UpdateKVals(f, zeta, r);
+			z.UpdateKVals(f, zeta, r);
+		}
+
+		Vector3 targetVec = target.forward;
+
+		if (projectToFloor)
+		{
+			RaycastHit hit;
+			if (Physics.Raycast(transform.position, Vector3.down, out hit, 10, floor))
+			{
+				targetVec = Vector3.ProjectOnPlane(targetVec, hit.normal);
+				transform.up = hit.normal;
+			}
+		}
+
+		Vector3 newPos = new Vector3(
+			x.Update(timeStep, targetVec.x),
+			y.Update(timeStep, targetVec.y),
+			z.Update(timeStep, targetVec.z));
+
+		
+		transform.forward = newPos;
 	}
 }

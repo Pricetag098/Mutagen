@@ -46,14 +46,14 @@ public class Leg : MonoBehaviour
             moving = true;
             originalPosition = transform.position;
 
-            targetPosition = idealLegPos.position + (idealLegPos.position - transform.position) * (maxDistance * .5f);
+            targetPosition = idealLegPos.position + (idealLegPos.position - transform.position) * .8f; //* (maxDistance * .5f);
             RaycastHit hit;
             if (Physics.Raycast(targetPosition + Vector3.up * (Mathf.Max(originalPosition.y, targetPosition.y) + rayLength/2), Vector3.down, out hit, rayLength/2, ground))
 			{
                 targetPosition = hit.point;
                 //endYOffset = hit.point.y - idealLegPos.position.y;
 			}
-            endYOffset = targetPosition.y;
+            endYOffset = targetPosition.y - idealLegPos.position.y;
             midPoint = Vector3.Lerp(originalPosition, targetPosition, .5f);
             midPoint.y = Mathf.Max(originalPosition.y, targetPosition.y) + yOffset;
 		}
