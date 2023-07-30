@@ -58,6 +58,12 @@ public class BehaviourTree : ScriptableObject
         {
             composite.children.Add(child);
         }
+
+        SetterNode setter = parent as SetterNode;
+        if (setter)
+        {
+            setter.child = child;
+        }
     }
 
     public void RemoveChild(Node parent, Node child)
@@ -78,6 +84,12 @@ public class BehaviourTree : ScriptableObject
         if (composite)
         {
             composite.children.Remove(child);
+        }
+
+        SetterNode setter = parent as SetterNode;
+        if (setter)
+        {
+            setter.child = null;
         }
     }
 
@@ -101,6 +113,13 @@ public class BehaviourTree : ScriptableObject
         {
             return composite.children;
         }
+
+        SetterNode setter = parent as SetterNode;
+        if (setter && setter.child != null)
+        {
+            children.Add(setter.child);
+        }
+
         return children;
     }
 
@@ -121,5 +140,12 @@ public class BehaviourTree : ScriptableObject
         return tree;
     }
 
-    //public void Bind(A)
+    public void Bind(Enemy agent)
+    {
+        Traverse(rootNode, node =>
+        {
+            node.agent = agent;
+            node.blackboard = blackboard;
+        });
+    }
 }

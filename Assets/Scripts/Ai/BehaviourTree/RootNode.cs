@@ -12,7 +12,7 @@ public class RootNode : Node
 
     protected override void OnStop()
     {
-
+        blackboard.Reset();
     }
 
     protected override State OnUpdate()

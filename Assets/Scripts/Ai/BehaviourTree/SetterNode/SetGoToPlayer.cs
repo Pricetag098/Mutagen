@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugLogNode : ActionNode
+public class SetGoToPlayer : SetterNode
 {
-    public string message;
 
     protected override void OnStart()
     {
 
     }
 
-    protected override void OnStop()
-    {
+    protected override void OnStop() 
+    { 
 
     }
 
     protected override State OnUpdate()
     {
-        Debug.Log($"{message}");
-        return State.Success;
+        blackboard.moveToPosition = agent.player.transform.position;
+
+        return child.Update();
     }
 }

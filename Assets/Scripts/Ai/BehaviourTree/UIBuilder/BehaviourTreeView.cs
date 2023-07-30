@@ -132,6 +132,14 @@ public class BehaviourTreeView : GraphView
                 evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
             }
         }
+
+        {
+            var types = TypeCache.GetTypesDerivedFrom<SetterNode>();
+            foreach (var type in types)
+            {
+                evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", (a) => CreateNode(type));
+            }
+        }
     }
 
     void CreateNode(System.Type type)
@@ -146,7 +154,6 @@ public class BehaviourTreeView : GraphView
             BehaviourTree newtree = ScriptableObject.CreateInstance("BehaviourTree") as BehaviourTree;
             string path = $"Assets/DEBUGTREE.asset";
             AssetDatabase.CreateAsset(newtree, path);
-            // AssetDatabase.AddObjectToAsset(newtree, newtree);
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(newtree);
             AssetDatabase.SaveAssets();

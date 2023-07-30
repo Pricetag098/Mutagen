@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class DebugLogNode : ActionNode
+public class MoveToNode : ActionNode
 {
-    public string message;
-
+    //public GameObject GoTo;
     protected override void OnStart()
     {
 
@@ -13,12 +13,13 @@ public class DebugLogNode : ActionNode
 
     protected override void OnStop()
     {
-
+        
     }
 
     protected override State OnUpdate()
     {
-        Debug.Log($"{message}");
+        agent.agent.SetDestination(blackboard.moveToPosition);
         return State.Success;
+
     }
 }

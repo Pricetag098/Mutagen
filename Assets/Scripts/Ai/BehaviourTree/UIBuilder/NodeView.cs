@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 using UnityEditor.Experimental.GraphView;
 using System;
 
@@ -23,6 +24,10 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         CreateInputPorts();
         CreateOutputPorts();
         SetUpClasses();
+
+        Label descriptionLabel = this.Q<Label>("description");
+        descriptionLabel.bindingPath = "description";
+        descriptionLabel.Bind(new UnityEditor.SerializedObject(node));
     }
 
     void SetUpClasses()
@@ -35,6 +40,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             AddToClassList("root");
         else if (node is DecoratorNode)
             AddToClassList("decorator");
+        else if (node is SetterNode)
+            AddToClassList("setter");
     }
 
     void CreateInputPorts()
@@ -46,6 +53,8 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         else if (node is RootNode) { }
         //leaveBlank
         else if (node is DecoratorNode)
+            input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
+        else if (node is SetterNode)
             input = InstantiatePort(Orientation.Vertical, Direction.Input, Port.Capacity.Single, typeof(bool));
 
         if (input != null)
@@ -70,6 +79,10 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
         {
             output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
         }
+        else if (node is SetterNode)
+        {
+            output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
+        }
         else if (node is RootNode)
         {
             output = InstantiatePort(Orientation.Vertical, Direction.Output, Port.Capacity.Single, typeof(bool));
@@ -81,7 +94,6 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             output.style.flexDirection = FlexDirection.ColumnReverse;
             outputContainer.Add(output);
         }
-
     }
 
     public override void SetPosition(Rect newPos)

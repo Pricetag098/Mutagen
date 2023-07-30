@@ -8,6 +8,10 @@ public class BehaviourTreeEditor : EditorWindow
 {
     BehaviourTreeView treeView;
     InspectorView inspectorView;
+    IMGUIContainer blackboardView;
+
+    SerializedObject treeObject;
+    SerializedProperty blackboardProperty;
 
     [MenuItem("BehaviourTreeEditor/Editor ...")]
     public static void OpenWindow()
@@ -46,6 +50,17 @@ public class BehaviourTreeEditor : EditorWindow
 
         treeView = root.Q<BehaviourTreeView>();
         inspectorView = root.Q<InspectorView>();
+        blackboardView = root.Q<IMGUIContainer>();
+        blackboardView.onGUIHandler = () =>
+        {
+            if (treeObject != null)
+            {
+                treeObject.Update();
+                EditorGUILayout.PropertyField(blackboardProperty);
+                treeObject.ApplyModifiedProperties();
+            }
+        };
+
         treeView.OnNodeSelected = OnNodeSelectionChanged;
         OnSelectionChange();
     }
@@ -53,9 +68,15 @@ public class BehaviourTreeEditor : EditorWindow
     private void OnSelectionChange()
     {
         BehaviourTree tree = Selection.activeObject as BehaviourTree;
-        if (tree && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
+        if (tree != null && AssetDatabase.CanOpenAssetInEditor(tree.GetInstanceID()))
         {
             NewMethod(tree);
+        }
+
+        if(tree != null)
+        {
+            treeObject = new SerializedObject(tree);
+            blackboardProperty = treeObject.FindProperty("blackboard");
         }
     }
 

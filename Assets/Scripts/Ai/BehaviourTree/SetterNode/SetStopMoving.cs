@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugLogNode : ActionNode
+public class SetStopMoving : SetterNode
 {
-    public string message;
 
     protected override void OnStart()
     {
@@ -18,7 +17,8 @@ public class DebugLogNode : ActionNode
 
     protected override State OnUpdate()
     {
-        Debug.Log($"{message}");
-        return State.Success;
+        blackboard.moveToPosition = agent.transform.position;
+
+        return child.Update();
     }
 }
