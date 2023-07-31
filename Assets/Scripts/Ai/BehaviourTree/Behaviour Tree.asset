@@ -24,9 +24,32 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: -5032400366246936049}
-  - {fileID: 168289912066359244}
+  - {fileID: 145763327939640089}
   checkType: 1
-  distanceCheck: 5
+  distanceCheck: 10
+--- !u!114 &-6433102867980374047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 9dd95fdea9dc5a84489f51c531bdf747
+  position: {x: 625.7042, y: 529.9999}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  description: 
+  message: Stop
 --- !u!114 &-5032400366246936049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +119,7 @@ MonoBehaviour:
   description: 
   child: {fileID: -7875139610995396818}
   targetType: 0
---- !u!114 &-2877257440529478528
+--- !u!114 &-2542904695349944929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,19 +128,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
-  m_Name: MoveToNode
+  m_Script: {fileID: 11500000, guid: b8cd4456eb50ba34ca1b6cdf70a04201, type: 3}
+  m_Name: SetStopMoving
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 12711c11fc36716488f6a60b9ec315ef
-  position: {x: 100, y: 373}
+  guid: 76f6769c02fbdea4aa8297aeb9384488
+  position: {x: 149, y: 249}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   description: 
+  child: {fileID: 7406035134000876037}
 --- !u!114 &-2153116676536471394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +165,54 @@ MonoBehaviour:
   agent: {fileID: 0}
   description: 
   child: {fileID: -3161895405999254736}
+--- !u!114 &-539387500247790408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee60411060b76747b4d62b133610c18, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: a1ad865e0680d3f47bc580e807511e38
+  position: {x: 515.70416, y: 372.99988}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  description: 
+  children:
+  - {fileID: 2496712305254894542}
+  - {fileID: -6433102867980374047}
+--- !u!114 &-347930393261067726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 6f76c3db74a73bd4d88460fc3cea5f97
+  position: {x: 201, y: 530}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  description: 
+  message: Move away
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,18 +233,23 @@ MonoBehaviour:
   - {fileID: -5032400366246936049}
   - {fileID: -7875139610995396818}
   - {fileID: -4724308827842903482}
-  - {fileID: 168289912066359244}
-  - {fileID: -2877257440529478528}
   - {fileID: -3161895405999254736}
   - {fileID: 2787222282143530692}
   - {fileID: 2714077918436665734}
-  - {fileID: 7744377468736493449}
-  - {fileID: 160823106098815465}
+  - {fileID: 4281787277889606500}
+  - {fileID: -539387500247790408}
+  - {fileID: 2496712305254894542}
+  - {fileID: -6433102867980374047}
+  - {fileID: 145763327939640089}
+  - {fileID: 7406035134000876037}
+  - {fileID: -2542904695349944929}
+  - {fileID: 7466814516757088215}
+  - {fileID: -347930393261067726}
   blackboard:
     moveToPosition: {x: 1, y: 1, z: 1}
     moveToObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
---- !u!114 &160823106098815465
+--- !u!114 &145763327939640089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,21 +258,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
-  m_Name: DebugLogNode
+  m_Script: {fileID: 11500000, guid: d49148647554ec643b0c2b0d12d8dcbd, type: 3}
+  m_Name: IfElseNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 03fc7312e1d52bc4dab971162e98f053
-  position: {x: 271.72, y: 373}
+  guid: 6fe50879cc6ae1440ab45622283e654d
+  position: {x: 230.03749, y: 103.000015}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   description: 
-  message: No
---- !u!114 &168289912066359244
+  children:
+  - {fileID: -2542904695349944929}
+  - {fileID: 4281787277889606500}
+  checkType: 0
+  distanceCheck: 5
+--- !u!114 &2496712305254894542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,20 +285,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cd4456eb50ba34ca1b6cdf70a04201, type: 3}
-  m_Name: SetStopMoving
+  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
+  m_Name: MoveToNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 97fe254d6d909704b8356ad2f0b989e3
-  position: {x: 188, y: 103}
+  guid: 1e00f432b3578ce4795767b5ed8989f8
+  position: {x: 417.70416, y: 529.9999}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   description: 
-  child: {fileID: 7744377468736493449}
 --- !u!114 &2714077918436665734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +369,30 @@ MonoBehaviour:
   agent: {fileID: 0}
   description: 
   child: {fileID: -2153116676536471394}
---- !u!114 &7744377468736493449
+--- !u!114 &4281787277889606500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cd4456eb50ba34ca1b6cdf70a04201, type: 3}
+  m_Name: SetStopMoving
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 1a9cf00324cfe76429746c80d2fb1148
+  position: {x: 516, y: 249}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  description: 
+  child: {fileID: -539387500247790408}
+--- !u!114 &7406035134000876037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,8 +406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 6910da35da346504195b5b4ca3e6e71a
-  position: {x: 188.16, y: 235}
+  guid: 57187b64cebdb6a4d84c26be477979b3
+  position: {x: 140, y: 373}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveToObject: {fileID: 0}
@@ -312,5 +415,27 @@ MonoBehaviour:
   agent: {fileID: 0}
   description: 
   children:
-  - {fileID: -2877257440529478528}
-  - {fileID: 160823106098815465}
+  - {fileID: 7466814516757088215}
+  - {fileID: -347930393261067726}
+--- !u!114 &7466814516757088215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
+  m_Name: MoveToNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: d04f557542db62f4aa45b4e63ff2ad6b
+  position: {x: -1, y: 530}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  description: 
