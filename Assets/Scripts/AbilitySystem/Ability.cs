@@ -13,8 +13,8 @@ public class Ability : ScriptableObject
 	public enum SlotMask 
     { 
         basic = 1,
-        dash = 2,
-        ability1 = 4,
+        range = 2,
+        dash = 4,
         ability2 = 8,
         ability3 = 16
     }
@@ -54,6 +54,11 @@ public class Ability : ScriptableObject
     public virtual void Tick()
     {
         
+    }
+
+    public virtual void FixedTick()
+    {
+
     }
 
     public virtual void Cast(CastData data)

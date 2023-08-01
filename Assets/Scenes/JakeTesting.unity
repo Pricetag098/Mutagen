@@ -128,22 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3302166959065098345, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
   m_PrefabInstance: {fileID: 3302166959361861692}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &298893399 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3302166959065098347, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-  m_PrefabInstance: {fileID: 3302166959361861692}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &298893400 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 3302166959065098340, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-  m_PrefabInstance: {fileID: 3302166959361861692}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &348399625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1370,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 61.425, y: 0, z: 0}
+--- !u!1 &1718105719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2154437906129031907, guid: 9eef392530cc699458e6caf3b9b6cc7c, type: 3}
+  m_PrefabInstance: {fileID: 5206192442112829402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1718105723
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718105719}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1718105724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718105719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fb4dfacd6ae084daec808b16bbc0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multi: 1
+  health: {fileID: 0}
+--- !u!114 &1718105725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718105719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
+  iFrames: 0
+  maxIFrames: Infinity
 --- !u!1001 &3302166959361861692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1445,30 +1477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3302166960036811214, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 50088cb0b4f08334eb6b521ba0bfc244, type: 2}
-    - target: {fileID: 8922768473389122986, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-      propertyPath: ownerHealth
-      value: 
-      objectReference: {fileID: 298893399}
-    - target: {fileID: 8922768473389122986, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-      propertyPath: rigidbody.val
-      value: 
-      objectReference: {fileID: 298893400}
-    - target: {fileID: 8922768473389122986, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-      propertyPath: animator.enabled
-      value: 0
+    - target: {fileID: 3302166960153660134, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
       objectReference: {fileID: 0}
-    - target: {fileID: 8922768473389122986, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-      propertyPath: rigidbody.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8922768473389122986, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
-      propertyPath: abilities.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8dc758a641becaa4e9063ce49519fb74, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab3ba02a740792640a3cadacda4996f6, type: 3}
 --- !u!1001 &5206192442112829402
