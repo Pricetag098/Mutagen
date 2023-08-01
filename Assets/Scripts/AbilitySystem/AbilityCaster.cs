@@ -43,6 +43,14 @@ public class AbilityCaster : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            abilities[i].FixedTick();
+        }
+    }
+
 
     public virtual void CastAbility(int index,Ability.CastData castData)
     {

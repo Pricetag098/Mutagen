@@ -10,7 +10,7 @@ public class PlayerAbilityCaster : MonoBehaviour
     [SerializeField] InputActionProperty abilityAction3;
     [SerializeField] InputActionProperty abilityAction4;
 	public Transform castOrigin;
-
+	
 	AbilityCaster caster;
 	PlayerAim aim;
 	PlayerMovement movement;
@@ -73,7 +73,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 	Ability.CastData CreateCastData()
 	{
 		Ability.CastData data = new Ability.CastData();
-		data.origin = transform.position;
+		data.origin = movement.orientation.position;
 		data.aimDirection = new Vector3(aim.aimDir.x,0,aim.aimDir.y);
 		data.moveDirection = movement.movementDir;
 		data.effectOrigin = castOrigin;

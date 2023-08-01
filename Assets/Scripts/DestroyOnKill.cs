@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyOnKill : MonoBehaviour
 {
-
+    public GameObject target;
     Health health;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,6 @@ public class DestroyOnKill : MonoBehaviour
 
     void DestroyObject()
 	{
-        Destroy(gameObject);
+        Destroy(target);
 	}
 }
