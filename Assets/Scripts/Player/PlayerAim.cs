@@ -8,7 +8,7 @@ public class PlayerAim : MonoBehaviour
     [SerializeField] InputActionProperty aimAction;
 	[SerializeField] LayerMask validRayLayers = 1;
     PlayerMovement playerMovement;
-    public Vector2 aimDir;
+    public Vector3 aimDir;
 
 	public Optional<Image> cursor;
 
@@ -51,7 +51,7 @@ public class PlayerAim : MonoBehaviour
 				hitPoint.y = 0;
 				y = hit.point.y;
 				Vector3 tempAimDir = (hitPoint - transform.position - playerMovement.orientation.forward * ((transform.position.y + playerMovement.orientation.localPosition.y) - y) * angleConstant).normalized;
-				aimDir = new Vector2(tempAimDir.x, tempAimDir.z);
+				aimDir = new Vector3(tempAimDir.x,0, tempAimDir.z);
 
 			}
 			
@@ -60,7 +60,7 @@ public class PlayerAim : MonoBehaviour
 		else
 		{
 			Vector3 tempAimDir = playerMovement.orientation.forward * readVal.y + playerMovement.orientation.right * readVal.x;
-			aimDir = new Vector3(tempAimDir.x, tempAimDir.z);
+			aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
 		}
         
 	}
@@ -74,6 +74,6 @@ public class PlayerAim : MonoBehaviour
 	{
 		Gizmos.color = Color.red;
         if(Application.isPlaying)
-        Gizmos.DrawRay(playerMovement.orientation.position, new Vector3(aimDir.x,0,aimDir.y) * 5);
+        Gizmos.DrawRay(playerMovement.orientation.position, aimDir * 5);
 	}
 }

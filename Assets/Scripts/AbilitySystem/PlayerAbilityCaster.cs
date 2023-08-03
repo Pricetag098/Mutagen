@@ -74,7 +74,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 	{
 		Ability.CastData data = new Ability.CastData();
 		data.origin = movement.orientation.position;
-		data.aimDirection = new Vector3(aim.aimDir.x,0,aim.aimDir.y);
+		data.aimDirection = aim.aimDir;
 		data.moveDirection = movement.movementDir;
 		data.effectOrigin = castOrigin;
 		return data;
