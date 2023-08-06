@@ -8,11 +8,12 @@ public class Blackboard
 {
     public Vector3 moveToPosition;
     Vector3 moveToPositionDefault;
+    public Vector3 moveAwayObject;
     public GameObject moveToObject;
     GameObject moveToObjectDefault;
     public Vector3 targetPosition;
-    //public AbilityCaster abilityCaster;
-    //public EnemyAbilityCaster enemyAbilityCaster;
+    public Ability[] abilities;
+
     
     public void Reset()
     {

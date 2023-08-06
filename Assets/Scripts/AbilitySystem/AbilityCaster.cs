@@ -54,6 +54,7 @@ public class AbilityCaster : MonoBehaviour
 
     public virtual void CastAbility(int index,Ability.CastData castData)
     {
+        Debug.Log(abilities[index].name);
         abilities[index].Cast(castData);
     }
 

@@ -142,10 +142,13 @@ public class BehaviourTree : ScriptableObject
 
     public void Bind(Enemy agent)
     {
+        Enemy enem = agent;
         Traverse(rootNode, node =>
         {
-            node.agent = agent;
+            node.agent = enem;
             node.blackboard = blackboard;
+            node.caster = node.agent.caster;
+
         });
     }
 }

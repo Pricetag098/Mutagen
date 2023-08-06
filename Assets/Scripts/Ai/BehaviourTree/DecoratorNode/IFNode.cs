@@ -27,8 +27,15 @@ public class IFNode : DecoratorNode
                     child.Update();
                     return State.Running;
                 }
-                else
-                    return State.Failure;
+                else  return State.Failure;
+
+            case CheckType.isMoving:
+                if (!agent.isMoving)
+                {
+                    child.Update();
+                    return State.Running;
+                }
+                else return State.Failure;
 
         }
         return State.Running;

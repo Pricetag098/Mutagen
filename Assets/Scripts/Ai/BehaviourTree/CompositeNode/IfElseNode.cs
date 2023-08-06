@@ -4,8 +4,9 @@ using UnityEngine;
 
 public enum CheckType
 {
-    LessThan,
-    GreaterThan,
+    DistanceLessThan,
+    DistanceGreaterThan,
+    Health,
     isMoving,
     isDoingAction,
     isInDanger
@@ -30,9 +31,21 @@ public class IfElseNode : CompositeNode
     bool distCheck()
     {
         float distance = Vector3.Distance(agent.transform.position, blackboard.targetPosition);
-        bool test = checkType == CheckType.LessThan ? distance < distanceCheck : distance > distanceCheck;
+        bool test = checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
         return test;
-        //else if
+    }
+
+    int healthCheck()
+    {
+        int heal = agent.healthState[0];
+        for (int i = 0; i < agent.healthState.Length; i++)
+        {
+            if (agent.health.health > agent.healthState[i] && agent.health.health < agent.healthState[i + 1])
+            {
+                return i;
+            }
+        }
+        return agent.healthState.Length - 1;
     }
 
     protected override State OnUpdate()
@@ -41,19 +54,25 @@ public class IfElseNode : CompositeNode
         switch (checkType)
         {
             //distance checks
-            case CheckType.LessThan:
+            case CheckType.DistanceLessThan:
                 if (distCheck())
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
                 break;
-            case CheckType.GreaterThan:
+            case CheckType.DistanceGreaterThan:
                 if (distCheck())
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
 
                 break;
+
+            //health check
+            case CheckType.Health:
+                ChildUpdate(healthCheck());
+                break;
+
 
                 //curently moving check
             case CheckType.isMoving:
