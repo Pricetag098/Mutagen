@@ -75,14 +75,15 @@ public class RangedAbility : Ability
     protected virtual void Launch()
     {
         float damage = chargeDamageCurve.Evaluate(chargeTime / maxChargeTime);
-        Vector3 velocity = chargeVelocityCurve.Evaluate(chargeTime / maxChargeTime) * GetAssistedAimDir(lastAimDir,aimAssistLayer,maxAimAssistRange,aimAssistMinDirectionValue,aimAssistDirectionWeight,aimAssistDistanceWeight,aimAssistPriorityWeight,assistWeight);
+        float speed = chargeVelocityCurve.Evaluate(chargeTime / maxChargeTime);
+        Vector3 velocity = speed * GetAssistedAimDir(lastAimDir,aimAssistLayer,maxAimAssistRange,speed,aimAssistMinDirectionValue,aimAssistDirectionWeight,aimAssistDistanceWeight,aimAssistPriorityWeight,assistWeight);
         projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastOrigin,velocity,damage);
     }
 
 	public override void OnDrawGizmos()
 	{
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(lastOrigin,GetAssistedAimDir(lastAimDir, aimAssistLayer, maxAimAssistRange, aimAssistMinDirectionValue, aimAssistDirectionWeight, aimAssistDistanceWeight, aimAssistPriorityWeight, assistWeight));
+        Gizmos.DrawRay(lastOrigin,GetAssistedAimDir(lastAimDir, aimAssistLayer, maxAimAssistRange,100, aimAssistMinDirectionValue, aimAssistDirectionWeight, aimAssistDistanceWeight, aimAssistPriorityWeight, assistWeight));
         Gizmos.DrawWireSphere(caster.transform.position,maxAimAssistRange);
     }
 }
