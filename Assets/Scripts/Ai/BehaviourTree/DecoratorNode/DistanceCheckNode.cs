@@ -2,23 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CheckType
-{
-    LessThan,
-    GreaterThan
-}
+
 
 public class DistanceCheckNode : DecoratorNode
 {
-
-
     public float distanceCheck;
     public GameObject checkingObject;
     [SerializeField] CheckType checkType;
 
     protected override void OnStart()
     {
-        //checkingObject = agent.player.gameObject;
+        //blackboard.targetPosition = agent.player.gameObject.transform.position;
     }
 
     protected override void OnStop()
@@ -55,7 +49,7 @@ public class DistanceCheckNode : DecoratorNode
             return State.Running;
         }
 
-        return State.Running;
+        return State.Failure;
 
 
     }

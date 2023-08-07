@@ -10,8 +10,8 @@ public class AbilityCaster : MonoBehaviour
     public Optional<Animator> animator;
     public Health ownerHealth;
     new public Optional<Rigidbody> rigidbody;
-    
 
+    Optional<PlayerStats> playerStats;
     const string baseAbilityPath = "Abilities/Empty";
     // Start is called before the first frame update
     void Awake()
@@ -29,6 +29,9 @@ public class AbilityCaster : MonoBehaviour
             abilities[i].Equip(this);
             
 		}
+        PlayerStats tempStats;
+        playerStats.Enabled = TryGetComponent(out tempStats);
+        playerStats.Value = tempStats;
     }
 
     
@@ -43,7 +46,22 @@ public class AbilityCaster : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            abilities[i].FixedTick();
+        }
+    }
 
+    public void ChangeSpeed(float multiplierChange)
+	{
+		if (playerStats.Enabled)
+		{
+            playerStats.Value.speedMulti += multiplierChange;
+		}
+        //do ai stuff
+	}
     public virtual void CastAbility(int index,Ability.CastData castData)
     {
         abilities[index].Cast(castData);

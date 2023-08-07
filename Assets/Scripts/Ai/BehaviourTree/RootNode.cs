@@ -17,13 +17,26 @@ public class RootNode : Node
 
     protected override State OnUpdate()
     {
+        ResetVariables();
         return child.Update();
     }
+
+
 
     public override Node Clone()
     {
         RootNode node = Instantiate(this);
         node.child = child.Clone();
         return node;
+    }
+
+    void ResetVariables()
+    {
+        //Debug.Log("Reset");
+
+        if (agent.performingAction && Time.time - agent.actionTimer > agent.actionCooldown)
+            agent.performingAction = false;
+        if (agent.isMoving && Time.time - agent.movementTimer > agent.movementCooldown)
+            agent.isMoving = false;
     }
 }
