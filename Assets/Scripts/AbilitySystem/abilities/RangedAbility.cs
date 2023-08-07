@@ -27,7 +27,8 @@ public class RangedAbility : Ability
     bool startedCasting;
     protected override void OnEquip()
     {
-        projectileSpawner = Instantiate(prefab).GetComponent<ObjectPooler>();
+        projectileSpawner = new GameObject().AddComponent<ObjectPooler>();
+        projectileSpawner.CreatePool(prefab, 10);
     }
 
     protected override void OnUnEquip()
