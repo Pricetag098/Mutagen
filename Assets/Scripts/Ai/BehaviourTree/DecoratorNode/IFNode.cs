@@ -17,12 +17,37 @@ public class IFNode : DecoratorNode
 
     }
 
+    bool performingActionReset()
+    {
+        if (agent.performingAction)
+        {
+            if (Time.time - agent.actionTimer > agent.actionCooldown)
+            {
+                agent.performingAction = false;
+                return true;
+            }
+            return false;
+        }
+        else
+        return true;
+    }
+
+    bool isMovingReset()
+    {
+        if (agent.isMoving && Time.time - agent.movementTimer > agent.movementCooldown)
+        {
+            agent.isMoving = false;
+            return true;
+        }
+        return false;
+    }
+
     protected override State OnUpdate()
     {
         switch (checkType)
         {
             case CheckType.isDoingAction:
-                if (!agent.performingAction)
+                if (performingActionReset())
                 {
                     child.Update();
                     return State.Running;
@@ -30,13 +55,12 @@ public class IFNode : DecoratorNode
                 else  return State.Failure;
 
             case CheckType.isMoving:
-                if (!agent.isMoving)
+                if (!isMovingReset())
                 {
                     child.Update();
                     return State.Running;
                 }
                 else return State.Failure;
-
         }
         return State.Running;
     }

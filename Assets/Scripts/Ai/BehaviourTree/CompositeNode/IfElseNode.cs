@@ -9,7 +9,8 @@ public enum CheckType
     Health,
     isMoving,
     isDoingAction,
-    isInDanger
+    isInDanger,
+    delayMove
 }
 
 public class IfElseNode : CompositeNode
@@ -46,6 +47,20 @@ public class IfElseNode : CompositeNode
             }
         }
         return agent.healthState.Length - 1;
+    }
+
+    bool delayMoveCheck()
+    {
+        if (agent.delayMove)
+            return false;
+
+        if(Time.time - agent.delayMoveTimer > agent.delayMoveRange)
+        {
+            agent.delayMove = false;
+            return true;
+        }
+
+        return true;
     }
 
     protected override State OnUpdate()
@@ -93,6 +108,14 @@ public class IfElseNode : CompositeNode
             //currently in danger check
             case CheckType.isInDanger:
                 if (agent.isInDanger)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            //currently waiting to move
+            case CheckType.delayMove:
+                if (delayMoveCheck())
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);

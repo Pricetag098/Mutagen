@@ -11,8 +11,11 @@ public class Blackboard
     public Vector3 moveAwayObject;
     public GameObject moveToObject;
     GameObject moveToObjectDefault;
+    public GameObject rotateTowardsObject;
     public Vector3 targetPosition;
     public Ability[] abilities;
+    [HideInInspector] float delayMoveTimer;
+
 
     
     public void Reset()

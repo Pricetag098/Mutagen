@@ -6,6 +6,7 @@ using UnityEngine;
 public class RangedAbility : Ability
 {
     [SerializeField] protected GameObject prefab;
+    [SerializeField] bool releaseOnFullCharge;
     protected ObjectPooler projectileSpawner;
 
     protected float chargeTime;
@@ -32,6 +33,12 @@ public class RangedAbility : Ability
         lastAimDir = data.aimDirection;
         lastOrigin = data.origin;
         held = true;
+        if(chargeTime == maxChargeTime)
+        {
+            if (releaseOnFullCharge)
+                Launch();
+        }
+
     }
 
     public override void Tick()

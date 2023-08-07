@@ -31,12 +31,6 @@ public class RootNode : Node
 
     void ResetVariables()
     {
-        if (!agent)
-            return;
 
-        if (agent.performingAction && Time.time - agent.actionTimer > agent.actionCooldown)
-            agent.performingAction = false;
-        if (agent.isMoving && Time.time - agent.movementTimer > agent.movementCooldown)
-            agent.isMoving = false;
     }
 }

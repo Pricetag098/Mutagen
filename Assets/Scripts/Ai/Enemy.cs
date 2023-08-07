@@ -6,23 +6,33 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [Header("References")]
+    public PlayerAbilityCaster player;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Health health;
     [HideInInspector] public EnemyAbilityCaster caster;
+    [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
+
+
+    //behaviour bools
     [HideInInspector] public bool isMoving;
     [HideInInspector] public bool performingAction;
     [HideInInspector] public bool isInDanger;
-    [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
-    public PlayerAbilityCaster player;
+    [HideInInspector] public bool delayMove;
+
     [Header("Stats")]
+    public float movementMultiplier = 1;
+    public int[] healthState;
+
+    [Header("Timers")]
     public float actionCooldown;
     public float movementSpeed;
     public float movementCooldown;
-    public float movementMultiplier = 1;
-    public int[] healthState;
+    [Range(0f,10f)]
+    public float delayMoveRange;
     [HideInInspector] public float defaultMovementSpeed;
     [HideInInspector] public float actionTimer;
     [HideInInspector] public float movementTimer;
+    [HideInInspector] public float delayMoveTimer;
 
 
     private void Start()
@@ -30,6 +40,8 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
+        if (delayMoveRange == 0)
+            delayMoveRange = Random.Range(0.1f,5f);
     }
 
     public void ChangeMovementSpeed(float speed)
@@ -42,13 +54,5 @@ public class Enemy : MonoBehaviour
     {
         movementMultiplier = multi;
         ChangeMovementSpeed(movementSpeed * multi);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector3 awayDir = new Vector3(transform.position.x - player.transform.position.x, 
-            transform.position.y, transform.position.z - player.transform.position.z) * 1.1f;
-        Gizmos.DrawLine(transform.position, awayDir);
     }
 }
