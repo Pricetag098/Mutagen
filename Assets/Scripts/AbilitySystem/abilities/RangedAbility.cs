@@ -27,6 +27,7 @@ public class RangedAbility : Ability
     protected override void OnEquip()
     {
         projectileSpawner = new GameObject().AddComponent<ObjectPooler>();
+        projectileSpawner.CreatePool(prefab, 10);
     }
 
     protected override void OnUnEquip()

@@ -68,12 +68,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedModifier: 0.6
-  maxAimAssistRange: 20
-  aimAssistLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  aimAssistDirectionWeight: 4
-  aimAssistDistanceWeight: 4
-  aimAssistPriorityWeight: 1
-  aimAssistMinDirectionValue: 0.5
-  assistWeight: 0.85
+  aimAssist:
+    maxRange: 100
+    aimAssistLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    directionWeight: 10
+    distanceWeight: 5
+    priorityWeight: 1
+    minDirectionValue: 0
+    assistWeight: 1
