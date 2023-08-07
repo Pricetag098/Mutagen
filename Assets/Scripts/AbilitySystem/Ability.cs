@@ -89,44 +89,5 @@ public class Ability : ScriptableObject
 
     }
 
-    protected Vector3 GetAssistedAimDir(Vector3 aimDir,LayerMask targetLayer,float maxRange,float projectileSpeed, float minDirectionValue  = -1,float directionWeight = 1,float distanceWeight = 1, float priorityWeight =1,float assistWeight = 1)
-	{
-        if (assistWeight == 0)
-            return aimDir;
-        
-        Collider[] colliders = Physics.OverlapSphere(caster.transform.position, maxRange, targetLayer);
-
-        Vector3 bestTarget = aimDir;
-        float bestVal = float.NegativeInfinity;
-        for(int i = 0; i < colliders.Length; i++)
-		{
-            AimAssistTarget target;
-            if(colliders[i].TryGetComponent(out target))
-			{
-                
-
-                Vector3 casterToTarget = target.transform.position - caster.transform.position;
-                casterToTarget.y = 0;
-
-                float time = casterToTarget.magnitude / projectileSpeed;
-                Vector3 newPos = target.transform.position + target.GetVelocity() * time;
-                casterToTarget = newPos - caster.transform.position;
-                casterToTarget.y = 0;
-
-                Vector3 casterToTargetNorm = casterToTarget.normalized;
-                float directionValue = Vector3.Dot(aimDir, casterToTargetNorm) * directionWeight * target.size;
-                if (directionValue < minDirectionValue)
-                    continue;
-                float val = directionValue + (1 / casterToTarget.magnitude) * distanceWeight + target.priority * priorityWeight;
-                if(val > bestVal)
-				{
-                    bestVal = val;
-                    bestTarget = casterToTargetNorm;
-				}
-
-            }
-		}
-        return Vector3.Lerp(aimDir,bestTarget,assistWeight).normalized;
-	}
-
+    
 }

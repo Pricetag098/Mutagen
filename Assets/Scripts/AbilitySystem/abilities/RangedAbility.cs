@@ -19,15 +19,7 @@ public class RangedAbility : Ability
     [SerializeField] float speedModifier = .6f;
 
     [Header("aim assist")]
-    [SerializeField] float maxAimAssistRange = 100;
-    [SerializeField] LayerMask aimAssistLayer;
-    [SerializeField] float aimAssistDirectionWeight = 1;
-    [SerializeField] float aimAssistDistanceWeight = 1;
-    [SerializeField] float aimAssistPriorityWeight = 1;
-    [Range(-1,1)]
-    [SerializeField] float aimAssistMinDirectionValue = -1;
-    [Range(0f, 1f)]  
-    [SerializeField] float assistWeight = 1;
+    [SerializeField] AimAssist aimAssist;
 
     protected Vector3 lastAimDir,lastOrigin;
 
@@ -76,14 +68,14 @@ public class RangedAbility : Ability
     {
         float damage = chargeDamageCurve.Evaluate(chargeTime / maxChargeTime);
         float speed = chargeVelocityCurve.Evaluate(chargeTime / maxChargeTime);
-        Vector3 velocity = speed * GetAssistedAimDir(lastAimDir,aimAssistLayer,maxAimAssistRange,speed,aimAssistMinDirectionValue,aimAssistDirectionWeight,aimAssistDistanceWeight,aimAssistPriorityWeight,assistWeight);
+        Vector3 velocity = speed * aimAssist.GetAssistedAimDir(lastAimDir,lastOrigin,speed);
         projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastOrigin,velocity,damage);
     }
 
 	public override void OnDrawGizmos()
 	{
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(lastOrigin,GetAssistedAimDir(lastAimDir, aimAssistLayer, maxAimAssistRange,100, aimAssistMinDirectionValue, aimAssistDirectionWeight, aimAssistDistanceWeight, aimAssistPriorityWeight, assistWeight));
-        Gizmos.DrawWireSphere(caster.transform.position,maxAimAssistRange);
+        Gizmos.DrawRay(lastOrigin, aimAssist.GetAssistedAimDir(lastAimDir, lastOrigin, 100));
+        //Gizmos.DrawWireSphere(caster.transform.position,maxAimAssistRange);
     }
 }
