@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnockbackNode : ActionNode
+public class AutoFail : ActionNode
 {
-    public float forceAmount;
-    Vector3 awayDir;
-
     protected override void OnStart()
     {
 
@@ -19,7 +16,6 @@ public class KnockbackNode : ActionNode
 
     protected override State OnUpdate()
     {
-
-        return State.Success;
+        return State.Failure;
     }
 }

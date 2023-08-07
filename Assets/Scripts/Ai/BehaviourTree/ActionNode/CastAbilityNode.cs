@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class MeleeAbilityNode : ActionNode
+public class CastAbilityNode : ActionNode
 {
     public int abilityIndex;
     AbilityCaster aCaster;
+    public float castTime;
+    float timer;
 
     protected override void OnStart()
     {
@@ -21,7 +24,16 @@ public class MeleeAbilityNode : ActionNode
     {
         aCaster.CastAbility(abilityIndex,agent.caster.CreateCastData());
         agent.performingAction = true;
-        agent.actionTimer = Time.time; 
-        return State.Success;
+        agent.actionTimer = Time.time;
+        timer += Time.deltaTime;
+        if (timer > castTime)
+        {
+            timer = 0;
+            return State.Success;
+        }
+
+        else return State.Running;
+
+
     }
 }

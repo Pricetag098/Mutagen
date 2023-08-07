@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,7 +12,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public Health health;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
-
+    public EnemyManager manager;
 
     //behaviour bools
     [HideInInspector] public bool isMoving;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     public float movementMultiplier = 1;
     public int[] healthState;
+    public float knockbackForce;
 
     [Header("Timers")]
     public float actionCooldown;
@@ -37,12 +39,17 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        //referencing components
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
+        //manager = transform.parent.GetComponent<EnemyManager>();
+
+
         if (delayMoveRange == 0)
             delayMoveRange = Random.Range(0.1f,5f);
     }
+
 
     public void ChangeMovementSpeed(float speed)
     {
@@ -54,5 +61,12 @@ public class Enemy : MonoBehaviour
     {
         movementMultiplier = multi;
         ChangeMovementSpeed(movementSpeed * multi);
+    }
+
+    public void KnockBack(Vector3 origin) //change force to input if needed
+    {
+        Vector3 awayDir = new Vector3(transform.position.x - origin.x,
+        transform.position.y, transform.position.z - origin.z).normalized;
+        transform.position += awayDir * knockbackForce;
     }
 }

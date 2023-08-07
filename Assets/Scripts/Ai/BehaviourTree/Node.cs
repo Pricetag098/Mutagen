@@ -19,6 +19,7 @@ public abstract class Node : ScriptableObject
     [HideInInspector] public Enemy agent;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public Ability[] abilities;
+    [HideInInspector] public EnemyManager manager;
     [TextArea] public string description;
 
     public State Update()

@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 		rb.AddForce(force);
-		if (rb.velocity.magnitude > maxSpeed)
+		if (rb.velocity.magnitude > maxSpeed * playerStats.speedMulti)
 		{
 			rb.AddForce(-rb.velocity.normalized * controlForce);
 		}

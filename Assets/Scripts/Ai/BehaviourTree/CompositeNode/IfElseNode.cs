@@ -10,7 +10,8 @@ public enum CheckType
     isMoving,
     isDoingAction,
     isInDanger,
-    delayMove
+    delayMove,
+    groupCheck
 }
 
 public class IfElseNode : CompositeNode
@@ -49,6 +50,8 @@ public class IfElseNode : CompositeNode
         return agent.healthState.Length - 1;
     }
 
+
+
     bool delayMoveCheck()
     {
         if (agent.delayMove)
@@ -80,7 +83,6 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
-
                 break;
 
             //health check
