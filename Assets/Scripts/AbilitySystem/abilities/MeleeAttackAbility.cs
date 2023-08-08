@@ -33,12 +33,13 @@ public class MeleeAttackAbility : Ability
 
 
 	
-	public override void Cast(CastData data)
+	protected override void DoCast(CastData data)
 	{
 		if(timer <= 0)
 		{
-			
-			timer = coolDown;
+            if (OnCast != null)
+                OnCast(data);
+            timer = coolDown;
 			List<Health> healths = new List<Health>();
 
 			RaycastHit[] hits = Physics.SphereCastAll(data.origin, swingRadius, data.aimDirection, swingRange, targetLayers);
