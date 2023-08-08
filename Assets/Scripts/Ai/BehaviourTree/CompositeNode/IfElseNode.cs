@@ -21,7 +21,6 @@ public class IfElseNode : CompositeNode
     public CheckType checkType;
     public float distanceCheck;
     public float groupDistance;
-    public float moveCount;
     int first = 0; int second = 1; //used for readability
 
     protected override void OnStart()
