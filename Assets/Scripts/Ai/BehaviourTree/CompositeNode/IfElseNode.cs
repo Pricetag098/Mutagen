@@ -58,7 +58,6 @@ public class IfElseNode : CompositeNode
         {
             average += Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
         }
-        Debug.Log(average / manager.enemyList.Length);
         return (average / manager.enemyList.Length);
     }
 
@@ -73,7 +72,6 @@ public class IfElseNode : CompositeNode
                 count++;
             }
         }
-        Debug.Log(count);
         return count;
     }
 
@@ -159,7 +157,7 @@ public class IfElseNode : CompositeNode
 
             //average distance. to reduce clutter
             case CheckType.groupFacing:
-                if (groupFacingCheck() > moveCount)
+                if (groupFacingCheck() > manager.moveCount)
                     ChildUpdate(first);
                 else 
                     ChildUpdate(second);
