@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1172034608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1172034609}
+  m_Layer: 6
+  m_Name: ProjectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1172034609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172034608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.35, y: 1.72, z: 5.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5010230230439098928}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2154437906129031907
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,6 +63,7 @@ Transform:
   m_Children:
   - {fileID: 5211128308635476360}
   - {fileID: 5206192442025297665}
+  - {fileID: 1172034609}
   m_Father: {fileID: 5206192442467912539}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -808,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89f7527bc9b5634d8cbe418e4da0299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 4e554a8398cc83f4aa971e04818cd198, type: 2}
+  tree: {fileID: 11400000, guid: 9111d09032d4b354a8fabde18139af59, type: 2}
 --- !u!114 &402274768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,16 +858,17 @@ MonoBehaviour:
   health: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
+  manager: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   movementMultiplier: 1
   healthState: 000000003200000064000000
-  knockbackForce: 0
-  actionCooldown: 0.5
-  movementSpeed: 0
-  movementCooldown: 1
+  circlingDistance: 0
+  actionCooldown: 0
+  movementSpeed: 10
+  movementCooldown: 0
   delayMoveRange: 2
   defaultMovementSpeed: 0
   actionTimer: 0
@@ -854,7 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
-  - {fileID: 11400000, guid: ec617e9eadfd4df488ae2f8c95c11399, type: 2}
+  - {fileID: 11400000, guid: 8dc758a641becaa4e9063ce49519fb74, type: 2}
   - {fileID: 11400000, guid: 9c64fb323d5b55743addc3eff63bb9af, type: 2}
   animator:
     enabled: 0
@@ -893,7 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   player: {fileID: 0}
-  castOrigin: {fileID: 0}
+  castOrigin: {fileID: 1172034609}
   aimDir: {x: 8.170364, y: 0.5, z: -3.5638828}
 --- !u!1001 &5206192442303474494
 PrefabInstance:

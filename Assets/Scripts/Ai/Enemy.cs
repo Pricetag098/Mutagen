@@ -19,11 +19,12 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool performingAction;
     [HideInInspector] public bool isInDanger;
     [HideInInspector] public bool delayMove;
+    [HideInInspector] public bool flanking;
 
     [Header("Stats")]
     public float movementMultiplier = 1;
     public int[] healthState;
-    public float knockbackForce;
+    public float circlingDistance = 5;
 
     [Header("Timers")]
     public float actionCooldown;
@@ -50,6 +51,15 @@ public class Enemy : MonoBehaviour
             delayMoveRange = Random.Range(0.1f,5f);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Vector3 dir = new Vector3(transform.position.x - player.transform.position.x, transform.position.y,
+                transform.position.z - player.transform.position.z).normalized;
+            KnockBack(dir * 20);
+        }
+    }
 
     public void ChangeMovementSpeed(float speed)
     {
@@ -63,10 +73,14 @@ public class Enemy : MonoBehaviour
         ChangeMovementSpeed(movementSpeed * multi);
     }
 
-    public void KnockBack(Vector3 origin) //change force to input if needed
+    public void Flank()
     {
-        Vector3 awayDir = new Vector3(transform.position.x - origin.x,
-        transform.position.y, transform.position.z - origin.z).normalized;
-        transform.position += awayDir * knockbackForce;
+        Vector3 playerFlank = player.transform.position + (-player.transform.forward * circlingDistance);
+        agent.SetDestination(playerFlank);
+    }
+
+    public void KnockBack(Vector3 knockbackDirection)
+    {
+        transform.position +=  knockbackDirection;
     }
 }

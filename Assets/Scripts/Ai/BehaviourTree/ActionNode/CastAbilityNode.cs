@@ -25,15 +25,20 @@ public class CastAbilityNode : ActionNode
         aCaster.CastAbility(abilityIndex,agent.caster.CreateCastData());
         agent.performingAction = true;
         agent.actionTimer = Time.time;
-        timer += Time.deltaTime;
-        if (timer > castTime)
+
+        if (aCaster.abilities[abilityIndex].castType == Ability.CastTypes.hold)
         {
-            timer = 0;
-            return State.Success;
+            timer += Time.deltaTime;
+            if (timer > castTime)
+            {
+                timer = 0;
+                return State.Success;
+            }
+
+            else return State.Running;
         }
 
-        else return State.Running;
-
+        return State.Success;
 
     }
 }

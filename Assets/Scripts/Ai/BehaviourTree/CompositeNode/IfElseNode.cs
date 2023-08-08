@@ -11,30 +11,31 @@ public enum CheckType
     isDoingAction,
     isInDanger,
     delayMove,
-    groupCheck
+    groupDistance,
+    groupFacing,
+    flanking
 }
 
 public class IfElseNode : CompositeNode
 {
     public CheckType checkType;
     public float distanceCheck;
+    public float groupDistance;
+    public float moveCount;
     int first = 0; int second = 1; //used for readability
 
     protected override void OnStart()
     {
-
     }
 
     protected override void OnStop()
     {
-
     }
 
     bool distCheck()
     {
         float distance = Vector3.Distance(agent.transform.position, blackboard.targetPosition);
-        bool test = checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
-        return test;
+        return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
     }
 
     int healthCheck()
@@ -48,6 +49,32 @@ public class IfElseNode : CompositeNode
             }
         }
         return agent.healthState.Length - 1;
+    }
+
+    float groupDistanceCheck()
+    {
+        float average = 0;
+        for (int i = 0; i < manager.enemyList.Length; i++)
+        {
+            average += Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
+        }
+        Debug.Log(average / manager.enemyList.Length);
+        return (average / manager.enemyList.Length);
+    }
+
+    float groupFacingCheck()
+    { 
+        int count = 0;
+        for(int i  = 0; i < manager.enemyList.Length; i++)
+        {
+            if(Vector3.Dot(agent.player.transform.forward, (manager.enemyList[i].transform.position - 
+                agent.player.transform.position).normalized) > 0)
+            {
+                count++;
+            }
+        }
+        Debug.Log(count);
+        return count;
     }
 
 
@@ -115,9 +142,31 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
+            case CheckType.flanking:
+                if (agent.flanking)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
             //currently waiting to move
             case CheckType.delayMove:
                 if (delayMoveCheck())
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            //average distance. to reduce clutter
+            case CheckType.groupFacing:
+                if (groupFacingCheck() > moveCount)
+                    ChildUpdate(first);
+                else 
+                    ChildUpdate(second);
+                break;
+
+            case CheckType.groupDistance:
+                if (groupDistanceCheck() < groupDistance)
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
