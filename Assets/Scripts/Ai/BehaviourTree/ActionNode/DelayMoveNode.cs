@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class MoveToNode : ActionNode
+public class DelayMoveNode : ActionNode
 {
-    //public GameObject GoTo;
     protected override void OnStart()
     {
 
@@ -13,14 +11,13 @@ public class MoveToNode : ActionNode
 
     protected override void OnStop()
     {
-        
+
     }
 
     protected override State OnUpdate()
     {
-        agent.isMoving = true;
-        agent.agent.SetDestination(blackboard.moveToPosition);
+        agent.delayMove = true;
+        agent.delayMoveTimer = Time.time;
         return State.Success;
-
     }
 }

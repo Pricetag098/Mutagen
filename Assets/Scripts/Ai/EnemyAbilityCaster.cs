@@ -5,9 +5,8 @@ using UnityEngine;
 public class EnemyAbilityCaster : MonoBehaviour
 {
     [Header("References")]
-    AbilityCaster caster;
+    [HideInInspector] public AbilityCaster caster;
     public GameObject player;
-    //public BehaviourTreeRunner behaviour;
     public Transform castOrigin;
     public Vector3 aimDir;
 
@@ -21,19 +20,15 @@ public class EnemyAbilityCaster : MonoBehaviour
     public Ability.CastData CreateCastData()
     {
         Ability.CastData data = new Ability.CastData();
-        data.origin = transform.position;
+        data.origin = castOrigin.transform.position;
         //deviation math
-        aimDir = transform.position - transform.forward;
+        aimDir = new Vector3(player.transform.position.x - transform.position.x, 0,
+            player.transform.position.z - transform.position.z).normalized;
+
         data.aimDirection = aimDir;
         data.moveDirection = transform.position + transform.forward;
         data.effectOrigin = castOrigin;
         return data;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        aimDir = transform.position - transform.forward;
-        Gizmos.DrawLine(transform.position, aimDir);
-    }
 }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class MoveToNode : ActionNode
+public class ReduceAttackTimer : SetterNode
 {
-    //public GameObject GoTo;
+    public float reduceMultiplier;
+
+
     protected override void OnStart()
     {
 
@@ -13,14 +14,13 @@ public class MoveToNode : ActionNode
 
     protected override void OnStop()
     {
-        
+
     }
 
     protected override State OnUpdate()
     {
-        agent.isMoving = true;
-        agent.agent.SetDestination(blackboard.moveToPosition);
-        return State.Success;
-
+        float amount = agent.actionCooldown / reduceMultiplier;
+        //agent.actionCooldown /= reduceMultiplier;
+        return child.Update();
     }
 }

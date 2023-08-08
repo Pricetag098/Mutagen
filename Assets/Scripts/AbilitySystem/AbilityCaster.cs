@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class AbilityCaster : MonoBehaviour
 {
-    
     public Ability[] abilities;
     public Optional<Animator> animator;
     public Health ownerHealth;
@@ -64,6 +63,7 @@ public class AbilityCaster : MonoBehaviour
 	}
     public virtual void CastAbility(int index,Ability.CastData castData)
     {
+        //Debug.Log(abilities[index].name);
         abilities[index].Cast(castData);
     }
 
