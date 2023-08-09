@@ -25,7 +25,7 @@ public class TimeRewindAbility : Ability
 
 
     List<TimeData> positionHistory = new List<TimeData>();
-    public override void Cast(CastData data)
+    protected override void DoCast(CastData data)
     {
         if (timer < coolDown)
             return;
@@ -33,6 +33,8 @@ public class TimeRewindAbility : Ability
         positionHistory.Clear();
         positionHistory.Add(new TimeData(caster.transform.position, Time.time));
         timer = 0;
+        if (OnCast != null)
+            OnCast(data);
     }
 
     
@@ -71,7 +73,7 @@ public class TimeRewindAbility : Ability
 		if(linePrefab.Enabled)
             lineRenderer = Instantiate(linePrefab.Value).GetComponent<LineRenderer>();
 	}
-	protected override void OnUnEquip()
+	protected override void OnUnEquip(Ability replacement)
 	{
         if (linePrefab.Enabled)
             Destroy(lineRenderer.gameObject);

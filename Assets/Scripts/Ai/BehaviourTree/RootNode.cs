@@ -12,16 +12,15 @@ public class RootNode : Node
 
     protected override void OnStop()
     {
+        ResetVariables();
         blackboard.Reset();
     }
 
     protected override State OnUpdate()
     {
-        ResetVariables();
+
         return child.Update();
     }
-
-
 
     public override Node Clone()
     {
@@ -32,11 +31,6 @@ public class RootNode : Node
 
     void ResetVariables()
     {
-        //Debug.Log("Reset");
 
-        if (agent.performingAction && Time.time - agent.actionTimer > agent.actionCooldown)
-            agent.performingAction = false;
-        if (agent.isMoving && Time.time - agent.movementTimer > agent.movementCooldown)
-            agent.isMoving = false;
     }
 }

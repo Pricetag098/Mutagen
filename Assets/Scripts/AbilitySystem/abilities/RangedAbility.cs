@@ -6,6 +6,7 @@ using UnityEngine;
 public class RangedAbility : Ability
 {
     [SerializeField] protected GameObject prefab;
+    [SerializeField] bool releaseOnFullCharge;
     protected ObjectPooler projectileSpawner;
 
     protected float chargeTime;
@@ -21,7 +22,7 @@ public class RangedAbility : Ability
     [Header("aim assist")]
     [SerializeField] AimAssist aimAssist;
 
-    protected Vector3 lastAimDir,lastOrigin;
+    protected CastData lastCastdata;
 
     bool startedCasting;
     protected override void OnEquip()
@@ -30,11 +31,11 @@ public class RangedAbility : Ability
         projectileSpawner.CreatePool(prefab, 10);
     }
 
-    protected override void OnUnEquip()
+    protected override void OnUnEquip(Ability replacement)
     {
         Destroy(projectileSpawner.gameObject);
     }
-    public override void Cast(CastData data)
+    protected override void DoCast(CastData data)
     {
 		if (!startedCasting)
 		{
@@ -42,10 +43,15 @@ public class RangedAbility : Ability
             startedCasting = true;
         }
         chargeTime = Mathf.Clamp(chargeTime + Time.deltaTime,0,maxChargeTime);
-        lastAimDir = data.aimDirection;
-        lastOrigin = data.origin;
+        lastCastdata = data;
         
         held = true;
+        if(chargeTime == maxChargeTime)
+        {
+            if (releaseOnFullCharge)
+                Launch();
+        }
+
     }
 
     public override void Tick()
@@ -69,14 +75,16 @@ public class RangedAbility : Ability
     {
         float damage = chargeDamageCurve.Evaluate(chargeTime / maxChargeTime);
         float speed = chargeVelocityCurve.Evaluate(chargeTime / maxChargeTime);
-        Vector3 velocity = speed * aimAssist.GetAssistedAimDir(lastAimDir,lastOrigin,speed);
-        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastOrigin,velocity,damage);
+        Vector3 velocity = speed * aimAssist.GetAssistedAimDir(lastCastdata.aimDirection,lastCastdata.origin,speed);
+        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,damage);
+        if (OnCast != null)
+            OnCast(lastCastdata);
     }
 
 	public override void OnDrawGizmos()
 	{
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(lastOrigin, aimAssist.GetAssistedAimDir(lastAimDir, lastOrigin, 100));
+        Gizmos.DrawRay(lastCastdata.origin, aimAssist.GetAssistedAimDir(lastCastdata.aimDirection, lastCastdata.origin, 100));
         //Gizmos.DrawWireSphere(caster.transform.position,maxAimAssistRange);
     }
 }

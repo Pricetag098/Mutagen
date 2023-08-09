@@ -23,7 +23,7 @@ public class DistanceCheckNode : DecoratorNode
     bool check()
     {
         float distance = Vector3.Distance(agent.transform.position, blackboard.targetPosition);
-        if (checkType == CheckType.LessThan)
+        if (checkType == CheckType.DistanceLessThan)
         {
             if (distance < distanceCheck)
             {
