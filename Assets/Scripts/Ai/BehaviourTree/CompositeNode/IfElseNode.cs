@@ -2,27 +2,93 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CheckType
+{
+    DistanceLessThan,
+    DistanceGreaterThan,
+    Health,
+    isMoving,
+    isDoingAction,
+    isInDanger,
+    delayMove,
+    groupDistance,
+    groupFacing,
+    flanking
+}
+
 public class IfElseNode : CompositeNode
 {
     public CheckType checkType;
     public float distanceCheck;
+    public float groupDistance;
+    public float moveCount;
+    int first = 0; int second = 1; //used for readability
 
     protected override void OnStart()
     {
-
     }
 
     protected override void OnStop()
     {
-
     }
 
     bool distCheck()
     {
         float distance = Vector3.Distance(agent.transform.position, blackboard.targetPosition);
-        bool test = checkType == CheckType.LessThan ? distance < distanceCheck : distance > distanceCheck;
-        return test;
-        //else if
+        return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
+    }
+
+    int healthCheck()
+    {
+        int heal = agent.healthState[0];
+        for (int i = 0; i < agent.healthState.Length; i++)
+        {
+            if (agent.health.health > agent.healthState[i] && agent.health.health < agent.healthState[i + 1])
+            {
+                return i;
+            }
+        }
+        return agent.healthState.Length - 1;
+    }
+
+    float groupDistanceCheck()
+    {
+        float average = 0;
+        for (int i = 0; i < manager.enemyList.Length; i++)
+        {
+            average += Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
+        }
+        return (average / manager.enemyList.Length);
+    }
+
+    float groupFacingCheck()
+    { 
+        int count = 0;
+        for(int i  = 0; i < manager.enemyList.Length; i++)
+        {
+            if(Vector3.Dot(agent.player.transform.forward, (manager.enemyList[i].transform.position - 
+                agent.player.transform.position).normalized) > 0)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+
+    bool delayMoveCheck()
+    {
+        if (agent.delayMove)
+            return false;
+
+        if(Time.time - agent.delayMoveTimer > agent.delayMoveRange)
+        {
+            agent.delayMove = false;
+            return true;
+        }
+
+        return true;
     }
 
     protected override State OnUpdate()
@@ -30,30 +96,86 @@ public class IfElseNode : CompositeNode
 
         switch (checkType)
         {
-            case CheckType.LessThan:
+            //distance checks
+            case CheckType.DistanceLessThan:
                 if (distCheck())
-                {
-                    children[0].Update();
-                    return State.Running;
-                }
+                    ChildUpdate(first);
                 else
-                {
-                    children[1].Update();
-                    return State.Running;
-                }
-            case CheckType.GreaterThan:
+                    ChildUpdate(second);
+                break;
+            case CheckType.DistanceGreaterThan:
                 if (distCheck())
-                {
-                    children[0].Update();
-                    return State.Running;
-                }
+                    ChildUpdate(first);
                 else
-                {
-                    children[1].Update();
-                    return State.Running;
-                }
-                //case other checks e.g. indanger
+                    ChildUpdate(second);
+                break;
+
+            //health check
+            case CheckType.Health:
+                ChildUpdate(healthCheck());
+                break;
+
+
+                //curently moving check
+            case CheckType.isMoving:
+                if (agent.isMoving)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            //currently doing action
+            case CheckType.isDoingAction:
+                if (agent.performingAction)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            //currently in danger check
+            case CheckType.isInDanger:
+                if (agent.isInDanger)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            case CheckType.flanking:
+                if (agent.flanking)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            //currently waiting to move
+            case CheckType.delayMove:
+                if (delayMoveCheck())
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            //average distance. to reduce clutter
+            case CheckType.groupFacing:
+                if (groupFacingCheck() > manager.moveCount)
+                    ChildUpdate(first);
+                else 
+                    ChildUpdate(second);
+                break;
+
+            case CheckType.groupDistance:
+                if (groupDistanceCheck() < groupDistance)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
         }
+        return State.Running;
+    }
+
+    public State ChildUpdate(int index)
+    {
+        children[index].Update();
         return State.Running;
     }
 }

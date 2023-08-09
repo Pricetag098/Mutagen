@@ -11,8 +11,6 @@ public class BehaviourTreeRunner : MonoBehaviour
     {
         tree = tree.Clone();
         tree.Bind(GetComponent<Enemy>());
-        //tree.blackboard.agent = this.GetComponent<NavMeshAgent>();
-
     }
 
     private void Update()

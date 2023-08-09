@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyAbilityCaster : MonoBehaviour
 {
     [Header("References")]
-    AbilityCaster caster;
-    public PlayerAbilityCaster player;
-    public BehaviourTreeRunner behaviour;
+    [HideInInspector] public AbilityCaster caster;
+    public GameObject player;
     public Transform castOrigin;
+    public Vector3 aimDir;
 
 
     private void Start()
@@ -17,14 +17,18 @@ public class EnemyAbilityCaster : MonoBehaviour
     }
 
 
-    Ability.CastData CreateCastData()
+    public Ability.CastData CreateCastData()
     {
         Ability.CastData data = new Ability.CastData();
-        data.origin = transform.position;
+        data.origin = castOrigin.transform.position;
         //deviation math
-        data.aimDirection = player.transform.position;// new Vector3();
+        aimDir = new Vector3(player.transform.position.x - transform.position.x, 0,
+            player.transform.position.z - transform.position.z).normalized;
+
+        data.aimDirection = aimDir;
         data.moveDirection = transform.position + transform.forward;
         data.effectOrigin = castOrigin;
         return data;
     }
+
 }
