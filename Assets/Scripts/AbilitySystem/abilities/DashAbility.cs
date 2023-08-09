@@ -49,7 +49,7 @@ public class DashAbility : Ability
 	{
 		return stam / maxStam;
 	}
-	public override void Cast(CastData data)
+	protected override void DoCast(CastData data)
 	{
 		if (dashing)
 			return;
@@ -63,7 +63,10 @@ public class DashAbility : Ability
 			direction = data.moveDirection;
 			dashing = true;
 			DoDash();
-		}
+
+            if (OnCast != null)
+                OnCast(data);
+        }
 
 
 	}
