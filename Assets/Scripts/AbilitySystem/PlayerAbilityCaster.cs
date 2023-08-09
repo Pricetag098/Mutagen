@@ -10,8 +10,8 @@ public class PlayerAbilityCaster : MonoBehaviour
     [SerializeField] InputActionProperty abilityAction3;
     [SerializeField] InputActionProperty abilityAction4;
 	public Transform castOrigin;
-	
-	AbilityCaster caster;
+	[SerializeField] AbilitySelector abilitySelector;
+	[HideInInspector]public AbilityCaster caster;
 	PlayerAim aim;
 	PlayerMovement movement;
 	private void Start()
@@ -32,8 +32,8 @@ public class PlayerAbilityCaster : MonoBehaviour
 	private void Update()
 	{
 		TryCast(abilityBasic.action, 0);
-		TryCast(abilityDash.action, 1);
-		TryCast(abilityAction2.action, 2);
+		TryCast(abilityDash.action, 2);
+		TryCast(abilityAction2.action, 1);
 		TryCast(abilityAction3.action, 3);
 		TryCast(abilityAction4.action, 4);
 	}
@@ -79,5 +79,31 @@ public class PlayerAbilityCaster : MonoBehaviour
 		data.effectOrigin = castOrigin;
 		return data;
 	}
+
+	bool TryEquipAbility(Ability ability)
+	{
+		for(int i = 0; i < caster.abilities.Length; i++)
+		{
+			if(caster.abilities[i].GetType() == caster.baseAbility.GetType())
+			{
+				if (ability.slotMask.HasFlag((Ability.SlotMask)Mathf.Pow(2,i)))
+				{
+					caster.SetAbility(ability,i);
+					return true;
+				}
+				
+			}
+		}
+		return false;
+	}
+
+	public void EquipAbility(Ability ability)
+	{
+		if (!TryEquipAbility(ability))
+		{
+			abilitySelector.Open(ability);
+		}
+	}
+	
 
 }

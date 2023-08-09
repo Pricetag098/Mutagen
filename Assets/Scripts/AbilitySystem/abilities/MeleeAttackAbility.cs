@@ -17,8 +17,7 @@ public class MeleeAttackAbility : Ability
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
-		Debug.Log(angleCutoff);
-		Debug.Log(coolDown);
+
 	}
 
 	public override void Tick()
