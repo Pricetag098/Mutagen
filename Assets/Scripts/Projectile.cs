@@ -7,7 +7,10 @@ public class Projectile : MonoBehaviour
     float damage;
     Rigidbody body;
     [SerializeField] Vector3 gravity;
-
+    [SerializeField] GameObject visual;
+    [SerializeField] Optional<VfxSpawnRequest> vfx;
+    public delegate void OnHit();
+    public OnHit onHit;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,7 +28,8 @@ public class Projectile : MonoBehaviour
         body.velocity = vel;
         damage = dmg;
         transform.forward = vel;
-
+        visual.SetActive(true);
+        body.isKinematic = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -34,7 +38,13 @@ public class Projectile : MonoBehaviour
         if (collision.collider.TryGetComponent(out hb))
         {
             hb.OnHit(damage);
+            if (vfx.Enabled)
+                vfx.Value.Play(collision.GetContact(0).point, collision.GetContact(0).normal);
         }
-        GetComponent<PooledObject>().Despawn();
+        if(onHit != null)
+        onHit();
+        visual.SetActive(false);
+        body.isKinematic = true;
+        //GetComponent<PooledObject>().Despawn();
     }
 }

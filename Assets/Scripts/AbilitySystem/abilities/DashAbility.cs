@@ -79,10 +79,7 @@ public class DashAbility : Ability
 		
 	}
 
-	protected virtual void OnDash()
-	{
-
-	}
+	
 	protected virtual void EndDash()
 	{
 		if (caster.rigidbody.Enabled)

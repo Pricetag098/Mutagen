@@ -10,7 +10,7 @@ public class Ability : ScriptableObject
     protected AbilityCaster caster;
     public delegate void CastDelegate(CastData data);
     public CastDelegate OnCast;
-    
+    public Optional<GameObject> pickupPrefab;
     [System.Flags]
 	public enum SlotMask 
     { 

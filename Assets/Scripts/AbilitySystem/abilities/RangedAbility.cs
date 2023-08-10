@@ -49,7 +49,11 @@ public class RangedAbility : Ability
         if(chargeTime == maxChargeTime)
         {
             if (releaseOnFullCharge)
-                Launch();
+			{
+                
+                held = false;
+            }
+                
         }
 
     }
@@ -59,7 +63,7 @@ public class RangedAbility : Ability
         if(!held && chargeTime > 0)
         {
             
-            if(chargeTime > minChargeTime)
+            if(chargeTime >= minChargeTime)
             Launch();
 
             caster.ChangeSpeed(speedModifier);
