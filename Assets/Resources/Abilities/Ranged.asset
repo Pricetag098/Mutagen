@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Ranged
   m_EditorClassIdentifier: 
   abilityName: 
-  icon: {fileID: 0}
-  slotMask: 0
+  icon: {fileID: 21300000, guid: 6f6c87694d3209a46b406b83578e0b1a, type: 3}
+  pickupPrefab:
+    enabled: 1
+    val: {fileID: 7523146627320602946, guid: 405c1776749dd9748a6541306bcfda3e, type: 3}
+  slotMask: 2
   castType: 1
   prefab: {fileID: 1036542219973673062, guid: 63925f9704c67394589b05446b20541b, type: 3}
+  releaseOnFullCharge: 0
   maxChargeTime: 1
   minChargeTime: 0.1
   chargeDamageCurve:
@@ -69,7 +73,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   speedModifier: 0.6
   aimAssist:
-    maxRange: 100
+    maxRange: 20
     aimAssistLayer:
       serializedVersion: 2
       m_Bits: 512

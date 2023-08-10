@@ -17,12 +17,13 @@ public class OrbitAbility : Ability
     [SerializeField] float orbitSpeed;
     [SerializeField] float radius;
     [SerializeField] float flySpeed;
-    [Range(0, 1)][SerializeField] float midPointVal;
+    [SerializeField] float midPointOffset;
     [SerializeField] float range;
     [SerializeField] float damage;
+    [SerializeField] AimAssist aimAssist;
     protected override void OnEquip()
     {
-        caster.abilities[0].OnCast += Fire;
+        caster.abilities[1].OnCast += Fire;
         pooler = new GameObject().AddComponent<ObjectPooler>();
         pooler.CreatePool(prefab, 5 * maxCharges);
     }
@@ -35,8 +36,10 @@ public class OrbitAbility : Ability
             GameObject orb = orbs[0];
             orbs.RemoveAt(0);
 
-            Vector3 endPoint = data.origin + data.aimDirection * range;
-            Vector3 midPoint = Vector3.Lerp(data.origin, endPoint, midPointVal);
+            Vector3 aimAssistDir = aimAssist.GetAssistedAimDir(data.aimDirection, data.origin, flySpeed);
+
+            Vector3 endPoint = data.origin + aimAssistDir * range;
+            Vector3 midPoint = data.origin + aimAssistDir * midPointOffset;
             orb.GetComponent<OrbitProjectile>().Shoot(endPoint, midPoint, this, flySpeed,damage);
 
         }

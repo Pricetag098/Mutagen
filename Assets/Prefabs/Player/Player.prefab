@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3302166959065098342}
   - component: {fileID: 3302166959065098340}
   - component: {fileID: 3302166959065098347}
+  - component: {fileID: 6942221350904321258}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -188,6 +189,8 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -44103517363842288, guid: 19fac495a12425a448b03de33eeab52d, type: 3}
   castOrigin: {fileID: 3302166959065098345}
+  abilitySelector: {fileID: 0}
+  caster: {fileID: 0}
 --- !u!114 &8922768473389122986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 11400000, guid: 8dc758a641becaa4e9063ce49519fb74, type: 2}
-  - {fileID: 11400000, guid: 9c64fb323d5b55743addc3eff63bb9af, type: 2}
   - {fileID: 11400000, guid: 88c8d463fc3f31444b68482dd64dfd3c, type: 2}
-  - {fileID: 11400000, guid: c76125cd47108984c993f8e02531a74b, type: 2}
+  - {fileID: 11400000, guid: 9c64fb323d5b55743addc3eff63bb9af, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   animator:
     enabled: 0
@@ -213,6 +216,7 @@ MonoBehaviour:
   rigidbody:
     enabled: 1
     val: {fileID: 3302166959065098340}
+  baseAbility: {fileID: 0}
 --- !u!114 &3302166959065098342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +263,39 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
+--- !u!114 &6942221350904321258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302166959065098351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08778575cf12f8140a1eb61eedfb37c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  maxRange: 3
+  directionWeight: 1
+  distanceWeight: 1
+  priorityWeight: 1
+  minDirectionValue: -1
+  input:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Input
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3fc40e80-03a7-4e51-b34d-c2364c1fe6d8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 8467359750762920925, guid: 19fac495a12425a448b03de33eeab52d, type: 3}
+  hasTarget: 0
 --- !u!1 &3302166960036811219
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3302166960153660133}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
