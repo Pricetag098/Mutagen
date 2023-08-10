@@ -91,11 +91,17 @@ public class Health : MonoBehaviour
 		}
 	}
 
+    public void ClearStatusEffects()
+	{
+        foreach (StatusEffect effect in effects)
+        {
+            effect.Remove();
+        }
+        effects.Clear();
+    }
+
 	private void OnDestroy()
 	{
-		foreach(StatusEffect effect in effects)
-		{
-            effect.Remove();
-		}
+		ClearStatusEffects();
 	}
 }

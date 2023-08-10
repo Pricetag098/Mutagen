@@ -7,6 +7,7 @@ public class SkipStrikeStatus : StatusEffect
 	float totalDamage = 0;
 	[SerializeField] float duration;
 	[SerializeField] float reflectedDamageMulti = 1;
+	[SerializeField] Optional<VfxSpawnRequest> vfx;
 	float timer;
 	protected override void OnAdd()
 	{
@@ -21,6 +22,8 @@ public class SkipStrikeStatus : StatusEffect
 		{
 			
 			health.TakeDmg(totalDamage * reflectedDamageMulti);
+			if (vfx.Enabled)
+				vfx.Value.Play(health.transform.position, Vector3.up);
 			health.RemoveStatusEffect(this);
 		}
 	}
