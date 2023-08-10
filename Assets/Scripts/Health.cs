@@ -10,8 +10,12 @@ public class Health : MonoBehaviour
     public float iFrames;
     [SerializeField] float maxIFrames = float.PositiveInfinity;
     public delegate void Action();
+
+    public delegate void DamageAction(float dmg);
     public Action OnDeath;
-    public Action OnHit;
+    public DamageAction OnHit;
+
+    public List<StatusEffect> effects = new List<StatusEffect>();
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,10 @@ public class Health : MonoBehaviour
     void Update()
     {
         iFrames = Mathf.Clamp(iFrames - Time.deltaTime, 0, maxIFrames);
+        for(int i = effects.Count-1; i >= 0 ; i--)
+		{
+            effects[i].Tick();
+		}
     }
     public void TakeDmg(float dmg)
     {
@@ -29,7 +37,7 @@ public class Health : MonoBehaviour
             return;
         health = Mathf.Clamp(health -dmg,0,maxHealth);
         if(OnHit != null)
-        OnHit();
+        OnHit(dmg);
         if(health <= 0)
 		{
             Die();
@@ -49,5 +57,45 @@ public class Health : MonoBehaviour
         
         if(OnDeath != null)
         OnDeath();
+	}
+
+    public void AddStatusEffect(StatusEffect effect)
+	{
+		if (!HasStatusEffect(effect))
+		{
+            StatusEffect ef = Instantiate(effect);
+            effects.Add(ef);
+            ef.Add(this);
+		}
+	}
+
+    public bool HasStatusEffect(StatusEffect effect)
+	{
+        foreach(StatusEffect statusEffect in effects)
+		{
+            if(statusEffect.GetType() == effect.GetType())
+                return true;
+		}
+        return false;
+	}
+
+    public void RemoveStatusEffect(StatusEffect statusEffect)
+	{
+        for(int i = 0; i < effects.Count; i++)
+		{
+            if(effects[i].GetType() == statusEffect.GetType())
+			{
+                effects[i].Remove();
+                effects.RemoveAt(i);
+			}
+		}
+	}
+
+	private void OnDestroy()
+	{
+		foreach(StatusEffect effect in effects)
+		{
+            effect.Remove();
+		}
 	}
 }
