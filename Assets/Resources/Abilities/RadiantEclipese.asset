@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: RadiantEclipese
   m_EditorClassIdentifier: 
   abilityName: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: ed521ac017883df469c46d3115e56b9f, type: 3}
   pickupPrefab:
-    enabled: 0
-    val: {fileID: 0}
-  slotMask: 0
-  castType: 0
-  prefab: {fileID: 0}
-  releaseOnFullCharge: 0
-  maxChargeTime: 0
-  minChargeTime: 0
+    enabled: 1
+    val: {fileID: 4348921970920820347, guid: 0f8f74e6b84bae347bbb8ce7b4279d86, type: 3}
+  slotMask: 2
+  castType: 1
+  prefab: {fileID: 6231445986190520247, guid: 43c3e198b861ab848a61995ba77c26b7, type: 3}
+  releaseOnFullCharge: 1
+  maxChargeTime: 0.5
+  minChargeTime: 0.5
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
@@ -53,17 +53,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 50
+      inSlope: 310.76584
+      outSlope: 310.76584
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.2125
     - serializedVersion: 3
       time: 1
-      value: 50
-      inSlope: 50
-      outSlope: 0
+      value: 100
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -73,12 +73,12 @@ MonoBehaviour:
     m_RotationOrder: 4
   speedModifier: 0.6
   aimAssist:
-    maxRange: 100
+    maxRange: 20
     aimAssistLayer:
       serializedVersion: 2
       m_Bits: 512
-    directionWeight: 1
-    distanceWeight: 1
+    directionWeight: 10
+    distanceWeight: 5
     priorityWeight: 1
-    minDirectionValue: -1
+    minDirectionValue: 0.5
     assistWeight: 1
