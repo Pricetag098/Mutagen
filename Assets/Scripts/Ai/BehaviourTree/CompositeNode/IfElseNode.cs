@@ -74,8 +74,6 @@ public class IfElseNode : CompositeNode
         return count;
     }
 
-
-
     bool delayMoveCheck()
     {
         if (agent.delayMove)
