@@ -14,7 +14,7 @@ public class Leg : MonoBehaviour
     [SerializeField] AnimationCurve easingFunction = AnimationCurve.Linear(0, 0, 1, 1);
     [SerializeField] LayerMask ground;
     public bool moving;
-    float maxTimer;
+    float maxTimer =1;
     float timer;
     Vector3 originalPosition;
     Vector3 midPoint;
