@@ -10,7 +10,11 @@ public class PlayerAbilityCaster : MonoBehaviour
     [SerializeField] InputActionProperty abilityAction3;
     [SerializeField] InputActionProperty abilityAction4;
 	public Transform castOrigin;
+<<<<<<< HEAD
 	public AbilitySelector abilitySelector;
+=======
+	[SerializeField] AbilitySelector abilitySelector;
+>>>>>>> Art
 	[HideInInspector]public AbilityCaster caster;
 	PlayerAim aim;
 	PlayerMovement movement;
