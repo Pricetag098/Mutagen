@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class AbilityCaster : MonoBehaviour
 {
-    
     public Ability[] abilities;
     public Optional<Animator> animator;
     public Health ownerHealth;
     new public Optional<Rigidbody> rigidbody;
-    
 
+    Optional<PlayerStats> playerStats;
     const string baseAbilityPath = "Abilities/Empty";
     [HideInInspector]public Ability baseAbility;
     // Start is called before the first frame update
@@ -31,6 +30,9 @@ public class AbilityCaster : MonoBehaviour
             abilities[i].Equip(this);
             
 		}
+        PlayerStats tempStats;
+        playerStats.Enabled = TryGetComponent(out tempStats);
+        playerStats.Value = tempStats;
     }
     public void SetAbility(Ability ability,int index)
 	{
@@ -57,9 +59,25 @@ public class AbilityCaster : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            abilities[i].FixedTick();
+        }
+    }
 
+    public void ChangeSpeed(float multiplierChange)
+	{
+		if (playerStats.Enabled)
+		{
+            playerStats.Value.speedMulti += multiplierChange;
+		}
+        //do ai stuff
+	}
     public virtual void CastAbility(int index,Ability.CastData castData)
     {
+        //Debug.Log(abilities[index].name);
         abilities[index].Cast(castData);
     }
 

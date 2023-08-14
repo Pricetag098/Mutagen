@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float walkAcceleration = 1000; 
 	[SerializeField] float walkSlowForce = 1000;
 	[SerializeField] float walkControlForce = 1000;
+	[SerializeField] float walkAltDirectionMulti = 2;
 	[SerializeField] float gravityForce = 1000;
 
 	[Header("Animation Settings")]
@@ -51,10 +52,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		Move(walkMaxSpeed,walkAcceleration,walkSlowForce,walkControlForce);
+		Move(walkMaxSpeed,walkAcceleration,walkSlowForce,walkControlForce,walkAltDirectionMulti);
 	}
 
-	void Move(float maxSpeed, float acceleration, float slowForce, float controlForce)
+	void Move(float maxSpeed, float acceleration, float slowForce, float controlForce, float altDirectionMulti)
 	{
 
 		acceleration *= Time.fixedDeltaTime;
@@ -77,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
 			if (Mathf.Sign(fwVel) < 0)
 			{
-				forceDir *= 2;
+				forceDir *= altDirectionMulti;
 			}
 			force += forceDir;
 		}
@@ -87,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 			Vector3 forceDir = orientation.right * inputDir.x * acceleration * playerStats.accelerationMulti;
 			if (Mathf.Sign(rightVel) < 0)
 			{
-				forceDir *= 2;
+				forceDir *= altDirectionMulti;
 			}
 			force += forceDir;
 		}
@@ -114,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 		rb.AddForce(force);
-		if (rb.velocity.magnitude > maxSpeed)
+		if (rb.velocity.magnitude > maxSpeed * playerStats.speedMulti)
 		{
 			rb.AddForce(-rb.velocity.normalized * controlForce);
 		}

@@ -10,11 +10,11 @@ public class Leg : MonoBehaviour
     [SerializeField] float maxDistance;
     [SerializeField] float rayLength = 1;
     [SerializeField] float yOffset;
-    [SerializeField] float travelTime;
+    [SerializeField] float travelSpeed;
     [SerializeField] AnimationCurve easingFunction = AnimationCurve.Linear(0, 0, 1, 1);
     [SerializeField] LayerMask ground;
     public bool moving;
-
+    float maxTimer =1;
     float timer;
     Vector3 originalPosition;
     Vector3 midPoint;
@@ -47,6 +47,8 @@ public class Leg : MonoBehaviour
             originalPosition = transform.position;
 
             targetPosition = idealLegPos.position + (idealLegPos.position - transform.position) * .8f; //* (maxDistance * .5f);
+
+            maxTimer = Vector3.Distance(transform.position, targetPosition) / travelSpeed;
             RaycastHit hit;
             if (Physics.Raycast(targetPosition + Vector3.up * (Mathf.Max(originalPosition.y, targetPosition.y) + rayLength/2), Vector3.down, out hit, rayLength/2, ground))
 			{
@@ -57,8 +59,8 @@ public class Leg : MonoBehaviour
             midPoint = Vector3.Lerp(originalPosition, targetPosition, .5f);
             midPoint.y = Mathf.Max(originalPosition.y, targetPosition.y) + yOffset;
 		}
-        transform.position = QaudraticLerp(originalPosition, midPoint, targetPosition,easingFunction.Evaluate(Mathf.Clamp01(timer/travelTime)));
-        if(timer >= travelTime && moving)
+        transform.position = QaudraticLerp(originalPosition, midPoint, targetPosition,easingFunction.Evaluate(Mathf.Clamp01(timer/maxTimer)));
+        if(timer >= maxTimer && moving)
 		{
             moving = false;
 		}
