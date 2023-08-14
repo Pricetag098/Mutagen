@@ -8,13 +8,15 @@ public class Ability : ScriptableObject
     public string abilityName;
     public Sprite icon;
     protected AbilityCaster caster;
-    
+    public delegate void CastDelegate(CastData data);
+    public CastDelegate OnCast;
+    public Optional<GameObject> pickupPrefab;
     [System.Flags]
 	public enum SlotMask 
     { 
         basic = 1,
-        dash = 2,
-        ability1 = 4,
+        range = 2,
+        dash = 4,
         ability2 = 8,
         ability3 = 16
     }
@@ -39,13 +41,13 @@ public class Ability : ScriptableObject
 
     }
 
-    public void UnEquip()
+    public void UnEquip(Ability replacement)
     {
-        
-        OnUnEquip();
+        replacement.OnCast += OnCast;
+        OnUnEquip(replacement);
     }
 
-    protected virtual void OnUnEquip()
+    protected virtual void OnUnEquip(Ability replacement)
     {
 
     }
@@ -56,10 +58,18 @@ public class Ability : ScriptableObject
         
     }
 
-    public virtual void Cast(CastData data)
+    public virtual void FixedTick()
     {
 
-    
+    }
+
+    public void Cast(CastData data)
+    {
+        DoCast(data);
+    }
+    protected virtual void DoCast(CastData data)
+    {
+
     }
 
     public virtual float GetCoolDownPercent()
@@ -84,4 +94,5 @@ public class Ability : ScriptableObject
 
     }
 
+    
 }

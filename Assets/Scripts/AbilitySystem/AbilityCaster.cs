@@ -13,14 +13,16 @@ public class AbilityCaster : MonoBehaviour
     
 
     const string baseAbilityPath = "Abilities/Empty";
+    [HideInInspector]public Ability baseAbility;
     // Start is called before the first frame update
     void Awake()
     {
-        for(int i = 0; i < abilities.Length; i++)
+        baseAbility = Resources.Load<Ability>(baseAbilityPath);
+        for (int i = 0; i < abilities.Length; i++)
 		{
             if(abilities[i] == null)
 			{
-                abilities[i] = Instantiate(Resources.Load<Ability>(baseAbilityPath));
+                abilities[i] = Instantiate(baseAbility);
             }
 			else
 			{
@@ -30,7 +32,19 @@ public class AbilityCaster : MonoBehaviour
             
 		}
     }
+    public void SetAbility(Ability ability,int index)
+	{
+        ability = Instantiate(ability);
+        abilities[index].UnEquip(ability);
+		if (abilities[index].pickupPrefab.Enabled)
+		{
+            GameObject pickup = Instantiate(abilities[index].pickupPrefab.Value);
+            pickup.transform.position = transform.position;
+		}
+        abilities[index] = ability;
+        ability.Equip(this);
 
+    }
     
 
     // Update is called once per frame

@@ -8,8 +8,7 @@ public class MeleeAttackAbility : Ability
     [SerializeField] float damage;
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float swingsPerMin = 1000;
-    [SerializeField] float swingAngle;
-	[SerializeField] float swingRadius;
+	[SerializeField] float swingRadius,swingRange;
 
 	float angleCutoff;
 	float coolDown;
@@ -18,9 +17,7 @@ public class MeleeAttackAbility : Ability
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
-		angleCutoff = Mathf.Cos(swingAngle / 2);
-		Debug.Log(angleCutoff);
-		Debug.Log(coolDown);
+
 	}
 
 	public override void Tick()
@@ -35,31 +32,22 @@ public class MeleeAttackAbility : Ability
 
 
 	
-	public override void Cast(CastData data)
+	protected override void DoCast(CastData data)
 	{
 		if(timer <= 0)
 		{
-			
-			timer = coolDown;
+            if (OnCast != null)
+                OnCast(data);
+            timer = coolDown;
 			List<Health> healths = new List<Health>();
-			
-			Collider[] colliders = Physics.OverlapSphere(data.origin, swingRadius, targetLayers);
-			for(int i = 0; i < colliders.Length; i++)
+
+			RaycastHit[] hits = Physics.SphereCastAll(data.origin, swingRadius, data.aimDirection, swingRange, targetLayers);
+			foreach (RaycastHit hit in hits)
 			{
 				HitBox hb;
-				if(colliders[i].gameObject.TryGetComponent(out hb))
+				if (hit.collider.TryGetComponent(out hb))
 				{
-					if (healths.Contains(hb.health))
-					continue;
-					if(Vector3.Dot(data.aimDirection,(colliders[i].ClosestPoint(data.origin + data.aimDirection * (swingRadius/2) - data.origin)).normalized) > angleCutoff)
-					{
-						hb.OnHit(damage);
-
-						healths.Add(hb.health);
-					}
-					
-					
-					
+					hb.OnHit(damage);
 				}
 			}
 		}
