@@ -19,19 +19,22 @@ public class RotateNode : ActionNode
 
     protected override State OnUpdate()
     {
-
-        //agent.transform.LookAt(agent.player.transform.position);
-        Vector3 pos = (agent.player.transform.position - agent.transform.position);
+        Vector3 pos = (blackboard.rotateTowardsObject.transform.position - agent.transform.position);
         float angleToPosition = Vector3.Angle(agent.transform.forward, pos);
+        float dot = Vector3.Dot(agent.transform.right,
+            (agent.transform.forward - blackboard.rotateTowardsObject.transform.position));
 
-
-        //Debug.Log(angleToPosition);
         if (angleToPosition < angle)
         {
             return State.Success;
         }
-        agent.transform.Rotate((agent.player.transform.position - agent.transform.position)
-            * rotateSpeed * Time.fixedDeltaTime);
+
+        if (dot > 0)  
+            agent.transform.Rotate((blackboard.rotateTowardsObject.transform.position - agent.transform.position) 
+                * rotateSpeed * Time.fixedDeltaTime);
+        else 
+            agent.transform.Rotate(-(blackboard.rotateTowardsObject.transform.position - agent.transform.position)
+                * rotateSpeed * Time.fixedDeltaTime);
 
         return State.Running;
     }

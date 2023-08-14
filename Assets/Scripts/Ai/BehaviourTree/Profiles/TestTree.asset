@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 18798ad53dca3a14d9f334bfd68f601d
-  position: {x: -135, y: 586}
+  position: {x: -136.15001, y: 746}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -29,7 +29,7 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  rotateSpeed: 200
+  rotateSpeed: 300
   angle: 0
 --- !u!114 &-3084882251329388912
 MonoBehaviour:
@@ -46,7 +46,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 24c4e2876e6209045a87d573c0e44674
-  position: {x: 0, y: 397}
+  position: {x: 0, y: 557}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -114,6 +114,7 @@ MonoBehaviour:
   - {fileID: 6022883436008209164}
   - {fileID: -3084882251329388912}
   - {fileID: 603105894133886613}
+  - {fileID: 8758929525094176197}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -137,7 +138,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: d1ff85fc9e77aa042bd563d58ef6639c
-  position: {x: 150, y: 586}
+  position: {x: 150, y: 746}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -180,7 +181,7 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  child: {fileID: 6022883436008209164}
+  child: {fileID: 8758929525094176197}
 --- !u!114 &6022883436008209164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 54c70418e87c00c468e8d0aad15333aa
-  position: {x: 0, y: 291}
+  position: {x: 0, y: 451}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -211,3 +212,34 @@ MonoBehaviour:
   manager: {fileID: 0}
   description: 
   child: {fileID: -3084882251329388912}
+--- !u!114 &8758929525094176197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7991d7105f1070148988a459f4df4abb, type: 3}
+  m_Name: SetRotateTowards
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e4257b657e4c68744937257e7641ce52
+  position: {x: 0, y: 308}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveAwayObject: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  description: 
+  child: {fileID: 6022883436008209164}
+  target: 0
