@@ -8,10 +8,6 @@ public class Projectile : MonoBehaviour
     Rigidbody body;
     [SerializeField] Vector3 gravity;
     [SerializeField] GameObject visual;
-<<<<<<< HEAD
-    [SerializeField] Optional<VfxSpawnRequest> vfx;
-=======
->>>>>>> Art
     public delegate void OnHit();
     public OnHit onHit;
     // Start is called before the first frame update
@@ -41,8 +37,6 @@ public class Projectile : MonoBehaviour
         if (collision.collider.TryGetComponent(out hb))
         {
             hb.OnHit(damage);
-            if (vfx.Enabled)
-                vfx.Value.Play(collision.GetContact(0).point, collision.GetContact(0).normal);
         }
         if(onHit != null)
         onHit();
