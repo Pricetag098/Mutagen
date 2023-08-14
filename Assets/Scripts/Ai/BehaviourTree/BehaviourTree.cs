@@ -19,7 +19,7 @@ public class BehaviourTree : ScriptableObject
         }
         return treeState;
     }
-
+#if UNITY_EDITOR
     public Node CreateNode(System.Type type)
     {
         Node node = ScriptableObject.CreateInstance(type) as Node;
@@ -92,7 +92,7 @@ public class BehaviourTree : ScriptableObject
             setter.child = null;
         }
     }
-
+#endif
     public List<Node> GetChildren(Node parent)
     {
         List<Node> children = new List<Node>();
