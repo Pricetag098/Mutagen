@@ -25,7 +25,7 @@ public class RotateNode : ActionNode
         float angleToPosition = Vector3.Angle(agent.transform.forward, pos);
 
 
-        Debug.Log(angleToPosition);
+        //Debug.Log(angleToPosition);
         if (angleToPosition < angle)
         {
             return State.Success;
