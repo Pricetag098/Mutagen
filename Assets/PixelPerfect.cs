@@ -33,7 +33,7 @@ public class PixelPerfect : MonoBehaviour
         float yScale = Screen.height /s;
 
         float x = Mathf.Round(v.x * xScale) / xScale;
-        float y = Mathf.Round(v.y * s) / s;
+        float y = Mathf.Round(v.y * yScale) / yScale;
         float z = Mathf.Round(v.z * yScale) / yScale;
         return new Vector3(x,y,z);
 	}
