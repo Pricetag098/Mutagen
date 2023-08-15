@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PositionRounder : MonoBehaviour
+public class PixelPerfect : MonoBehaviour
 {
     [SerializeField] float PixelsPerUnit =1;
     Camera cam;
@@ -16,7 +16,7 @@ public class PositionRounder : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
     {
 
         Vector3 cameraPosition = cam.transform.position;
@@ -29,9 +29,12 @@ public class PositionRounder : MonoBehaviour
     }
     Vector3 RoundVect(Vector3 v,float s)
 	{
-        float x = Mathf.Round(v.x / s)*s;
-        float y = Mathf.Round(v.y / s)*s;
-        float z = Mathf.Round(v.z / s)*s;
+        float xScale = Screen.width /s;
+        float yScale = Screen.height /s;
+
+        float x = Mathf.Round(v.x * xScale) / xScale;
+        float y = Mathf.Round(v.y * s) / s;
+        float z = Mathf.Round(v.z * yScale) / yScale;
         return new Vector3(x,y,z);
 	}
 }
