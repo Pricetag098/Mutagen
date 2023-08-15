@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class SetGroupDirection : SetterNode
 {
+    public float groupDistance;
+    public float spreadDistance;
     protected override void OnStart()
     {
-
     }
 
     protected override void OnStop()
     {
-
     }
 
-    Vector3 groupDirection() //change later
+    Vector3 groupDirection()
     {
         Vector3 dir = Vector3.zero;
 
@@ -22,26 +22,20 @@ public class SetGroupDirection : SetterNode
         {
             if(manager.enemyList[i] != agent)
             {
-                dir += new Vector3(agent.transform.position.x - manager.enemyList[i].transform.position.x, 0,
-                    agent.transform.position.z - manager.enemyList[i].transform.position.z).normalized;
+                float dist = Vector3.Distance(manager.enemyList[i].transform.position, agent.transform.position);
+                //if (dist < groupDistance)
+                //{
+                    dir += new Vector3(agent.transform.position.x - manager.enemyList[i].transform.position.x, 0,
+                        agent.transform.position.z - manager.enemyList[i].transform.position.z).normalized;
+                //}
             }
         }
-
-        return (agent.transform.position + (dir.normalized * agent.movementSpeed));
-    }
-
-    Vector3 groupFacing()
-    {
-        Vector3 playerFlank = agent.player.transform.position + (-agent.player.transform.forward * agent.circlingDistance);
-        return playerFlank;
-        //manager.enemyList[0].agent.SetDestination(playerFlank);
-
+        return (agent.transform.position + (dir.normalized * spreadDistance));
     }
 
     protected override State OnUpdate()
     {
         blackboard.moveToPosition = groupDirection();
-        //blackboard.moveToPosition = groupFacing();
         return child.Update();
     }
 }

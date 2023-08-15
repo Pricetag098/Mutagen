@@ -2,25 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddToList : ActionNode
+public class SetStop : SetterNode
 {
+    float speed;
     protected override void OnStart()
     {
-
+        speed = agent.agent.speed;
+        agent.agent.speed = 0;
     }
 
     protected override void OnStop()
     {
 
+        agent.agent.speed = speed;
     }
 
     protected override State OnUpdate()
     {
-        StalkerManager stalker = manager as StalkerManager;
-
-        if (!stalker.inFront.Contains(agent))
-            stalker.inFront.Add(agent);
-
-        return State.Success;
+        return child.Update();
     }
 }

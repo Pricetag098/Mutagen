@@ -10,7 +10,7 @@ public class RangedAbility : Ability
     protected ObjectPooler projectileSpawner;
 
     protected float chargeTime;
-    [SerializeField]protected float maxChargeTime;
+    public float maxChargeTime;
     [SerializeField] protected float minChargeTime;
     bool held;
 

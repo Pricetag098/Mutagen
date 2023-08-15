@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddToList : ActionNode
+public class SetFlanking : SetterNode
 {
     protected override void OnStart()
     {
@@ -16,11 +16,6 @@ public class AddToList : ActionNode
 
     protected override State OnUpdate()
     {
-        StalkerManager stalker = manager as StalkerManager;
-
-        if (!stalker.inFront.Contains(agent))
-            stalker.inFront.Add(agent);
-
-        return State.Success;
+        throw new System.NotImplementedException();
     }
 }

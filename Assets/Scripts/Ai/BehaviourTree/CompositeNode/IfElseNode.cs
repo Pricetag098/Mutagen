@@ -53,11 +53,27 @@ public class IfElseNode : CompositeNode
     float groupDistanceCheck()
     {
         float average = 0;
+        int count = 0;
         for (int i = 0; i < manager.enemyList.Length; i++)
         {
-            average += Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
+            if (manager.enemyList[i] != agent)
+            {
+                float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
+                //float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].agent.destination);
+                if (dist < groupDistance)
+                {
+                    count++;
+                    average += dist;
+                }
+            }
         }
-        return (average / manager.enemyList.Length);
+        if (count == 0)
+            return 1000000;
+
+        float returns = average / manager.enemyList.Length;
+        //Debug.Log(average / manager.enemyList.Length);
+        //return count > 0 ? (average / count) : 0;
+        return average / manager.enemyList.Length;//count;
     }
 
     float groupFacingCheck()
@@ -111,7 +127,6 @@ public class IfElseNode : CompositeNode
             case CheckType.Health:
                 ChildUpdate(healthCheck());
                 break;
-
 
                 //curently moving check
             case CheckType.isMoving:

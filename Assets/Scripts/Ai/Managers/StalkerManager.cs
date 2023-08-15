@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class StalkerManager : EnemyManager
 {
-    public Enemy[] enemyList;
-    public int moveCount;
+
+
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
-    [HideInInspector] public List<Enemy> moving;
+
 
     private void FixedUpdate()
     {
