@@ -81,6 +81,13 @@ public class AbilityCaster : MonoBehaviour
         abilities[index].Cast(castData);
     }
 
+    public void SetAllAbilities(Ability[] abilitysToSet)
+	{
+        for(int i = 0; i < abilities.Length && i < abilitysToSet.Length; i++)
+		{
+            SetAbility(abilitysToSet[i], i);
+		}
+	}
 	private void OnDrawGizmos()
 	{
 		if(!Application.isPlaying)

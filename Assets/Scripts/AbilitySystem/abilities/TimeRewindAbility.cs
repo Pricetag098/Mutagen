@@ -72,6 +72,7 @@ public class TimeRewindAbility : Ability
 	{
 		if(linePrefab.Enabled)
             lineRenderer = Instantiate(linePrefab.Value).GetComponent<LineRenderer>();
+        timer = coolDown;
 	}
 	protected override void OnUnEquip(Ability replacement)
 	{

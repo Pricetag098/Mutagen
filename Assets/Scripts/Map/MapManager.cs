@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
+
 public class MapManager : MonoBehaviour
 {
     static MapManager instance;
@@ -18,6 +20,8 @@ public class MapManager : MonoBehaviour
     public MapPath path;
     bool loadingMap;
     public int mapTeir = 0;
+
+    public PlayerData playerData = null;
     private void Awake()
     {
         mapTeir = 0;
@@ -31,6 +35,7 @@ public class MapManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             instance = this;
             inputAction.action.performed += InputFinishLoading;
+            //SceneManager.sceneLoaded += LevelLoaded;
         }
         
     }
@@ -55,7 +60,7 @@ public class MapManager : MonoBehaviour
 
     void DoLoadNext()
     {
-
+        DoLoadMap(path.teirs[mapTeir].GetMap());
     }
 
     void DoLoadMap(Map map)
@@ -74,8 +79,22 @@ public class MapManager : MonoBehaviour
     [ContextMenu("Test")]
     void Test()
     {
-        
+        DoLoadNext();
     }
+
+    public static void SetupPlayer(GameObject player,Transform entrance)
+	{
+        if(instance.playerData != null)
+		{
+            instance.playerData.SetupPlayer(player,entrance);
+		}
+
+	}
+    public static void SavePlayer(GameObject player,Transform exit)
+	{
+        instance.playerData = new PlayerData(player,exit);
+	}
+
     [ContextMenu("Load")]
     void FinishLoadingMap()
     {
@@ -88,13 +107,37 @@ public class MapManager : MonoBehaviour
                 operation.allowSceneActivation = true;
                 inputAction.action.Disable();
                 mapTeir++;
+
             }
         }
         
     }
-    void InputFinishLoading(InputAction.CallbackContext context)
+    
+	
+	void InputFinishLoading(InputAction.CallbackContext context)
     {
         FinishLoadingMap();
     }
+
+    [System.Serializable]
+    public class PlayerData
+	{
+        Ability[] equipedAbilities;
+        float health;
+        Vector3 spawnPos;
+        public void SetupPlayer(GameObject player,Transform spawnPoint)
+		{
+            player.GetComponent<AbilityCaster>().SetAllAbilities(equipedAbilities);
+            player.GetComponent<Health>().health = health;
+            player.transform.position = spawnPoint.TransformPoint(spawnPos);
+        }
+
+        public PlayerData(GameObject player,Transform exit)
+		{
+            equipedAbilities = player.GetComponent<AbilityCaster>().abilities;
+            health = player.GetComponent<Health>().health;
+            spawnPos = exit.InverseTransformPoint(player.transform.position);
+		}
+	} 
 
 }

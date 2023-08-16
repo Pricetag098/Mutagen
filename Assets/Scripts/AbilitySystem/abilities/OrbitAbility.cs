@@ -26,6 +26,7 @@ public class OrbitAbility : Ability
         caster.abilities[1].OnCast += Fire;
         pooler = new GameObject().AddComponent<ObjectPooler>();
         pooler.CreatePool(prefab, 5 * maxCharges);
+        timer = cooldown;
     }
 
     void Fire(CastData data)
