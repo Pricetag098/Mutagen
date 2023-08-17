@@ -34,11 +34,11 @@ public class AbilityCaster : MonoBehaviour
         playerStats.Enabled = TryGetComponent(out tempStats);
         playerStats.Value = tempStats;
     }
-    public void SetAbility(Ability ability,int index)
+    public void SetAbility(Ability ability,int index,bool spawnPickup = true)
 	{
         ability = Instantiate(ability);
         abilities[index].UnEquip(ability);
-		if (abilities[index].pickupPrefab.Enabled)
+		if (abilities[index].pickupPrefab.Enabled && spawnPickup)
 		{
             GameObject pickup = Instantiate(abilities[index].pickupPrefab.Value);
             pickup.transform.position = transform.position;
@@ -85,7 +85,7 @@ public class AbilityCaster : MonoBehaviour
 	{
         for(int i = 0; i < abilities.Length && i < abilitysToSet.Length; i++)
 		{
-            SetAbility(abilitysToSet[i], i);
+            SetAbility(abilitysToSet[i], i,false);
 		}
 	}
 	private void OnDrawGizmos()

@@ -35,21 +35,30 @@ public class MapManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             instance = this;
             inputAction.action.performed += InputFinishLoading;
-            //SceneManager.sceneLoaded += LevelLoaded;
+            SceneManager.sceneLoaded += LevelLoaded;
+            playerData = null;
         }
         
     }
+
+    void LevelLoaded(Scene scene, LoadSceneMode mode)
+	{
+        loadingMap = false;
+	}
 
     private void Update()
     {
         if(loadingMap)
         {
             group.alpha += Time.unscaledDeltaTime / fadeTime;
-            
+            group.interactable = true;
+            group.blocksRaycasts = true;
         }
         else
         {
             group.alpha -= Time.unscaledDeltaTime;
+            group.interactable = false;
+            group.blocksRaycasts = false;
         }
     }
 
@@ -60,6 +69,12 @@ public class MapManager : MonoBehaviour
 
     void DoLoadNext()
     {
+        if(loadingMap)
+            return;
+        if(path.teirs.Count <= mapTeir)
+		{
+            mapTeir = 0;
+		}
         DoLoadMap(path.teirs[mapTeir].GetMap());
     }
 
@@ -103,7 +118,7 @@ public class MapManager : MonoBehaviour
             if(operation.progress >= .9f)
             {
                 Time.timeScale = 1;
-                loadingMap = false;
+                //loadingMap = false;
                 operation.allowSceneActivation = true;
                 inputAction.action.Disable();
                 mapTeir++;
@@ -119,7 +134,7 @@ public class MapManager : MonoBehaviour
         FinishLoadingMap();
     }
 
-    [System.Serializable]
+
     public class PlayerData
 	{
         Ability[] equipedAbilities;
@@ -127,6 +142,7 @@ public class MapManager : MonoBehaviour
         Vector3 spawnPos;
         public void SetupPlayer(GameObject player,Transform spawnPoint)
 		{
+            Debug.Log(equipedAbilities == null);
             player.GetComponent<AbilityCaster>().SetAllAbilities(equipedAbilities);
             player.GetComponent<Health>().health = health;
             player.transform.position = spawnPoint.TransformPoint(spawnPos);
