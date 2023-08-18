@@ -18,7 +18,7 @@ public class DashAbility : Ability
 	bool dashing;
 
 	Rigidbody rb;
-	float dashTimer;
+	Timer dashTimer;
 
 	protected Vector3 startPoint,endPoint,direction;
 	
@@ -26,7 +26,7 @@ public class DashAbility : Ability
 	{
 		maxStam = rechargeTime * Casts;
 		dashVel = dashDistance / dashTime;
-		dashTimer = dashTime;
+		dashTimer = new Timer(dashTime,false);
 	}
 	public override void Tick()
 	{
@@ -34,8 +34,8 @@ public class DashAbility : Ability
 		if (dashing)
 		{
 			WhileDashing();
-			dashTimer += Time.deltaTime;
-			if(dashTimer > dashTime)
+			dashTimer.Tick();
+			if(dashTimer.complete)
 			{
 				dashing = false;
 				EndDash();
@@ -59,7 +59,7 @@ public class DashAbility : Ability
 		if(stam > rechargeTime)
 		{
 			stam -= rechargeTime;
-			dashTimer = 0;
+			dashTimer.Reset();
 			caster.ownerHealth.AddIFrames(iFramesGranted);
 			direction = data.moveDirection;
 			dashing = true;
@@ -96,7 +96,7 @@ public class DashAbility : Ability
 		}
 		else
 		{
-			caster.transform.position = Vector3.Lerp(startPoint, endPoint, dashTimer/dashTime);
+			caster.transform.position = Vector3.Lerp(startPoint, endPoint, dashTimer.Progress);
 		}
 	}
 }

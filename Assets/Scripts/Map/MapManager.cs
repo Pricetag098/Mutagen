@@ -22,8 +22,11 @@ public class MapManager : MonoBehaviour
     public int mapTeir = 0;
 
     public PlayerData playerData = null;
+
+
     private void Awake()
     {
+
         mapTeir = 0;
         if(instance != null)
         {
@@ -99,6 +102,7 @@ public class MapManager : MonoBehaviour
 
     public static void SetupPlayer(GameObject player,Transform entrance)
 	{
+        
         if(instance.playerData != null)
 		{
             instance.playerData.SetupPlayer(player,entrance);

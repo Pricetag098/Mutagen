@@ -8,17 +8,17 @@ public class SkipStrikeStatus : StatusEffect
 	[SerializeField] float duration;
 	[SerializeField] float reflectedDamageMulti = 1;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
-	float timer;
+	Timer timer;
 	protected override void OnAdd()
 	{
 		health.OnHit += OnHit;
-		timer = 0;
+		timer = new Timer(duration,false);
 	}
 
 	public override void Tick()
 	{
-		timer += Time.deltaTime;
-		if(timer > duration)
+		timer.Tick();
+		if(timer.complete)
 		{
 			
 			health.TakeDmg(totalDamage * reflectedDamageMulti);

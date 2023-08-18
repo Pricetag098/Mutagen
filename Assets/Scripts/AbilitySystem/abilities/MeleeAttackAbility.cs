@@ -12,33 +12,33 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
 	float angleCutoff;
 	float coolDown;
-	float timer = 0;
+	Timer timer;
 
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
-		timer = coolDown;
+		timer = new Timer(coolDown);
+		
 	}
 
 	public override void Tick()
 	{
-		timer -= Time.deltaTime;
-		
-		if (timer < 0)
-		{
-			timer = 0;
-		}
+		timer.Tick();
+
 	}
 
 
 	
 	protected override void DoCast(CastData data)
 	{
-		if(timer <= 0)
+		if(timer.complete)
 		{
+			
             if (OnCast != null)
                 OnCast(data);
-            timer = coolDown;
+            timer.Reset();
+			
+
 			List<Health> healths = new List<Health>();
 
 			RaycastHit[] hits = Physics.SphereCastAll(data.origin, swingRadius, data.aimDirection, swingRange, targetLayers);
@@ -47,6 +47,9 @@ public class MeleeAttackAbility : Ability
 				HitBox hb;
 				if (hit.collider.TryGetComponent(out hb))
 				{
+					if (healths.Contains(hb.health))
+						continue;
+					healths.Add(hb.health);
 					hb.OnHit(damage);
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
