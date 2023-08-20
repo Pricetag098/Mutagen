@@ -27,6 +27,16 @@ MonoBehaviour:
   orbitSpeed: 1
   radius: 3
   flySpeed: 200
-  midPointVal: 0.25
+  midPointOffset: 0
   range: 100
   damage: 0
+  aimAssist:
+    maxRange: 20
+    aimAssistLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    directionWeight: 1
+    distanceWeight: 1
+    priorityWeight: 1
+    minDirectionValue: -1
+    assistWeight: 1

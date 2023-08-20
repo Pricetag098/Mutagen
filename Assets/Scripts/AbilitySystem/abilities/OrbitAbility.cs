@@ -10,7 +10,7 @@ public class OrbitAbility : Ability
     ObjectPooler pooler;
 
     [SerializeField] float cooldown;
-    float timer;
+    Timer timer;
 
     public List<GameObject> orbs = new List<GameObject>();
     [SerializeField] Vector3 offset;
@@ -26,6 +26,8 @@ public class OrbitAbility : Ability
         caster.abilities[1].OnCast += Fire;
         pooler = new GameObject().AddComponent<ObjectPooler>();
         pooler.CreatePool(prefab, 5 * maxCharges);
+        timer = new Timer(cooldown);
+        
     }
 
     void Fire(CastData data)
@@ -47,7 +49,7 @@ public class OrbitAbility : Ability
 
     public override void Tick()
     {
-        timer += Time.deltaTime;
+        timer.Tick();
         for(int i = orbs.Count-1; i >=0 ; i--) 
         {
             GameObject orb = orbs[i];
@@ -63,18 +65,18 @@ public class OrbitAbility : Ability
     }
     protected override void DoCast(CastData data)
     {
-        if(timer >= cooldown)
+        if(timer.complete)
         {
             int count = maxCharges - orbs.Count;
             for (int i = 0; i < count; i++)
             {
                 orbs.Add(pooler.Spawn());
             }
-            timer = 0;
+            timer.Reset();
         }
     }
     public override float GetCoolDownPercent()
     {
-        return Mathf.Clamp01(timer / cooldown);
+        return timer.Progress;
     }
 }

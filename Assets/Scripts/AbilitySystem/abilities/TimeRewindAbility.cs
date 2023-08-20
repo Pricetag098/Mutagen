@@ -8,7 +8,7 @@ public class TimeRewindAbility : Ability
 {
     [SerializeField] float maxTime;
     [SerializeField] float coolDown;
-    float timer;
+    Timer timer;
     LineRenderer lineRenderer;
     [SerializeField] Optional<GameObject> linePrefab;
     [SerializeField] Vector3 lineOffset;
@@ -27,12 +27,12 @@ public class TimeRewindAbility : Ability
     List<TimeData> positionHistory = new List<TimeData>();
     protected override void DoCast(CastData data)
     {
-        if (timer < coolDown)
+        if (!timer.complete)
             return;
         caster.transform.position = positionHistory[0].position;
         positionHistory.Clear();
         positionHistory.Add(new TimeData(caster.transform.position, Time.time));
-        timer = 0;
+        timer.Reset();
         if (OnCast != null)
             OnCast(data);
     }
@@ -53,7 +53,7 @@ public class TimeRewindAbility : Ability
 
     public override void Tick()
     {
-        timer += Time.deltaTime;
+        timer.Tick();
 		if (linePrefab.Enabled)
 		{
             lineRenderer.positionCount = positionHistory.Count;
@@ -66,12 +66,13 @@ public class TimeRewindAbility : Ability
 
     public override float GetCoolDownPercent()
     {
-        return 1- Mathf.Clamp01(timer / coolDown);
+        return timer.Progress;
     }
 	protected override void OnEquip()
 	{
 		if(linePrefab.Enabled)
             lineRenderer = Instantiate(linePrefab.Value).GetComponent<LineRenderer>();
+        timer = new Timer(coolDown);
 	}
 	protected override void OnUnEquip(Ability replacement)
 	{

@@ -9,11 +9,11 @@ public class PhotonFlashStatus : StatusEffect
 	[SerializeField] float damage = 10;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
 	int tickCompleted = 0;
-	float timer = 0;
+	Timer timer;
 	protected override void OnAdd()
 	{
 		tickCompleted = 0;
-		timer = 0;
+		timer = new Timer(timeBetweenTicks,false);
 	}
 
 	public override void Tick()
@@ -22,11 +22,11 @@ public class PhotonFlashStatus : StatusEffect
 		{
 			health.RemoveStatusEffect(this);
 		}
-		timer += Time.deltaTime;
-		if (timer > timeBetweenTicks)
+		timer.Tick();
+		if (timer.complete)
 		{
 			health.TakeDmg(damage);
-			timer = 0;
+			timer.Reset();
 			tickCompleted++;
 			if (vfx.Enabled)
 				vfx.Value.Play(health.transform.position, Vector3.up);
