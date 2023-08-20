@@ -21,19 +21,19 @@ public class RotateNode : ActionNode
     {
         Vector3 pos = (blackboard.rotateTowardsObject.transform.position - agent.transform.position);
         float angleToPosition = Vector3.Angle(agent.transform.forward, pos);
-        float dot = Vector3.Dot(agent.transform.right,
-            (agent.transform.forward - blackboard.rotateTowardsObject.transform.position));
+        float dot = Vector3.Dot(-agent.transform.right,
+            (blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized);
 
         if (angleToPosition < angle)
         {
             return State.Success;
         }
 
-        if (dot > 0)  
-            agent.transform.Rotate((blackboard.rotateTowardsObject.transform.position - agent.transform.position) 
+        if (dot > 0)
+            agent.transform.Rotate((blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized
                 * rotateSpeed * Time.fixedDeltaTime);
-        else 
-            agent.transform.Rotate(-(blackboard.rotateTowardsObject.transform.position - agent.transform.position)
+        else
+            agent.transform.Rotate(-(blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized
                 * rotateSpeed * Time.fixedDeltaTime);
 
         return State.Running;

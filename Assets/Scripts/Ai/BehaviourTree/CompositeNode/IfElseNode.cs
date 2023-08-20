@@ -106,7 +106,6 @@ public class IfElseNode : CompositeNode
 
     protected override State OnUpdate()
     {
-
         switch (checkType)
         {
             //distance checks
@@ -174,7 +173,7 @@ public class IfElseNode : CompositeNode
                 else 
                     ChildUpdate(second);
                 break;
-
+            //cluttered together
             case CheckType.groupDistance:
                 if (groupDistanceCheck() < groupDistance)
                     ChildUpdate(first);
