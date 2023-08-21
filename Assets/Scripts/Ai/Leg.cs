@@ -20,6 +20,8 @@ public class Leg : MonoBehaviour
     Vector3 midPoint;
     Vector3 targetPosition;
 
+    [SerializeField]float maxStepDistance;
+
     float endYOffset=0;
     // Start is called before the first frame update
     void Start()
@@ -40,24 +42,36 @@ public class Leg : MonoBehaviour
     void Update()
     {
         
-		if (ShouldMove())
+		if (CanMove())
 		{
-            timer = 0;
-            moving = true;
-            originalPosition = transform.position;
-
-            targetPosition = idealLegPos.position + (idealLegPos.position - transform.position) * .8f; //* (maxDistance * .5f);
-
-            maxTimer = Vector3.Distance(transform.position, targetPosition) / travelSpeed;
-            RaycastHit hit;
-            if (Physics.Raycast(targetPosition + Vector3.up * (Mathf.Max(originalPosition.y, targetPosition.y) + rayLength/2), Vector3.down, out hit, rayLength/2, ground))
+            float distance = Vector3.Distance(transform.position, idealLegPos.position + Vector3.up * endYOffset);
+            if(distance > maxDistance)
 			{
-                targetPosition = hit.point;
-                //endYOffset = hit.point.y - idealLegPos.position.y;
-			}
-            endYOffset = targetPosition.y - idealLegPos.position.y;
-            midPoint = Vector3.Lerp(originalPosition, targetPosition, .5f);
-            midPoint.y = Mathf.Max(originalPosition.y, targetPosition.y) + yOffset;
+                timer = 0;
+                moving = true;
+                originalPosition = transform.position;
+                targetPosition = idealLegPos.position + (idealLegPos.position - transform.position) * .8f; //* (maxDistance * .5f);
+                if (distance * .8f > maxStepDistance)
+				{
+                    float x = distance / maxStepDistance;
+                    originalPosition = targetPosition + (transform.position - targetPosition).normalized * maxStepDistance;
+                }
+
+                
+
+                maxTimer = Vector3.Distance(transform.position, targetPosition) / travelSpeed;
+                RaycastHit hit;
+                if (Physics.Raycast(targetPosition + Vector3.up * (Mathf.Max(originalPosition.y, targetPosition.y) + rayLength / 2), Vector3.down, out hit, rayLength / 2, ground))
+                {
+                    targetPosition = hit.point;
+                    //endYOffset = hit.point.y - idealLegPos.position.y;
+                }
+                endYOffset = targetPosition.y - idealLegPos.position.y;
+                midPoint = Vector3.Lerp(originalPosition, targetPosition, .5f);
+                midPoint.y = Mathf.Max(originalPosition.y, targetPosition.y) + yOffset;
+            }
+
+            
 		}
         transform.position = QaudraticLerp(originalPosition, midPoint, targetPosition,easingFunction.Evaluate(Mathf.Clamp01(timer/maxTimer)));
         if(timer >= maxTimer && moving)
@@ -67,7 +81,7 @@ public class Leg : MonoBehaviour
         timer += Time.deltaTime;
     }
 
-    bool ShouldMove()
+    bool CanMove()
 	{
         if (moving)
             return false;
@@ -77,7 +91,7 @@ public class Leg : MonoBehaviour
                 return false;
 		}
         
-        return Vector3.Distance(transform.position, idealLegPos.position + Vector3.up * endYOffset) > maxDistance;
+        return true;
 
 	}
 
