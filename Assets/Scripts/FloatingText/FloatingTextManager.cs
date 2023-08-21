@@ -7,6 +7,7 @@ public class FloatingTextManager : MonoBehaviour
 {
     public GameObject textContainer;
     public GameObject textPrefab;
+    public float textDeviation;
 
     List<FloatingText> floatingTexts = new List<FloatingText>();
 
@@ -16,7 +17,7 @@ public class FloatingTextManager : MonoBehaviour
             txt.UpdateFloatingText();
     }
 
-    public void Show(HitBox.TextData data) //change for specific purpose
+    public void Show(HitBox.TextData data)
     {
         FloatingText floatingText = GetFloatingText();
 
@@ -24,7 +25,10 @@ public class FloatingTextManager : MonoBehaviour
         floatingText.txt.fontSize = data.fontSize;
         floatingText.txt.color = data.color;
 
+        float rand = Random.Range(-textDeviation, textDeviation);
         floatingText.go.transform.position = Camera.main.WorldToScreenPoint(data.position);
+        floatingText.go.transform.position = new Vector3(floatingText.go.transform.position.x + rand, floatingText.go.transform.position.y + rand,
+            floatingText.go.transform.position.z + rand);
         floatingText.motion = Vector3.up;
         floatingText.duration = data.duration;
         floatingText.Show();
