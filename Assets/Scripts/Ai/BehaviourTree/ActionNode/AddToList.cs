@@ -16,8 +16,10 @@ public class AddToList : ActionNode
 
     protected override State OnUpdate()
     {
-        if (!manager.inFront.Contains(agent))
-        manager.inFront.Add(agent);
+        //EnemyManager stalker = manager as StalkerManager;
+
+        //if (!stalker.inFront.Contains(agent))
+        //    stalker.inFront.Add(agent);
 
         return State.Success;
     }

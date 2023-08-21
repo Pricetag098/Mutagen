@@ -7,10 +7,12 @@ public class StatusEffect : ScriptableObject
 	protected Health health;
 	public Sprite icon;
 	public string effectName;
-	
-    public void Add(Health hp)
+	public int maxStacks =1;
+	public int stacks = 1;
+	public void Add(Health hp)
 	{
 		health = hp;
+		
 		OnAdd();
 	}
 
@@ -30,6 +32,11 @@ public class StatusEffect : ScriptableObject
 	}
 
 	protected virtual void OnRemove()
+	{
+
+	}
+
+	public virtual void Combine(StatusEffect effect)
 	{
 
 	}

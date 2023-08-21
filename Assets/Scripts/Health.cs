@@ -61,21 +61,32 @@ public class Health : MonoBehaviour
 
     public void AddStatusEffect(StatusEffect effect)
 	{
-		if (!HasStatusEffect(effect))
+        StatusEffect existingEffect;
+		if (HasStatusEffect(effect,out existingEffect) && existingEffect.stacks + effect.stacks <= existingEffect.maxStacks)
+		{
+            existingEffect.Combine(effect);
+            existingEffect.stacks += effect.stacks;
+		}
+		else
 		{
             StatusEffect ef = Instantiate(effect);
             effects.Add(ef);
             ef.Add(this);
-		}
+        }
 	}
 
-    public bool HasStatusEffect(StatusEffect effect)
+    public bool HasStatusEffect(StatusEffect effect,out StatusEffect instance)
 	{
         foreach(StatusEffect statusEffect in effects)
 		{
             if(statusEffect.GetType() == effect.GetType())
+			{
+                instance = statusEffect;
                 return true;
+            }
+                
 		}
+        instance = null;
         return false;
 	}
 

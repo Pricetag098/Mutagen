@@ -14,6 +14,10 @@ public class AbilityCaster : MonoBehaviour
     const string baseAbilityPath = "Abilities/Empty";
     [HideInInspector]public Ability baseAbility;
     // Start is called before the first frame update
+    private void Start()
+    {
+
+    }
     void Awake()
     {
         baseAbility = Resources.Load<Ability>(baseAbilityPath);
@@ -45,9 +49,8 @@ public class AbilityCaster : MonoBehaviour
 		}
         abilities[index] = ability;
         ability.Equip(this);
-
     }
-    
+
 
     // Update is called once per frame
     void Update()
@@ -96,6 +99,5 @@ public class AbilityCaster : MonoBehaviour
         { 
             abilities[i].OnDrawGizmos();
         }
-
-     }
+    }
 }
