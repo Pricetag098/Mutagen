@@ -16,17 +16,17 @@ public class FloatingTextManager : MonoBehaviour
             txt.UpdateFloatingText();
     }
 
-    public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) //change for specific purpose
+    public void Show(HitBox.TextData data) //change for specific purpose
     {
         FloatingText floatingText = GetFloatingText();
 
-        floatingText.txt.text = msg;
-        floatingText.txt.fontSize = fontSize;
-        floatingText.txt.color = color;
+        floatingText.txt.text = data.damage.ToString();
+        floatingText.txt.fontSize = data.fontSize;
+        floatingText.txt.color = data.color;
 
-        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(position);
-        floatingText.motion = motion;
-        floatingText.duration = duration;
+        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(data.position);
+        floatingText.motion = Vector3.up;
+        floatingText.duration = data.duration;
         floatingText.Show();
     }
 
@@ -34,7 +34,7 @@ public class FloatingTextManager : MonoBehaviour
     {
         FloatingText txt = floatingTexts.Find(t => !t.active);
 
-        if(txt == null) //replace with something other than null check
+        if(txt == null)
         {
             txt = new FloatingText();
             txt.go = Instantiate(textPrefab);

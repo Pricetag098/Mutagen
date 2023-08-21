@@ -18,7 +18,7 @@ public class SetGroupDirection : SetterNode
     {
         Vector3 dir = Vector3.zero;
 
-        for(int i = 0; i < manager.enemyList.Length; i++)
+        for(int i = 0; i < manager.enemyList.Count; i++)
         {
             if(manager.enemyList[i] != agent)
             {

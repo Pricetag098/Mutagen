@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public Health health;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
+    [HideInInspector] public BehaviourTreeRunner behaviourTree;
     public EnemyManager manager;
 
     //behaviour bools
@@ -44,14 +45,13 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
-        //manager = transform.parent.GetComponent<EnemyManager>();
-
+        behaviourTree = GetComponent<BehaviourTreeRunner>();
 
         if (delayMoveRange == 0)
             delayMoveRange = Random.Range(0.1f,5f);
     }
 
-    private void Update()
+    private void Update() //testing
     {
         if (Input.GetKeyDown(KeyCode.R))
         {

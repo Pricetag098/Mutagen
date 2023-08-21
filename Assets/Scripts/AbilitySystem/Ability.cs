@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Element
+{
+    None,
+    Gravity,
+    Time,
+    Light
+}
+
 [CreateAssetMenu(menuName = "Abilities/Empty")]
 public class Ability : ScriptableObject
 {
@@ -9,8 +17,10 @@ public class Ability : ScriptableObject
     public Sprite icon;
     protected AbilityCaster caster;
     public delegate void CastDelegate(CastData data);
+    public Element element;
     public CastDelegate OnCast;
     public Optional<GameObject> pickupPrefab;
+
     [System.Flags]
 	public enum SlotMask 
     { 
@@ -84,15 +94,11 @@ public class Ability : ScriptableObject
 	}
 
 
-
     public struct CastData 
     {
         public Transform effectOrigin;
         public Vector3 origin;
         public Vector3 aimDirection;
         public Vector3 moveDirection;
-
     }
-
-    
 }

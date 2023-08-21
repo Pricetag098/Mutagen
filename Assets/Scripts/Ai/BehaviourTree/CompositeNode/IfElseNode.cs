@@ -54,7 +54,7 @@ public class IfElseNode : CompositeNode
     {
         float average = 0;
         int count = 0;
-        for (int i = 0; i < manager.enemyList.Length; i++)
+        for (int i = 0; i < manager.enemyList.Count; i++)
         {
             if (manager.enemyList[i] != agent)
             {
@@ -70,16 +70,16 @@ public class IfElseNode : CompositeNode
         if (count == 0)
             return 1000000;
 
-        float returns = average / manager.enemyList.Length;
+        float returns = average / manager.enemyList.Count;
         //Debug.Log(average / manager.enemyList.Length);
         //return count > 0 ? (average / count) : 0;
-        return average / manager.enemyList.Length;//count;
+        return average / manager.enemyList.Count;//count;
     }
 
     float groupFacingCheck()
     { 
         int count = 0;
-        for(int i  = 0; i < manager.enemyList.Length; i++)
+        for(int i  = 0; i < manager.enemyList.Count; i++)
         {
             if(Vector3.Dot(agent.player.transform.forward, (manager.enemyList[i].transform.position - 
                 agent.player.transform.position).normalized) > 0)

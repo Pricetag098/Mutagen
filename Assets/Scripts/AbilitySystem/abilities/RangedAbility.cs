@@ -8,6 +8,7 @@ public class RangedAbility : Ability
     [SerializeField] protected GameObject prefab;
     [SerializeField] bool releaseOnFullCharge;
     protected ObjectPooler projectileSpawner;
+    public Color damageTextColor;
 
     protected float chargeTime;
     public float maxChargeTime;

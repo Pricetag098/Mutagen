@@ -148,7 +148,6 @@ public class BehaviourTree : ScriptableObject
             node.blackboard = blackboard;
             node.caster = agent.caster;
             node.manager = agent.manager;
-
         });
     }
 }
