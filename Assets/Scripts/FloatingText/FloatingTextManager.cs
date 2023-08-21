@@ -21,14 +21,16 @@ public class FloatingTextManager : MonoBehaviour
     {
         FloatingText floatingText = GetFloatingText();
 
-        floatingText.txt.text = data.damage.ToString();
+        floatingText.txt.text = data.damage < 99? data.damage.ToString().Substring(0, 2) : data.damage.ToString().Substring(0, 3);
         floatingText.txt.fontSize = data.fontSize;
         floatingText.txt.color = data.color;
 
-        float rand = Random.Range(-textDeviation, textDeviation);
-        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(data.position);
-        floatingText.go.transform.position = new Vector3(floatingText.go.transform.position.x + rand, floatingText.go.transform.position.y + rand,
-            floatingText.go.transform.position.z + rand);
+        floatingText.follow = data.obj;
+        floatingText.deviation = textDeviation;
+        //floatingText.go.transform.position = Camera.main.WorldToScreenPoint(data.position);
+        //floatingText.go.transform.position = new Vector3(floatingText.go.transform.position.x + Random.Range(-textDeviation, textDeviation) ,
+        //    floatingText.go.transform.position.y + Random.Range(-textDeviation, textDeviation),
+        //    floatingText.go.transform.position.z + Random.Range(-textDeviation, textDeviation));
         floatingText.motion = Vector3.up;
         floatingText.duration = data.duration;
         floatingText.Show();

@@ -28,6 +28,14 @@ public class HitBox : MonoBehaviour
         textManager.Show(CreateTextData(dmg)); //temp until layer is added
     }
 
+    public void OnHit(float dmg, Projectile projectile)
+    {
+        health.TakeDmg(dmg * multi);
+
+        //textManager.Show(CreateTextData(ability));
+        textManager.Show(CreateTextData(dmg)); //temp until layer is added
+    }
+
     public void OnHit(float dmg)
     {
         health.TakeDmg(dmg * multi);
@@ -38,19 +46,19 @@ public class HitBox : MonoBehaviour
         public float damage;
         public float fontSize; //will adjust depending on damage
         public Color color; //will be equal to ability element
-        public Vector3 position; //will be displayed on character hit
+        public GameObject obj; //will be displayed on character hit
         public float duration; //changable
     }
 
-    public TextData CreateTextData(float tempdmg) //changed ability to atk ability if layer is added
+    public TextData CreateTextData(float dmg) //changed ability to atk ability if layer is added
     {
         TextData data = new TextData();
         //float dmg = ability.damage * multi;
-        float tempDmg = tempdmg * multi;
+        float tempDmg = dmg * multi;
         data.damage = tempDmg;
         data.fontSize = 15 + (tempDmg / 10);
         data.color = Color.red; //will change to depend on element
-        data.position = transform.position;
+        data.obj = gameObject;
         data.duration = textDuration;
         return data;
     }
