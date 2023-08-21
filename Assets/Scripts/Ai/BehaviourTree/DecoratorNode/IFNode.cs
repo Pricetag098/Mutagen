@@ -46,12 +46,12 @@ public class IFNode : DecoratorNode
     float groupDistanceCheck()
     {
         float average = 0;
-        for (int i = 0; i < manager.enemyList.Length; i++)
+        for (int i = 0; i < manager.enemyList.Count; i++)
         {
             average += Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
         }
-        Debug.Log(average / manager.enemyList.Length);
-        return average / manager.enemyList.Length;
+        Debug.Log(average / manager.enemyList.Count);
+        return average / manager.enemyList.Count;
     }
 
     bool flankingCheck()

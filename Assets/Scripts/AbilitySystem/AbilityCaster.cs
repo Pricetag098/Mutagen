@@ -99,6 +99,5 @@ public class AbilityCaster : MonoBehaviour
         { 
             abilities[i].OnDrawGizmos();
         }
-
-     }
+    }
 }

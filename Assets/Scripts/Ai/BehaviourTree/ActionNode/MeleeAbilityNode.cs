@@ -5,13 +5,12 @@ using UnityEngine;
 public class MeleeAbilityNode : ActionNode
 {
     public int abilityIndex;
-    EnemyAbilityCaster aiCaster; //blackboard
+
     AbilityCaster caster; //blackboard
 
 
     protected override void OnStart()
     {
-        aiCaster = agent.GetComponent<EnemyAbilityCaster>();
         caster = agent.GetComponent<AbilityCaster>();
     }
 
@@ -22,7 +21,7 @@ public class MeleeAbilityNode : ActionNode
 
     protected override State OnUpdate()
     {
-        caster.CastAbility(abilityIndex,aiCaster.CreateCastData());
+        caster.CastAbility(abilityIndex,agent.caster.CreateCastData());
         agent.performingAction = true;
         agent.actionTimer = Time.time;
 

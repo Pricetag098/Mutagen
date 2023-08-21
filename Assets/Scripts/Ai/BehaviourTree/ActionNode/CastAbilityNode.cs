@@ -7,12 +7,19 @@ public class CastAbilityNode : ActionNode
 {
     public int abilityIndex;
     AbilityCaster aCaster;
-    public float castTime;
+    float castTime;
     float timer;
+    Ability ability;
 
     protected override void OnStart()
     {
         aCaster = agent.caster.caster;
+        ability = aCaster.abilities[abilityIndex];
+        if (ability.GetType() == typeof (RangedAbility))
+        {
+            RangedAbility rAbility = ability as RangedAbility;
+            castTime = rAbility.maxChargeTime;
+        }
     }
 
     protected override void OnStop()
@@ -26,7 +33,7 @@ public class CastAbilityNode : ActionNode
         agent.performingAction = true;
         agent.actionTimer = Time.time;
 
-        if (aCaster.abilities[abilityIndex].castType == Ability.CastTypes.hold)
+        if (ability.castType == Ability.CastTypes.hold)
         {
             timer += Time.deltaTime;
             if (timer > castTime)
@@ -37,8 +44,6 @@ public class CastAbilityNode : ActionNode
 
             else return State.Running;
         }
-
         return State.Success;
-
     }
 }

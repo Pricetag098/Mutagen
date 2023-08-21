@@ -5,7 +5,7 @@ using UnityEngine;
 public class Timer
 {
     float time;
-    float maxTime;
+    public float maxTime;
     public bool complete;
 
     public delegate void Callback();
