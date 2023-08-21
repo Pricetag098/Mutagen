@@ -9,10 +9,15 @@ public class AbilitySelector : MonoBehaviour
     [SerializeField] PlayerAbilityCaster abilityCaster;
     [SerializeField] Image heldIcon;
     public bool open;
+    AbilityRefresh _AR;
+    
+
+
     // Start is called before the first frame update
     void Awake()
     {
         buttons = GetComponentsInChildren<Button>();
+        _AR = FindObjectOfType<AbilityRefresh>();
     }
 
     
@@ -37,6 +42,7 @@ public class AbilitySelector : MonoBehaviour
             button.image.sprite = abilityCaster.caster.abilities[i].icon;
         }
         heldIcon.sprite = ability.icon;
+        _AR.Refresh();
         open = true;
         
 	}
