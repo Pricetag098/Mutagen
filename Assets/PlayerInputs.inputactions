@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Melee",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "8c43ad53-0b22-4544-a91e-fdc625e9f9b6",
-                    "expectedControlType": "Digital",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Dash",
@@ -25,30 +25,30 @@
                 },
                 {
                     "name": "Range",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "f0699129-c6e9-411c-8b7c-99593dc9f4e3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ablility3",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "be3a7dd5-7cd6-4c8a-8245-c9ce74176e31",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ablility4",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "11c9040f-e774-4f35-8ada-78cb29c3a387",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -59,6 +59,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse+keyboard",
+                    "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1530b2e-8a98-42ac-8e37-e603f890e7f9",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -76,11 +87,33 @@
                 },
                 {
                     "name": "",
+                    "id": "a511fd20-e4f4-4da8-8520-940b9fc2a3dd",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Range",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "72c5a7bd-5998-4ef5-bee1-32dd31779456",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse+keyboard",
+                    "action": "Ablility3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "367a204c-d207-4543-9f53-326c0f40b9a8",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Ablility3",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -98,11 +131,33 @@
                 },
                 {
                     "name": "",
+                    "id": "cf441f33-fa1d-4bfd-b612-77e49bd7de03",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Ablility4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "158a584f-4558-4017-adbe-d7e1e7efca5e",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b6ec00d-d350-4c42-9f86-29761789c694",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -234,6 +289,17 @@
                     "name": "",
                     "id": "c151b3fd-462e-4991-a278-ba2da2e070c1",
                     "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31c4dbf0-69cd-4906-bdf4-304432499e91",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
