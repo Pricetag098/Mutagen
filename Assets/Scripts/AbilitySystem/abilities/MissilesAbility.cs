@@ -94,8 +94,8 @@ public class MissilesAbility : Ability
 
                 Vector3 rightDir = Vector3.Cross(aimDir, Vector3.up);
                 Vector3 upDir = -Vector3.Cross(aimDir, rightDir);
-
-                for (int i = 0; i < Mathf.RoundToInt(launchCount.Evaluate(chargeTime/maxChargeTime)); i++)
+                float chargeVal = (chargeTime - minChargeTime) / (maxChargeTime - minChargeTime);
+                for (int i = 0; i < Mathf.RoundToInt(launchCount.Evaluate(chargeVal)); i++)
                 {
                     Vector2 circlePos = Random.insideUnitCircle * spreadRad;
                     circlePos.y = Mathf.Abs(circlePos.y);

@@ -8,9 +8,10 @@ public class RangedAbility : Ability
     [SerializeField] protected GameObject prefab;
     [SerializeField] bool releaseOnFullCharge;
     protected ObjectPooler projectileSpawner;
+    public Color damageTextColor;
 
     protected float chargeTime;
-    [SerializeField]protected float maxChargeTime;
+    public float maxChargeTime;
     [SerializeField] protected float minChargeTime;
     bool held;
 
@@ -77,8 +78,10 @@ public class RangedAbility : Ability
     
     protected virtual void Launch()
     {
-        float damage = chargeDamageCurve.Evaluate(chargeTime / maxChargeTime);
-        float speed = chargeVelocityCurve.Evaluate(chargeTime / maxChargeTime);
+
+        float chargeVal = (chargeTime - minChargeTime) / (maxChargeTime - minChargeTime);
+        float damage = chargeDamageCurve.Evaluate(chargeVal);
+        float speed = chargeVelocityCurve.Evaluate(chargeVal);
         Vector3 velocity = speed * aimAssist.GetAssistedAimDir(lastCastdata.aimDirection,lastCastdata.origin,speed);
         projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,damage);
         if (OnCast != null)

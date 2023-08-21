@@ -38,13 +38,13 @@ public class BehaviourTreeEditor : EditorWindow
 
 
         // Import UXML
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Ai/BehaviourTree/UIBuilder/BehaviourTreeEditor.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/Editor/UIBuilder/BehaviourTreeEditor.uxml");
         visualTree.CloneTree(root);
 
 
         // A stylesheet can be added to a VisualElement.
         // The style will be applied to the VisualElement and all of its children.
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/Ai/BehaviourTree/UIBuilder/BehaviourTreeEditor.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/Editor/UIBuilder/BehaviourTreeEditor.uss");
         root.styleSheets.Add(styleSheet);
 
 

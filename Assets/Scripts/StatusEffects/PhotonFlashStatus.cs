@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StatusEffects/PhotonFlash")]
 public class PhotonFlashStatus : StatusEffect
 {
-	[SerializeField] int ticks = 3;
-	[SerializeField] float timeBetweenTicks = .33f;
-	[SerializeField] float damage = 10;
+	public int ticks = 3;
+	public float timeBetweenTicks = .33f;
+	public float damage = 10;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
 	int tickCompleted = 0;
 	Timer timer;
@@ -31,5 +31,12 @@ public class PhotonFlashStatus : StatusEffect
 			if (vfx.Enabled)
 				vfx.Value.Play(health.transform.position, Vector3.up);
 		}
+	}
+
+	public override void Combine(StatusEffect effect)
+	{
+		PhotonFlashStatus status = effect as PhotonFlashStatus;
+		ticks += status.ticks;
+		timeBetweenTicks = Mathf.Min(timeBetweenTicks, status.timeBetweenTicks);
 	}
 }

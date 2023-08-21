@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [CreateAssetMenu(menuName = "Abilities/Orbit")]
 public class OrbitAbility : Ability
 {
@@ -33,7 +34,7 @@ public class OrbitAbility : Ability
     void Fire(CastData data)
     {
         
-        if(orbs.Count >0)
+        if(orbs.Count > 0)
         {
             GameObject orb = orbs[0];
             orbs.RemoveAt(0);
