@@ -5,10 +5,10 @@ using UnityEngine;
 public class SkipStrikeStatus : StatusEffect
 {
 	float totalDamage = 0;
-	[SerializeField] float duration;
-	[SerializeField] float reflectedDamageMulti = 1;
+	public float duration;
+	public float reflectedDamageMulti = 1;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
-	Timer timer;
+	public Timer timer;
 	protected override void OnAdd()
 	{
 		health.OnHit += OnHit;
@@ -36,5 +36,11 @@ public class SkipStrikeStatus : StatusEffect
 	void OnHit(float dmg)
 	{
 		totalDamage += dmg;
+	}
+
+	public override void Combine(StatusEffect effect)
+	{
+		SkipStrikeStatus status = effect as SkipStrikeStatus;
+		reflectedDamageMulti += status.reflectedDamageMulti;
 	}
 }
