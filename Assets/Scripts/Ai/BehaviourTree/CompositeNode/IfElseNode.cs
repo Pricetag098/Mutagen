@@ -110,7 +110,7 @@ public class IfElseNode : CompositeNode
         Vector3 offset = new Vector3(agent.player.transform.position.x, (agent.player.transform.position.y + 1),
             agent.player.transform.position.z);
 
-        if (Physics.Raycast(agent.transform.position, -offset - agent.transform.position, ~agent.LM))
+        if (Physics.Raycast(agent.transform.position, -offset - agent.transform.position))
         {
             return true;
         }

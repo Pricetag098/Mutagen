@@ -1,41 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8995270583899786737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49148647554ec643b0c2b0d12d8dcbd, type: 3}
-  m_Name: IfElseNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: a1c466cbde79b2644bec6eb7136a25b5
-  position: {x: -226.3672, y: 63.448425}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  children:
-  - {fileID: -810475557510404501}
-  - {fileID: -3877117365425290508}
-  checkType: 1
-  distanceCheck: 10
-  groupDistance: 0
---- !u!114 &-8053708008146520226
+--- !u!114 &-2080955170512227945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 2cc0f15207257634c8dd2a62326dd108
-  position: {x: 110, y: 885}
+  guid: 55aa0d79914e22047b4ce7ad64c42484
+  position: {x: 0, y: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -64,95 +29,6 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
---- !u!114 &-5786658995097623228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb2efefee061fe4caa6f7a82d5dd07e, type: 3}
-  m_Name: RepeatUntilFail
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: b426d7553135d9248853a2b94e17d727
-  position: {x: -27, y: 567}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  child: {fileID: 2664189817265573447}
---- !u!114 &-4660162875940065632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
-  m_Name: MoveToNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: de43492cbb30b5a46bf4ee09c6b773ba
-  position: {x: -326.36725, y: 369.44855}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
---- !u!114 &-3877117365425290508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cd4456eb50ba34ca1b6cdf70a04201, type: 3}
-  m_Name: SetStopMoving
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 8bbf8e7849766de4898975f89fa6e6bd
-  position: {x: -27, y: 221}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  child: {fileID: 5972198238794853085}
 --- !u!114 &-1432816634157816018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +59,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   description: 
   child: {fileID: 3426802062406777785}
---- !u!114 &-810475557510404501
+--- !u!114 &-713330678456999993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,13 +68,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35fa963a9ec84d249bad7529fb600de4, type: 3}
-  m_Name: SetGoToPlayer
+  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
+  m_Name: DebugLogNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 4bfcd9a977b49434e861808687f06b23
-  position: {x: -326.36725, y: 209.44843}
+  guid: 26e22974e87e7124886e58ce0203df92
+  position: {x: -376, y: 183}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -212,38 +88,7 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  child: {fileID: -4660162875940065632}
---- !u!114 &-477000392091106028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 574c87d7443c51840bb4536216a0ddf8, type: 3}
-  m_Name: SetTarget
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 28b33402c87c7b1448ec939ee0daab60
-  position: {x: -226.3672, y: -51.551544}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  child: {fileID: -8995270583899786737}
-  targetType: 0
+  message: InDanger
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,17 +106,9 @@ MonoBehaviour:
   nodes:
   - {fileID: -1432816634157816018}
   - {fileID: 3426802062406777785}
-  - {fileID: -8995270583899786737}
-  - {fileID: -477000392091106028}
-  - {fileID: -810475557510404501}
-  - {fileID: -4660162875940065632}
-  - {fileID: 593415743509001221}
-  - {fileID: -5786658995097623228}
-  - {fileID: 2664189817265573447}
-  - {fileID: 7032150444044130600}
-  - {fileID: -8053708008146520226}
-  - {fileID: -3877117365425290508}
-  - {fileID: 5972198238794853085}
+  - {fileID: 8218569157886630417}
+  - {fileID: -713330678456999993}
+  - {fileID: -2080955170512227945}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -280,69 +117,6 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
---- !u!114 &593415743509001221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7991d7105f1070148988a459f4df4abb, type: 3}
-  m_Name: SetRotateTowards
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 2360d351ef7df804294d626501c4dc35
-  position: {x: -27, y: 431}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  child: {fileID: -5786658995097623228}
-  target: 0
---- !u!114 &2664189817265573447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee60411060b76747b4d62b133610c18, type: 3}
-  m_Name: SequencerNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 17a1b8324ebdd3c48b39e10ae9eb04f6
-  position: {x: -27, y: 707}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  children:
-  - {fileID: 7032150444044130600}
-  - {fileID: -8053708008146520226}
 --- !u!114 &3426802062406777785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,8 +146,8 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  child: {fileID: -477000392091106028}
---- !u!114 &5972198238794853085
+  child: {fileID: 8218569157886630417}
+--- !u!114 &8218569157886630417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,13 +156,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32688aae34faf384c9a85050ba2cf192, type: 3}
-  m_Name: MoveToAND
+  m_Script: {fileID: 11500000, guid: d49148647554ec643b0c2b0d12d8dcbd, type: 3}
+  m_Name: IfElseNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: e94d59661f4d1b2409ff13f209309daa
-  position: {x: -27, y: 326}
+  guid: fb532c75c9bf0b049a27a993ff5a02fb
+  position: {x: -226.00002, y: -35.650013}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -402,35 +176,8 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  child: {fileID: 593415743509001221}
---- !u!114 &7032150444044130600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5859ef0b03ab92044a6039850a3a6192, type: 3}
-  m_Name: RotateNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 7b3ddd44bff602e40ada223901b0e5f7
-  position: {x: -131, y: 885}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  rotateSpeed: 6000
-  angle: 5
+  children:
+  - {fileID: -713330678456999993}
+  checkType: 0
+  distanceCheck: 0
+  groupDistance: 0
