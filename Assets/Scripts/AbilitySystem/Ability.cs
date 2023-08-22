@@ -101,4 +101,12 @@ public class Ability : ScriptableObject
         public Vector3 aimDirection;
         public Vector3 moveDirection;
     }
+
+    protected virtual DamageData CreateDamageData(float damage)
+    {
+        DamageData data = new DamageData();
+        data.damage = damage;
+        data.type = castType;
+        return data;
+    }
 }

@@ -6,7 +6,7 @@ public class PhotonFlashStatus : StatusEffect
 {
 	public int ticks = 3;
 	public float timeBetweenTicks = .33f;
-	public float damage = 10;
+	public DamageData damage;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
 	int tickCompleted = 0;
 	Timer timer;

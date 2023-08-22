@@ -8,7 +8,7 @@ public class OrbitProjectile : MonoBehaviour
     float timer, maxTimer;
     OrbitAbility ability;
     bool flying = false;
-    float damage;
+    DamageData damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +34,7 @@ public class OrbitProjectile : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector3 endPoint, Vector3 midPoint,OrbitAbility ab,float speed,float dmg)
+    public void Shoot(Vector3 endPoint, Vector3 midPoint,OrbitAbility ab,float speed,DamageData dmg)
     {
         start = transform.position;
         mid = midPoint;
