@@ -14,12 +14,14 @@ public class PlayerAbilityCaster : MonoBehaviour
 	[HideInInspector]public AbilityCaster caster;
 	PlayerAim aim;
 	PlayerMovement movement;
-    
+    [SerializeField] Optional<AbilityDisplay> display;
 	private void Start()
 	{
 		aim = GetComponent<PlayerAim>();
 		movement = GetComponent<PlayerMovement>();
 		caster = GetComponent<AbilityCaster>();
+		if (display.Enabled)
+			display.Value.UpdateUI(caster.abilities);
 	}
 	private void OnEnable()
 	{
@@ -89,7 +91,8 @@ public class PlayerAbilityCaster : MonoBehaviour
 			{
 				if (ability.slotMask.HasFlag((Ability.SlotMask)Mathf.Pow(2,i)))
 				{
-					caster.SetAbility(ability,i);
+					SetAbility(ability,i);
+					
 					return true;
 				}
 				
@@ -104,7 +107,13 @@ public class PlayerAbilityCaster : MonoBehaviour
 		{
 			abilitySelector.Open(ability);
 		}
+		
 	}
-	
+	public void SetAbility(Ability ability, int index)
+	{
+		caster.SetAbility(ability, index);
+		if (display.Enabled)
+			display.Value.UpdateUI(caster.abilities);
+	}
 
 }

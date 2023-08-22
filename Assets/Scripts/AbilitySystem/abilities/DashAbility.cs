@@ -27,6 +27,7 @@ public class DashAbility : Ability
 		maxStam = rechargeTime * Casts;
 		dashVel = dashDistance / dashTime;
 		dashTimer = new Timer(dashTime,false);
+		stam = maxStam;
 	}
 	public override void Tick()
 	{

@@ -70,4 +70,9 @@ public class MeleeAttackAbility : Ability
 	{
 		
 	}
+
+	public override float GetCoolDownPercent()
+	{
+		return timer.Progress;
+	}
 }
