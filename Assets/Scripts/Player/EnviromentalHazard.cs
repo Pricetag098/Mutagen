@@ -8,7 +8,7 @@ public class EnviromentalHazard : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerMovement pm;
-        if(other.TryGetComponent(out pm))
+        if(other.transform.parent.TryGetComponent(out pm))
         {
             pm.ResetPos();
             data.target = pm.gameObject;
