@@ -6,7 +6,7 @@ public class ExplodingProjectile : MonoBehaviour
 {
     [SerializeField] LayerMask targetLayers;
 	[SerializeField] float radius;
-	[SerializeField] float damage;
+	[SerializeField] DamageData damage;
 	[SerializeField] ParticleSystem particleSystem;
 
 	private void Awake()

@@ -50,16 +50,17 @@ public class Leg : MonoBehaviour
                 timer = 0;
                 moving = true;
                 originalPosition = transform.position;
-                targetPosition = idealLegPos.position + (idealLegPos.position - transform.position) * .8f; //* (maxDistance * .5f);
-                if (distance * .8f > maxStepDistance)
-				{
-                    float x = distance / maxStepDistance;
-                    originalPosition = targetPosition + (transform.position - targetPosition).normalized * maxStepDistance;
+                if (distance > maxStepDistance)
+                {
+                    
+                    originalPosition = idealLegPos.position + (transform.position - idealLegPos.position).normalized * maxStepDistance;
                 }
+                targetPosition = idealLegPos.position + (idealLegPos.position - originalPosition) * .8f; //* (maxDistance * .5f);
+                
 
                 
 
-                maxTimer = Vector3.Distance(transform.position, targetPosition) / travelSpeed;
+                maxTimer = Vector3.Distance(originalPosition, targetPosition) / travelSpeed;
                 RaycastHit hit;
                 if (Physics.Raycast(targetPosition + Vector3.up * (Mathf.Max(originalPosition.y, targetPosition.y) + rayLength / 2), Vector3.down, out hit, rayLength / 2, ground))
                 {
