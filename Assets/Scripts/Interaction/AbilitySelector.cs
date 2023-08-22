@@ -9,7 +9,7 @@ public class AbilitySelector : MonoBehaviour
     [SerializeField] PlayerAbilityCaster abilityCaster;
     [SerializeField] Image heldIcon;
     public bool open;
-    AbilityRefresh _AR;
+
     
 
 
@@ -17,14 +17,14 @@ public class AbilitySelector : MonoBehaviour
     void Awake()
     {
         buttons = GetComponentsInChildren<Button>();
-        _AR = FindObjectOfType<AbilityRefresh>();
+
     }
 
     
 
     public void Select(int index)
 	{
-        abilityCaster.caster.SetAbility(heldAbility,index);
+        abilityCaster.SetAbility(heldAbility,index);
         gameObject.SetActive(false);
         Time.timeScale = 1;
         open = false;
@@ -42,7 +42,7 @@ public class AbilitySelector : MonoBehaviour
             button.image.sprite = abilityCaster.caster.abilities[i].icon;
         }
         heldIcon.sprite = ability.icon;
-        _AR.Refresh();
+
         open = true;
         
 	}

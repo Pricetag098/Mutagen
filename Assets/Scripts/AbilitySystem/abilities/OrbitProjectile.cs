@@ -53,11 +53,14 @@ public class OrbitProjectile : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        HitBox hb;
-        if(collision.gameObject.TryGetComponent(out hb))
+        if(collision.gameObject.tag != "Boulder")
         {
-            hb.OnHit(damage);
+            HitBox hb;
+            if (collision.gameObject.TryGetComponent(out hb))
+            {
+                hb.OnHit(damage);
+            }
+            GetComponent<PooledObject>().Despawn();
         }
-        GetComponent<PooledObject>().Despawn();
     }
 }
