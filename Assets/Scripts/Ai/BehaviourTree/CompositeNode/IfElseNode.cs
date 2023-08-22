@@ -13,7 +13,8 @@ public enum CheckType
     delayMove,
     groupDistance,
     groupFacing,
-    flanking
+    flanking,
+    sightLine
 }
 
 public class IfElseNode : CompositeNode
@@ -104,6 +105,19 @@ public class IfElseNode : CompositeNode
         return true;
     }
 
+    bool sightLineCheck()
+    {
+        Vector3 offset = new Vector3(agent.player.transform.position.x, (agent.player.transform.position.y + 1),
+            agent.player.transform.position.z);
+
+        if (Physics.Raycast(agent.transform.position, -offset - agent.transform.position, ~agent.LM))
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
     protected override State OnUpdate()
     {
         switch (checkType)
@@ -166,7 +180,7 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
-            //average distance. to reduce clutter
+            //too many enemies in front of player
             case CheckType.groupFacing:
                 if (groupFacingCheck() > manager.moveCount)
                     ChildUpdate(first);
@@ -176,6 +190,14 @@ public class IfElseNode : CompositeNode
             //cluttered together
             case CheckType.groupDistance:
                 if (groupDistanceCheck() < groupDistance)
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+
+            case CheckType.sightLine:
+                if (sightLineCheck())
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);

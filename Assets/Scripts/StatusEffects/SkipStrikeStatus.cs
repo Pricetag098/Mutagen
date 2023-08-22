@@ -9,7 +9,7 @@ public class SkipStrikeStatus : StatusEffect
 	public float reflectedDamageMulti = 1;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
 	public Timer timer;
-	[SerializeField] Ability.CastTypes type;
+	[SerializeField] Element element;
 	protected override void OnAdd()
 	{
 		health.OnHit += OnHit;
@@ -49,7 +49,7 @@ public class SkipStrikeStatus : StatusEffect
     {
         DamageData data = new DamageData();
         data.damage = damage;
-        data.type = type;
+        data.type = element;
         return data;
     }
 }

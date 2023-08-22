@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static UnityEditor.Rendering.FilterWindow;
+//using System.Drawing;
 
 public class FloatingTextManager : MonoBehaviour
 {
+    [Header("References")]
     public GameObject textContainer;
     public GameObject textPrefab;
+    [Header("Stats")]
     public float textDeviation;
+    public float baseTextSize;
+    public float baseDuration;
+    public float durationDamageMultiplier;
+    public Color[] colors;
 
     List<FloatingText> floatingTexts = new List<FloatingText>();
 
@@ -17,20 +25,19 @@ public class FloatingTextManager : MonoBehaviour
             txt.UpdateFloatingText();
     }
 
-    public void Show(HitBox.TextData data)
+    public void Show(DamageData data)
     {
         FloatingText floatingText = GetFloatingText();
 
-        floatingText.txt.text = data.damage.ToString();
-        floatingText.txt.fontSize = data.fontSize;
-        floatingText.txt.color = data.color;
+        floatingText.txt.text = data.damage < 99? data.damage.ToString().Substring(0, 2) : data.damage.ToString().Substring(0, 3);
+        floatingText.txt.fontSize = baseTextSize + (data.damage / 10);
+        floatingText.txt.color = colors[(int)data.type];
 
-        float rand = Random.Range(-textDeviation, textDeviation);
-        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(data.position);
-        floatingText.go.transform.position = new Vector3(floatingText.go.transform.position.x + rand, floatingText.go.transform.position.y + rand,
-            floatingText.go.transform.position.z + rand);
+        floatingText.follow = data.target;
+        floatingText.deviation = textDeviation;
+
         floatingText.motion = Vector3.up;
-        floatingText.duration = data.duration;
+        floatingText.duration = baseDuration;// + (data.damage / durationDamageMultiplier);
         floatingText.Show();
     }
 
