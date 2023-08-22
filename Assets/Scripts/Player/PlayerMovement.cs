@@ -27,10 +27,11 @@ public class PlayerMovement : MonoBehaviour
     Vector2 inputDir;
 
 	public Vector3 movementDir;
+	Vector3 lastSafeLocation;
     // Start is called before the first frame update
     void Start()
     {
-        
+        lastSafeLocation = transform.position;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -107,11 +108,13 @@ public class PlayerMovement : MonoBehaviour
 		if (Physics.Raycast(orientation.position, -orientation.up, out hit, groundingRange, groundingLayer))
 		{
 			force = Vector3.ProjectOnPlane(force, hit.normal);
+			lastSafeLocation = transform.position;
 		}
 		else
 		{
 			rb.AddForce(-orientation.up *gravityForce * Time.fixedDeltaTime,ForceMode.VelocityChange);
 		}
+
 
 
 		rb.AddForce(force);
@@ -133,5 +136,11 @@ public class PlayerMovement : MonoBehaviour
 		Gizmos.color = Color.red;
 
 		Gizmos.DrawRay(orientation.position, -orientation.up* groundingRange);
+	}
+
+	public void ResetPos()
+	{
+		transform.position = lastSafeLocation;
+		rb.velocity = Vector3.zero;
 	}
 }
