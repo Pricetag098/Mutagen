@@ -50,10 +50,10 @@ public class Leg : MonoBehaviour
                 timer = 0;
                 moving = true;
                 originalPosition = transform.position;
-                if (distance * .8f > maxStepDistance)
+                if (distance > maxStepDistance)
                 {
-                    float x = distance / maxStepDistance;
-                    originalPosition = targetPosition + (transform.position - idealLegPos.position).normalized * maxStepDistance;
+                    
+                    originalPosition = idealLegPos.position + (transform.position - idealLegPos.position).normalized * maxStepDistance;
                 }
                 targetPosition = idealLegPos.position + (idealLegPos.position - originalPosition) * .8f; //* (maxDistance * .5f);
                 
