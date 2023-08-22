@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    float damage;
+    DamageData damage;
     Rigidbody body;
     [SerializeField] Vector3 gravity;
     [SerializeField] GameObject visual;
@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
 		body.AddForce(gravity,ForceMode.Acceleration);
 	}
 
-	public void Launch(Vector3 origin,Vector3 vel,float dmg)
+	public void Launch(Vector3 origin,Vector3 vel,DamageData dmg)
     {
         transform.position = origin;
         body.velocity = vel;

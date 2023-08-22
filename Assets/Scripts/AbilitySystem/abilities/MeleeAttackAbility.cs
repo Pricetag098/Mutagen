@@ -51,7 +51,7 @@ public class MeleeAttackAbility : Ability
 						continue;
 					healths.Add(hb.health);
 					//createTextData
-					hb.OnHit(damage, this);
+					hb.OnHit(CreateDamageData(damage));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
 					if (hitPoint == Vector3.zero)

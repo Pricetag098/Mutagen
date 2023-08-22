@@ -9,6 +9,7 @@ public class SkipStrikeStatus : StatusEffect
 	public float reflectedDamageMulti = 1;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
 	public Timer timer;
+	[SerializeField] Ability.CastTypes type;
 	protected override void OnAdd()
 	{
 		health.OnHit += OnHit;
@@ -21,7 +22,7 @@ public class SkipStrikeStatus : StatusEffect
 		if(timer.complete)
 		{
 			
-			health.TakeDmg(totalDamage * reflectedDamageMulti);
+			health.TakeDmg(CreateDamageData(totalDamage * reflectedDamageMulti));
 			if (vfx.Enabled)
 				vfx.Value.Play(health.transform.position, Vector3.up);
 			health.RemoveStatusEffect(this);
@@ -33,9 +34,9 @@ public class SkipStrikeStatus : StatusEffect
 		health.OnHit -= OnHit;
 	}
 
-	void OnHit(float dmg)
+	void OnHit(DamageData data)
 	{
-		totalDamage += dmg;
+		totalDamage += data.damage;
 	}
 
 	public override void Combine(StatusEffect effect)
@@ -43,4 +44,12 @@ public class SkipStrikeStatus : StatusEffect
 		SkipStrikeStatus status = effect as SkipStrikeStatus;
 		reflectedDamageMulti += status.reflectedDamageMulti;
 	}
+
+    protected virtual DamageData CreateDamageData(float damage)
+    {
+        DamageData data = new DamageData();
+        data.damage = damage;
+        data.type = type;
+        return data;
+    }
 }
