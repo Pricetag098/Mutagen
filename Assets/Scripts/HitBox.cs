@@ -20,18 +20,15 @@ public class HitBox : MonoBehaviour
 
         textManager = FindObjectOfType<FloatingTextManager>(); //will replace later
     }
-    public void OnHit(float dmg, Ability ability) //changed ability to atk ability if layer is added
+    public void OnHit(DamageData data) //changed ability to atk ability if layer is added
     {
-        health.TakeDmg(dmg * multi);
+        data.damage *= multi;
+        health.TakeDmg(data);
 
         //textManager.Show(CreateTextData(ability));
-        textManager.Show(CreateTextData(dmg)); //temp until layer is added
+        //textManager.Show(CreateTextData(dmg)); //temp until layer is added
     }
 
-    public void OnHit(float dmg)
-    {
-        health.TakeDmg(dmg * multi);
-    }
 
     public struct TextData
     {

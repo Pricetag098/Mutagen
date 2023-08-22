@@ -83,7 +83,7 @@ public class RangedAbility : Ability
         float damage = chargeDamageCurve.Evaluate(chargeVal);
         float speed = chargeVelocityCurve.Evaluate(chargeVal);
         Vector3 velocity = speed * aimAssist.GetAssistedAimDir(lastCastdata.aimDirection,lastCastdata.origin,speed);
-        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,damage);
+        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,CreateDamageData(damage));
         if (OnCast != null)
             OnCast(lastCastdata);
     }
