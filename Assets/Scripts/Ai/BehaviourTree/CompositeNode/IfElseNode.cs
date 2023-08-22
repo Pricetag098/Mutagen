@@ -22,7 +22,6 @@ public class IfElseNode : CompositeNode
     public CheckType checkType;
     public float distanceCheck;
     public float groupDistance;
-    public LayerMask LM; //testing
     int first = 0; int second = 1; //used for readability
 
     protected override void OnStart()
@@ -108,17 +107,17 @@ public class IfElseNode : CompositeNode
 
     bool sightLineCheck()
     {
-        Vector3 offset = new Vector3(agent.player.transform.position.x - agent.transform.position.x,
-    (agent.player.transform.position.y + 1) - (agent.transform.position.y), agent.player.transform.position.z - agent.transform.position.z);
+        Vector3 offset = new Vector3(agent.player.transform.position.x, (agent.player.transform.position.y + 1),
+            agent.player.transform.position.z);
 
-        if (Physics.Raycast(agent.transform.position, -offset))
+        if (Physics.Raycast(agent.transform.position, -offset - agent.transform.position, ~agent.LM))
         {
             return true;
         }
 
         return false;
     }
-
+    
     protected override State OnUpdate()
     {
         switch (checkType)

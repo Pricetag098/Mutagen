@@ -106,7 +106,7 @@ public class Ability : ScriptableObject
     {
         DamageData data = new DamageData();
         data.damage = damage;
-        data.type = castType;
+        data.type = element;
         return data;
     }
 }

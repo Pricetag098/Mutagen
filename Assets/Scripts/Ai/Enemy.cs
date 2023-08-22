@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
+    public LayerMask LM;
     public EnemyManager manager;
 
     //behaviour bools

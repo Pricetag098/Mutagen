@@ -50,7 +50,7 @@ public class MeleeAttackAbility : Ability
 					if (healths.Contains(hb.health))
 						continue;
 					healths.Add(hb.health);
-					//createTextData
+
 					hb.OnHit(CreateDamageData(damage));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;

@@ -44,10 +44,6 @@ public class Health : MonoBehaviour
         }
     }
 
-
-    
-
-
     public void AddIFrames(float amount)
 	{
         iFrames = Mathf.Clamp(iFrames + amount, 0, maxIFrames);
