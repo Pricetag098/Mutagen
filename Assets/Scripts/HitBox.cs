@@ -56,7 +56,7 @@ public class HitBox : MonoBehaviour
         //float dmg = ability.damage * multi;
         float tempDmg = dmg * multi;
         data.damage = tempDmg;
-        data.fontSize = 15 + (tempDmg / 10);
+        data.fontSize = 15 + (tempDmg / 2); //will make this an adjustable value
         data.color = Color.red; //will change to depend on element
         data.obj = gameObject;
         data.duration = textDuration;

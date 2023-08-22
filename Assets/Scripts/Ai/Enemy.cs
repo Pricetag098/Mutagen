@@ -55,9 +55,7 @@ public class Enemy : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Vector3 dir = new Vector3(transform.position.x - player.transform.position.x, transform.position.y,
-                transform.position.z - player.transform.position.z).normalized;
-            KnockBack(dir * 20);
+
         }
     }
 
@@ -82,5 +80,14 @@ public class Enemy : MonoBehaviour
     public void KnockBack(Vector3 knockbackDirection)
     {
         transform.position +=  knockbackDirection;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Vector3 offset = new Vector3(player.transform.position.x - transform.position.x,
+    (player.transform.position.y + 1) - (transform.position.y), player.transform.position.z - transform.position.z);
+
+        Gizmos.DrawRay(transform.position, offset);
     }
 }

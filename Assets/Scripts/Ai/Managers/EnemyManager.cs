@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
         //}
         for(int i = 0; i < transform.childCount; i++)
         {
+            if(transform.GetChild(i).gameObject.active)
             enemyList.Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
         }
 
