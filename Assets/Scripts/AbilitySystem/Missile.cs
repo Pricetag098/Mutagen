@@ -9,13 +9,13 @@ public class Missile : MonoBehaviour
     Vector3 mid;
     HitBox hitBox;
     Timer timer;
-    float damage;
-    public void Launch(Vector3 origin,Vector3 mid,Transform target,float damage,float speed,HitBox hitBox)
+    DamageData damageData;
+    public void Launch(Vector3 origin,Vector3 mid,Transform target,DamageData damage,float speed,HitBox hitBox)
 	{
         this.origin = origin;
         this.mid = mid;
         this.target = target;
-        this.damage = damage;
+        this.damageData = damage;
         this.hitBox = hitBox;
 
         hitBox.health.OnDeath += RemoveTarget;
@@ -32,7 +32,7 @@ public class Missile : MonoBehaviour
 
 	private void Disable()
 	{
-        hitBox.OnHit(damage);
+        hitBox.OnHit(damageData);
         RemoveTarget();
         
 	}

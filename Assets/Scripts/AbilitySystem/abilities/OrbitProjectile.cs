@@ -8,7 +8,7 @@ public class OrbitProjectile : MonoBehaviour
     float timer, maxTimer;
     OrbitAbility ability;
     bool flying = false;
-    float damage;
+    DamageData damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +34,7 @@ public class OrbitProjectile : MonoBehaviour
         }
     }
 
-    public void Shoot(Vector3 endPoint, Vector3 midPoint,OrbitAbility ab,float speed,float dmg)
+    public void Shoot(Vector3 endPoint, Vector3 midPoint,OrbitAbility ab,float speed,DamageData dmg)
     {
         start = transform.position;
         mid = midPoint;
@@ -53,11 +53,14 @@ public class OrbitProjectile : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        HitBox hb;
-        if(collision.gameObject.TryGetComponent(out hb))
+        if(collision.gameObject.tag != "Boulder")
         {
-            hb.OnHit(damage);
+            HitBox hb;
+            if (collision.gameObject.TryGetComponent(out hb))
+            {
+                hb.OnHit(damage);
+            }
+            GetComponent<PooledObject>().Despawn();
         }
-        GetComponent<PooledObject>().Despawn();
     }
 }

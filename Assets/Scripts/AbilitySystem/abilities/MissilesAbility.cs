@@ -102,7 +102,7 @@ public class MissilesAbility : Ability
 
                     Vector3 midPoint = Vector3.Lerp(lastCastdata.origin, hb.transform.position, .5f) + upDir * circlePos.y + rightDir * circlePos.x;
 
-                    projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, damage,projectileSpeed,hb);
+                    projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, CreateDamageData(damage),projectileSpeed,hb);
                 }
             }
 		}

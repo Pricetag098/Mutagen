@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    float damage;
+    DamageData damage;
     Rigidbody body;
     [SerializeField] Vector3 gravity;
     [SerializeField] GameObject visual;
     [SerializeField] Optional<VfxSpawnRequest> vfx;
     public delegate void OnHit();
     public OnHit onHit;
-    FloatingTextManager textManager;
-
     // Start is called before the first frame update
     void Awake()
     {
         body = GetComponent<Rigidbody>();
-        textManager = FindObjectOfType<FloatingTextManager>(); // will replace later
     }
 
 	private void FixedUpdate()
@@ -25,7 +22,7 @@ public class Projectile : MonoBehaviour
 		body.AddForce(gravity,ForceMode.Acceleration);
 	}
 
-    public void Launch(Vector3 origin,Vector3 vel,float dmg)
+	public void Launch(Vector3 origin,Vector3 vel,DamageData dmg)
     {
         transform.position = origin;
         body.velocity = vel;
@@ -40,7 +37,7 @@ public class Projectile : MonoBehaviour
         HitBox hb;
         if (collision.collider.TryGetComponent(out hb))
         {
-            hb.OnHit(damage,this);
+            hb.OnHit(damage);
             if (vfx.Enabled)
                 vfx.Value.Play(collision.GetContact(0).point, collision.GetContact(0).normal);
         }

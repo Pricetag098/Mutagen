@@ -20,45 +20,34 @@ public class HitBox : MonoBehaviour
 
         textManager = FindObjectOfType<FloatingTextManager>(); //will replace later
     }
-    public void OnHit(float dmg, Ability ability) //changed ability to atk ability if layer is added
+    public void OnHit(DamageData data) //changed ability to atk ability if layer is added
     {
-        health.TakeDmg(dmg * multi);
+        data.damage *= multi;
+        health.TakeDmg(data);
 
         //textManager.Show(CreateTextData(ability));
-        textManager.Show(CreateTextData(dmg)); //temp until layer is added
+        //textManager.Show(CreateTextData(dmg)); //temp until layer is added
     }
 
-    public void OnHit(float dmg, Projectile projectile)
-    {
-        health.TakeDmg(dmg * multi);
-
-        //textManager.Show(CreateTextData(ability));
-        textManager.Show(CreateTextData(dmg)); //temp until layer is added
-    }
-
-    public void OnHit(float dmg)
-    {
-        health.TakeDmg(dmg * multi);
-    }
 
     public struct TextData
     {
         public float damage;
         public float fontSize; //will adjust depending on damage
         public Color color; //will be equal to ability element
-        public GameObject obj; //will be displayed on character hit
+        public Vector3 position; //will be displayed on character hit
         public float duration; //changable
     }
 
-    public TextData CreateTextData(float dmg) //changed ability to atk ability if layer is added
+    public TextData CreateTextData(float tempdmg) //changed ability to atk ability if layer is added
     {
         TextData data = new TextData();
         //float dmg = ability.damage * multi;
-        float tempDmg = dmg * multi;
+        float tempDmg = tempdmg * multi;
         data.damage = tempDmg;
-        data.fontSize = 15 + (tempDmg / 2); //will make this an adjustable value
+        data.fontSize = 15 + (tempDmg / 10);
         data.color = Color.red; //will change to depend on element
-        data.obj = gameObject;
+        data.position = transform.position;
         data.duration = textDuration;
         return data;
     }

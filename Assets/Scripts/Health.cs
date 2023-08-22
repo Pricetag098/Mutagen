@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField] float maxIFrames = float.PositiveInfinity;
     public delegate void Action();
 
-    public delegate void DamageAction(float dmg);
+    public delegate void DamageAction(DamageData data);
     public Action OnDeath;
     public DamageAction OnHit;
 
@@ -31,19 +31,22 @@ public class Health : MonoBehaviour
             effects[i].Tick();
 		}
     }
-    public void TakeDmg(float dmg)
+    public void TakeDmg(DamageData data)
     {
         if (iFrames > 0)
             return;
-        health = Mathf.Clamp(health -dmg,0,maxHealth);
+        health = Mathf.Clamp(health -data.damage,0,maxHealth);
         if(OnHit != null)
-        OnHit(dmg);
+        OnHit(data);
         if(health <= 0)
 		{
             Die();
-            
-		}
+        }
     }
+
+
+    
+
 
     public void AddIFrames(float amount)
 	{
@@ -116,3 +119,4 @@ public class Health : MonoBehaviour
 		ClearStatusEffects();
 	}
 }
+
