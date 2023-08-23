@@ -15,11 +15,13 @@ public class Health : MonoBehaviour
     public Action OnDeath;
     public DamageAction OnHit;
 
+    public FloatingTextManager textManager;
+
     public List<StatusEffect> effects = new List<StatusEffect>();
     // Start is called before the first frame update
     void Start()
     {
-
+        textManager = FindObjectOfType<FloatingTextManager>(); //will replace later
     }
 
     // Update is called once per frame
@@ -38,7 +40,11 @@ public class Health : MonoBehaviour
         health = Mathf.Clamp(health -data.damage,0,maxHealth);
         if(OnHit != null)
         OnHit(data);
-        if(health <= 0)
+
+        data.target = this.gameObject;
+        textManager.Show(data);
+
+        if (health <= 0)
 		{
             Die();
         }
