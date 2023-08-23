@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnviromentalHazard : MonoBehaviour
 {
     public DamageData data;
+
+    
     private void OnTriggerEnter(Collider other)
     {
         PlayerMovement pm;
