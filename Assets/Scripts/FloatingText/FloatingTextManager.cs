@@ -9,35 +9,54 @@ public class FloatingTextManager : MonoBehaviour
 {
     [Header("References")]
     public GameObject textContainer;
-    public GameObject textPrefab;
-    [Header("Stats")]
-    public float textDeviation;
-    public float baseTextSize;
-    public float baseDuration;
-    public float durationDamageMultiplier;
-    public Color[] colors;
+    public ObjectPooler pooler;
+    public FloatingTextSettings settings;
 
-    List<FloatingText> floatingTexts = new List<FloatingText>();
+    List<FloatingText> floatingTexts = new List<FloatingText>(5);
+
+    private void Start()
+    {
+        pooler = new GameObject().AddComponent<ObjectPooler>();
+        pooler.CreatePool(settings.textPrefab, 5);
+    }
 
     private void FixedUpdate()
     {
         foreach(FloatingText txt in floatingTexts)
+        {
             txt.UpdateFloatingText();
+
+            if(Time.time - txt.lastShown > txt.duration)
+            {
+                txt.active = false;
+                pooler.Despawn(txt.go.GetComponent<PooledObject>());
+            }
+        }
+
     }
 
     public void Show(DamageData data)
     {
         FloatingText floatingText = GetFloatingText();
 
-        floatingText.txt.text = data.damage < 99? data.damage.ToString().Substring(0, 2) : data.damage.ToString().Substring(0, 3);
-        floatingText.txt.fontSize = baseTextSize + (data.damage / 10);
-        floatingText.txt.color = colors[(int)data.type];
+        if(data.damage <= 9)
+            floatingText.txt.text =  data.damage.ToString().Substring(0, 1);
+        else if(data.damage <= 99)
+            floatingText.txt.text = data.damage.ToString().Substring(0, 2);
+        else
+            floatingText.txt.text = data.damage.ToString().Substring(0, 3);
+
+        //floatingText.txt.text = data.damage < 99? data.damage.ToString().Substring(0, 2) : data.damage.ToString().Substring(0, 3);
+        floatingText.txt.fontSize = settings.baseTextSize + (data.damage / 10);
+        floatingText.txt.color = settings.colors[(int)data.type];
 
         floatingText.follow = data.target;
-        floatingText.deviation = textDeviation;
+        floatingText.deviation = settings.textDeviation;
 
-        floatingText.motion = Vector3.up;
-        floatingText.duration = baseDuration;// + (data.damage / durationDamageMultiplier);
+        floatingText.motion = new Vector3((Random.Range(-settings.textSpread, settings.textSpread)), 1, 0);
+        floatingText.followStrength = settings.followStrength;
+        floatingText.motionSpeed = settings.motionSpeed;
+        floatingText.duration = settings.baseDuration;// + (data.damage / durationDamageMultiplier);
         floatingText.Show();
     }
 
@@ -45,13 +64,13 @@ public class FloatingTextManager : MonoBehaviour
     {
         FloatingText txt = floatingTexts.Find(t => !t.active);
 
-        if(txt == null)
+        if (txt == null)
         {
             txt = new FloatingText();
-            txt.go = Instantiate(textPrefab);
+            txt.go = pooler.Spawn();
             txt.go.transform.SetParent(textContainer.transform);
             txt.txt = txt.go.GetComponent<TextMeshProUGUI>();
-
+            txt.manager = this;
             floatingTexts.Add(txt);
         }
 
