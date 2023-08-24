@@ -10,6 +10,7 @@ public class Missile : MonoBehaviour
     HitBox hitBox;
     Timer timer;
     DamageData damageData;
+    [SerializeField] Optional<VfxSpawnRequest> hitfx;
     public void Launch(Vector3 origin,Vector3 mid,Transform target,DamageData damage,float speed,HitBox hitBox)
 	{
         this.origin = origin;
@@ -33,6 +34,8 @@ public class Missile : MonoBehaviour
 	private void Disable()
 	{
         hitBox.OnHit(damageData);
+        if(hitfx.Enabled)
+            hitfx.Value.Play(transform.position, -transform.forward);
         RemoveTarget();
         
 	}

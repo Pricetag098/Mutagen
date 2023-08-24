@@ -31,10 +31,10 @@ public class Health : MonoBehaviour
             effects[i].Tick();
 		}
     }
-    public void TakeDmg(DamageData data)
+    public bool TakeDmg(DamageData data)
     {
         if (iFrames > 0)
-            return;
+            return false;
         health = Mathf.Clamp(health -data.damage,0,maxHealth);
         if(OnHit != null)
         OnHit(data);
@@ -42,6 +42,7 @@ public class Health : MonoBehaviour
 		{
             Die();
         }
+        return true;
     }
 
     public void AddIFrames(float amount)
