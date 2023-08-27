@@ -146,10 +146,10 @@ MonoBehaviour:
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
-  LM:
-    serializedVersion: 2
-    m_Bits: 2048
   manager: {fileID: 1889403670}
+  hazardLM:
+    serializedVersion: 2
+    m_Bits: 0
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89f7527bc9b5634d8cbe418e4da0299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 7efdcd4c03b283c4aaf0251ef97acc3e, type: 2}
+  tree: {fileID: 11400000, guid: f19776f26d007bd41b499f7fef6c99af, type: 2}
 --- !u!114 &75172031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,10 +295,10 @@ MonoBehaviour:
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
-  LM:
+  manager: {fileID: 1889403670}
+  hazardLM:
     serializedVersion: 2
     m_Bits: 0
-  manager: {fileID: 1889403670}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -611,10 +611,10 @@ MonoBehaviour:
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
-  LM:
-    serializedVersion: 2
-    m_Bits: 2048
   manager: {fileID: 1889403670}
+  hazardLM:
+    serializedVersion: 2
+    m_Bits: 0
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -698,27 +698,13 @@ GameObject:
   - component: {fileID: 716803578}
   - component: {fileID: 716803577}
   - component: {fileID: 716803576}
-  - component: {fileID: 716803575}
-  - component: {fileID: 716803580}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: DangerBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &716803575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 716803574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97eea381fefd61f489413b02196a446d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &716803576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -790,29 +776,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716803574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.05, y: 3.28, z: 10.02}
+  m_LocalPosition: {x: -27.76, y: 3.28, z: 1.92}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &716803580
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 716803574}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &804365037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,7 +1043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.7765713
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1081,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -124.61796
+      value: -129.6
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1409,10 +1379,10 @@ MonoBehaviour:
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
-  LM:
-    serializedVersion: 2
-    m_Bits: 2048
   manager: {fileID: 1889403670}
+  hazardLM:
+    serializedVersion: 2
+    m_Bits: 0
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -1891,7 +1861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 81.063644
+      value: 97.7
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1899,7 +1869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -59.047646
+      value: -61.4
       objectReference: {fileID: 0}
     - target: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
       propertyPath: m_LocalRotation.w

@@ -11,10 +11,10 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Health health;
     [HideInInspector] public EnemyAbilityCaster caster;
-    [HideInInspector] public TestDangerZone dangerObject; //used for dodging, will look into cleaner way of doing
+    [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
-    public LayerMask LM;
     public EnemyManager manager;
+    public LayerMask hazardLM; //will look into way of refining this process
 
     //behaviour bools
     [HideInInspector] public bool isMoving;
@@ -52,12 +52,8 @@ public class Enemy : MonoBehaviour
             delayMoveRange = Random.Range(0.1f,5f);
     }
 
-    private void Update() //testing
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-
-        }
     }
 
     public void ChangeMovementSpeed(float speed)
@@ -83,12 +79,21 @@ public class Enemy : MonoBehaviour
         transform.position +=  knockbackDirection;
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerEnter(Collider other)
     {
-        Gizmos.color = Color.yellow;
-        Vector3 offset = new Vector3(player.transform.position.x - transform.position.x,
-    (player.transform.position.y + 1) - (transform.position.y), player.transform.position.z - transform.position.z);
+        if(other.transform.gameObject.layer == hazardLM)
+        {
+            dangerObject = other.transform.gameObject;
+            isInDanger = true;
+        }
+    }
 
-        Gizmos.DrawRay(transform.position, offset);
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.transform == dangerObject)
+        {
+            dangerObject = null;
+            isInDanger = false;
+        }
     }
 }

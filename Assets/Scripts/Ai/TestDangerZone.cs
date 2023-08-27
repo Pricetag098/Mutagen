@@ -10,7 +10,7 @@ public class TestDangerZone : MonoBehaviour
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy)
         {
-            enemy.dangerObject = this;
+            //enemy.dangerObject = this;
             enemy.isInDanger = true;
 
         }

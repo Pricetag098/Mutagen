@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-2080955170512227945
+--- !u!114 &-6655709273700895011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855db6ddb1b607f418736fb0e3aeb801, type: 3}
-  m_Name: AutoFail
+  m_Script: {fileID: 11500000, guid: d49148647554ec643b0c2b0d12d8dcbd, type: 3}
+  m_Name: IfElseNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 55aa0d79914e22047b4ce7ad64c42484
-  position: {x: -59, y: 183}
+  guid: 5f2d3641c51f0db47ba3740ae7f5944f
+  position: {x: -226, y: -44}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveAwayObject: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  description: 
+  children:
+  - {fileID: 5286662313300511459}
+  - {fileID: 7475080973119244867}
+  checkType: 5
+  distanceCheck: 0
+  groupDistance: 0
+--- !u!114 &-4094799379549987223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
+  m_Name: MoveToNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 4c86015479259eb49b49dbe29e836cb2
+  position: {x: -319, y: 250}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -59,36 +94,6 @@ MonoBehaviour:
   manager: {fileID: 0}
   description: 
   child: {fileID: 3426802062406777785}
---- !u!114 &-713330678456999993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 26e22974e87e7124886e58ce0203df92
-  position: {x: -376, y: 183}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  message: InDanger
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,9 +111,10 @@ MonoBehaviour:
   nodes:
   - {fileID: -1432816634157816018}
   - {fileID: 3426802062406777785}
-  - {fileID: 8218569157886630417}
-  - {fileID: -713330678456999993}
-  - {fileID: -2080955170512227945}
+  - {fileID: 5286662313300511459}
+  - {fileID: -4094799379549987223}
+  - {fileID: -6655709273700895011}
+  - {fileID: 7475080973119244867}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -146,8 +152,8 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  child: {fileID: 8218569157886630417}
---- !u!114 &8218569157886630417
+  child: {fileID: -6655709273700895011}
+--- !u!114 &5286662313300511459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,13 +162,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49148647554ec643b0c2b0d12d8dcbd, type: 3}
-  m_Name: IfElseNode
+  m_Script: {fileID: 11500000, guid: 9e6a7bead0a29754b9bfa9965e55d0e1, type: 3}
+  m_Name: SetMoveAway
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: fb532c75c9bf0b049a27a993ff5a02fb
-  position: {x: -226.00002, y: -35.650013}
+  guid: 0d79790a21e83a345999d0b82156feee
+  position: {x: -319, y: 111}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -176,9 +182,36 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  children:
-  - {fileID: -713330678456999993}
-  - {fileID: -2080955170512227945}
-  checkType: 10
-  distanceCheck: 0
-  groupDistance: 0
+  child: {fileID: -4094799379549987223}
+  moveAwayType: 1
+  distance: 50
+--- !u!114 &7475080973119244867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 6cc4529d43e3fc74eb0669458225d2c2
+  position: {x: -67, y: 111}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveAwayObject: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  description: 
+  message: safe
