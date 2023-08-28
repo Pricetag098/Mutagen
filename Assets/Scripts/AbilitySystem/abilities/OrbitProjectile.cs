@@ -9,6 +9,7 @@ public class OrbitProjectile : MonoBehaviour
     OrbitAbility ability;
     bool flying = false;
     DamageData damage;
+    public bool alive;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,14 +54,15 @@ public class OrbitProjectile : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag != "Boulder")
+        if(!alive)
+            return;
+        alive = false;
+        HitBox hb;
+        if (collision.gameObject.TryGetComponent(out hb))
         {
-            HitBox hb;
-            if (collision.gameObject.TryGetComponent(out hb))
-            {
-                hb.OnHit(damage);
-            }
-            GetComponent<PooledObject>().Despawn();
+            hb.OnHit(damage);
         }
+        GetComponent<PooledObject>().Despawn();
+        
     }
 }

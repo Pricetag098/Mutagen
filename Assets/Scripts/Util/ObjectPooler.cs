@@ -48,6 +48,7 @@ public class ObjectPooler : MonoBehaviour
 		{
             activeObjects.Add(obj);
             obj.gameObject.SetActive(true);
+            obj.despawned = false;
             return obj.gameObject;
 		}
 		else
@@ -63,6 +64,11 @@ public class ObjectPooler : MonoBehaviour
     /// <param name="obj">the object to despawn</param>
     public void Despawn(PooledObject obj)
 	{
+        if (obj.despawned)
+            return;
+        if(obj.OnDespawn != null)
+            obj.OnDespawn();
+        obj.despawned = true;
         activeObjects.Remove(obj);
         pool.Enqueue(obj);
         obj.gameObject.SetActive(false);
