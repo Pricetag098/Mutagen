@@ -11,13 +11,13 @@ public class FloatingTextManager : MonoBehaviour
     public GameObject textContainer;
     public ObjectPooler pooler;
     public FloatingTextSettings settings;
-
+    public int poolSize;
     List<FloatingText> floatingTexts = new List<FloatingText>(5);
 
     private void Start()
     {
         pooler = new GameObject().AddComponent<ObjectPooler>();
-        pooler.CreatePool(settings.textPrefab, 5);
+        pooler.CreatePool(settings.textPrefab, poolSize);
     }
 
     private void FixedUpdate()
@@ -32,31 +32,29 @@ public class FloatingTextManager : MonoBehaviour
                 pooler.Despawn(txt.go.GetComponent<PooledObject>());
             }
         }
-
     }
 
     public void Show(DamageData data)
     {
         FloatingText floatingText = GetFloatingText();
-
+        //text
         if(data.damage <= 9)
             floatingText.txt.text =  data.damage.ToString().Substring(0, 1);
         else if(data.damage <= 99)
             floatingText.txt.text = data.damage.ToString().Substring(0, 2);
         else
             floatingText.txt.text = data.damage.ToString().Substring(0, 3);
-
-        //floatingText.txt.text = data.damage < 99? data.damage.ToString().Substring(0, 2) : data.damage.ToString().Substring(0, 3);
         floatingText.txt.fontSize = settings.baseTextSize + (data.damage / 10);
         floatingText.txt.color = settings.colors[(int)data.type];
 
+        //motion
         floatingText.follow = data.target;
         floatingText.deviation = settings.textDeviation;
-
         floatingText.motion = new Vector3((Random.Range(-settings.textSpread, settings.textSpread)), 1, 0);
         floatingText.followStrength = settings.followStrength;
         floatingText.motionSpeed = settings.motionSpeed;
-        floatingText.duration = settings.baseDuration;// + (data.damage / durationDamageMultiplier);
+
+        floatingText.duration = settings.baseDuration;
         floatingText.Show();
     }
 

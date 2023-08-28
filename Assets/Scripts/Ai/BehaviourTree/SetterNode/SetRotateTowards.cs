@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum RotateTarget
-{
-    player
-}
 
 public class SetRotateTowards : SetterNode
 {
-    public RotateTarget target;
+    public TargetType target;
 
     protected override void OnStart()
     {
@@ -25,9 +21,9 @@ public class SetRotateTowards : SetterNode
     {
         switch (target)
         {
-            case RotateTarget.player:
-                blackboard.rotateTowardsObject = agent.player.gameObject;
-                return child.Update();
+            case TargetType.player:
+                blackboard.rotateTowardsObject = player.gameObject;
+                break;
 
         }
         return child.Update();

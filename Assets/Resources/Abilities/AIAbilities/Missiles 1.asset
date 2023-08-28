@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f088f90b81d91c4d96fb7607ed93fc3, type: 3}
   m_Name: Missiles 1
   m_EditorClassIdentifier: 
-  abilityName: Misslile
-  icon: {fileID: 21300000, guid: 9baba8ea6eb160b4fb51ed50aa5c5a8e, type: 3}
+  abilityName: 
+  icon: {fileID: 0}
   element: 0
   pickupPrefab:
-    enabled: 1
+    enabled: 0
     val: {fileID: 3243613965223437803, guid: 5706c2f8eb820634ab1fdf524af33b94, type: 3}
   slotMask: 2
   castType: 1
   prefab: {fileID: 7812541140757809946, guid: a11872f583ccf534cb8d5cd42e449f60, type: 3}
-  releaseOnFullCharge: 1
+  releaseOnFullCharge: 0
   damage: 10
   range: 100
   spreadRad: 20
@@ -29,7 +29,7 @@ MonoBehaviour:
   projectileSpeed: 30
   targetLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 9
   maxChargeTime: 1
   minChargeTime: 0.1
   launchCount:
@@ -61,7 +61,7 @@ MonoBehaviour:
     maxRange: 20
     aimAssistLayer:
       serializedVersion: 2
-      m_Bits: 512
+      m_Bits: 8
     directionWeight: 10
     distanceWeight: 5
     priorityWeight: 1

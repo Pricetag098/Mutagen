@@ -20,8 +20,8 @@ public class SetGroupFacing : SetterNode
 
     Vector3 groupFacing()
     {
-        Vector3 playerFlank = agent.player.transform.position + 
-            ((-agent.player.transform.forward * agent.circlingDistance).normalized);
+        Vector3 playerFlank = player.transform.position + 
+            ((-player.transform.forward * agent.circlingDistance).normalized);
         return playerFlank;
     }
 }

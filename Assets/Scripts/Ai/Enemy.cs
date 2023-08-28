@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
     public EnemyManager manager;
-    public LayerMask hazardLM; //will look into way of refining this process
 
     //behaviour bools
     [HideInInspector] public bool isMoving;
@@ -47,13 +46,6 @@ public class Enemy : MonoBehaviour
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
         behaviourTree = GetComponent<BehaviourTreeRunner>();
-
-        if (delayMoveRange == 0)
-            delayMoveRange = Random.Range(0.1f,5f);
-    }
-
-    private void Update()
-    {
     }
 
     public void ChangeMovementSpeed(float speed)
@@ -65,7 +57,7 @@ public class Enemy : MonoBehaviour
     public void ChangeMovementMultiplier(float multi)
     {
         movementMultiplier = multi;
-        ChangeMovementSpeed(movementSpeed * multi);
+        ChangeMovementSpeed(movementSpeed * movementMultiplier);
     }
 
     public void Flank()
@@ -74,26 +66,26 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(playerFlank);
     }
 
-    public void KnockBack(Vector3 knockbackDirection)
+    public void KnockBack(Vector3 knockbackDirection) //set the ai's nav object position to give "skitter" effect
     {
         transform.position +=  knockbackDirection;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.gameObject.layer == hazardLM)
-        {
-            dangerObject = other.transform.gameObject;
-            isInDanger = true;
-        }
+        //if(other.transform.gameObject.layer == hazardLM)
+        //{
+        //    dangerObject = other.transform.gameObject;
+        //    isInDanger = true;
+        //}
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.transform == dangerObject)
-        {
-            dangerObject = null;
-            isInDanger = false;
-        }
+        //if(other.transform == dangerObject)
+        //{
+        //    dangerObject = null;
+        //    isInDanger = false;
+        //}
     }
 }

@@ -6,28 +6,29 @@ public class EnemyAbilityCaster : MonoBehaviour
 {
     [Header("References")]
     [HideInInspector] public AbilityCaster caster;
-    public GameObject player;
+    Enemy enemy;
+    Transform player;
     public Transform castOrigin;
-    public Vector3 aimDir;
+    [Header("Stats")]
     public float projectileDeviation;
-
 
     private void Start()
     {
         caster = GetComponent<AbilityCaster>();
+        enemy = GetComponent<Enemy>();
+        player = enemy.player.transform;
     }
-
 
     public Ability.CastData CreateCastData()
     {
         Ability.CastData data = new Ability.CastData();
         data.origin = castOrigin.transform.position;
+        //aiming and deviation
         float dev = Random.Range(-projectileDeviation, projectileDeviation);
-        aimDir = new Vector3((player.transform.position.x - transform.position.x) + dev,0,
-            (player.transform.position.z - transform.position.z) + dev).normalized;
+        data.aimDirection = new Vector3((player.position.x - transform.position.x) + dev,0,
+            (player.position.z - transform.position.z) + dev).normalized;
 
-        data.aimDirection = aimDir;
-        data.moveDirection = transform.position + transform.forward;
+        data.moveDirection = Vector3.zero;
         data.effectOrigin = castOrigin;
         return data;
     }
