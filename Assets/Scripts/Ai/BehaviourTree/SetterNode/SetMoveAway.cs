@@ -28,12 +28,12 @@ public class SetMoveAway : SetterNode
         switch (moveAwayType)
         {
             case MoveAwayType.player:
-                blackboard.moveToPosition = new Vector3(agent.transform.position.x - agent.player.transform.position.x,
-                    agent.transform.position.y, agent.transform.position.z - agent.player.transform.position.z).normalized * distance; 
+                blackboard.moveToPosition = agent.transform.position + -new Vector3(agent.player.transform.position.x - agent.transform.position.x,
+                    agent.transform.position.y, agent.player.transform.position.z - agent.transform.position.z ).normalized * distance; 
                 break;
             case MoveAwayType.danger:
-                if (agent.dangerObject != null)
-                    blackboard.moveToPosition = agent.dangerObject.transform.position;
+                    blackboard.moveToPosition = agent.transform.position + -new Vector3(agent.dangerObject.transform.position.x - agent.transform.position.x,
+                    agent.transform.position.y, agent.dangerObject.transform.position.z - agent.transform.position.z).normalized * distance;
                 break;
 
         }
