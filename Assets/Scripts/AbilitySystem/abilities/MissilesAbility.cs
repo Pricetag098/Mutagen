@@ -89,9 +89,8 @@ public class MissilesAbility : Ability
         if (Physics.Raycast(lastCastdata.origin,aimDir,out hit, range, targetLayers))
 		{
             HitBox hb;
-            if(hit.transform.TryGetComponent(out hb))
-			{
-
+            if(hit.collider.transform.TryGetComponent(out hb))
+            {
                 Vector3 rightDir = Vector3.Cross(aimDir, Vector3.up);
                 Vector3 upDir = -Vector3.Cross(aimDir, rightDir);
                 float chargeVal = (chargeTime - minChargeTime) / (maxChargeTime - minChargeTime);

@@ -38,6 +38,31 @@ public class IfElseNode : CompositeNode
         return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
     }
 
+    bool isMovingReset()
+    {
+        if (agent.isMoving && Time.time - agent.movementTimer > agent.movementCooldown)
+        {
+            agent.isMoving = false;
+            return true;
+        }
+        return false;
+    }
+
+    bool performingActionReset()
+    {
+        if (agent.performingAction)
+        {
+            if (Time.time - agent.actionTimer > agent.actionCooldown)
+            {
+                agent.performingAction = false;
+                return true;
+            }
+            return false;
+        }
+        else
+            return true;
+    }
+
     int healthCheck()
     {
         int heal = agent.healthState[0];
@@ -60,7 +85,6 @@ public class IfElseNode : CompositeNode
             if (manager.enemyList[i] != agent)
             {
                 float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
-                //float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].agent.destination);
                 if (dist < groupDistance)
                 {
                     count++;
@@ -82,8 +106,8 @@ public class IfElseNode : CompositeNode
         int count = 0;
         for(int i  = 0; i < manager.enemyList.Count; i++)
         {
-            if(Vector3.Dot(agent.player.transform.forward, (manager.enemyList[i].transform.position - 
-                agent.player.transform.position).normalized) > 0)
+            if(Vector3.Dot(player.transform.forward, (manager.enemyList[i].transform.position - 
+                player.transform.position).normalized) > 0)
             {
                 count++;
             }
@@ -107,12 +131,12 @@ public class IfElseNode : CompositeNode
 
     bool sightLineCheck()
     {
-        Vector3 offset = new Vector3(agent.player.transform.position.x - agent.transform.position.x,
-            (agent.player.transform.position.y + 1) - (agent.transform.position.y), agent.player.transform.position.z - agent.transform.position.z);
+        Vector3 offset = new Vector3(player.transform.position.x - agent.transform.position.x,
+            (player.transform.position.y + 1) - (agent.transform.position.y), player.transform.position.z - agent.transform.position.z);
         RaycastHit hit;
         if (Physics.Raycast(agent.transform.position, offset, out hit))
         {
-            if (hit.transform == agent.player.transform)
+            if (hit.transform == player.transform)
             {
                 return true;
             }
@@ -147,7 +171,7 @@ public class IfElseNode : CompositeNode
 
                 //curently moving check
             case CheckType.isMoving:
-                if (agent.isMoving)
+                if (!isMovingReset())
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
@@ -155,7 +179,7 @@ public class IfElseNode : CompositeNode
 
             //currently doing action
             case CheckType.isDoingAction:
-                if (agent.performingAction)
+                if (!performingActionReset())
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);

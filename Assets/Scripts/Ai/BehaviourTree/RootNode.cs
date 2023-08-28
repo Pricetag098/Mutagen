@@ -13,7 +13,6 @@ public class RootNode : Node
     protected override void OnStop()
     {
         ResetVariables();
-        blackboard.Reset();
     }
 
     protected override State OnUpdate()
@@ -31,6 +30,6 @@ public class RootNode : Node
 
     void ResetVariables()
     {
-
+        blackboard.rotateTowardsObject = null;
     }
 }

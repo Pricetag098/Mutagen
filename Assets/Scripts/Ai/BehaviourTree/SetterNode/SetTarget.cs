@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class SetTarget : SetterNode
 {
-    public enum TargetType
-    {
-        Player,
-        Self,
-        Danger,
-    }
-
     public TargetType targetType;
-
 
     protected override void OnStart()
     {
@@ -28,10 +20,10 @@ public class SetTarget : SetterNode
     {
         switch (targetType)
         {
-            case TargetType.Player:
-                blackboard.targetPosition = agent.player.transform.position;
+            case TargetType.player:
+                blackboard.targetPosition = player.transform.position;
                 break;
-            case TargetType.Self:
+            case TargetType.self:
                 blackboard.targetPosition = agent.transform.position;
                 break;
 

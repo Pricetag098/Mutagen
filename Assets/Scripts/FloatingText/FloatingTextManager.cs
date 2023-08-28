@@ -11,13 +11,13 @@ public class FloatingTextManager : MonoBehaviour
     public GameObject textContainer;
     public ObjectPooler pooler;
     public FloatingTextSettings settings;
-
+    public int poolSize;
     List<FloatingText> floatingTexts = new List<FloatingText>(5);
 
     private void Start()
     {
         pooler = new GameObject().AddComponent<ObjectPooler>();
-        pooler.CreatePool(settings.textPrefab, 5);
+        pooler.CreatePool(settings.textPrefab, poolSize);
     }
 
     private void FixedUpdate()

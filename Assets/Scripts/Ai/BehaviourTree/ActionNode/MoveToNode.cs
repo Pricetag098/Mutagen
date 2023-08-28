@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class MoveToNode : ActionNode
 {
-    //public GameObject GoTo;
     protected override void OnStart()
     {
 
@@ -21,6 +20,5 @@ public class MoveToNode : ActionNode
         agent.isMoving = true;
         agent.agent.SetDestination(blackboard.moveToPosition);
         return State.Success;
-
     }
 }
