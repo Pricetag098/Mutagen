@@ -9,7 +9,7 @@ public class EnemyAbilityCaster : MonoBehaviour
     public GameObject player;
     public Transform castOrigin;
     public Vector3 aimDir;
-    public float deviation;
+    public float projectileDeviation;
 
 
     private void Start()
@@ -22,7 +22,7 @@ public class EnemyAbilityCaster : MonoBehaviour
     {
         Ability.CastData data = new Ability.CastData();
         data.origin = castOrigin.transform.position;
-        float dev = Random.Range(-deviation, deviation);
+        float dev = Random.Range(-projectileDeviation, projectileDeviation);
         aimDir = new Vector3((player.transform.position.x - transform.position.x) + dev,0,
             (player.transform.position.z - transform.position.z) + dev).normalized;
 

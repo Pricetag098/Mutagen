@@ -107,12 +107,16 @@ public class IfElseNode : CompositeNode
 
     bool sightLineCheck()
     {
-        Vector3 offset = new Vector3(agent.player.transform.position.x, (agent.player.transform.position.y + 1),
-            agent.player.transform.position.z);
-
-        if (Physics.Raycast(agent.transform.position, -offset - agent.transform.position, ~agent.LM))
+        Vector3 offset = new Vector3(agent.player.transform.position.x - agent.transform.position.x,
+            (agent.player.transform.position.y + 1) - (agent.transform.position.y), agent.player.transform.position.z - agent.transform.position.z);
+        RaycastHit hit;
+        if (Physics.Raycast(agent.transform.position, offset, out hit))
         {
-            return true;
+            if (hit.transform == agent.player.transform)
+            {
+                return true;
+            }
+            else return false;
         }
 
         return false;

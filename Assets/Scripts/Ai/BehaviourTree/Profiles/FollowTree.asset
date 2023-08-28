@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6655709273700895011
+--- !u!114 &-6144633702437772024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49148647554ec643b0c2b0d12d8dcbd, type: 3}
-  m_Name: IfElseNode
+  m_Script: {fileID: 11500000, guid: 35fa963a9ec84d249bad7529fb600de4, type: 3}
+  m_Name: SetGoToPlayer
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 5f2d3641c51f0db47ba3740ae7f5944f
-  position: {x: -226, y: -44}
+  guid: e42776de823f32f41811401c0f5faae7
+  position: {x: 0, y: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -29,42 +29,8 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  children:
-  - {fileID: 5286662313300511459}
-  - {fileID: 7475080973119244867}
-  checkType: 5
-  distanceCheck: 0
-  groupDistance: 0
---- !u!114 &-4094799379549987223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
-  m_Name: MoveToNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 4c86015479259eb49b49dbe29e836cb2
-  position: {x: -319, y: 250}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
---- !u!114 &-1432816634157816018
+  child: {fileID: 0}
+--- !u!114 &-3733512388397118135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,8 +44,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 36290984afcc3bf4b94d18db2c53b943
-  position: {x: -226.3672, y: -339.5515}
+  guid: 9a3c8edc2216a8e4692c5f03a960e550
+  position: {x: 0, y: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -93,37 +59,8 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  child: {fileID: 3426802062406777785}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef62aa517433b044827d85368d4cae6, type: 3}
-  m_Name: TestTree
-  m_EditorClassIdentifier: 
-  rootNode: {fileID: -1432816634157816018}
-  treeState: 0
-  nodes:
-  - {fileID: -1432816634157816018}
-  - {fileID: 3426802062406777785}
-  - {fileID: 5286662313300511459}
-  - {fileID: -4094799379549987223}
-  - {fileID: -6655709273700895011}
-  - {fileID: 7475080973119244867}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    moveAwayObject: {x: 0, y: 0, z: 0}
-    moveToObject: {fileID: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
---- !u!114 &3426802062406777785
+  child: {fileID: -3611556232080451913}
+--- !u!114 &-3611556232080451913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,8 +74,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 5dad08e80e63d5045a01a872af411b5f
-  position: {x: -226.3672, y: -192.55151}
+  guid: 507fbc707bfa2514792e145a6296f84f
+  position: {x: 0, y: 118}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -152,8 +89,8 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  child: {fileID: -6655709273700895011}
---- !u!114 &5286662313300511459
+  child: {fileID: 0}
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,13 +99,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6a7bead0a29754b9bfa9965e55d0e1, type: 3}
-  m_Name: SetMoveAway
+  m_Script: {fileID: 11500000, guid: 1ef62aa517433b044827d85368d4cae6, type: 3}
+  m_Name: FollowTree
   m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 0d79790a21e83a345999d0b82156feee
-  position: {x: -319, y: 111}
+  rootNode: {fileID: -3733512388397118135}
+  treeState: 0
+  nodes:
+  - {fileID: -3733512388397118135}
+  - {fileID: -3611556232080451913}
+  - {fileID: 2586668456752544140}
+  - {fileID: -6144633702437772024}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -177,15 +117,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  description: 
-  child: {fileID: -4094799379549987223}
-  moveAwayType: 1
-  distance: 50
---- !u!114 &7475080973119244867
+--- !u!114 &2586668456752544140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,13 +126,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
-  m_Name: DebugLogNode
+  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
+  m_Name: MoveToNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 6cc4529d43e3fc74eb0669458225d2c2
-  position: {x: -67, y: 111}
+  guid: 6086c2b7c6ffcaf41b81a43542d34734
+  position: {x: 0, y: 422}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     moveAwayObject: {x: 0, y: 0, z: 0}
@@ -214,4 +146,3 @@ MonoBehaviour:
   abilities: []
   manager: {fileID: 0}
   description: 
-  message: safe
