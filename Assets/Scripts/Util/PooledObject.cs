@@ -8,13 +8,12 @@ public class PooledObject : MonoBehaviour
 
 	public delegate void Action();
 	public Action OnDespawn;
+	public bool despawned = false;
 	/// <summary>
 	/// Despawns the object
 	/// </summary>
 	public void Despawn()
 	{
 		origin.Despawn(this);
-		if(OnDespawn != null)
-		OnDespawn();
 	}	
 }

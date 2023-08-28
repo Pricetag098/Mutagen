@@ -62,6 +62,7 @@ public class OrbitAbility : Ability
             float waveLength = (i/ (float) orbs.Count) * 2* Mathf.PI;
             
             orb.transform.position = caster.transform.position + offset + new Vector3(Mathf.Sin((Time.time + waveLength) * orbitSpeed),0,Mathf.Cos((Time.time + waveLength) * orbitSpeed)) * radius;
+            orb.GetComponent<OrbitProjectile>().alive = true;
         }
     }
     protected override void DoCast(CastData data)
@@ -69,6 +70,7 @@ public class OrbitAbility : Ability
         if(timer.complete)
         {
             int count = maxCharges - orbs.Count;
+            Debug.Log(count);
             for (int i = 0; i < count; i++)
             {
                 orbs.Add(pooler.Spawn());
