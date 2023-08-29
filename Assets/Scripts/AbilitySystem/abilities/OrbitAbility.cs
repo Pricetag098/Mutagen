@@ -78,7 +78,7 @@ public class OrbitAbility : Ability
                 float waveLength = (i / (float)maxCharges) * 2 * Mathf.PI;
                 go.GetComponent<OrbitProjectile>().waveLength = waveLength;
                 go.transform.position = caster.transform.position + offset + new Vector3(Mathf.Sin((Time.time + waveLength) * orbitSpeed), 0, Mathf.Cos((Time.time + waveLength) * orbitSpeed)) * radius;
-                spawnFx.Play(go.transform.position - offset,Vector3.up);
+                spawnFx.Play(go.transform.position - offset*.99f,Vector3.up);
                 go.GetComponent<OrbitProjectile>().alive = true;
 
                 orbs.Add(go);

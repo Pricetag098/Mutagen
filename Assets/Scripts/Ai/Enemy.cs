@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
+    public Animator anim;
     public EnemyManager manager;
 
     //behaviour bools
@@ -47,8 +48,17 @@ public class Enemy : MonoBehaviour
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
         behaviourTree = GetComponent<BehaviourTreeRunner>();
+        //anim = caster.GetComponent<Animator>();
 
         defaultSpeed = movementSpeed;
+    }
+
+    public void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    anim.Play("Headbutt");
+        //}
     }
 
     public void ChangeMovementSpeed(float speed)
