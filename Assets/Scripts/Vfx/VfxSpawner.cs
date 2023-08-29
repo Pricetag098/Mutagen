@@ -27,8 +27,12 @@ public class VfxSpawner : MonoBehaviour
 	{
 		instance.DoSpawnVfx(request, position, direction);
 	}
+    public static void SpawnVfx(VfxSpawnRequest request, Vector3 position, Vector3 direction,Transform target)
+    {
+        instance.DoSpawnVfx(request, position, direction,target);
+    }
 
-	void AddPool(VfxSpawnRequest request)
+    void AddPool(VfxSpawnRequest request)
 	{
 		GameObject go = new GameObject(request.name);
 		go.transform.parent = transform;
@@ -50,5 +54,17 @@ public class VfxSpawner : MonoBehaviour
 		go.GetComponent<VfxObject>().Play();
 	}
 
-	
+    void DoSpawnVfx(VfxSpawnRequest request, Vector3 position, Vector3 direction,Transform target)
+    {
+        if (!vfxlist.Contains(request))
+        {
+            AddPool(request);
+            vfxlist.Add(request);
+        }
+        GameObject go = poolDict[request].Spawn();
+        go.transform.position = position;
+        go.transform.up = direction;
+        go.GetComponent<VfxObject>().PlayFollow(target);
+    }
+
 }

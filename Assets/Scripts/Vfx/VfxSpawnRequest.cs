@@ -11,4 +11,8 @@ public class VfxSpawnRequest : ScriptableObject
 	{
 		VfxSpawner.SpawnVfx(this, point, dir);
 	}
+    public void Play(Vector3 point, Vector3 dir,Transform target)
+    {
+        VfxSpawner.SpawnVfx(this, point, dir,target);
+    }
 }

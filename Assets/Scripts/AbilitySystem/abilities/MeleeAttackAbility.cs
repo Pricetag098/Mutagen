@@ -10,10 +10,11 @@ public class MeleeAttackAbility : Ability
     [SerializeField] float swingsPerMin = 1000;
 	[SerializeField] float swingRadius,swingRange;
 	[SerializeField] Optional<VfxSpawnRequest> vfx;
+	[SerializeField] List<OnHitEffect> hitEffects;
 	float angleCutoff;
 	float coolDown;
 	Timer timer;
-
+	[SerializeField] string animationTrigger;
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
@@ -37,8 +38,9 @@ public class MeleeAttackAbility : Ability
             if (OnCast != null)
                 OnCast(data);
             timer.Reset();
-			
 
+			if (caster.animator.Enabled)
+				caster.animator.Value.SetTrigger(animationTrigger);
 			List<Health> healths = new List<Health>();
 
 			RaycastHit[] hits = Physics.SphereCastAll(data.origin, swingRadius, data.aimDirection, swingRange, targetLayers);
@@ -50,7 +52,7 @@ public class MeleeAttackAbility : Ability
 					if (healths.Contains(hb.health))
 						continue;
 					healths.Add(hb.health);
-
+					OnHit(hb,data.aimDirection);
 					hb.OnHit(CreateDamageData(damage));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
@@ -69,6 +71,13 @@ public class MeleeAttackAbility : Ability
 	public override void OnDrawGizmos()
 	{
 		
+	}
+	protected virtual void OnHit(HitBox hb,Vector3 direction)
+	{
+		foreach(OnHitEffect effect in hitEffects)
+		{
+			effect.OnHit(hb, direction);
+		}
 	}
 
 	public override float GetCoolDownPercent()

@@ -4925,6 +4925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exploding arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 1036542219973673062, guid: 63925f9704c67394589b05446b20541b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63925f9704c67394589b05446b20541b, type: 3}
 --- !u!4 &5870056577021107012 stripped
@@ -4953,5 +4957,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   radius: 3
-  damage: 20
-  particleSystem: {fileID: 1483622308212707751}
+  damage:
+    damage: 0
+    type: 0
+    target: {fileID: 0}
+  vfx: {fileID: 11400000, guid: 922107a056edc7345bed3c7853a198dc, type: 2}

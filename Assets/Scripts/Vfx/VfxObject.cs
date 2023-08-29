@@ -7,6 +7,9 @@ public class VfxObject : MonoBehaviour
     Optional<ParticleSystem> particle;
 	Optional<SoundPlayer> soundPlayer;
 	PooledObject pooledObject;
+	Transform target;
+	bool hasTarget;
+
 	private void Awake()
 	{
 		particle.Value = GetComponentInChildren<ParticleSystem>();
@@ -18,6 +21,12 @@ public class VfxObject : MonoBehaviour
 		pooledObject.OnDespawn += OnDespawn;
 	}
 
+	private void Update()
+	{
+		if (hasTarget)
+			transform.position = target.position;
+	}
+
 	public void Play()
 	{
 		if(particle.Enabled)
@@ -25,9 +34,16 @@ public class VfxObject : MonoBehaviour
 		if(soundPlayer.Enabled)
 		soundPlayer.Value.Play();
 	}
+	public void PlayFollow(Transform target)
+	{
+		this.target = target;
+		hasTarget = true;
+		Play();
+	}
 
 	void OnDespawn()
 	{
+		hasTarget = false;
 		if (particle.Enabled)
 			particle.Value.Play();
 		if (soundPlayer.Enabled)

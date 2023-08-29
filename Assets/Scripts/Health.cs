@@ -16,8 +16,9 @@ public class Health : MonoBehaviour
     public DamageAction OnHit;
 
     public FloatingTextManager textManager;
-
+    public bool canHaveStatusEffects = true;
     public List<StatusEffect> effects = new List<StatusEffect>();
+    public bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,8 +58,16 @@ public class Health : MonoBehaviour
     
     }
 
+    public void Respawn()
+    {
+        dead = false;
+        health = maxHealth;
+    }
     void Die()
 	{
+        if(dead)
+            return;
+        dead = true;
         //do die stuff
         
         if(OnDeath != null)
@@ -67,6 +76,8 @@ public class Health : MonoBehaviour
 
     public void AddStatusEffect(StatusEffect effect)
 	{
+        if(!canHaveStatusEffects)
+            return;
         StatusEffect existingEffect;
 		if (HasStatusEffect(effect,out existingEffect) && existingEffect.stacks + effect.stacks <= existingEffect.maxStacks)
 		{

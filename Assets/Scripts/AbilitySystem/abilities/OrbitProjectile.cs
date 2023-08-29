@@ -10,6 +10,8 @@ public class OrbitProjectile : MonoBehaviour
     bool flying = false;
     DamageData damage;
     public bool alive;
+    [SerializeField] VfxSpawnRequest vfx;
+    public float waveLength;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,7 @@ public class OrbitProjectile : MonoBehaviour
         {
             hb.OnHit(damage);
         }
+        vfx.Play(transform.position, Vector3.up);
         GetComponent<PooledObject>().Despawn();
         
     }

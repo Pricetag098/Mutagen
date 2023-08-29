@@ -59,7 +59,7 @@ public class TimeRewindAbility : Ability
             lineRenderer.positionCount = positionHistory.Count;
             for(int i = 0; i < positionHistory.Count; i++)
 			{
-                lineRenderer.SetPosition(i, positionHistory[i].position + lineOffset);
+                lineRenderer.SetPosition(i, positionHistory[positionHistory.Count - i -1].position + lineOffset);
 			}
 		}
     }
