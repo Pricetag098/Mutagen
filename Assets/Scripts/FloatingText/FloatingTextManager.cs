@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static UnityEditor.Rendering.FilterWindow;
-//using System.Drawing;
 
 public class FloatingTextManager : MonoBehaviour
 {
@@ -25,12 +24,6 @@ public class FloatingTextManager : MonoBehaviour
         foreach(FloatingText txt in floatingTexts)
         {
             txt.UpdateFloatingText();
-
-            if(Time.time - txt.lastShown > txt.duration)
-            {
-                txt.active = false;
-                pooler.Despawn(txt.go.GetComponent<PooledObject>());
-            }
         }
     }
 
@@ -66,7 +59,7 @@ public class FloatingTextManager : MonoBehaviour
         {
             txt = new FloatingText();
             txt.go = pooler.Spawn();
-            txt.go.transform.SetParent(textContainer.transform);
+            txt.go.transform.SetParent(pooler.transform);
             txt.txt = txt.go.GetComponent<TextMeshProUGUI>();
             txt.manager = this;
             floatingTexts.Add(txt);

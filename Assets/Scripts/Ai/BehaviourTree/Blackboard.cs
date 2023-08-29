@@ -7,10 +7,8 @@ using UnityEngine.AI;
 public class Blackboard
 {
     public Vector3 moveToPosition;
-    //public GameObject moveToObject;
     public GameObject rotateTowardsObject;
     public Vector3 targetPosition;
-    //public Vector3 dashTarget;
     public Ability[] abilities;
     public EnemyManager manager;
     [HideInInspector] float delayMoveTimer;
