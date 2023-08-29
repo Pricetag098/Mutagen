@@ -7,27 +7,51 @@ public class ExplodeOnDeath : MonoBehaviour
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float radius;
     [SerializeField] DamageData damage;
+    
     [SerializeField] VfxSpawnRequest vfx;
+    [SerializeField] DamageData damage2;
+    [SerializeField] VfxSpawnRequest vfx2;
+    [SerializeField] Element element;
 
     private void Awake()
     {
         GetComponent<Health>().OnDeath += Explode;
     }
-    void Explode()
-    {
-        vfx.Play(transform.position, Vector3.up);
-        List<Health> healths = new List<Health>();
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, radius, targetLayers);
-        foreach (Collider hit in hits)
+    void Explode(DamageData data)
+    {
+
+        if(data.type == element)
         {
-            HitBox hb;
-            if (hit.GetComponent<Collider>().TryGetComponent(out hb))
+            vfx2.Play(transform.position, Vector3.up);
+            List<Health> healths = new List<Health>();
+            Collider[] hits = Physics.OverlapSphere(transform.position, radius, targetLayers);
+            foreach (Collider hit in hits)
             {
-                hb.OnHit(damage);
+                HitBox hb;
+                if (hit.GetComponent<Collider>().TryGetComponent(out hb))
+                {
+                    hb.OnHit(damage2);
+                }
             }
+            GetComponent<PooledObject>().Despawn();
         }
-        GetComponent<PooledObject>().Despawn();
+        else
+        {
+            vfx.Play(transform.position, Vector3.up);
+            List<Health> healths = new List<Health>();
+            Collider[] hits = Physics.OverlapSphere(transform.position, radius, targetLayers);
+            foreach (Collider hit in hits)
+            {
+                HitBox hb;
+                if (hit.GetComponent<Collider>().TryGetComponent(out hb))
+                {
+                    hb.OnHit(damage);
+                }
+            }
+            GetComponent<PooledObject>().Despawn();
+        }
+        
     }
 
 

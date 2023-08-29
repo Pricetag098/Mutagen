@@ -20,6 +20,7 @@ public class ShardAbility : Ability
     {
         if (timer.complete)
         {
+            timer.Reset();
             Vector3 spawnPos = data.origin + data.aimDirection * spawnDistance;
             GameObject shard = pooler.Spawn();
             shard.transform.position = spawnPos;

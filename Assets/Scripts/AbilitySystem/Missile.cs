@@ -25,7 +25,7 @@ public class Missile : MonoBehaviour
         timer = new Timer(aproxDist/speed,false,Disable);
 	}
 
-    void RemoveTarget()
+    void RemoveTarget(DamageData data)
 	{
         hitBox.health.OnDeath -= RemoveTarget;
         GetComponent<PooledObject>().Despawn();
@@ -36,7 +36,7 @@ public class Missile : MonoBehaviour
         hitBox.OnHit(damageData);
         if(hitfx.Enabled)
             hitfx.Value.Play(transform.position, -transform.forward);
-        RemoveTarget();
+        RemoveTarget(new DamageData());
         
 	}
 

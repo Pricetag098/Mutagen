@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     public delegate void Action();
 
     public delegate void DamageAction(DamageData data);
-    public Action OnDeath;
+    public DamageAction OnDeath;
     public DamageAction OnHit;
 
     public FloatingTextManager textManager;
@@ -47,7 +47,7 @@ public class Health : MonoBehaviour
 
         if (health <= 0)
 		{
-            Die();
+            Die(data);
         }
         return true;
     }
@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
         dead = false;
         health = maxHealth;
     }
-    void Die()
+    void Die(DamageData data)
 	{
         if(dead)
             return;
@@ -71,7 +71,7 @@ public class Health : MonoBehaviour
         //do die stuff
         
         if(OnDeath != null)
-        OnDeath();
+        OnDeath(data);
 	}
 
     public void AddStatusEffect(StatusEffect effect)

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7206207131863084871}
   - component: {fileID: 1911579644158321332}
   - component: {fileID: 1854413816082466861}
+  - component: {fileID: 5254076020836900917}
   m_Layer: 6
   m_Name: Shard
   m_TagString: Untagged
@@ -82,13 +83,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayers:
     serializedVersion: 2
-    m_Bits: 0
-  radius: 0
+    m_Bits: 64
+  radius: 10
   damage:
-    damage: 0
-    type: 0
+    damage: 100
+    type: 3
     target: {fileID: 0}
-  vfx: {fileID: 0}
+  vfx: {fileID: 11400000, guid: 2741ea097835b2d4ebec03d4e0d47178, type: 2}
+  damage2:
+    damage: 200
+    type: 3
+    target: {fileID: 0}
+  vfx2: {fileID: 11400000, guid: 49a8949850a01044297517dad34ce10a, type: 2}
+  element: 3
+--- !u!114 &5254076020836900917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140092638731795511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fb4dfacd6ae084daec808b16bbc0a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multi: 1
+  health: {fileID: 1911579644158321332}
 --- !u!1 &5104799794266249009
 GameObject:
   m_ObjectHideFlags: 0
