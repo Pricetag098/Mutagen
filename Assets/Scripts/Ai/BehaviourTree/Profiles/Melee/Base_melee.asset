@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RootNode
   m_EditorClassIdentifier: 
   state: 0
-  started: 0
+  started: 1
   guid: f3ca1242a80a5a045b05218d9910a987
   position: {x: 0, y: 0}
   blackboard:
@@ -44,7 +44,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4e81ff58c3909e648ac6bd1b64493bea
-  position: {x: 0, y: 407}
+  position: {x: 0, y: 406}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -59,6 +59,7 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: -6386261639209550093}
+  - {fileID: -3439906547074552933}
   checkType: 1
   distanceCheck: 5
   groupDistance: 0
@@ -90,9 +91,40 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 0}
+  child: {fileID: 146029920778021645}
   away: 0
   type: 0
+--- !u!114 &-3439906547074552933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee60411060b76747b4d62b133610c18, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 6951efeaee0c495459002189bc8b01e5
+  position: {x: 187.45525, y: 552}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  children:
+  - {fileID: 2092119592070984650}
+  - {fileID: 4662869789513515058}
 --- !u!114 &-1977557372239083617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +140,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8495acc5d9c8eae46a4eb89da7072704
-  position: {x: 0, y: 0}
+  position: {x: 0, y: 280}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -121,7 +153,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 0}
+  child: {fileID: -6467257367156804046}
   targetType: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -145,6 +177,8 @@ MonoBehaviour:
   - {fileID: 146029920778021645}
   - {fileID: 2092119592070984650}
   - {fileID: -1977557372239083617}
+  - {fileID: -3439906547074552933}
+  - {fileID: 4662869789513515058}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -194,7 +228,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 5493c1a29caa868448bbf1ca82407bb1
-  position: {x: 150, y: 552}
+  position: {x: 149.99998, y: 769.99994}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -209,6 +243,36 @@ MonoBehaviour:
   description: 
   abilityIndex: 0
   tempCastTime: 0
+  assigned: 0
+--- !u!114 &4662869789513515058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b768a3f269c0784699d610667715fb8, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 4e552bfcbbcc65f48aececfdbe06326b
+  position: {x: 374.9999, y: 770}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  duration: 3
 --- !u!114 &6835643662466861979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +286,7 @@ MonoBehaviour:
   m_Name: RepeatNode
   m_EditorClassIdentifier: 
   state: 0
-  started: 0
+  started: 1
   guid: 782dec5366fbf0243887cd8dd8e10008
   position: {x: 0, y: 145}
   blackboard:
@@ -237,4 +301,4 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 0}
+  child: {fileID: -1977557372239083617}

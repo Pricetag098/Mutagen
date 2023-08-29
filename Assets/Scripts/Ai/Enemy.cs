@@ -48,17 +48,17 @@ public class Enemy : MonoBehaviour
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
         behaviourTree = GetComponent<BehaviourTreeRunner>();
-        anim = caster.GetComponent<Animator>();
+        //anim = caster.GetComponent<Animator>();
 
         defaultSpeed = movementSpeed;
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            anim.Play("Headbutt");
-        }
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    anim.Play("Headbutt");
+        //}
     }
 
     public void ChangeMovementSpeed(float speed)
