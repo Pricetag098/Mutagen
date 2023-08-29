@@ -11,6 +11,7 @@ public class DashAbility : Ability
 	[SerializeField] float dashTime;
 	[SerializeField] float dashDistance;
 	[SerializeField] float endSpeed;
+	[SerializeField] Optional<VfxSpawnRequest> dashFx;
 	float dashVel;
 	float maxStam;
 	float stam;
@@ -78,7 +79,8 @@ public class DashAbility : Ability
 		
 		startPoint = caster.transform.position;
 		endPoint = caster.transform.position + direction * dashDistance;
-		
+		if (dashFx.Enabled)
+			dashFx.Value.Play(caster.transform.position, direction,caster.transform);
 	}
 
 	

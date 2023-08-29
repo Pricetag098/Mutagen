@@ -7,7 +7,7 @@ public class ExplodingProjectile : MonoBehaviour
     [SerializeField] LayerMask targetLayers;
 	[SerializeField] float radius;
 	[SerializeField] DamageData damage;
-	[SerializeField] ParticleSystem particleSystem;
+	[SerializeField] VfxSpawnRequest vfx;
 
 	private void Awake()
 	{
@@ -15,7 +15,7 @@ public class ExplodingProjectile : MonoBehaviour
 	}
 	void Explode()
 	{
-		particleSystem.Play();
+		vfx.Play(transform.position, Vector3.up);
 		List<Health> healths = new List<Health>();
 
 		Collider[] hits = Physics.OverlapSphere(transform.position, radius, targetLayers);

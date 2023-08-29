@@ -22,6 +22,7 @@ public class OrbitAbility : Ability
     [SerializeField] float range;
     [SerializeField] float damage;
     [SerializeField] AimAssist aimAssist;
+    [SerializeField] VfxSpawnRequest spawnFx;
     protected override void OnEquip()
     {
         caster.abilities[1].OnCast += Fire;
@@ -59,10 +60,10 @@ public class OrbitAbility : Ability
                 orbs.RemoveAt(i);
                 continue;
             }
-            float waveLength = (i/ (float) orbs.Count) * 2* Mathf.PI;
+            float waveLength = orb.GetComponent<OrbitProjectile>().waveLength;
             
             orb.transform.position = caster.transform.position + offset + new Vector3(Mathf.Sin((Time.time + waveLength) * orbitSpeed),0,Mathf.Cos((Time.time + waveLength) * orbitSpeed)) * radius;
-            orb.GetComponent<OrbitProjectile>().alive = true;
+            
         }
     }
     protected override void DoCast(CastData data)
@@ -73,7 +74,14 @@ public class OrbitAbility : Ability
             Debug.Log(count);
             for (int i = 0; i < count; i++)
             {
-                orbs.Add(pooler.Spawn());
+                GameObject go = pooler.Spawn();
+                float waveLength = (i / (float)maxCharges) * 2 * Mathf.PI;
+                go.GetComponent<OrbitProjectile>().waveLength = waveLength;
+                go.transform.position = caster.transform.position + offset + new Vector3(Mathf.Sin((Time.time + waveLength) * orbitSpeed), 0, Mathf.Cos((Time.time + waveLength) * orbitSpeed)) * radius;
+                spawnFx.Play(go.transform.position - offset,Vector3.up);
+                go.GetComponent<OrbitProjectile>().alive = true;
+
+                orbs.Add(go);
             }
             timer.Reset();
         }
