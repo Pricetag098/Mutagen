@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     public float movementMultiplier = 1;
     public int[] healthState;
     public float circlingDistance = 5;
+    float defaultSpeed;
 
     [Header("Timers")]
     public float actionCooldown;
@@ -46,6 +47,8 @@ public class Enemy : MonoBehaviour
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
         behaviourTree = GetComponent<BehaviourTreeRunner>();
+
+        defaultSpeed = movementSpeed;
     }
 
     public void ChangeMovementSpeed(float speed)

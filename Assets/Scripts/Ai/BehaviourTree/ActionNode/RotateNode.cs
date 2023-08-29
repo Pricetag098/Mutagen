@@ -9,7 +9,6 @@ public class RotateNode : ActionNode
 
     protected override void OnStart()
     {
-
     }
 
     protected override void OnStop()
@@ -29,12 +28,18 @@ public class RotateNode : ActionNode
             return State.Success;
         }
 
-        if (dot > 0)
-            agent.transform.Rotate((blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized
-                * rotateSpeed * Time.fixedDeltaTime);
-        else
-            agent.transform.Rotate(-(blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized
-                * rotateSpeed * Time.fixedDeltaTime);
+        agent.agent.SetDestination(player.transform.position);
+
+        //if (dot > 0)
+        //    agent.transform.Rotate((blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized
+        //        * rotateSpeed * Time.fixedDeltaTime);
+        //else
+        //    agent.transform.Rotate(-(blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized
+        //        * rotateSpeed * Time.fixedDeltaTime);
+
+        agent.transform.LookAt(blackboard.rotateTowardsObject.transform.position);
+
+
 
         return State.Running;
     }

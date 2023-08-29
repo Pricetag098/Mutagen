@@ -27,16 +27,26 @@ public class FloatingText
         go.transform.position = Camera.main.WorldToScreenPoint(follow.transform.position + curDev);
     }
 
+    public void Hide()
+    {
+        active = false;
+        go.SetActive(false);
+        manager.pooler.Despawn(go.GetComponent<PooledObject>());
+    }
+
     public void UpdateFloatingText()
     {
         if (!active)
             return;
 
+        if(Time.time - lastShown > duration)
+        {
+            Hide();
+        }
+
         if (follow)
         {
             go.transform.position += ((Camera.main.WorldToScreenPoint(follow.transform.position)) - go.transform.position).normalized * followStrength;
-
-
         }
 
         go.transform.position += motion * motionSpeed * Time.deltaTime;
