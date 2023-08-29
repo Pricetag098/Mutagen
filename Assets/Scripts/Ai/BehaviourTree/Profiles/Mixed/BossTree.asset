@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8096826109967683650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbc88df7452ad5478f6bd22fe1c7e02, type: 3}
+  m_Name: AssignAbilityNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: e6bad1d3905ef504782f8c4d724928b0
+  position: {x: 2, y: 12}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  child: {fileID: -7363946544661848889}
 --- !u!114 &-7363946544661848889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +44,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: dab97dd1695266e4ebdfa368f06c6c92
-  position: {x: 1, y: 256}
+  position: {x: 2, y: 162}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -29,7 +58,7 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   children: []
-  checkType: 2
+  checkType: 11
   distanceCheck: 0
   groupDistance: 0
 --- !u!114 &11400000
@@ -50,6 +79,7 @@ MonoBehaviour:
   - {fileID: 3782596257855530264}
   - {fileID: 290034817334029108}
   - {fileID: -7363946544661848889}
+  - {fileID: -8096826109967683650}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -84,7 +114,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 0}
+  child: {fileID: -8096826109967683650}
 --- !u!114 &3782596257855530264
 MonoBehaviour:
   m_ObjectHideFlags: 0

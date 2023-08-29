@@ -14,7 +14,8 @@ public enum CheckType
     groupDistance,
     groupFacing,
     flanking,
-    sightLine
+    sightLine,
+    rangedAbility
 }
 
 public class IfElseNode : CompositeNode
@@ -145,6 +146,15 @@ public class IfElseNode : CompositeNode
 
         return false;
     }
+
+    bool abilityTypeCheck()
+    {
+        Boss boss = agent as Boss;
+        if (boss.curAbility.GetType() == typeof(RangedAbility))
+            return true;
+
+        return false;
+    }
     
     protected override State OnUpdate()
     {
@@ -223,9 +233,16 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
-
+            //can the enemy see the player
             case CheckType.sightLine:
                 if (sightLineCheck())
+                    ChildUpdate(first);
+                else
+                    ChildUpdate(second);
+                break;
+
+            case CheckType.rangedAbility:
+                if (abilityTypeCheck())
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);

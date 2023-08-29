@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class CastAbilityNode : ActionNode
 {
     public int abilityIndex;
     public float tempCastTime;
+    public bool assigned;
     AbilityCaster aCaster;
     float castTime;
     float timer;
@@ -15,6 +17,13 @@ public class CastAbilityNode : ActionNode
     protected override void OnStart()
     {
         aCaster = agent.caster.caster;
+        if (assigned)
+        {
+            Boss boss = agent as Boss;
+            ability = boss.curAbility;
+            return;
+        }
+
         ability = aCaster.abilities[abilityIndex];
         if (ability.castType == Ability.CastTypes.hold)
         {
