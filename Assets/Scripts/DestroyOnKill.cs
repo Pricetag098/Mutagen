@@ -19,7 +19,7 @@ public class DestroyOnKill : MonoBehaviour
         
     }
 
-    void DestroyObject()
+    void DestroyObject(DamageData data)
 	{
         Destroy(target);
 	}
