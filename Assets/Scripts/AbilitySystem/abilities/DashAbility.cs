@@ -22,7 +22,7 @@ public class DashAbility : Ability
 	Timer dashTimer;
 
 	protected Vector3 startPoint,endPoint,direction;
-	
+	Transform castOrigin;
 	protected override void OnEquip()
 	{
 		maxStam = rechargeTime * Casts;
@@ -60,6 +60,7 @@ public class DashAbility : Ability
 			
 		if(stam > rechargeTime)
 		{
+			castOrigin = data.effectOrigin;
 			stam -= rechargeTime;
 			dashTimer.Reset();
 			caster.ownerHealth.AddIFrames(iFramesGranted);
@@ -69,6 +70,7 @@ public class DashAbility : Ability
 
             if (OnCast != null)
                 OnCast(data);
+			
         }
 
 
@@ -80,7 +82,7 @@ public class DashAbility : Ability
 		startPoint = caster.transform.position;
 		endPoint = caster.transform.position + direction * dashDistance;
 		if (dashFx.Enabled)
-			dashFx.Value.Play(caster.transform.position, direction,caster.transform);
+			dashFx.Value.Play(castOrigin.position, direction,castOrigin);
 	}
 
 	

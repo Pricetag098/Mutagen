@@ -9,7 +9,8 @@ public class MeleeAttackAbility : Ability
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float swingsPerMin = 1000;
 	[SerializeField] float swingRadius,swingRange;
-	[SerializeField] Optional<VfxSpawnRequest> vfx;
+	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
+	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] List<OnHitEffect> hitEffects;
 	float angleCutoff;
 	float coolDown;
@@ -42,7 +43,8 @@ public class MeleeAttackAbility : Ability
 			if (caster.animator.Enabled)
 				caster.animator.Value.SetTrigger(animationTrigger);
 			List<Health> healths = new List<Health>();
-
+			if (swingvfx.Enabled)
+				swingvfx.Value.Play(data.origin, data.aimDirection,data.effectOrigin);
 			RaycastHit[] hits = Physics.SphereCastAll(data.origin, swingRadius, data.aimDirection, swingRange, targetLayers);
 			foreach (RaycastHit hit in hits)
 			{
@@ -61,8 +63,8 @@ public class MeleeAttackAbility : Ability
 						hitPoint = hit.collider.ClosestPoint(data.origin);
 						hitNormal = data.origin - hitPoint;
 					}
-					if (vfx.Enabled)
-						vfx.Value.Play(hitPoint, hitNormal);
+					if (hitvfx.Enabled)
+						hitvfx.Value.Play(hitPoint, hitNormal);
 				}
 			}
 		}
