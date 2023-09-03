@@ -15,6 +15,7 @@ public class FloatingTextManager : MonoBehaviour
 
     private void Start()
     {
+        FindObjectOfType<PlayerAbilityCaster>().GetComponent<Health>().textManager = this;
         pooler = new GameObject().AddComponent<ObjectPooler>();
         pooler.CreatePool(settings.textPrefab, poolSize);
     }
@@ -59,7 +60,7 @@ public class FloatingTextManager : MonoBehaviour
         {
             txt = new FloatingText();
             txt.go = pooler.Spawn();
-            txt.go.transform.SetParent(pooler.transform);
+            txt.go.transform.SetParent(textContainer.transform);
             txt.txt = txt.go.GetComponent<TextMeshProUGUI>();
             txt.manager = this;
             floatingTexts.Add(txt);

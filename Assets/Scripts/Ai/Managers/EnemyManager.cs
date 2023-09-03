@@ -10,13 +10,22 @@ public class EnemyManager : MonoBehaviour
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
     public int moveCount;
     [HideInInspector] public List<Enemy> moving;
+    public FloatingTextManager floatingTextManager;
+    public PlayerAbilityCaster player;
 
     protected void Start()
     {
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             if(transform.GetChild(i).gameObject.active)
             enemyList.Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
+        }
+        //floatingTextManager = FindObjectOfType<FloatingTextManager>();
+        for(int i = 0;i < enemyList.Count; i++)
+        {
+            enemyList[i].manager = this;
+            enemyList[i].health.textManager = floatingTextManager;
+            enemyList[i].player = player;
         }
     }
 

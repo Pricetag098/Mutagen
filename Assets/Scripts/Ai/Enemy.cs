@@ -11,8 +11,9 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Health health;
     [HideInInspector] public EnemyAbilityCaster caster;
-    [HideInInspector] public GameObject dangerObject; //used for dodging, will look into cleaner way of doing
+    [HideInInspector] public GameObject dangerObject;
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
+    [HideInInspector] public EventManager eventManager;
     public Animator anim;
     public EnemyManager manager;
 
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool isInDanger;
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
+    [HideInInspector] public bool retaliate;
 
     [Header("Stats")]
     public float movementMultiplier = 1;
@@ -48,17 +50,34 @@ public class Enemy : MonoBehaviour
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
         behaviourTree = GetComponent<BehaviourTreeRunner>();
+        eventManager = GetComponent<EventManager>();
         //anim = caster.GetComponent<Animator>();
+
+        //player = FindObjectOfType<PlayerAbilityCaster>();
+
+        health.OnHit += OnHit;
 
         defaultSpeed = movementSpeed;
     }
 
+    public void BindTree(BehaviourTree newTree)
+    {
+        behaviourTree.tree = newTree.Clone();
+        //behaviourTree.tree.Bind(this);
+    }
+
     public void Update()
     {
+        
         //if (Input.GetKeyDown(KeyCode.U))
         //{
         //    anim.Play("Headbutt");
         //}
+    }
+
+    void OnHit(DamageData data)
+    {
+        retaliate = true;
     }
 
     public void ChangeMovementSpeed(float speed)

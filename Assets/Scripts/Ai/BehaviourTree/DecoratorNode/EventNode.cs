@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetStop : SetterNode
+public class EventNode : DecoratorNode
 {
-    float speed;
+    public int eventIndex;
+    Event action;
+
     protected override void OnStart()
     {
-        speed = agent.agent.speed;
-        agent.agent.speed = 0;
+        action = agent.eventManager.events[eventIndex];
     }
 
     protected override void OnStop()
     {
 
-        agent.agent.speed = speed;
     }
 
     protected override State OnUpdate()
     {
+        if (!action.used)
+        {
+            action.Play(agent);
+        }
         return child.Update();
     }
 }

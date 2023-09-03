@@ -6,10 +6,11 @@ public class EventManager : MonoBehaviour
 {
     public List<Event> events = new List<Event>();
 
-    public void PlayEvent()
+    private void Start()
     {
-
+        for(int i = 0; i < events.Count; i++)
+        {
+            events[i] = Instantiate(events[i]);
+        }
     }
-
-
 }
