@@ -44,7 +44,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2b7e302443a52ec4088da93374585298
-  position: {x: -174.9006, y: 320.90463}
+  position: {x: -160, y: 332}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -57,9 +57,10 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 0}
+  child: {fileID: 3273452099888669922}
   away: 1
   type: 0
+  awaySpeed: 100
 --- !u!114 &-7948658935759537144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +241,7 @@ MonoBehaviour:
   child: {fileID: -2095316343467810812}
   away: 0
   type: 1
+  awaySpeed: 0
 --- !u!114 &-2095316343467810812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +491,7 @@ MonoBehaviour:
   child: {fileID: -4780322526766433269}
   away: 0
   type: 0
+  awaySpeed: 0
 --- !u!114 &3273452099888669922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +507,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 0e6d2dc6ce33d594eb1e9f4f6e898ff9
-  position: {x: 0, y: 0}
+  position: {x: -170, y: 473}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -638,7 +641,7 @@ MonoBehaviour:
   - {fileID: 2322005088125346707}
   - {fileID: 9182581126094826327}
   checkType: 1
-  distanceCheck: 10
+  distanceCheck: 15
   groupDistance: 0
 --- !u!114 &9182581126094826327
 MonoBehaviour:
@@ -668,7 +671,9 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  children: []
+  children:
+  - {fileID: -8117178498857291706}
+  - {fileID: -2474799463797380305}
   checkType: 0
-  distanceCheck: 5
+  distanceCheck: 7
   groupDistance: 0
