@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3302166959065098347}
   - component: {fileID: 6942221350904321258}
   - component: {fileID: 2066396624489521900}
+  - component: {fileID: 3647273424189601722}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -344,7 +345,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -394,6 +394,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathScreen: {fileID: 11400000, guid: c4d18b27a86eb5c41a918c92607f2768, type: 2}
+--- !u!114 &3647273424189601722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302166959065098351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textManager: {fileID: 0}
 --- !u!1 &3302166960036811219
 GameObject:
   m_ObjectHideFlags: 0
