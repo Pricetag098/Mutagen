@@ -15,7 +15,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 	PlayerAim aim;
 	PlayerMovement movement;
     [SerializeField] Optional<AbilityDisplay> display;
-	private void Start()
+	private void Awake()
 	{
 		aim = GetComponent<PlayerAim>();
 		movement = GetComponent<PlayerMovement>();
