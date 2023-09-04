@@ -31,11 +31,12 @@ public class Health : MonoBehaviour
     {
         if (iFrames > 0)
             return false;
+        data.target = gameObject;
         health = Mathf.Clamp(health -data.damage,0,maxHealth);
         if(OnHit != null)
         OnHit(data);
 
-        data.target = this.gameObject;
+        
         textManager.Show(data);
 
         if (health <= 0)
