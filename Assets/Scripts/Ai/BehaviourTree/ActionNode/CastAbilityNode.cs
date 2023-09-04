@@ -50,8 +50,19 @@ public class CastAbilityNode : ActionNode
             data.moveDirection = blackboard.moveToPosition;
         }
 
-
+        if(!assigned)
         aCaster.CastAbility(abilityIndex,data);
+        else
+        {
+            for(int i = 0; i < aCaster.abilities.Length; i++)
+            {
+                if(aCaster.abilities[i] == ability)
+                {
+                    aCaster.CastAbility(i,data);
+                }
+            }
+        }
+
         agent.performingAction = true;
         agent.actionTimer = Time.time;
 
@@ -61,11 +72,13 @@ public class CastAbilityNode : ActionNode
             if (timer > castTime)
             {
                 timer = 0;
+                if (agent.retaliate) agent.retaliate = false;
                 return State.Success;
             }
 
             else return State.Running;
         }
+        if(agent.retaliate) agent.retaliate = false;
         return State.Success;
     }
 }

@@ -10,6 +10,7 @@ public enum CheckType
     isMoving,
     isDoingAction,
     isInDanger,
+    retaliate,
     delayMove,
     groupDistance,
     groupFacing,
@@ -66,15 +67,14 @@ public class IfElseNode : CompositeNode
 
     int healthCheck()
     {
-        int heal = agent.healthState[0];
         for (int i = 0; i < agent.healthState.Length; i++)
         {
-            if (agent.health.health > agent.healthState[i] && agent.health.health < agent.healthState[i + 1])
+            if (agent.health.health > agent.healthState[i] && agent.health.health <= agent.healthState[i + 1])
             {
-                return i;
+                return i + 1;
             }
         }
-        return agent.healthState.Length - 1;
+        return 0;
     }
 
     float groupDistanceCheck()
@@ -97,9 +97,7 @@ public class IfElseNode : CompositeNode
             return 1000000;
 
         float returns = average / manager.enemyList.Count;
-        //Debug.Log(average / manager.enemyList.Length);
-        //return count > 0 ? (average / count) : 0;
-        return average / manager.enemyList.Count;//count;
+        return average / manager.enemyList.Count;
     }
 
     float groupFacingCheck()
@@ -160,6 +158,7 @@ public class IfElseNode : CompositeNode
     {
         switch (checkType)
         {
+            #region distanceChecks
             //distance checks
             case CheckType.DistanceLessThan:
                 if (distCheck())
@@ -173,13 +172,15 @@ public class IfElseNode : CompositeNode
                 else
                     ChildUpdate(second);
                 break;
+            #endregion
 
             //health check
             case CheckType.Health:
                 ChildUpdate(healthCheck());
                 break;
 
-                //curently moving check
+            #region behaviourChecks
+            //curently moving check
             case CheckType.isMoving:
                 if (!isMovingReset())
                     ChildUpdate(first);
@@ -203,6 +204,13 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
+            //waiting to take retaliate action
+            case CheckType.retaliate:
+                if (agent.retaliate)
+                    ChildUpdate(first);
+                else ChildUpdate(second);
+                break;
+
             case CheckType.flanking:
                 if (agent.flanking)
                     ChildUpdate(first);
@@ -217,7 +225,9 @@ public class IfElseNode : CompositeNode
                 else
                     ChildUpdate(second);
                 break;
+            #endregion
 
+            #region groupChecks
             //too many enemies in front of player
             case CheckType.groupFacing:
                 if (groupFacingCheck() > manager.moveCount)
@@ -232,6 +242,7 @@ public class IfElseNode : CompositeNode
                 else
                     ChildUpdate(second);
                 break;
+            #endregion
 
             //can the enemy see the player
             case CheckType.sightLine:

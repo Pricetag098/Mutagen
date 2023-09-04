@@ -14,7 +14,7 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
     public Port input;
     public Port output;
 
-    public NodeView(Node node) : base("Assets/Scripts/Editor/UIBuilder/NodeView.uxml"){
+    public NodeView(Node node) : base("Assets/Scripts/Ai/BehaviourTree/UIBuilder/NodeView.uxml"){
         this.node = node;
         this.title = node.name;
         this.viewDataKey = node.guid;

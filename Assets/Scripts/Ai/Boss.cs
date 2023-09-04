@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
+    [Header("Boss Variables")]
     [HideInInspector] public Ability curAbility;
     public float rangedDeterence;
     public float repeatDeterence;

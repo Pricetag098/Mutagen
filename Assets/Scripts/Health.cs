@@ -15,17 +15,10 @@ public class Health : MonoBehaviour
     public DamageAction OnDeath;
     public DamageAction OnHit;
 
-    public FloatingTextManager textManager;
+     public FloatingTextManager textManager;
     public bool canHaveStatusEffects = true;
     public List<StatusEffect> effects = new List<StatusEffect>();
     public bool dead = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        textManager = FindObjectOfType<FloatingTextManager>(); //will replace later
-    }
-
-    // Update is called once per frame
     void Update()
     {
         iFrames = Mathf.Clamp(iFrames - Time.deltaTime, 0, maxIFrames);
