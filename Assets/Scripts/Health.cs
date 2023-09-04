@@ -15,7 +15,6 @@ public class Health : MonoBehaviour
     public DamageAction OnDeath;
     public DamageAction OnHit;
 
-     public FloatingTextManager textManager;
     public bool canHaveStatusEffects = true;
     public List<StatusEffect> effects = new List<StatusEffect>();
     public bool dead = false;
@@ -34,9 +33,6 @@ public class Health : MonoBehaviour
         health = Mathf.Clamp(health -data.damage,0,maxHealth);
         if(OnHit != null)
         OnHit(data);
-
-        data.target = this.gameObject;
-        textManager.Show(data);
 
         if (health <= 0)
 		{

@@ -238,7 +238,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 1355385803}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -388,7 +387,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -490,7 +488,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -733,11 +730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 100
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -789,7 +785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
-  loadout: {fileID: 0}
+  loadout: {fileID: 11400000, guid: 9a9010d582924d94e90ff83696e09373, type: 2}
   castOrigin: {fileID: 436535948}
   projectileDeviation: 0
 --- !u!114 &608274231
@@ -830,6 +826,19 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+--- !u!114 &608274234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608274225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textManager: {fileID: 0}
 --- !u!1001 &639988787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,7 +946,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -1401,6 +1409,19 @@ MonoBehaviour:
   velSource: 1
   rb: {fileID: 860682226}
   agent: {fileID: 0}
+--- !u!114 &860682239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860682223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textManager: {fileID: 0}
 --- !u!1 &916681723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,7 +1937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
-  loadout: {fileID: 11400000, guid: 035c480d2002c5341b87f5e25bb39c5e, type: 2}
+  loadout: {fileID: 11400000, guid: 10b1879f3afc5c849ba6698365116cdb, type: 2}
   castOrigin: {fileID: 1117672954}
   projectileDeviation: 0
 --- !u!114 &1469126996
@@ -1935,7 +1956,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 1355385803}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -2297,7 +2317,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -2510,7 +2529,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -2629,7 +2647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1799127434
 Transform:
   m_ObjectHideFlags: 0
@@ -2660,7 +2678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6332ccd5112cc124c9a588db0c481719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 4e554a8398cc83f4aa971e04818cd198, type: 2}
+  profile: {fileID: 11400000, guid: 95d551b8267195a429a464667d57be85, type: 2}
   enemyList: []
   inFront: []
   moveCount: 0
@@ -3145,7 +3163,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 1355385803}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -5109,6 +5126,7 @@ GameObject:
   - component: {fileID: 6829441203478132542}
   - component: {fileID: 1469126996}
   - component: {fileID: 1469126999}
+  - component: {fileID: 6829441203478132543}
   m_Layer: 6
   m_Name: Nav
   m_TagString: Untagged
@@ -5609,6 +5627,19 @@ MonoBehaviour:
   loadouts:
   - {fileID: 11400000, guid: 10b1879f3afc5c849ba6698365116cdb, type: 2}
   curAbility: {fileID: 0}
+--- !u!114 &6829441203478132543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258423505416792574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textManager: {fileID: 0}
 --- !u!1 &6864788521957754995
 GameObject:
   m_ObjectHideFlags: 0
@@ -5973,7 +6004,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7913598834068328333}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.54, z: 24.25}
+  m_LocalPosition: {x: -20.3, y: 1.54, z: 18.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5997,7 +6028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7913598834363908904
 Transform:
   m_ObjectHideFlags: 0

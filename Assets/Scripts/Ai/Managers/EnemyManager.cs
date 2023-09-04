@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
         for(int i = 0;i < enemyList.Count; i++)
         {
             enemyList[i].manager = this;
-            enemyList[i].health.textManager = floatingTextManager;
+            enemyList[i].GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
             enemyList[i].player = player;
         }
     }
