@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7522586959996809440}
   - component: {fileID: 421628011776957139}
   - component: {fileID: 1853006680216657764}
+  - component: {fileID: 8282322287528519948}
   m_Layer: 6
   m_Name: TargetDummy
   m_TagString: Untagged
@@ -118,7 +119,9 @@ MonoBehaviour:
   maxHealth: Infinity
   iFrames: 0
   maxIFrames: Infinity
+  canHaveStatusEffects: 1
   effects: []
+  dead: 0
 --- !u!114 &421628011776957139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +149,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2767518855153155921}
+--- !u!114 &8282322287528519948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767518855153155921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textManager: {fileID: 0}
 --- !u!1 &5065846883693972926
 GameObject:
   m_ObjectHideFlags: 0
