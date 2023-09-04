@@ -6,13 +6,14 @@ using UnityEngine;
 public class Boss : Enemy
 {
     [Header("Boss Variables")]
-    [HideInInspector] public Ability curAbility;
+
     public float rangedDeterence;
     public float repeatDeterence;
     public float distanceMultiplier;
     public float innerRange;
     public Loadout[] loadouts;
     int loadoutIndex;
+    public Ability curAbility;
 
     public void GetAbility()
     {
