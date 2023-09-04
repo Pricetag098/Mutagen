@@ -66,7 +66,7 @@ public class OrbitAbility : Ability
                 continue;
             }
             float waveLength = orb.GetComponent<OrbitProjectile>().waveLength;
-            
+            orb.GetComponent<OrbitProjectile>().damage = CreateDamageData(damage);
             orb.transform.position = caster.transform.position + offset + new Vector3(Mathf.Sin((Time.time + waveLength) * orbitSpeed),0,Mathf.Cos((Time.time + waveLength) * orbitSpeed)) * radius;
             
         }

@@ -8,7 +8,7 @@ public class OrbitProjectile : MonoBehaviour
     float timer, maxTimer;
     OrbitAbility ability;
     bool flying = false;
-    DamageData damage;
+    public DamageData damage;
     public bool alive;
     [SerializeField] VfxSpawnRequest vfx;
     public float waveLength;
