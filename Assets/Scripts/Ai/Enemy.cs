@@ -85,6 +85,8 @@ public class Enemy : MonoBehaviour
         int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
 
 
+        if (caster.caster.abilities[randDrop].pickupPrefab.Enabled)
+        Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
     }
 
     public void ChangeMovementSpeed(float speed)
