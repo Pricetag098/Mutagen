@@ -12,7 +12,7 @@ public class AbilityIcon : MonoBehaviour
     void Awake()
     {
         icon = GetComponent<Image>();
-        cooldown = transform.GetChild(0).GetComponent<Image>();
+        cooldown = transform.parent.GetChild(1).GetComponent<Image>();
     }
 
     public void SetAbility( Ability ability)
