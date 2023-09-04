@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453990281518944361}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2140007, y: 4.043, z: 1.55}
+  m_LocalPosition: {x: -0.05, y: 2.48, z: 1.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 766449932}
   - component: {fileID: 766449933}
   - component: {fileID: 766449934}
+  - component: {fileID: 1726635645}
   m_Layer: 6
   m_Name: Nav
   m_TagString: Untagged
@@ -270,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   loadout: {fileID: 11400000, guid: 3b0e8bcfcdd9ada46920d06e3e7010f5, type: 2}
-  castOrigin: {fileID: 845482942551037442}
+  castOrigin: {fileID: 3529600608828362430}
   projectileDeviation: 0
 --- !u!114 &766449932
 MonoBehaviour:
@@ -284,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89f7527bc9b5634d8cbe418e4da0299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 95d551b8267195a429a464667d57be85, type: 2}
+  tree: {fileID: 11400000, guid: dfe886320fce1d646bfa9e9d04670720, type: 2}
 --- !u!114 &766449933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +302,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
@@ -327,6 +327,19 @@ MonoBehaviour:
     enabled: 0
     val: {fileID: 0}
   baseAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
+--- !u!114 &1726635645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735909794728827225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textManager: {fileID: 0}
 --- !u!1 &1804934353244976544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,7 +2088,6 @@ MonoBehaviour:
   maxHealth: 100
   iFrames: 0
   maxIFrames: Infinity
-  textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
   dead: 0
