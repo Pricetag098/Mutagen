@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [Header("References")]
     public PlayerAbilityCaster player;
     [HideInInspector] public NavMeshAgent agent;
-    [HideInInspector] public Health health;
+    public Health health;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject;
     [HideInInspector] public BehaviourTreeRunner behaviourTree;

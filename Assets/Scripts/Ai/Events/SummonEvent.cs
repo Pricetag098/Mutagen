@@ -17,7 +17,7 @@ public class SummonEvent : Event
         {
             enemy = Instantiate(summonPrefab);
             enemy.transform.position = summonPositions[i].position;
-            enemy.GetComponent<Enemy>().player = agent.player;
+            enemy.GetComponentInChildren<Enemy>().player = agent.player;
         }
     }
 
