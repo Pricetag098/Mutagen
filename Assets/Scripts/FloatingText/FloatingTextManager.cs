@@ -15,7 +15,7 @@ public class FloatingTextManager : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<PlayerAbilityCaster>().GetComponent<Health>().textManager = this;
+        FindObjectOfType<PlayerAbilityCaster>().GetComponent<FloatingTextTarget>().textManager = this;
         pooler = new GameObject().AddComponent<ObjectPooler>();
         pooler.CreatePool(settings.textPrefab, poolSize);
     }

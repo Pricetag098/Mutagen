@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 3302166959065098340}
   - component: {fileID: 3302166959065098347}
   - component: {fileID: 6942221350904321258}
+  - component: {fileID: 2066396624489521900}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -346,6 +347,7 @@ MonoBehaviour:
   textManager: {fileID: 0}
   canHaveStatusEffects: 1
   effects: []
+  dead: 0
 --- !u!114 &6942221350904321258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,6 +381,19 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 8467359750762920925, guid: 19fac495a12425a448b03de33eeab52d, type: 3}
   hasTarget: 0
+--- !u!114 &2066396624489521900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302166959065098351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079c914372a31694dba3aafce5263d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathScreen: {fileID: 11400000, guid: c4d18b27a86eb5c41a918c92607f2768, type: 2}
 --- !u!1 &3302166960036811219
 GameObject:
   m_ObjectHideFlags: 0

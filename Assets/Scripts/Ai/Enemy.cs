@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
         //player = FindObjectOfType<PlayerAbilityCaster>();
 
         health.OnHit += OnHit;
-
+        health.OnDeath += OnDie; 
         defaultSpeed = movementSpeed;
     }
 
@@ -78,6 +78,15 @@ public class Enemy : MonoBehaviour
     void OnHit(DamageData data)
     {
         retaliate = true;
+    }
+
+    void OnDie(DamageData data)
+    {
+        int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
+
+
+        if (caster.caster.abilities[randDrop].pickupPrefab.Enabled)
+        Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
     }
 
     public void ChangeMovementSpeed(float speed)

@@ -17,6 +17,7 @@ public class SetMoveTo : SetterNode
 {
     public bool away;
     public TargetType type;
+    public float awaySpeed;
 
     protected override void OnStart()
     {
@@ -48,7 +49,7 @@ public class SetMoveTo : SetterNode
         switch (type)
         {
             case TargetType.player:
-                blackboard.moveToPosition = agent.transform.position + -(player.transform.position - agent.transform.position).normalized;
+                blackboard.moveToPosition = agent.transform.position + -(player.transform.position - agent.transform.position).normalized * awaySpeed;
                 break;
             case TargetType.away_danger:
                 blackboard.moveToPosition = agent.transform.position + -(agent.dangerObject.transform.position - agent.transform.position).normalized;
