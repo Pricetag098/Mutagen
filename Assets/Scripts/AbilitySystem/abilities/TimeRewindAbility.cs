@@ -12,6 +12,8 @@ public class TimeRewindAbility : Ability
     LineRenderer lineRenderer;
     [SerializeField] Optional<GameObject> linePrefab;
     [SerializeField] Vector3 lineOffset;
+    [SerializeField] int step = 3;
+    [SerializeField] VfxSpawnRequest vfx;
     struct TimeData 
     { 
         public Vector3 position;
@@ -22,17 +24,18 @@ public class TimeRewindAbility : Ability
             time = t;
         }
     }
-
+    bool reversing;
+    int index;
 
     List<TimeData> positionHistory = new List<TimeData>();
     protected override void DoCast(CastData data)
     {
-        if (!timer.complete)
+        if (!timer.complete || reversing)
             return;
-        caster.transform.position = positionHistory[0].position;
-        positionHistory.Clear();
-        positionHistory.Add(new TimeData(caster.transform.position, Time.time));
-        timer.Reset();
+        vfx.Play(data.origin,data.aimDirection);
+        reversing = true;
+        index = positionHistory.Count;
+
         if (OnCast != null)
             OnCast(data);
     }
@@ -41,12 +44,28 @@ public class TimeRewindAbility : Ability
 
     public override void FixedTick()
     {
+		if (reversing)
+		{
+            index -= step;
+            if(index <= 0)
+			{
+                positionHistory.Clear();
+                positionHistory.Add(new TimeData(caster.transform.position, Time.time));
+                timer.Reset();
+                reversing = false;
+            }
+            else
+            caster.transform.position = positionHistory[index].position;
+		}
+		else
+		{
+            positionHistory.Add(new TimeData(caster.transform.position,Time.time));
+            while (positionHistory[0].time < Time.time - maxTime && positionHistory.Count > 0)
+            {
+                positionHistory.RemoveAt(0);
+            }
+		}
         
-        positionHistory.Add(new TimeData(caster.transform.position,Time.time));
-        while (positionHistory[0].time < Time.time - maxTime && positionHistory.Count > 0)
-        {
-            positionHistory.RemoveAt(0);
-        }
         
 
     }

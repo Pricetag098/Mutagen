@@ -26,6 +26,7 @@ public class RangedAbility : Ability
     protected CastData lastCastdata;
 
     bool startedCasting;
+    [SerializeField] Optional<VfxSpawnRequest> vfx;
     protected override void OnEquip()
     {
         projectileSpawner = new GameObject().AddComponent<ObjectPooler>();
@@ -78,7 +79,8 @@ public class RangedAbility : Ability
     
     protected virtual void Launch()
     {
-
+        if(vfx.Enabled)
+            vfx.Value.Play(lastCastdata.origin, lastCastdata.aimDirection);
         float chargeVal = (chargeTime - minChargeTime) / (maxChargeTime - minChargeTime);
         float damage = chargeDamageCurve.Evaluate(chargeVal);
         float speed = chargeVelocityCurve.Evaluate(chargeVal);

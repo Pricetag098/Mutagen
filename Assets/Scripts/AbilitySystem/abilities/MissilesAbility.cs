@@ -19,7 +19,7 @@ public class MissilesAbility : Ability
     [SerializeField] protected float maxChargeTime;
     [SerializeField] protected float minChargeTime;
     bool held;
-
+    [SerializeField] VfxSpawnRequest vfx;
     [SerializeField] AnimationCurve launchCount = AnimationCurve.Linear(0,3,1,15);
 
     
@@ -86,7 +86,7 @@ public class MissilesAbility : Ability
     protected virtual void Launch()
     {
         RaycastHit hit;
-
+        //vfx.Play(lastCastdata.origin, lastCastdata.aimDirection);
         Vector3 aimDir = aimAssist.GetAssistedAimDir(lastCastdata.aimDirection, lastCastdata.origin, float.PositiveInfinity);
         if (Physics.Raycast(lastCastdata.origin,aimDir,out hit, range, targetLayers))
 		{

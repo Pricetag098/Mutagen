@@ -25,14 +25,19 @@ public class OrbitAbility : Ability
     [SerializeField] VfxSpawnRequest spawnFx;
     protected override void OnEquip()
     {
-        caster.abilities[1].OnCast += Fire;
+        caster.abilities[0].OnCast += Fire;
         pooler = new GameObject().AddComponent<ObjectPooler>();
         pooler.CreatePool(prefab, 5 * maxCharges);
         timer = new Timer(cooldown);
         
     }
 
-    void Fire(CastData data)
+	protected override void OnUnEquip(Ability replacement)
+	{
+        orbs.Clear();
+	}
+
+	void Fire(CastData data)
     {
         
         if(orbs.Count > 0)
