@@ -160,7 +160,7 @@ public class MapManager : MonoBehaviour
         public void SetupPlayer(GameObject player,Transform spawnPoint)
 		{
             Debug.Log(equipedAbilities == null);
-            player.GetComponent<AbilityCaster>().SetAllAbilities(equipedAbilities);
+            player.GetComponent<PlayerAbilityCaster>().SetAllAbilities(equipedAbilities);
             player.GetComponent<Health>().health = health;
             player.transform.position = spawnPoint.TransformPoint(spawnPos);
         }

@@ -15,7 +15,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 	PlayerAim aim;
 	PlayerMovement movement;
     [SerializeField] Optional<AbilityDisplay> display;
-	private void Awake()
+	private void Start()
 	{
 		aim = GetComponent<PlayerAim>();
 		movement = GetComponent<PlayerMovement>();
@@ -116,4 +116,12 @@ public class PlayerAbilityCaster : MonoBehaviour
 			display.Value.UpdateUI(caster.abilities);
 	}
 
+	public void SetAllAbilities(Ability[] abilities)
+	{
+		caster.SetAllAbilities(abilities);
+		if (display.Enabled)
+			display.Value.UpdateUI(caster.abilities);
+	}
 }
+
+

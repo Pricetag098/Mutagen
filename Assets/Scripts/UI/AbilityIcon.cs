@@ -8,6 +8,7 @@ public class AbilityIcon : MonoBehaviour
     [SerializeField]Ability ability;
     Image icon;
     [SerializeField]Image cooldown;
+    bool active;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,6 +18,11 @@ public class AbilityIcon : MonoBehaviour
 
     public void SetAbility( Ability ability)
 	{
+        if(ability is null)
+		{
+            return;
+		}
+        active = true;
         this.ability = ability;
         icon.sprite = ability.icon;
 	}
@@ -24,7 +30,7 @@ public class AbilityIcon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(active)
         cooldown.fillAmount = 1- ability.GetCoolDownPercent();
     }
 }
