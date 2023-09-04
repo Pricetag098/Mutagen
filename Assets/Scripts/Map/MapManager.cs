@@ -44,6 +44,12 @@ public class MapManager : MonoBehaviour
         
     }
 
+    public static void ResetProgress()
+    {
+        instance.mapTeir = 0;
+        instance.playerData = null;
+    }
+
     void LevelLoaded(Scene scene, LoadSceneMode mode)
 	{
         loadingMap = false;
@@ -79,6 +85,12 @@ public class MapManager : MonoBehaviour
             mapTeir = 0;
 		}
         DoLoadMap(path.teirs[mapTeir].GetMap());
+        mapTeir++;
+    }
+
+    public static void LoadMap(Map map)
+    {
+        instance.DoLoadMap(map);
     }
 
     void DoLoadMap(Map map)
@@ -93,6 +105,7 @@ public class MapManager : MonoBehaviour
         operation.allowSceneActivation = false;
         loadingMap = true;
         inputAction.action.Enable();
+        
     }
     [ContextMenu("Test")]
     void Test()
@@ -125,7 +138,7 @@ public class MapManager : MonoBehaviour
                 //loadingMap = false;
                 operation.allowSceneActivation = true;
                 inputAction.action.Disable();
-                mapTeir++;
+
 
             }
         }

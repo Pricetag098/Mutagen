@@ -21,6 +21,6 @@ public class DestroyOnKill : MonoBehaviour
 
     void DestroyObject(DamageData data)
 	{
-        Destroy(target);
+        target.SetActive(false);
 	}
 }
