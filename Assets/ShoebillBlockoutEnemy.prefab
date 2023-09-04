@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 766449933}
   - component: {fileID: 766449934}
   - component: {fileID: 1726635645}
+  - component: {fileID: 7537533867576281614}
   m_Layer: 6
   m_Name: Nav
   m_TagString: Untagged
@@ -298,8 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 75
+  maxHealth: 75
   iFrames: 0
   maxIFrames: Infinity
   canHaveStatusEffects: 1
@@ -340,6 +341,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textManager: {fileID: 0}
+--- !u!114 &7537533867576281614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735909794728827225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2bda3ea914bfe48b8ddecfa290d1b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 4412503601567956778}
 --- !u!1 &1804934353244976544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,7 +1794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multi: 1
-  health: {fileID: 8770514560910440486}
+  health: {fileID: 766449933}
 --- !u!135 &2574790411881576157
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2003,8 +2017,6 @@ GameObject:
   - component: {fileID: 3529600608828362430}
   - component: {fileID: 2741662945651911224}
   - component: {fileID: 5277624602919328239}
-  - component: {fileID: 8770514560910440486}
-  - component: {fileID: 7942546556430030576}
   m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
@@ -2072,38 +2084,6 @@ MonoBehaviour:
   updateVals: 0
   fixedUpdate: 1
   target: {fileID: 8050581175305449229}
---- !u!114 &8770514560910440486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7537434819760514669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 75
-  maxHealth: 75
-  iFrames: 0
-  maxIFrames: Infinity
-  canHaveStatusEffects: 1
-  effects: []
-  dead: 0
---- !u!114 &7942546556430030576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7537434819760514669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2bda3ea914bfe48b8ddecfa290d1b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 4412503601567956778}
 --- !u!1 &7764562670258418845
 GameObject:
   m_ObjectHideFlags: 0
