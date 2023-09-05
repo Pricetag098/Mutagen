@@ -22,8 +22,8 @@ MonoBehaviour:
   castType: 1
   prefab: {fileID: 1036542219973673062, guid: 2f2a160420bf0874c92c0a6b80a0d644, type: 3}
   releaseOnFullCharge: 1
-  maxChargeTime: 0.1
-  minChargeTime: -1
+  maxChargeTime: 1
+  minChargeTime: 0.2
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
@@ -77,9 +77,12 @@ MonoBehaviour:
     maxRange: 100
     aimAssistLayer:
       serializedVersion: 2
-      m_Bits: 9
+      m_Bits: 8
     directionWeight: 1
     distanceWeight: 1
     priorityWeight: 1
     minDirectionValue: -1
     assistWeight: 1
+  vfx:
+    enabled: 0
+    val: {fileID: 0}
