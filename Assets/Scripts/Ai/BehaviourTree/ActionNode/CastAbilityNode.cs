@@ -9,6 +9,7 @@ public class CastAbilityNode : ActionNode
     public int abilityIndex;
     public float tempCastTime;
     public bool assigned;
+    public bool rotate;
     AbilityCaster aCaster;
     float castTime;
     float timer;
@@ -50,7 +51,10 @@ public class CastAbilityNode : ActionNode
             data.moveDirection = blackboard.moveToPosition;
         }
 
-        if(!assigned)
+        if(rotate)
+            agent.transform.LookAt(blackboard.rotateTowardsObject.transform.position);
+
+        if (!assigned)
         aCaster.CastAbility(abilityIndex,data);
         else
         {

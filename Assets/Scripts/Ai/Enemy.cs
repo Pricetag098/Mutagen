@@ -53,7 +53,6 @@ public class Enemy : MonoBehaviour
         eventManager = GetComponent<EventManager>();
         //anim = caster.GetComponent<Animator>();
 
-        //player = FindObjectOfType<PlayerAbilityCaster>();
 
         health.OnHit += OnHit;
         health.OnDeath += OnDie; 
@@ -63,7 +62,6 @@ public class Enemy : MonoBehaviour
     public void BindTree(BehaviourTree newTree)
     {
         behaviourTree.tree = newTree.Clone();
-        //behaviourTree.tree.Bind(this);
     }
 
     public void Update()

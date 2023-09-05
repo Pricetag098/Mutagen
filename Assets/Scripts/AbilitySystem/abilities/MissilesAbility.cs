@@ -88,7 +88,7 @@ public class MissilesAbility : Ability
         RaycastHit hit;
         //vfx.Play(lastCastdata.origin, lastCastdata.aimDirection);
         Vector3 aimDir = aimAssist.GetAssistedAimDir(lastCastdata.aimDirection, lastCastdata.origin, float.PositiveInfinity);
-        if (Physics.Raycast(lastCastdata.origin,aimDir,out hit, range, targetLayers))
+        if (Physics.Raycast(lastCastdata.origin, aimDir,out hit, range, targetLayers))
 		{
             HitBox hb;
             if(hit.collider.transform.TryGetComponent(out hb))

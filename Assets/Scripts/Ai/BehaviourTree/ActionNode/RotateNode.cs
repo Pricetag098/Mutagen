@@ -28,7 +28,7 @@ public class RotateNode : ActionNode
             return State.Success;
         }
 
-        agent.agent.SetDestination(player.transform.position);
+        //agent.agent.SetDestination(player.transform.position);
 
         //if (dot > 0)
         //    agent.transform.Rotate((blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized

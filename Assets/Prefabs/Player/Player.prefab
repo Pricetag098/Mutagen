@@ -1621,6 +1621,8 @@ GameObject:
   - component: {fileID: 6942221350904321258}
   - component: {fileID: 2066396624489521900}
   - component: {fileID: 3647273424189601722}
+  - component: {fileID: 860682232}
+  - component: {fileID: 860682239}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1814,10 +1816,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 11400000, guid: 8dc758a641becaa4e9063ce49519fb74, type: 2}
-  - {fileID: 11400000, guid: 88c8d463fc3f31444b68482dd64dfd3c, type: 2}
+  - {fileID: 11400000, guid: 466724ba5e0fba94b90aab0b44d968a3, type: 2}
   - {fileID: 11400000, guid: 9c64fb323d5b55743addc3eff63bb9af, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
+  - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   animator:
     enabled: 0
     val: {fileID: 0}
@@ -1868,8 +1870,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 100000000
+  maxHealth: 1e+10
   iFrames: 0
   maxIFrames: Infinity
   canHaveStatusEffects: 1
@@ -1922,6 +1924,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathScreen: {fileID: 11400000, guid: c4d18b27a86eb5c41a918c92607f2768, type: 2}
 --- !u!114 &3647273424189601722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302166959065098351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textManager: {fileID: 0}
+--- !u!114 &860682232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302166959065098351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6739097f37f0d084189b26f7f5d5b44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1
+  priority: 1
+  velSource: 1
+  rb: {fileID: 3302166959065098340}
+  agent: {fileID: 0}
+--- !u!114 &860682239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2059,6 +2091,7 @@ GameObject:
   - component: {fileID: 3302166960171741615}
   - component: {fileID: 3302166960171741608}
   - component: {fileID: 1258064965637721777}
+  - component: {fileID: 895505377}
   m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
@@ -2109,6 +2142,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multi: 1
   health: {fileID: 3302166959065098347}
+--- !u!114 &895505377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3302166960171741614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6739097f37f0d084189b26f7f5d5b44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1
+  priority: 1
+  velSource: 1
+  rb: {fileID: 3302166959065098340}
+  agent: {fileID: 0}
 --- !u!1 &3352396360714968557
 GameObject:
   m_ObjectHideFlags: 0

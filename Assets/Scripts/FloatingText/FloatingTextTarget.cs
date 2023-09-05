@@ -6,7 +6,7 @@ using static Projectile;
 public class FloatingTextTarget : MonoBehaviour
 {
     Health health;
-    public FloatingTextManager textManager;
+    [HideInInspector] public FloatingTextManager textManager;
 
     private void Awake()
     {
