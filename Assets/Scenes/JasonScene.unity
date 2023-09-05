@@ -1917,8 +1917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 2000
+  maxHealth: 2000
   iFrames: 0
   maxIFrames: Infinity
   canHaveStatusEffects: 1
@@ -3274,6 +3274,10 @@ PrefabInstance:
     - target: {fileID: 4412503601567956778, guid: 1eb54d8d85aca23438966995d4cc5aff, type: 3}
       propertyPath: m_Name
       value: ShoebillBlockoutEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412503601567956778, guid: 1eb54d8d85aca23438966995d4cc5aff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4412503601567956949, guid: 1eb54d8d85aca23438966995d4cc5aff, type: 3}
       propertyPath: m_RootOrder
@@ -4761,7 +4765,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5258423505416792574}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5668,7 +5672,7 @@ MonoBehaviour:
   flanking: 0
   retaliate: 0
   movementMultiplier: 1
-  healthState: 05000000210000003200000064000000
+  healthState: 6400000058020000e8030000d0070000
   circlingDistance: 5
   actionCooldown: 1
   movementSpeed: 10
@@ -6086,7 +6090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7913598834363908904
 Transform:
   m_ObjectHideFlags: 0

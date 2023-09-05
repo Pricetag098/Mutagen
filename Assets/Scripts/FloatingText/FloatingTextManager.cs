@@ -34,7 +34,7 @@ public class FloatingTextManager : MonoBehaviour
         //text
         if(data.damage <= 9)
             floatingText.txt.text =  data.damage.ToString().Substring(0, 1);
-        else if(data.damage <= 99)
+        else if(data.damage < 100)
             floatingText.txt.text = data.damage.ToString().Substring(0, 2);
         else
             floatingText.txt.text = data.damage.ToString().Substring(0, 3);

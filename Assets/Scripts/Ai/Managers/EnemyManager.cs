@@ -17,16 +17,17 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if(transform.GetChild(i).gameObject.active)
-            enemyList.Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
+            if (transform.GetChild(i).gameObject.active)
+                Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
         }
-        //floatingTextManager = FindObjectOfType<FloatingTextManager>();
-        for(int i = 0;i < enemyList.Count; i++)
-        {
-            enemyList[i].manager = this;
-            enemyList[i].GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
-            enemyList[i].player = player;
-        }
+    }
+
+    public void Add(Enemy agent)
+    {
+        enemyList.Add(agent);
+        agent.manager = this;
+        agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
+        agent.player = player;
     }
 
     private void FixedUpdate()

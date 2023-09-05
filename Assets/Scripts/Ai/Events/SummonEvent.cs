@@ -13,11 +13,13 @@ public class SummonEvent : Event
     public override void Play(Enemy agent)
     {
         base.Play(agent);
+        EnemyManager manager = agent.manager;
         for (int i = 0; i < summonCount; i++)
         {
             enemy = Instantiate(summonPrefab);
+            enemy.transform.parent = manager.transform;
+            manager.Add(enemy.GetComponentInChildren<Enemy>());
             enemy.transform.position = summonPositions[i].position;
-            enemy.GetComponentInChildren<Enemy>().player = agent.player;
         }
     }
 
