@@ -12,8 +12,9 @@ public class EnemyManager : MonoBehaviour
     [HideInInspector] public List<Enemy> moving;
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
+    public bool assignedElement;
 
-    protected void Start()
+    protected void Awake()
     {
         for (int i = 0; i < transform.childCount; i++)
         {

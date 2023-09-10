@@ -84,7 +84,11 @@ public class Enemy : MonoBehaviour
 
 
         if (caster.caster.abilities[randDrop].pickupPrefab.Enabled)
-        Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
+        {
+            GameObject drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
+            drop.transform.position = transform.position; //may need to change y pos
+        }
+
     }
 
     public void ChangeMovementSpeed(float speed)
