@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -112,4 +111,3 @@ public class NodeView : UnityEditor.Experimental.GraphView.Node
             OnNodeSelected.Invoke(this);
     }
 }
-#endif
