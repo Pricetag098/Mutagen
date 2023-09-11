@@ -12,8 +12,14 @@ public class EnemyAbilityCaster : MonoBehaviour
     Enemy enemy;
     Transform player;
     public Transform castOrigin;
+    [HideInInspector] public Ability curAbility;
+
     [Header("Stats")]
     public float projectileDeviation;
+    public float rangedDeterence;
+    public float repeatDeterence;
+    public float distanceMultiplier;
+    public float innerRange;
 
     private void Start()
     {
@@ -32,6 +38,37 @@ public class EnemyAbilityCaster : MonoBehaviour
         {
             caster.abilities[i] = Instantiate(curLoadout.abilities[i]);
             caster.abilities[i].Equip(caster);
+        }
+    }
+
+    public void GetAbility()
+    {
+        float highWeight = 0;
+        for (int i = 0; i < curLoadout.abilities.Length; i++)
+        {
+            float weight = 100;
+            if (caster.abilities[i] == curAbility)
+                weight -= repeatDeterence;
+
+            if (caster.abilities[i].GetType() == typeof(RangedAbility))
+            {
+                float dist = Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
+                if (dist > innerRange)
+                    weight += dist;
+                else
+                    weight -= rangedDeterence;
+            }
+
+            if (caster.abilities[i].GetType() == typeof(MeleeAttackAbility))
+            {
+                weight -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
+            }
+
+            if (weight > highWeight)
+            {
+                highWeight = weight;
+                curAbility = caster.abilities[i];
+            }
         }
     }
 

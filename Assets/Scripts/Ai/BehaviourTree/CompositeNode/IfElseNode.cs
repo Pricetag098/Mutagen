@@ -147,8 +147,7 @@ public class IfElseNode : CompositeNode
 
     bool abilityTypeCheck()
     {
-        Boss boss = agent as Boss;
-        if (boss.curAbility.GetType() == typeof(RangedAbility) || boss.curAbility.GetType() == typeof(MissilesAbility))
+        if (agent.caster.curAbility.GetType() == typeof(RangedAbility) || agent.caster.curAbility.GetType() == typeof(MissilesAbility))
             return true;
 
         return false;

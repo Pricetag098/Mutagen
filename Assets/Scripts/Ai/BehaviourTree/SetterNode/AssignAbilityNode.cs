@@ -17,8 +17,7 @@ public class AssignAbilityNode : SetterNode
 
     protected override State OnUpdate()
     {
-        Boss boss = agent as Boss;
-        boss.GetAbility();
+        agent.caster.GetAbility();
         return child.Update();
     }
 }

@@ -5,15 +5,23 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("References")]
     public List<Enemy> enemyList = new List<Enemy>();
+    public FloatingTextManager floatingTextManager;
+    public PlayerAbilityCaster player;
+
+    [Header("Element")]
+    int elementIndex;
+    public Optional<Element> assignedElement;
+
+    [Header("Stats")]
+    public float detectionRadius;
+    bool activated;
+
+    //stalker stats/refs
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
     public int moveCount;
     [HideInInspector] public List<Enemy> moving;
-    public FloatingTextManager floatingTextManager;
-    public PlayerAbilityCaster player;
-    //public Optional<Loadout> assignedLoadout;
-    int elementIndex;
-    public Optional<Element> assignedElement;
 
     public enum Element
     {
@@ -30,6 +38,11 @@ public class EnemyManager : MonoBehaviour
         {
             if (transform.GetChild(i).gameObject.active)
                 Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
+        }
+
+        for(int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].enabled = false;
         }
     }
 
@@ -51,8 +64,6 @@ public class EnemyManager : MonoBehaviour
             return;
         }
 
-
-
         //assign loadout to [elementIndex] if there aren't that many loadouts go to default (0)
         if (caster.loadoutVariations.Count() > elementIndex)
             caster.AssignLoadout(caster.loadoutVariations[elementIndex]);
@@ -63,9 +74,23 @@ public class EnemyManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
+
         if (inFront.Count > moveCount)
         {
             MoveAgent(inFront.Last());
+        }
+
+        if (activated)
+            return;
+
+        if (Vector3.Distance(transform.position, player.transform.position) < detectionRadius)
+        {
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                enemyList[i].enabled = true;
+            }
         }
     }
 
@@ -75,5 +100,12 @@ public class EnemyManager : MonoBehaviour
         moving.Add(agent);
         agent.flanking = true;
         agent.Flank();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

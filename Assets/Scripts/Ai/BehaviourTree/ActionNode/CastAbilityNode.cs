@@ -20,8 +20,7 @@ public class CastAbilityNode : ActionNode
         aCaster = agent.caster.caster;
         if (assigned)
         {
-            Boss boss = agent as Boss;
-            ability = boss.curAbility;
+            ability = agent.caster.curAbility;
             return;
         }
 
