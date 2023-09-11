@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Stats")]
     public float movementMultiplier = 1;
-    public int[] healthState;
+    public Optional<int[]> healthState;
     public float circlingDistance = 5;
     float defaultSpeed;
 

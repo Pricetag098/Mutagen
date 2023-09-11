@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RootNode
   m_EditorClassIdentifier: 
   state: 0
-  started: 0
+  started: 1
   guid: e7e1316f444cebe49b66b6958b3832ed
   position: {x: 0, y: 0}
   blackboard:
@@ -45,9 +45,38 @@ MonoBehaviour:
   treeState: 0
   nodes:
   - {fileID: -2475338433945234248}
+  - {fileID: 7217169740363101705}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+--- !u!114 &7217169740363101705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855db6ddb1b607f418736fb0e3aeb801, type: 3}
+  m_Name: AutoFail
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: ed6f68befd2e1604397c045685a1c38f
+  position: {x: 0, y: 0}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
