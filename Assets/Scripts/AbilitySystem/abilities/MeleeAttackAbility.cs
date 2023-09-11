@@ -20,22 +20,17 @@ public class MeleeAttackAbility : Ability
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
 		timer = new Timer(coolDown);
-		
 	}
 
 	public override void Tick()
 	{
 		timer.Tick();
-
 	}
-
-
 	
 	protected override void DoCast(CastData data)
 	{
 		if(timer.complete)
 		{
-			
             if (OnCast != null)
                 OnCast(data);
             timer.Reset();
