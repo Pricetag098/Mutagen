@@ -34,7 +34,7 @@ public class OnHitAura : MonoBehaviour
                     continue;
                 }
                 healths.Add(hb.health);
-                Vector3 dir = (transform.position - hb.health.transform.position).normalized;
+                Vector3 dir = (transform.position - hb.health.transform.position);
                 foreach(OnHitEffect onHitEffect in onHitEffects)
                 {
                     onHitEffect.OnHit(hb,dir);
