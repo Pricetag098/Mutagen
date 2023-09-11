@@ -67,9 +67,9 @@ public class IfElseNode : CompositeNode
 
     int healthCheck()
     {
-        for (int i = 0; i < agent.healthState.Length; i++)
+        for (int i = 0; i < agent.healthState.Value.Length; i++)
         {
-            if (agent.health.health > agent.healthState[i] && agent.health.health <= agent.healthState[i + 1])
+            if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
             {
                 return i + 1;
             }

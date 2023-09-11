@@ -6,7 +6,8 @@ public class EnemyAbilityCaster : MonoBehaviour
 {
     [Header("References")]
     [HideInInspector] public AbilityCaster caster;
-    Loadout curLoadout;
+    [SerializeField] Loadout curLoadout; //shown for debugging
+    [Tooltip("Keep loadouts in order of Normal, Light, Gravity, Tech")]
     public Loadout[] loadoutVariations;
     Enemy enemy;
     Transform player;
@@ -19,11 +20,13 @@ public class EnemyAbilityCaster : MonoBehaviour
         caster = GetComponent<AbilityCaster>();
         enemy = GetComponent<Enemy>();
         player = enemy.player.transform;
-        //AssignLoadout(loadout); //will be assigned in manager depending on element
     }
 
+    //assigned when added to manager list
     public void AssignLoadout(Loadout newLoadout)
     {
+        caster = GetComponent<AbilityCaster>();
+
         curLoadout = Instantiate(newLoadout);
         for (int i = 0; i < curLoadout.abilities.Length; i++)
         {
