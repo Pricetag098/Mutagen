@@ -36,16 +36,14 @@ public class EnemyManager : MonoBehaviour
         elementIndex = Random.Range(0, 2);
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).gameObject.active)
                 Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
         }
 
         for(int i = 0; i < enemyList.Count; i++)
         {
-            enemyList[i].enabled = false;
+            enemyList[i].transform.parent.gameObject.active = false;
         }
     }
-
     
 
     public void Add(Enemy agent)
@@ -74,9 +72,6 @@ public class EnemyManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-
-
         if (inFront.Count > moveCount)
         {
             MoveAgent(inFront.Last());
@@ -89,8 +84,9 @@ public class EnemyManager : MonoBehaviour
         {
             for (int i = 0; i < enemyList.Count; i++)
             {
-                enemyList[i].enabled = true;
+                enemyList[i].transform.parent.gameObject.active = true;
             }
+            activated = true;
         }
     }
 

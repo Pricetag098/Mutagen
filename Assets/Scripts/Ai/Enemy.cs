@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public Health health;
     public Animator anim;
     public EnemyManager manager;
-    public Material invisMat;
+    public Optional<Material> invisMat;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject;
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
             if (hb.enabled)
             {
                 hb.enabled = false;
-                transform.parent.gameObject.GetComponentInChildren<Renderer>().material = invisMat;
+                transform.parent.gameObject.GetComponentInChildren<Renderer>().material = invisMat.Value;
             }
             else
             {

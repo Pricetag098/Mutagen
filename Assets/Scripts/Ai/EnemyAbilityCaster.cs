@@ -20,6 +20,8 @@ public class EnemyAbilityCaster : MonoBehaviour
     public float repeatDeterence;
     public float distanceMultiplier;
     public float innerRange;
+    [Range(0f, 100f)]
+    public float chanceDeductionRange;
 
     private void Start()
     {
@@ -61,13 +63,17 @@ public class EnemyAbilityCaster : MonoBehaviour
 
             if (caster.abilities[i].GetType() == typeof(MeleeAttackAbility))
             {
+                //caster.abilities[i].
                 weight -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
             }
+            float chanceDeduction = Random.Range(0, chanceDeductionRange);
+            weight -= chanceDeduction;
 
             if (weight > highWeight)
             {
                 highWeight = weight;
                 curAbility = caster.abilities[i];
+                Debug.Log(curAbility.name);
             }
         }
     }
