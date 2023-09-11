@@ -87,7 +87,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 	{
 		for(int i = 0; i < caster.abilities.Length; i++)
 		{
-			if(caster.abilities[i].GetType() == caster.baseAbility.GetType())
+			if(caster.abilities[i].abilityName == caster.baseAbility.abilityName)
 			{
 				if (ability.slotMask.HasFlag((Ability.SlotMask)Mathf.Pow(2,i)))
 				{
