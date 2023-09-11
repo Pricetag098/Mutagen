@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum CheckType
@@ -16,7 +17,13 @@ public enum CheckType
     groupFacing,
     flanking,
     sightLine,
-    rangedAbility
+    ability
+}
+public enum AbilityCheckType
+{
+    Melee,
+    Ranged,
+    Dash,
 }
 
 public class IfElseNode : CompositeNode
@@ -25,6 +32,7 @@ public class IfElseNode : CompositeNode
     public float distanceCheck;
     public float groupDistance;
     int first = 0; int second = 1; //used for readability
+    public AbilityCheckType abilityCheck;
 
     protected override void OnStart()
     {
@@ -145,12 +153,19 @@ public class IfElseNode : CompositeNode
         return false;
     }
 
-    bool abilityTypeCheck()
+    bool abilityTypeCheck(AbilityCheckType check)
     {
-        Boss boss = agent as Boss;
-        if (boss.curAbility.GetType() == typeof(RangedAbility) || boss.curAbility.GetType() == typeof(MissilesAbility))
-            return true;
+        switch (check)
+        {
+            case AbilityCheckType.Melee:
+                return agent.caster.curAbility.GetType() == typeof(MeleeAttackAbility);
 
+            case AbilityCheckType.Ranged:
+                return agent.caster.curAbility.GetType() == typeof(RangedAbility);
+
+            case AbilityCheckType.Dash:
+                return agent.caster.curAbility.GetType() == typeof(DashAbility);
+        }
         return false;
     }
     
@@ -252,8 +267,8 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
-            case CheckType.rangedAbility:
-                if (abilityTypeCheck())
+            case CheckType.ability:
+                if (abilityTypeCheck(abilityCheck))
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);

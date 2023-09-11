@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/DashAddsStatus")]
-public class StatusEffectOnDash : DashAbility
+public class DashApplysEffect : DashAbility
 {
 	[SerializeField] float hitRadius;
 	[SerializeField] LayerMask targetLayers;
 	List<Health> healths = new List<Health>();
-	[SerializeField] StatusEffect effect;
+	[SerializeField] List<StatusEffect> statusEffects;
+	[SerializeField] List<OnHitEffect> onHitEffects;
 	protected override void WhileDashing()
 	{
 		base.WhileDashing();
@@ -22,6 +23,10 @@ public class StatusEffectOnDash : DashAbility
 				if (!healths.Contains(hb.health))
 				{
 					healths.Add(hb.health);
+					foreach(OnHitEffect onHitEffect in onHitEffects)
+					{
+						onHitEffect.OnHit(hb, direction);
+					}
 				}
 			}
 		}
@@ -37,7 +42,11 @@ public class StatusEffectOnDash : DashAbility
 		base.EndDash();
 		foreach(Health health in healths)
 		{
-			health.AddStatusEffect(effect);
+			foreach(StatusEffect statusEffect in statusEffects)
+			{
+                health.AddStatusEffect(statusEffect);
+            }
+			
 		}
 	}
 }

@@ -5,25 +5,45 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("References")]
     public List<Enemy> enemyList = new List<Enemy>();
+    public FloatingTextManager floatingTextManager;
+    public PlayerAbilityCaster player;
+
+    [Header("Element")]
+    int elementIndex;
+    public Optional<Element> assignedElement;
+
+    [Header("Stats")]
+    public float detectionRadius;
+    bool activated;
+
+    //stalker stats/refs
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
     public int moveCount;
     [HideInInspector] public List<Enemy> moving;
-    public FloatingTextManager floatingTextManager;
-    public PlayerAbilityCaster player;
-    public Optional<Loadout> assignedLoadout;
-    int elementIndex;
+
+    public enum Element
+    {
+        Normal,
+        Light,
+        Gravity,
+        Tech
+    }
 
     protected void Awake()
     {
         elementIndex = Random.Range(0, 2);
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).gameObject.active)
                 Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
         }
-    }
 
+        for(int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].transform.parent.gameObject.active = false;
+        }
+    }
     
 
     public void Add(Enemy agent)
@@ -33,13 +53,14 @@ public class EnemyManager : MonoBehaviour
         agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
         agent.player = player;
 
-        if (assignedLoadout.Enabled)
+        EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
+
+        if (assignedElement.Enabled)
         {
-            agent.caster.AssignLoadout(assignedLoadout.Value);
+            int value = (int)assignedElement.Value;
+            caster.AssignLoadout(caster.loadoutVariations[value]);
             return;
         }
-
-        EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
 
         //assign loadout to [elementIndex] if there aren't that many loadouts go to default (0)
         if (caster.loadoutVariations.Count() > elementIndex)
@@ -55,6 +76,18 @@ public class EnemyManager : MonoBehaviour
         {
             MoveAgent(inFront.Last());
         }
+
+        if (activated)
+            return;
+
+        if (Vector3.Distance(transform.position, player.transform.position) < detectionRadius)
+        {
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                enemyList[i].transform.parent.gameObject.active = true;
+            }
+            activated = true;
+        }
     }
 
     void MoveAgent(Enemy agent)
@@ -63,5 +96,12 @@ public class EnemyManager : MonoBehaviour
         moving.Add(agent);
         agent.flanking = true;
         agent.Flank();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

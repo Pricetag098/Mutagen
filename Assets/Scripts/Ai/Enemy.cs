@@ -10,12 +10,14 @@ public class Enemy : MonoBehaviour
     public PlayerAbilityCaster player;
     [HideInInspector] public NavMeshAgent agent;
     public Health health;
+    public Animator anim;
+    public EnemyManager manager;
+    public Optional<Material> invisMat;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject;
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
-    public Animator anim;
-    public EnemyManager manager;
+    Material defaultMat;
 
     //behaviour bools
     [HideInInspector] public bool isMoving;
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
         caster = GetComponent<EnemyAbilityCaster>();
         behaviourTree = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
+        defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
         //anim = caster.GetComponent<Animator>();
 
 
@@ -67,10 +70,20 @@ public class Enemy : MonoBehaviour
     public void Update()
     {
         
-        //if (Input.GetKeyDown(KeyCode.U))
-        //{
-        //    anim.Play("Headbutt");
-        //}
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Collider hb = transform.parent.GetComponentInChildren<AimAssistTarget>().gameObject.GetComponent<Collider>();
+            if (hb.enabled)
+            {
+                hb.enabled = false;
+                transform.parent.gameObject.GetComponentInChildren<Renderer>().material = invisMat.Value;
+            }
+            else
+            {
+                hb.enabled = true;
+                transform.parent.gameObject.GetComponentInChildren<Renderer>().material = defaultMat;
+            }
+        }
     }
 
     void OnHit(DamageData data)
@@ -82,13 +95,11 @@ public class Enemy : MonoBehaviour
     {
         int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
 
-
         if (caster.caster.abilities[randDrop].pickupPrefab.Enabled)
         {
             GameObject drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
             drop.transform.position = transform.position; //may need to change y pos
         }
-
     }
 
     public void ChangeMovementSpeed(float speed)

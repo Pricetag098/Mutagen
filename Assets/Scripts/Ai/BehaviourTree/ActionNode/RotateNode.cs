@@ -25,6 +25,7 @@ public class RotateNode : ActionNode
 
         if (angleToPosition < angle)
         {
+            Debug.Log("Facing");
             return State.Success;
         }
 
