@@ -213,7 +213,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 1000
   m_StoppingDistance: 7
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
@@ -248,7 +248,9 @@ MonoBehaviour:
   flanking: 0
   retaliate: 0
   movementMultiplier: 1
-  healthState: 
+  healthState:
+    enabled: 0
+    val: 
   circlingDistance: 5
   actionCooldown: 2.5
   movementSpeed: 15
@@ -271,7 +273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
-  loadout: {fileID: 11400000, guid: 3b0e8bcfcdd9ada46920d06e3e7010f5, type: 2}
+  curLoadout: {fileID: 0}
+  loadoutVariations: []
   castOrigin: {fileID: 845482942551037442}
   projectileDeviation: 10
 --- !u!114 &766449932

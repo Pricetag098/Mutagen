@@ -11,8 +11,17 @@ public class EnemyManager : MonoBehaviour
     [HideInInspector] public List<Enemy> moving;
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
-    public Optional<Loadout> assignedLoadout;
+    //public Optional<Loadout> assignedLoadout;
     int elementIndex;
+    public Optional<Element> assignedElement;
+
+    public enum Element
+    {
+        Normal,
+        Light,
+        Gravity,
+        Tech
+    }
 
     protected void Awake()
     {
@@ -33,13 +42,16 @@ public class EnemyManager : MonoBehaviour
         agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
         agent.player = player;
 
-        if (assignedLoadout.Enabled)
+        EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
+
+        if (assignedElement.Enabled)
         {
-            agent.caster.AssignLoadout(assignedLoadout.Value);
+            int value = (int)assignedElement.Value;
+            caster.AssignLoadout(caster.loadoutVariations[value]);
             return;
         }
 
-        EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
+
 
         //assign loadout to [elementIndex] if there aren't that many loadouts go to default (0)
         if (caster.loadoutVariations.Count() > elementIndex)
