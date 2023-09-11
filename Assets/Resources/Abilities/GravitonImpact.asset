@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f40001e31e60b8849a0a85a4dbd4932d, type: 3}
-  m_Name: SkipStrike
+  m_Name: GravitonImpact
   m_EditorClassIdentifier: 
-  abilityName: Skip Strike
-  icon: {fileID: 21300000, guid: 8c3dd79fee3e2c947ac17ae5c955df4f, type: 3}
-  element: 0
+  abilityName: Graviton Impact
+  icon: {fileID: 21300000, guid: 13e7e6fe43a8aa049bcd610bbc1f5ff8, type: 3}
+  element: 1
   pickupPrefab:
-    enabled: 1
-    val: {fileID: 4144943093994391956, guid: 92b8de6f98e37af468a386124acbf27e, type: 3}
+    enabled: 0
+    val: {fileID: 0}
   slotMask: 4
   castType: 0
   Casts: 3
@@ -28,11 +28,11 @@ MonoBehaviour:
   endSpeed: 10
   dashFx:
     enabled: 0
-    val: {fileID: 11400000, guid: b4cb71ef82df8b5469e334d75d3949ce, type: 2}
-  hitRadius: 2
+    val: {fileID: 0}
+  hitRadius: 3
   targetLayers:
     serializedVersion: 2
     m_Bits: 64
-  statusEffects:
-  - {fileID: 11400000, guid: 2566acc351947304abaa98c4d942c0e2, type: 2}
-  onHitEffects: []
+  statusEffects: []
+  onHitEffects:
+  - {fileID: 11400000, guid: f8bfca9bcfd3ef846bbf1e2061e6e9e8, type: 2}
