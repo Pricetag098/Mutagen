@@ -14,8 +14,7 @@ public class EnemyManager : MonoBehaviour
     int elementIndex;
     public Optional<Element> assignedElement;
 
-    [Header("Stats")]
-    public float detectionRadius;
+    //detection stat
     bool activated;
 
     //stalker stats/refs
@@ -76,12 +75,16 @@ public class EnemyManager : MonoBehaviour
         {
             MoveAgent(inFront.Last());
         }
+    }
 
-        if (activated)
-            return;
-
-        if (Vector3.Distance(transform.position, player.transform.position) < detectionRadius)
+    private void OnTriggerEnter(Collider collision)
+    {
+        HitBox player;
+        if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
+            if (activated)
+                return;
+
             for (int i = 0; i < enemyList.Count; i++)
             {
                 enemyList[i].transform.parent.gameObject.active = true;
@@ -96,12 +99,5 @@ public class EnemyManager : MonoBehaviour
         moving.Add(agent);
         agent.flanking = true;
         agent.Flank();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }
