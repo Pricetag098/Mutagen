@@ -44,12 +44,12 @@ public class CastAbilityNode : ActionNode
 
     protected override State OnUpdate()
     {
-        if (!caster.caster.canCast())
+        if (!aCaster.canCast())
             return State.Failure;
 
         Ability.CastData data = agent.caster.CreateCastData();
-        DashAbility dash = ability as DashAbility;
-        if(dash)
+
+        if(ability.GetType() == typeof (DashAbility))
         {
             data.moveDirection = (blackboard.moveToPosition - agent.transform.position).normalized * 10;
         }
