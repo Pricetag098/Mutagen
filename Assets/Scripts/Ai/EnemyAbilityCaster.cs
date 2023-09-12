@@ -54,20 +54,8 @@ public class EnemyAbilityCaster : MonoBehaviour
             if (caster.abilities[i] == curAbility)
                 weight -= repeatDeterence;
 
-            if (caster.abilities[i].GetType() == typeof(RangedAbility))
-            {
-                float dist = Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
-                if (dist > innerRange)
-                    weight += dist;
-                else
-                    weight -= rangedDeterence;
-            }
+            weight += TypeWeight(caster.abilities[i]);
 
-            if (caster.abilities[i].GetType() == typeof(MeleeAttackAbility))
-            {
-                //caster.abilities[i].
-                weight -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
-            }
             float chanceDeduction = Random.Range(0, chanceDeductionRange);
             weight -= chanceDeduction;
 
@@ -78,6 +66,46 @@ public class EnemyAbilityCaster : MonoBehaviour
                 Debug.Log(curAbility.name);
             }
         }
+    }
+
+    float TypeWeight(Ability ability)
+    {
+        float value = 0;
+
+        RangedAbility ranged = ability as RangedAbility;
+        if (ranged)
+        {
+            float dist = Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
+            if (dist > innerRange)
+                value += dist;
+            else
+                value -= rangedDeterence;
+        }
+
+        MeleeAttackAbility melee = ability as MeleeAttackAbility;
+        if (melee)
+        {
+            if (melee.GetCoolDownPercent() < 0.9f)
+                value -= 30;
+
+            value -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
+        }
+
+        DashAbility dash = ability as DashAbility;
+        if (dash)
+        {
+            if (dash.GetCoolDownPercent() < 0.9f)
+                value -= 30;
+        }
+
+        OrbitAbility orbit = ability as OrbitAbility;
+        if (orbit)
+        {
+            if (orbit.GetCoolDownPercent() < 0.9f)
+                value -= 30;
+        }
+
+        return value;
     }
 
     public Ability.CastData CreateCastData()
