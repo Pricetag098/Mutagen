@@ -72,17 +72,7 @@ public class Enemy : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Collider hb = transform.parent.GetComponentInChildren<AimAssistTarget>().gameObject.GetComponent<Collider>();
-            if (hb.enabled)
-            {
-                hb.enabled = false;
-                transform.parent.gameObject.GetComponentInChildren<Renderer>().material = invisMat.Value;
-            }
-            else
-            {
-                hb.enabled = true;
-                transform.parent.gameObject.GetComponentInChildren<Renderer>().material = defaultMat;
-            }
+            caster.caster.DisableCast(5);
         }
     }
 

@@ -10,6 +10,11 @@ public class AbilityCaster : MonoBehaviour
     public Health ownerHealth;
     new public Optional<Rigidbody> rigidbody;
 
+    //cast stats
+    public bool castBool = true;
+    float castTimer;
+    float lastCastDisable;
+
     Optional<PlayerStats> playerStats;
     const string baseAbilityPath = "Abilities/Empty";
     [HideInInspector]public Ability baseAbility;
@@ -49,6 +54,29 @@ public class AbilityCaster : MonoBehaviour
 		}
         abilities[index] = ability;
         ability.Equip(this);
+    }
+
+    public void DisableCast(float disableTime)
+    {
+        if (!castBool)
+            return;
+
+        castTimer = Time.time;
+        lastCastDisable = disableTime;
+        castBool = false;
+    }
+
+    public bool canCast()
+    {
+        if (castBool)
+            return true;
+
+        if(Time.time - castTimer > lastCastDisable)
+        {
+            castBool = true;
+            return true;
+        }
+        return false;
     }
 
 
