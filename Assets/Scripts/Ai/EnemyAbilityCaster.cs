@@ -16,6 +16,8 @@ public class EnemyAbilityCaster : MonoBehaviour
 
     [Header("Stats")]
     public float projectileDeviation;
+
+    [Header("Decision Stats")]
     public float rangedDeterence;
     public float repeatDeterence;
     public float distanceMultiplier;

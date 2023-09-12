@@ -44,11 +44,13 @@ public class CastAbilityNode : ActionNode
 
     protected override State OnUpdate()
     {
+        if (!caster.caster.canCast())
+            return State.Failure;
+
         Ability.CastData data = agent.caster.CreateCastData();
         DashAbility dash = ability as DashAbility;
         if(dash)
         {
-            //int dashdist = dash.
             data.moveDirection = (blackboard.moveToPosition - agent.transform.position).normalized * 10;
         }
 
