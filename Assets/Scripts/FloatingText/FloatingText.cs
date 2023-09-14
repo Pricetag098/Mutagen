@@ -3,10 +3,15 @@ using TMPro;
 
 public class FloatingText
 {
-    public bool active;
+    //refs
     public GameObject go;
     public GameObject follow;
     public TextMeshProUGUI txt;
+    public FloatingTextManager manager;
+    Health followHealth;
+
+    //stats
+    public bool active;
     public Vector3 motion;
     public float duration;
     public float lastShown;
@@ -14,19 +19,17 @@ public class FloatingText
     public float deviation;
     public float motionSpeed;
     public float followStrength;
-    public FloatingTextManager manager;
     public float damage;
-    public bool canMerge = true;
     
-
     public void Show()
     {
         active = true;
         lastShown = Time.time;
-        go.SetActive(active);
-        canMerge = true;
-        Vector3 curDev = new Vector3(Random.Range(-deviation, deviation), Random.Range(-deviation, deviation), Random.Range(-deviation, deviation));       
+        go.SetActive(true);
+        Vector3 curDev = new Vector3(Random.Range(-deviation, deviation), Random.Range(-deviation, deviation), 0);       
         go.transform.position = Camera.main.WorldToScreenPoint(follow.transform.position + curDev);
+
+        followHealth = follow.GetComponent<Health>();
     }
 
     public void Hide()
@@ -34,6 +37,27 @@ public class FloatingText
         active = false;
         go.SetActive(false);
         manager.pooler.Despawn(go.GetComponent<PooledObject>());
+
+    }
+
+    public void Merge(FloatingText other)
+    {
+        damage += other.damage;
+
+        float textDivide = damage % 10;
+
+        //will create cleaner way of defining
+        if (damage <= 9)
+            txt.text = damage.ToString().Substring(0, 1);
+        else if (damage < 100)
+            txt.text = damage.ToString().Substring(0, 2);
+        else if (damage < 1000)
+            txt.text = damage.ToString().Substring(0, 3);
+        else 
+            txt.text = damage.ToString().Substring(0,4);
+
+        lastShown = Time.time - manager.settings.addedMergeDuration;
+        other.Hide();
     }
 
     public void UpdateFloatingText()
@@ -41,38 +65,43 @@ public class FloatingText
         if (!active)
             return;
 
-        if(Time.time - lastShown > duration)
+        if (Time.time - lastShown > duration)
         {
             Hide();
+            return;
         }
 
-        //foreach (FloatingText text in manager.floatingTexts)
-        //{
-        //    if (text.active && text.follow == follow)
-        //    {
-        //        if (text.canMerge)
-        //        {
-        //            if (Vector3.Distance(go.transform.position, text.go.transform.position) < 0.01f)
-        //            {
-        //                damage += text.damage;
-        //                if (damage <= 9)
-        //                    txt.text = damage.ToString().Substring(0, 1);
-        //                else if (damage < 100)
-        //                    txt.text = damage.ToString().Substring(0, 2);
-        //                else
-        //                    txt.text = damage.ToString().Substring(0, 3);
 
-        //                canMerge = false;
-        //                text.Hide();
-        //            }
-        //        }
-        //    }
-        //}
 
-        if (follow)
+        if (!followHealth.dead)
         {
-            go.transform.position += ((Camera.main.WorldToScreenPoint(follow.transform.position)) - go.transform.position).normalized * followStrength;
+            Vector3 dir = (Camera.main.WorldToScreenPoint(follow.transform.position) - go.transform.position);
+            float dist = Vector3.Distance(dir , follow.transform.position);
+            if (dist > manager.settings.followDist)
+            {
+                go.transform.position +=
+                    ((Camera.main.WorldToScreenPoint(follow.transform.position)) - go.transform.position).normalized * followStrength;
+
+            }
+            go.transform.position += motion * motionSpeed * Time.deltaTime;
         }
-        go.transform.position += motion * motionSpeed * Time.deltaTime;
+        else
+            Hide();
+
+
+
+        foreach (FloatingText othertxt in manager.floatingTexts)
+        {
+            if (!othertxt.active)
+                return;
+
+            if (this != othertxt && follow == othertxt.follow)
+            {
+                if (Vector3.Distance(go.transform.position, othertxt.go.transform.position) < manager.settings.mergeDistance)
+                {
+                    Merge(othertxt);
+                }
+            }
+        }
     }
 }

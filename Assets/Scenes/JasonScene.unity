@@ -2519,6 +2519,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Weight: 1
   m_Effectors: []
+--- !u!1 &959261626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8165075782481112667, guid: f9d0d9b89b865d845abcd75a52ac5c9a, type: 3}
+  m_PrefabInstance: {fileID: 8165075781395976081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &965915292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,12 +3139,28 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8165075782481112669, guid: f9d0d9b89b865d845abcd75a52ac5c9a, type: 3}
   m_PrefabInstance: {fileID: 8165075781395976081}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 959261626}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e2a36dff69a644793214a73bdf0195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1355385808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959261626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c11bbcd06b47e941a0fe98d80550e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToPool: {fileID: 0}
+  poolSize: 1
+  autoRefillPool: 0
+  poolContainer: {fileID: 0}
 --- !u!1 &1357496548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5284,7 +5305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1592605977087693756, guid: ff3159a16cbbd6942a40372efde89a44, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1592605977087693756, guid: ff3159a16cbbd6942a40372efde89a44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5480,8 +5501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 1000000
+  maxHealth: 1000000
   iFrames: 0
   maxIFrames: Infinity
   canHaveStatusEffects: 1
@@ -5566,7 +5587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89f7527bc9b5634d8cbe418e4da0299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: e3aa8017cf9a17f4f954df83285fb868, type: 2}
+  tree: {fileID: 11400000, guid: 7efdcd4c03b283c4aaf0251ef97acc3e, type: 2}
 --- !u!114 &258143975291703751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13936,6 +13957,10 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8165075782481112669, guid: f9d0d9b89b865d845abcd75a52ac5c9a, type: 3}
+      propertyPath: mergeDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165075782481112669, guid: f9d0d9b89b865d845abcd75a52ac5c9a, type: 3}
       propertyPath: textDeviation
       value: 1
       objectReference: {fileID: 0}
@@ -14500,7 +14525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511529491668961502, guid: 182b33ace6a2bca449b0195eb8213c0a, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7511529491668961502, guid: 182b33ace6a2bca449b0195eb8213c0a, type: 3}
       propertyPath: m_LocalPosition.x

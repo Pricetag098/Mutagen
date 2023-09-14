@@ -14,10 +14,13 @@ public class FloatingTextSettings : ScriptableObject
     public float baseTextSize;
     public float baseDuration;
     public float durationDamageMultiplier;
+    public float mergeDistance = 5;
+    public float addedMergeDuration = 0.1f;
 
     [Header("Motion")]
     [Range(0f, 1f)]
     public float textSpread;
     public float motionSpeed;
     public float followStrength;
+    public float followDist = 50;
 }
