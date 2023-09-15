@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17c9cca3e20fca459eaf5da38b71bbb, type: 3}
   m_Name: Orbit 1
   m_EditorClassIdentifier: 
-  abilityName: 
-  icon: {fileID: 21300000, guid: c48463a6a7645ed48a1fd8a96c482c4e, type: 3}
+  abilityName: Orbit
+  icon: {fileID: 21300000, guid: 3caa361b762d07b4aa4f1c324d1def78, type: 3}
   element: 1
   pickupPrefab:
     enabled: 1
@@ -22,15 +22,15 @@ MonoBehaviour:
   castType: 0
   maxCharges: 3
   prefab: {fileID: 3736283451019008544, guid: 8d6a162e61c41a544afad81408135aa7, type: 3}
-  cooldown: 0
+  cooldown: 5
   orbs: []
   offset: {x: 0, y: 1.2, z: 0}
   orbitSpeed: 1
-  radius: 3
+  radius: 7
   flySpeed: 150
   midPointOffset: 0
   range: 100
-  damage: 20
+  damage: 35
   aimAssist:
     maxRange: 20
     aimAssistLayer:
@@ -41,4 +41,4 @@ MonoBehaviour:
     priorityWeight: 1
     minDirectionValue: -1
     assistWeight: 1
-  spawnFx: {fileID: 0}
+  spawnFx: {fileID: 11400000, guid: 5b69afa69e46f7b4ea27837586d3bcf8, type: 2}

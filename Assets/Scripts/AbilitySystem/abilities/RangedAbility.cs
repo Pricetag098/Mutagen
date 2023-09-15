@@ -20,6 +20,8 @@ public class RangedAbility : Ability
 
     [SerializeField] float speedModifier = .6f;
 
+    [SerializeField] List<OnHitEffect> onHitEffectList = new List<OnHitEffect>();   
+
     [Header("aim assist")]
     [SerializeField] AimAssist aimAssist;
 
@@ -85,7 +87,7 @@ public class RangedAbility : Ability
         float damage = chargeDamageCurve.Evaluate(chargeVal);
         float speed = chargeVelocityCurve.Evaluate(chargeVal);
         Vector3 velocity = speed * aimAssist.GetAssistedAimDir(lastCastdata.aimDirection,lastCastdata.origin,speed);
-        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,CreateDamageData(damage));
+        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,CreateDamageData(damage),onHitEffectList);
         if (OnCast != null)
             OnCast(lastCastdata);
     }

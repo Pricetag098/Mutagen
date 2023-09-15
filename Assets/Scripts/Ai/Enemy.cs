@@ -88,7 +88,9 @@ public class Enemy : MonoBehaviour
         if (caster.caster.abilities[randDrop].pickupPrefab.Enabled)
         {
             GameObject drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
-            drop.transform.position = transform.position; //may need to change y pos
+            Vector3 offset = transform.position;
+            offset.y += 1;
+            drop.transform.position = offset;
         }
     }
 

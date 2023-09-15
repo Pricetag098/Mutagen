@@ -11,7 +11,7 @@ public class FloatingTextManager : MonoBehaviour
     public ObjectPooler pooler;
     public FloatingTextSettings settings;
     public int poolSize;
-    List<FloatingText> floatingTexts = new List<FloatingText>(5);
+    [HideInInspector] public List<FloatingText> floatingTexts = new List<FloatingText>(5);
 
     private void Start()
     {
@@ -31,6 +31,9 @@ public class FloatingTextManager : MonoBehaviour
     public void Show(DamageData data)
     {
         FloatingText floatingText = GetFloatingText();
+
+        floatingText.damage = data.damage;
+
         //text
         if(data.damage <= 9)
             floatingText.txt.text =  data.damage.ToString().Substring(0, 1);

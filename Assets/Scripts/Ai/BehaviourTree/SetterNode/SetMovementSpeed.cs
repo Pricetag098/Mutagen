@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetStopMoving : SetterNode
+public class SetMovementSpeed : SetterNode
 {
+    public float speed;
 
     protected override void OnStart()
     {
@@ -17,7 +18,7 @@ public class SetStopMoving : SetterNode
 
     protected override State OnUpdate()
     {
-        blackboard.moveToPosition = agent.transform.position;
+        agent.ChangeMovementSpeed(speed);
 
         return child.Update();
     }
