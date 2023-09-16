@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public GameObject dangerObject;
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
+    [HideInInspector] public HitBox hb;
     Material defaultMat;
 
     //behaviour bools
@@ -44,6 +45,9 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float movementTimer;
     [HideInInspector] public float delayMoveTimer;
 
+    [Header("RBTest")]
+    public GameObject[] colliders;
+
 
     private void Start()
     {
@@ -54,8 +58,8 @@ public class Enemy : MonoBehaviour
         behaviourTree = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
+        hb = transform.parent.GetComponentInChildren<HitBox>();
         //anim = caster.GetComponent<Animator>();
-
 
         health.OnHit += OnHit;
         health.OnDeath += OnDie; 
@@ -72,7 +76,47 @@ public class Enemy : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.U))
         {
-            caster.caster.DisableCast(5);
+            Debug.Log("Ragdoll");
+
+            //disable other colliders
+
+            hb.transform.GetComponent<Collider>().enabled = false;
+
+            for(int i = 0; i < transform.parent.childCount; i++)
+            {
+                SecondOrderFollower follow;
+                if(transform.parent.GetChild(i).TryGetComponent<SecondOrderFollower>(out follow))
+                {
+                    follow.enabled = false;
+                }
+
+                SecondOrderFacer facer;
+                if (transform.parent.GetChild(i).TryGetComponent<SecondOrderFacer>(out facer))
+                {
+                    facer.enabled = false;
+                }
+
+                Collider col;
+                if (transform.parent.GetChild(i).TryGetComponent<Collider>(out col))
+                {
+                    col.enabled = false;
+                }
+            }
+
+            //enable new colliders and turn on kinematic
+            for(int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].GetComponent<Collider>().enabled = true;
+                Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
+                rb.isKinematic = false;
+                rb.useGravity = true;
+                //rb.AddForce(rb.transform.position + -(transform.position - rb.transform.position), ForceMode.Impulse);
+            }
+
+            //disable components
+            anim.enabled = false;
+            agent.enabled = false;
+            this.enabled = false;
         }
     }
 

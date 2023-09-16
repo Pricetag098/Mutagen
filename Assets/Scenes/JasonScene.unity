@@ -441,6 +441,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -460,6 +461,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!114 &233376910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +926,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -943,6 +946,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!1 &509665984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1395,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -1410,6 +1415,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!114 &608274234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1632,6 +1638,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -1651,6 +1658,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!1 &706876119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,6 +2294,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -2305,6 +2314,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!195 &854425206
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4192,6 +4202,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -4211,6 +4222,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!4 &1732050471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6923498956041676626, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
@@ -4578,6 +4590,7 @@ Transform:
   - {fileID: 1133058611459247863}
   - {fileID: 1284758459715714863}
   - {fileID: 1465725048847492941}
+  - {fileID: 7946562672035237671}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5532,6 +5545,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -5551,6 +5565,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!114 &258143975291703749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5564,7 +5579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
-  curLoadout: {fileID: 0}
+  curLoadout: {fileID: 11400000, guid: f1dd44664fbb00b4eb2d0fb1c9dd7ed3, type: 2}
   loadoutVariations:
   - {fileID: 11400000, guid: f1dd44664fbb00b4eb2d0fb1c9dd7ed3, type: 2}
   castOrigin: {fileID: 258143974629206892}
@@ -5587,7 +5602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89f7527bc9b5634d8cbe418e4da0299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 7efdcd4c03b283c4aaf0251ef97acc3e, type: 2}
+  tree: {fileID: 11400000, guid: e3aa8017cf9a17f4f954df83285fb868, type: 2}
 --- !u!114 &258143975291703751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6943,6 +6958,67 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1419412486472553052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1889403673}
+    m_Modifications:
+    - target: {fileID: 519580075119368132, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_Name
+      value: Ragdoll Test Deer
+      objectReference: {fileID: 0}
+    - target: {fileID: 603018565162097852, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 860682229}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 28.555878
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.34644508
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466723372498910133, guid: 48052100a5611a643ba4104526112907, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48052100a5611a643ba4104526112907, type: 3}
 --- !u!4 &1427660267814744124
 Transform:
   m_ObjectHideFlags: 0
@@ -12172,6 +12248,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -12191,6 +12268,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!1 &6864788521957754995
 GameObject:
   m_ObjectHideFlags: 0
@@ -12398,6 +12476,7 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  hb: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -12417,6 +12496,7 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  colliders: []
 --- !u!114 &7091954435136983061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13563,14 +13643,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7946562672035237848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.555878, y: 0.5, z: -0.34644508}
+  m_LocalPosition: {x: 101.52252, y: 38.517666, z: 28.919939}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7169775746639691340}
   - {fileID: 4378317891223412735}
-  m_Father: {fileID: 1889403673}
-  m_RootOrder: 0
+  m_Father: {fileID: 1861590287}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7946562672035237848
 GameObject:
@@ -13587,7 +13667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &7946562672414704508
 GameObject:
   m_ObjectHideFlags: 0

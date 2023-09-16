@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AssignAbilityNode : SetterNode
 {
+
     protected override void OnStart()
     {
 

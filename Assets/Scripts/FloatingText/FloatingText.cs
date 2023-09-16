@@ -78,11 +78,12 @@ public class FloatingText
             Vector3 dir = (Camera.main.WorldToScreenPoint(follow.transform.position) - go.transform.position);
             float dist = Vector3.Distance(dir , follow.transform.position);
             if (dist > manager.settings.followDist)
-            {
                 go.transform.position +=
                     ((Camera.main.WorldToScreenPoint(follow.transform.position)) - go.transform.position).normalized * followStrength;
-
-            }
+            else
+                go.transform.position +=
+                    ((Camera.main.WorldToScreenPoint(follow.transform.position)) - go.transform.position).normalized * (followStrength / 3);
+            
             go.transform.position += motion * motionSpeed * Time.deltaTime;
         }
         else
