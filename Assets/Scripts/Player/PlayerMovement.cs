@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] InputActionProperty moveDir;
-    [SerializeField] GameObject body;
+    public GameObject body;
     public Transform orientation;
 	[SerializeField] PlayerStats playerStats;
 	[SerializeField] LayerMask groundingLayer;
