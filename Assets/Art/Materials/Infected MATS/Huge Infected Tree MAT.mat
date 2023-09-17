@@ -20,10 +20,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InfectedTree1 MAT
+  m_Name: Huge Infected Tree MAT
   m_Shader: {fileID: 4800000, guid: 766736548846cdf459a9766614dcccab, type: 3}
   m_ValidKeywords:
-  - _EMISSIVE_ANIMATION
+  - _EMISSIVE_SIMPLE
   - _IS_ANGELRING_OFF
   - _IS_CLIPPING_OFF
   - _IS_OUTLINE_CLIPPING_NO
@@ -37,7 +37,8 @@ Material:
   stringTagMap:
     IgnoreProjection: False
     RenderType: Opaque
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - SRPDEFAULTUNLIT
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -86,7 +87,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emissive_Tex:
-        m_Texture: {fileID: 2800000, guid: 163513183d5cfb3478b75208b3e9a72a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2f4d8146feda7e440bf15c292ccf47fd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HighColor_Tex:
@@ -94,7 +95,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1bbbb54a3f3424348a09006ce1c8e69b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 03d2f36a589b1b04ab48bbbe328bc08c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
@@ -173,9 +174,9 @@ Material:
     m_Floats:
     - _1st2nd_Shades_Feather: 0.0001
     - _1st_ShadeColor_Feather: 0.0001
-    - _1st_ShadeColor_Step: 0.5
+    - _1st_ShadeColor_Step: 0.682
     - _2nd_ShadeColor_Feather: 0.0001
-    - _2nd_ShadeColor_Step: 0.456
+    - _2nd_ShadeColor_Step: 0.454
     - _ARSampler_AlphaOn: 0
     - _AR_OffsetU: 0
     - _AR_OffsetV: 0.3
@@ -183,9 +184,9 @@ Material:
     - _AlphaClip: 0
     - _AngelRing: 0
     - _Ap_RimLight_FeatherOff: 0
-    - _Ap_RimLight_Power: 1
+    - _Ap_RimLight_Power: 0
     - _AutoRenderQueue: 1
-    - _BaseColor_Step: 0.5
+    - _BaseColor_Step: 0.682
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _Blend: 0
@@ -198,14 +199,14 @@ Material:
     - _ClearCoatSmoothness: 0
     - _ClippingMode: 0
     - _Clipping_Level: 0
-    - _ColorShift_Speed: 0.5
+    - _ColorShift_Speed: 4
     - _Cull: 2
     - _CullMode: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EMISSIVE: 1
+    - _EMISSIVE: 0
     - _EnvironmentReflections: 1
     - _Farthest_Distance: 100
     - _GI_Intensity: 0
@@ -219,7 +220,7 @@ Material:
     - _IsBaseMapAlphaAsClippingMask: 0
     - _Is_BLD: 0
     - _Is_BakedNormal: 0
-    - _Is_BlendAddToHiColor: 1
+    - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
     - _Is_ColorShift: 0
@@ -256,14 +257,14 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _Outline_Width: 150
+    - _Outline_Width: 691.5
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimLight: 0
     - _RimLight_FeatherOff: 1
     - _RimLight_InsideMask: 0.574
-    - _RimLight_Power: 0.461
+    - _RimLight_Power: 0
     - _Rotate_EmissiveUV: 0
     - _Rotate_MatCapUV: 0
     - _Rotate_NormalMapForMatCapUV: 0
@@ -272,7 +273,7 @@ Material:
     - _Scroll_EmissiveU: 0
     - _Scroll_EmissiveV: 0
     - _Set_SystemShadowsToBase: 1
-    - _ShadeColor_Step: 0.456
+    - _ShadeColor_Step: 0.454
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -291,7 +292,7 @@ Material:
     - _Tweak_LightDirection_MaskLevel: 0
     - _Tweak_MatCapUV: 0
     - _Tweak_MatcapMaskLevel: 0
-    - _Tweak_RimLightMaskLevel: 0.32
+    - _Tweak_RimLightMaskLevel: 0.35
     - _Tweak_ShadingGradeMapLevel: 0
     - _Tweak_SystemShadowsLevel: 0
     - _Tweak_transparency: 0
@@ -309,13 +310,13 @@ Material:
     - _utsVersionY: 5
     - _utsVersionZ: 1
     m_Colors:
-    - _1st_ShadeColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+    - _1st_ShadeColor: {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
     - _2nd_ShadeColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorShift: {r: 4, g: 0, b: 0, a: 1}
+    - _ColorShift: {r: 2.5443377, g: 0, b: 2.670157, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emissive_Color: {r: 4, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0, g: 0, b: 0, a: 1}
