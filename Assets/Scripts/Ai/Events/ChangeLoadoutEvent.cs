@@ -9,7 +9,7 @@ public class ChangeLoadoutEvent : Event
 
     public override void Play(Enemy agent)
     {
-        base.Play(agent);
+        used = true;
         agent.caster.AssignLoadout(newLoadout);
     }
 }

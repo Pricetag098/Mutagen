@@ -7,7 +7,7 @@ public class DebugEvent : Event
 {
     public override void Play(Enemy agent)
     {
-        base.Play(agent);
+        used = true;
         Debug.Log("Played event");
     }
 }
