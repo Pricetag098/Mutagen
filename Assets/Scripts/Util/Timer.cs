@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Timer
 {
-    float time;
+    public float currentTime;
     public float maxTime;
     public bool complete;
 
@@ -17,29 +17,29 @@ public class Timer
 		this.maxTime = time;
 		OnComplete = onComplete;
         complete = false;
-        this.time = startComplete ? maxTime : 0;
+        this.currentTime = startComplete ? maxTime : 0;
 	}
 
 	public void Tick()
 	{
 		if(complete)
             return;
-        if(time >= maxTime)
+        if(currentTime >= maxTime)
 		{
             complete = true;
             if(OnComplete != null)
                 OnComplete();
             return;
 		}
-        time += Time.deltaTime;
+        currentTime += Time.deltaTime;
 
 	}
 
     public void Reset()
 	{
-        time = 0;
+        currentTime = 0;
         complete = false;
 	}
 
-    public float Progress { get { return Mathf.Clamp01(time / maxTime); }}
+    public float Progress { get { return Mathf.Clamp01(currentTime / maxTime); }}
 }

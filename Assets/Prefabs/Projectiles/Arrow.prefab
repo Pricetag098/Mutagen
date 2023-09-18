@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &679660812873987221
 Transform:
   m_ObjectHideFlags: 0
@@ -77,10 +77,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: {x: 0, y: -30, z: 0}
-  visual: {fileID: 1338087204484626986}
+  despawnOnHit: 1
   vfx:
     enabled: 1
     val: {fileID: 11400000, guid: cb205c69870695c438fcd6ec5e257882, type: 2}
+  lifeTime: Infinity
 --- !u!1001 &2087698252672427668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,11 +155,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d36c2e58bbd68da479d620544f4e8ee8, type: 3}
---- !u!1 &1338087204484626986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1038406573895146686, guid: d36c2e58bbd68da479d620544f4e8ee8, type: 3}
-  m_PrefabInstance: {fileID: 2087698252672427668}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1862809734810001552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 370132904489190916, guid: d36c2e58bbd68da479d620544f4e8ee8, type: 3}

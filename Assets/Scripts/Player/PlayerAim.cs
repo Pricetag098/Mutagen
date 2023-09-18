@@ -62,7 +62,7 @@ public class PlayerAim : MonoBehaviour
 			Vector3 tempAimDir = playerMovement.orientation.forward * readVal.y + playerMovement.orientation.right * readVal.x;
 			aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
 		}
-        
+		playerMovement.body.transform.forward = aimDir;
 	}
 
 	private void OnDestroy()

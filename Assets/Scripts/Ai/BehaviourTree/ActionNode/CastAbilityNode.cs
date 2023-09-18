@@ -44,9 +44,6 @@ public class CastAbilityNode : ActionNode
 
     protected override State OnUpdate()
     {
-        if (!aCaster.canCast())
-            return State.Failure;
-
         Ability.CastData data = agent.caster.CreateCastData();
 
         if(ability.GetType() == typeof (DashAbility))
