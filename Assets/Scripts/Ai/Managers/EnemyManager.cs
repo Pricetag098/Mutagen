@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
 
     protected void Awake()
     {
-        elementIndex = Random.Range(0, 2);
+        elementIndex = Random.Range(0, 3);
         for (int i = 0; i < transform.childCount; i++)
         {
                 Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
