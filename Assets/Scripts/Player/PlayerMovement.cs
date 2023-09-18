@@ -19,10 +19,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float walkAltDirectionMulti = 2;
 	[SerializeField] float gravityForce = 1000;
 
-	[Header("Animation Settings")]
-	[SerializeField] Optional<Animator> animator;
-	[SerializeField] string forwardVelocityParam;
-	[SerializeField] string horizontalVelocityParam;
+	
 	Rigidbody rb;
     Vector2 inputDir;
 
@@ -124,11 +121,11 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 
-		if (animator.Enabled)
-		{
-			animator.Value.SetFloat(forwardVelocityParam, fwVel);
-			animator.Value.SetFloat(horizontalVelocityParam, rightVel);
-		}
+		//if (animator.Enabled)
+		//{
+		//	animator.Value.SetFloat(forwardVelocityParam, fwVel);
+		//	animator.Value.SetFloat(horizontalVelocityParam, rightVel);
+		//}
 	}
 
 	private void OnDrawGizmosSelected()
