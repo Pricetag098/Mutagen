@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     public OnHit onHit;
     public float lifeTime = float.PositiveInfinity;
     Timer timer;
+    Vector3 initialVelocity;
+    [SerializeField] AnimationCurve velocityMultiplierOverLifetime = AnimationCurve.Linear(0,1,1,1);
     List<OnHitEffect> onHitEffects;
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +32,7 @@ public class Projectile : MonoBehaviour
         timer.Tick();
         if(timer.complete)
             GetComponent<PooledObject>().Despawn();
+        body.velocity = initialVelocity * velocityMultiplierOverLifetime.Evaluate(timer.Progress);
     }
     public void Launch(Vector3 origin,Vector3 vel,DamageData dmg)
     {
@@ -45,6 +48,7 @@ public class Projectile : MonoBehaviour
         timer.Reset();
         transform.position = origin;
         body.velocity = vel;
+        initialVelocity = vel;
         damage = dmg;
         transform.forward = vel;
         onHitEffects = onhits;
