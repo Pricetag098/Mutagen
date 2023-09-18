@@ -24,7 +24,8 @@ public class ShardAbility : Ability
             Vector3 spawnPos = data.origin + data.aimDirection * spawnDistance;
             GameObject shard = pooler.Spawn();
             shard.transform.position = spawnPos;
-            shard.GetComponent<Health>().Respawn();
+            if (shard.TryGetComponent(out Health health))
+                health.Respawn();
         }
     }
 
