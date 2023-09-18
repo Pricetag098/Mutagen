@@ -10,10 +10,16 @@ public class OnHitAura : MonoBehaviour
     [SerializeField] float tickTime;
     Timer timer;
     [SerializeField] List<OnHitEffect> onHitEffects;
+    [SerializeField] List<StatusEffect> statusEffects;
     private void Awake()
     {
         //GetComponent<Projectile>().onHit += Explode;
         timer = new Timer(tickTime);
+    }
+
+    private void OnEnable()
+    {
+        timer.Reset();
     }
     private void Update()
     {
@@ -34,10 +40,14 @@ public class OnHitAura : MonoBehaviour
                     continue;
                 }
                 healths.Add(hb.health);
-                Vector3 dir = (transform.position - hb.health.transform.position);
+                Vector3 dir = (hb.health.transform.position-transform.position);
                 foreach(OnHitEffect onHitEffect in onHitEffects)
                 {
                     onHitEffect.OnHit(hb,dir);
+                }
+                foreach(StatusEffect statusEffect in statusEffects)
+                {
+                    hb.health.AddStatusEffect(statusEffect);
                 }
                 hb.OnHit(damage);
             }
