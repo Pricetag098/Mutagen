@@ -1,0 +1,492 @@
+fileFormatVersion: 2
+guid: 514bd70f0bf290546a6a84b0460ac2e4
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: "Avatar creation failed:\n\tParent for 'Hair_JNT' differs from
+      one found in HumanDescription. 'Hair_JNT' was found instead of 'Head'.\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: 1RunningCharacter(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: BodyForRig
+      parentName: 1RunningCharacter(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: JNT_GRP
+      parentName: 1RunningCharacter(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: COG_JNT
+      parentName: JNT_GRP
+      position: {x: -0, y: 1.2452499, z: -0.00010519683}
+      rotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: LeftHip_JNT
+      parentName: COG_JNT
+      position: {x: -0.07081831, y: -0.05007869, z: -0.12769933}
+      rotation: {x: 0.74304765, y: -0.029084437, z: -0.037308656, w: 0.66756445}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: LeftKnee_JNT
+      parentName: LeftHip_JNT
+      position: {x: -0.0065856054, y: 0.027612379, z: 0.45846602}
+      rotation: {x: -0.0704208, y: 0.11147571, z: 0.005937497, w: 0.9912511}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.9999998}
+    - name: LeftFoot_JNT
+      parentName: LeftKnee_JNT
+      position: {x: -0.0053076446, y: -0.041590963, z: 0.6922569}
+      rotation: {x: -0.69352293, y: -0.043803837, z: -0.047763955, w: 0.7175136}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1.0000001}
+    - name: LeftFootEnd_JNT
+      parentName: LeftFoot_JNT
+      position: {x: -0.20226957, y: -0.05085902, z: 0.00000003144924}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000004, y: 1, z: 1.0000001}
+    - name: Chest_JNT
+      parentName: COG_JNT
+      position: {x: -0.2343102, y: 0.36942825, z: 0.0050338516}
+      rotation: {x: -0.00074622396, y: 0.0003666281, z: 0.052782774, w: 0.99860567}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000002}
+    - name: Neck_JNT
+      parentName: Chest_JNT
+      position: {x: 0.08780402, y: 0.17870933, z: 0}
+      rotation: {x: -0.000000013376688, y: -0.7071068, z: -0.000000019550543, w: 0.7071068}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Head
+      parentName: Neck_JNT
+      position: {x: 5.3290704e-17, y: 0.2012496, z: 0.047935132}
+      rotation: {x: 0.000000011641534, y: -0, z: 0.0000000031832301, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Hair_JNT
+      parentName: Head
+      position: {x: -7.105427e-17, y: 0.07367471, z: -0.16539739}
+      rotation: {x: 0.0000000027653726, y: 0.7071068, z: -0.0000000027653726, w: 0.7071068}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: Hair_JNT
+      parentName: Hair_JNT
+      position: {x: 0.20263349, y: -0.22923154, z: -4.4408918e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: Hair_JNT
+      parentName: Hair_JNT
+      position: {x: 0.18276373, y: -0.16532244, z: -5.3290704e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Hair_JNT
+      parentName: Hair_JNT
+      position: {x: 0.22879745, y: -0.2438038, z: -7.9936054e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Hair_JNT
+      parentName: Hair_JNT
+      position: {x: 0.16097088, y: -0.14385386, z: -8.881784e-18}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Hair_JNT
+      parentName: Hair_JNT
+      position: {x: 0.14813219, y: -0.13459101, z: -6.217249e-17}
+      rotation: {x: -0.0000000020579518, y: -0.7071068, z: 0.0000000020579518, w: 0.7071068}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: RightShoulder_JNT
+      parentName: Neck_JNT
+      position: {x: 0.22243454, y: -0.09510208, z: -0.042643912}
+      rotation: {x: 0.000000005659369, y: 0.7071068, z: 0.000000019036056, w: 0.7071068}
+      scale: {x: 1, y: 1.0000005, z: 0.99999994}
+    - name: RightElbow_JNT
+      parentName: RightShoulder_JNT
+      position: {x: 0.04929407, y: 4.2632563e-16, z: 0.30971342}
+      rotation: {x: -0.002033519, y: 0.07848691, z: -0.00071396906, w: 0.99691284}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000004}
+    - name: RightHand_JNT
+      parentName: RightElbow_JNT
+      position: {x: -0.041540682, y: 0.002815819, z: 0.42787674}
+      rotation: {x: 0.000000031898256, y: -0.7071068, z: 0.000000027782354, w: 0.7071068}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: LeftShoulder_JNT
+      parentName: Neck_JNT
+      position: {x: -0.22195718, y: -0.09645907, z: -0.041337483}
+      rotation: {x: -0.0008015072, y: 0.11499822, z: 0.004767624, w: 0.99335396}
+      scale: {x: 1, y: 1.0000005, z: 1.0000001}
+    - name: LeftElbow_JNT
+      parentName: LeftShoulder_JNT
+      position: {x: -0.30305162, y: 7.105427e-16, z: -0.05094389}
+      rotation: {x: 0.000084602616, y: -0.055691004, z: 0.00089093414, w: 0.99844766}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: LeftHand_JNT
+      parentName: LeftElbow_JNT
+      position: {x: -0.42677397, y: -2.842171e-16, z: 0.040508}
+      rotation: {x: -0, y: -0, z: 9.343396e-24, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightHip_JNT
+      parentName: COG_JNT
+      position: {x: -0.0014136157, y: 0.00692587, z: 0.14676253}
+      rotation: {x: -0.00849915, y: 0.0016357896, z: 0.049426123, w: 0.9987403}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: RightKnee_JNT
+      parentName: RightHip_JNT
+      position: {x: -0.089999996, y: -0.4676217, z: 3.5527136e-17}
+      rotation: {x: 3.6379788e-10, y: 1.6940656e-17, z: 0.000000046566118, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: RightFoot_JNT
+      parentName: RightKnee_JNT
+      position: {x: 0.00428721, y: -0.6970821, z: 0}
+      rotation: {x: -0.028939774, y: -0.7073728, z: -0.040959388, w: 0.7050594}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: RightFootEnd_JNT
+      parentName: RightFoot_JNT
+      position: {x: 0.008611584, y: -0.03596508, z: 0.20383961}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: COG_GRP
+      parentName: 1RunningCharacter(Clone)
+      position: {x: -0, y: 1.2443008, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: COG_CTRL
+      parentName: COG_GRP
+      position: {x: -0, y: 0.0679066, z: 0.07496009}
+      rotation: {x: 0.11278832, y: 0.13244589, z: 0.043306466, w: 0.9837995}
+      scale: {x: 30, y: 30, z: 30}
+    - name: Chest_GRP
+      parentName: COG_CTRL
+      position: {x: -0, y: 0.01096935, z: 0.0023171087}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.033333335, y: 0.033333335, z: 0.033333335}
+    - name: Chest_CTRL
+      parentName: Chest_GRP
+      position: {x: -0, y: 0.0049227634, z: 0.016655019}
+      rotation: {x: 0.044583574, y: -0.10005288, z: -0.004487764, w: 0.9939726}
+      scale: {x: 30, y: 30, z: 20}
+    - name: RightShoulder_GRP
+      parentName: Chest_CTRL
+      position: {x: 0.007431071, y: 0.0026244905, z: -0.0064227358}
+      rotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+      scale: {x: 0.033333335, y: 0.033333335, z: 0.05}
+    - name: RightShoulder_CTRL
+      parentName: RightShoulder_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.29907134, y: -0.20281522, z: -0.5189495, w: 0.77467006}
+      scale: {x: 15, y: 15, z: 15}
+    - name: RightElbow_GRP
+      parentName: RightShoulder_CTRL
+      position: {x: -1.7763568e-17, y: 0.020098755, z: -0.0031013822}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.06666667, y: 0.06666667, z: 0.06666667}
+    - name: RightElbow_CTRL
+      parentName: RightElbow_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.7495153, y: 0, z: 0, w: 0.661987}
+      scale: {x: 12, y: 12, z: 12}
+    - name: RightHand_GRP
+      parentName: RightElbow_CTRL
+      position: {x: 0.00011174718, y: 0.035559557, z: 0.0033333334}
+      rotation: {x: 0, y: 0, z: 1, w: -5.0532154e-16}
+      scale: {x: 0.083333336, y: 0.083333336, z: 0.083333336}
+    - name: RightHand_CTRL
+      parentName: RightHand_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.14749247, y: -0.28714582, z: 0.095833816, w: 0.94159925}
+      scale: {x: 10, y: 10, z: 10}
+    - name: LeftShoulder_GRP
+      parentName: Chest_CTRL
+      position: {x: -0.0073947185, y: 0.0026390832, z: -0.0064334604}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+      scale: {x: 0.033333335, y: 0.033333335, z: 0.05}
+    - name: LeftShoulder_CTRL
+      parentName: LeftShoulder_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.37225038, y: -0.059254512, z: 0.45750755, w: 0.80536044}
+      scale: {x: 15, y: 15, z: 15}
+    - name: LeftElbow_GRP
+      parentName: LeftShoulder_CTRL
+      position: {x: -0.00021022139, y: 0.019907773, z: -0.003238806}
+      rotation: {x: 0, y: 0, z: 1, w: 5.0532154e-16}
+      scale: {x: 0.06666667, y: 0.06666667, z: 0.06666667}
+    - name: LeftElbow_CTRL
+      parentName: LeftElbow_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.46644485, y: 0, z: -0, w: 0.88455033}
+      scale: {x: 12, y: 12, z: 12}
+    - name: LeftHand_GRP
+      parentName: LeftElbow_CTRL
+      position: {x: -0.00012411283, y: -0.035661336, z: 0.0035291207}
+      rotation: {x: 0, y: 0, z: 1, w: -5.0532154e-16}
+      scale: {x: 0.083333336, y: 0.083333336, z: 0.083333336}
+    - name: LeftHand_CTRL
+      parentName: LeftHand_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 10, y: 10, z: 10}
+    - name: Head_GRP
+      parentName: Chest_CTRL
+      position: {x: -0, y: 0.012701173, z: -0.0019191342}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.033333335, y: 0.033333335, z: 0.05}
+    - name: Head_CTRL
+      parentName: Head_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.18412293, y: 0, z: -0, w: 0.98290324}
+      scale: {x: 25, y: 25, z: 25}
+    - name: Hair1_GRP
+      parentName: Head_CTRL
+      position: {x: -0, y: 0.0027916622, z: -0.00660989}
+      rotation: {x: 0.38268346, y: -0, z: -0, w: 0.92387956}
+      scale: {x: 0.04, y: 0.04, z: 0.04}
+    - name: Hair1_CTRL
+      parentName: Hair1_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.14490843, y: -0, z: -0, w: 0.9894451}
+      scale: {x: 20, y: 20, z: 20}
+    - name: Hair2_GRP
+      parentName: Hair1_CTRL
+      position: {x: -0, y: -0.015461203, z: 0.000992434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.05, y: 0.05, z: 0.05}
+    - name: Hair2_CTRL
+      parentName: Hair2_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 20, y: 20, z: 20}
+    - name: Hair3_GRP
+      parentName: Hair2_CTRL
+      position: {x: -0, y: -0.012171045, z: -0.0007918606}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.05, y: 0.05, z: 0.05}
+    - name: Hair3_CTRL
+      parentName: Hair3_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 20, y: 20, z: 20}
+    - name: Hair4_GRP
+      parentName: Hair3_CTRL
+      position: {x: -0, y: -0.013711161, z: 0.0003382455}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.05, y: 0.05, z: 0.05}
+    - name: Hair4_CTRL
+      parentName: Hair4_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 18, y: 18, z: 18}
+    - name: Hair5_GRP
+      parentName: Hair4_CTRL
+      position: {x: -0, y: -0.012828215, z: -0.00003141093}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.055555556, y: 0.055555556, z: 0.055555556}
+    - name: Hair5_CTRL
+      parentName: Hair5_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 15, y: 15, z: 15}
+    - name: Hair6_GRP
+      parentName: Hair5_CTRL
+      position: {x: -0, y: -0.016316669, z: -0.0011585535}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.06666667, y: 0.06666667, z: 0.06666667}
+    - name: Hair6_CTRL
+      parentName: Hair6_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 15, y: 12, z: 12}
+    - name: RightHip_GRP
+      parentName: COG_CTRL
+      position: {x: 0.005, y: -0.0029127838, z: -0.00043425045}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.033333335, y: 0.033333335, z: 0.033333335}
+    - name: RightHip_CTRL
+      parentName: RightHip_GRP
+      position: {x: -1.0658141e-16, y: 0, z: 0}
+      rotation: {x: 0.9556948, y: 0, z: 0, w: -0.29435936}
+      scale: {x: 20, y: 20, z: 20}
+    - name: LeftHip_GRP
+      parentName: COG_CTRL
+      position: {x: -0.004333333, y: -0.0029046463, z: -0.000454443}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.033333335, y: 0.033333335, z: 0.033333335}
+    - name: LeftHip_CTRL
+      parentName: LeftHip_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.56640625, z: -0, w: 0.8241262}
+      scale: {x: 20, y: 20, z: 20}
+    - name: imagePlane1
+      parentName: 1RunningCharacter(Clone)
+      position: {x: -0, y: 1.4880363, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 59.73804, y: 59.73804, z: 59.73804}
+    - name: RightFootIKhandle
+      parentName: 1RunningCharacter(Clone)
+      position: {x: -0, y: 0.29957542, z: -0.69737804}
+      rotation: {x: 0.61396706, y: -0, z: -0, w: 0.7893317}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightFoot_GRP
+      parentName: RightFootIKhandle
+      position: {x: 0.15262838, y: 0.02912867, z: -0.00653317}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightFootOS_GRP
+      parentName: RightFoot_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightFoot_GRP
+      parentName: RightFootOS_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightFoot_CTRL
+      parentName: RightFoot_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 12, y: 12, z: 12}
+    - name: ikHandle3
+      parentName: RightFoot_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightLocator
+      parentName: RightFootIKhandle
+      position: {x: 0.15262838, y: 0.6114806, z: 0.37933323}
+      rotation: {x: -0.39367738, y: 0.58738244, z: -0.39367738, w: 0.58738244}
+      scale: {x: 1, y: 1, z: 1}
+    - name: locator1
+      parentName: RightLocator
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftFootIKhandle
+      parentName: 1RunningCharacter(Clone)
+      position: {x: -0, y: 0.16845831, z: 0.38095725}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftFootOS_GRP
+      parentName: LeftFootIKhandle
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftFoot_GRP
+      parentName: LeftFootOS_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftFoot_CTRL
+      parentName: LeftFoot_GRP
+      position: {x: -0.17279245, y: 0.03280731, z: -0.021261405}
+      rotation: {x: 0.0031540834, y: 0.7357794, z: -0.0010415876, w: 0.67721313}
+      scale: {x: 12, y: 12, z: 12}
+    - name: ikHandle2
+      parentName: LeftFoot_GRP
+      position: {x: -0.17279245, y: 0.03280731, z: -0.021261405}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftLocator
+      parentName: LeftFootOS_GRP
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: locator2
+      parentName: LeftLocator
+      position: {x: -0.08278623, y: 0.78197044, z: 0.3864285}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: COG_GRP
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
