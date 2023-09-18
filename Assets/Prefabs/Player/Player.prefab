@@ -821,7 +821,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 357220788120007749, guid: 19fac495a12425a448b03de33eeab52d, type: 3}
-  body: {fileID: 0}
+  body: {fileID: 7079580671633609811}
   orientation: {fileID: 3302166960153660134}
   playerStats: {fileID: 3302166959065098342}
   groundingLayer:
@@ -834,11 +834,6 @@ MonoBehaviour:
   walkControlForce: 1000
   walkAltDirectionMulti: 5
   gravityForce: 80
-  animator:
-    enabled: 0
-    val: {fileID: 0}
-  forwardVelocityParam: 
-  horizontalVelocityParam: 
   movementDir: {x: 0, y: 0, z: 0}
 --- !u!114 &3302166959065098343
 MonoBehaviour:
@@ -868,9 +863,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 10241
   aimDir: {x: 0, y: 0, z: 0}
+  animator:
+    enabled: 0
+    val: {fileID: 0}
   cursor:
     enabled: 0
     val: {fileID: 0}
+  fwVelAnimationKey: fwVel
+  lrVelAnimationKey: lrVel
 --- !u!114 &3302166959065098341
 MonoBehaviour:
   m_ObjectHideFlags: 0
