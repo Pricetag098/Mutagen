@@ -1732,15 +1732,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5891653126606516430}
-  m_LocalRotation: {x: 0.095962055, y: 0.0355474, z: 0.21917054, w: 0.97030514}
-  m_LocalPosition: {x: -0.5089702, y: -2.4050206e-16, z: 1.6209255e-16}
+  m_LocalRotation: {x: 0.10042739, y: 0.019663725, z: 0.3722548, w: 0.9224717}
+  m_LocalPosition: {x: -0.50906146, y: -0.0000072717667, z: -0.00007794332}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2988464927813714133}
   m_Father: {fileID: 8316447484514829589}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.825, y: 6.471, z: 44.509}
 --- !u!1 &5935216669291956001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,12 +2006,15 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   health: {fileID: 0}
+  anim: {fileID: 0}
+  manager: {fileID: 0}
+  invisMat:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
-  anim: {fileID: 0}
-  manager: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -2019,7 +2022,9 @@ MonoBehaviour:
   flanking: 0
   retaliate: 0
   movementMultiplier: 1
-  healthState: 
+  healthState:
+    enabled: 0
+    val: 
   circlingDistance: 5
   actionCooldown: 1
   movementSpeed: 10
