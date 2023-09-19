@@ -24,10 +24,7 @@ public class RotateNode : ActionNode
             (blackboard.rotateTowardsObject.transform.position - agent.transform.position).normalized);
 
         if (angleToPosition < angle)
-        {
-            Debug.Log("Facing");
             return State.Success;
-        }
 
         //agent.agent.SetDestination(player.transform.position);
 

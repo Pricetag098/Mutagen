@@ -17,7 +17,7 @@ public enum CheckType
     groupFacing,
     flanking,
     sightLine,
-    ability,
+    ability
 }
 public enum AbilityCheckType
 {
@@ -31,6 +31,7 @@ public class IfElseNode : CompositeNode
     public CheckType checkType;
     public float distanceCheck;
     public float groupDistance;
+    public float groupCheckDistance;
     int first = 0; int second = 1; //used for readability
     public AbilityCheckType abilityCheck;
     public oneTimeCheck oneTime;
@@ -103,10 +104,10 @@ public class IfElseNode : CompositeNode
         int count = 0;
         for (int i = 0; i < manager.enemyList.Count; i++)
         {
-            if (manager.enemyList[i] != agent)
+            if (manager.enemyList[i] != agent && !manager.enemyList[i].retreating())
             {
                 float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
-                if (dist < groupDistance)
+                if (dist < groupCheckDistance)
                 {
                     count++;
                     average += dist;
@@ -116,8 +117,8 @@ public class IfElseNode : CompositeNode
         if (count == 0)
             return 1000000;
 
-        float returns = average / manager.enemyList.Count;
-        return average / manager.enemyList.Count;
+        average = average / manager.enemyList.Count;
+        return average;
     }
 
     float groupFacingCheck()

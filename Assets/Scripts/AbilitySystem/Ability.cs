@@ -5,9 +5,8 @@ using UnityEngine;
 public enum Element
 {
     None,
-    Gravity,
-    Time,
     Light,
+    Gravity,
     Tech
 }
 

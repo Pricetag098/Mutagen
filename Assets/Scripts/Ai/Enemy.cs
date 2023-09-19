@@ -26,6 +26,24 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
+    [HideInInspector] public bool isRetreating;
+    public bool retreating() 
+    {
+        if (isRetreating)
+        {
+            if(Time.time - lastRetreat > retreatingTimer)
+            {
+                isRetreating = false;
+                return false;
+            }
+            return true;
+        }
+        lastRetreat = Time.time;
+        isRetreating = true;
+        return true;
+    }
+    public float retreatingTimer = 2;
+    float lastRetreat;
 
     [Header("Stats")]
     public float movementMultiplier = 1;
@@ -82,6 +100,9 @@ public class Enemy : MonoBehaviour
 
     void OnDie(DamageData data)
     {
+        manager.enemyList.Remove(this);
+
+
         int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
 
         if (setDrop)
