@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
     public Optional<int[]> healthState;
     public float circlingDistance = 5;
     float defaultSpeed;
+    public bool setDrop; 
+    public int setDropIndex;
 
     [Header("Timers")]
     public float actionCooldown;
@@ -82,7 +84,16 @@ public class Enemy : MonoBehaviour
     {
         int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
 
-        if (caster.caster.abilities[randDrop].pickupPrefab.Enabled)
+        if (setDrop)
+        {
+            GameObject drop = Instantiate(caster.caster.abilities[setDropIndex].pickupPrefab.Value);
+            Vector3 offset = transform.position;
+            offset.y += 1;
+            drop.transform.position = offset;
+        }
+
+
+        if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
         {
             GameObject drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
             Vector3 offset = transform.position;
