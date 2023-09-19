@@ -19,6 +19,7 @@ public class EnemyManager : MonoBehaviour
 
     //stalker stats/refs
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
+    public float seperateDist;
     public int moveCount;
     [HideInInspector] public List<Enemy> moving;
 
@@ -35,13 +36,29 @@ public class EnemyManager : MonoBehaviour
         elementIndex = Random.Range(0, 3);
         for (int i = 0; i < transform.childCount; i++)
         {
-                Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
+            Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
         }
 
-        for(int i = 0; i < enemyList.Count; i++)
+        for (int i = 0; i < enemyList.Count; i++)
         {
             enemyList[i].transform.parent.gameObject.active = false;
         }
+    }
+
+    public Vector3 groupDir(Enemy agent)
+    {
+        Vector3 dir = Vector3.zero;
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            if (enemyList[i] != agent)
+            {
+                float dist = Vector3.Distance(agent.transform.position, enemyList[i].transform.position);
+                if(dist < seperateDist)
+                    dir += agent.transform.position - enemyList[i].transform.position;
+            }
+        }
+
+        return dir.normalized;
     }
     
 
