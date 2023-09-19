@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1433364284239733643
+--- !u!1 &1423998856231553700
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1433364284239733642}
-  - component: {fileID: 1433364284239733641}
-  - component: {fileID: 1433364284239733640}
-  - component: {fileID: 1433364284239733639}
+  - component: {fileID: 1423998856231553701}
+  - component: {fileID: 1423998856231553702}
+  - component: {fileID: 1423998856231553703}
+  - component: {fileID: 1423998856231553704}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1433364284239733642
+--- !u!4 &1423998856231553701
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433364284239733643}
+  m_GameObject: {fileID: 1423998856231553700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,13 +34,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1433364284239733641
+--- !u!114 &1423998856231553702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433364284239733643}
+  m_GameObject: {fileID: 1423998856231553700}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6332ccd5112cc124c9a588db0c481719, type: 3}
@@ -50,31 +50,31 @@ MonoBehaviour:
   floatingTextManager: {fileID: 0}
   player: {fileID: 0}
   assignedElement:
-    enabled: 0
+    enabled: 1
     val: 0
   inFront: []
   moveCount: 1
   moving: []
---- !u!135 &1433364284239733640
+--- !u!135 &1423998856231553703
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433364284239733643}
+  m_GameObject: {fileID: 1423998856231553700}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 30
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1433364284239733639
+--- !u!54 &1423998856231553704
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433364284239733643}
+  m_GameObject: {fileID: 1423998856231553700}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0

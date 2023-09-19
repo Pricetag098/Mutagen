@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Stats")]
     public float movementMultiplier = 1;
+    [Tooltip("In order of lowest to highest")]
     public Optional<int[]> healthState;
     public float circlingDistance = 5;
     float defaultSpeed;
@@ -45,7 +46,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float delayMoveTimer;
 
 
-    private void Start()
+
+    void Start()
     {
         //referencing components
         agent = GetComponent<NavMeshAgent>();
@@ -54,8 +56,6 @@ public class Enemy : MonoBehaviour
         behaviourTree = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
-        //anim = caster.GetComponent<Animator>();
-
 
         health.OnHit += OnHit;
         health.OnDeath += OnDie; 
@@ -67,13 +67,10 @@ public class Enemy : MonoBehaviour
         behaviourTree.tree = newTree.Clone();
     }
 
-    public void Update()
+    void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            caster.caster.DisableCast(5);
-        }
+
+
     }
 
     void OnHit(DamageData data)

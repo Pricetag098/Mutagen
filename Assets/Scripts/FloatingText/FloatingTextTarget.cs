@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Projectile;
 
 public class FloatingTextTarget : MonoBehaviour
 {
@@ -24,6 +23,4 @@ public class FloatingTextTarget : MonoBehaviour
         data.target = this.gameObject;
         textManager.Show(data);
     }
-
-
 }
