@@ -9,7 +9,7 @@ public class ChangeBehaviourTreeEvent : Event
 
     public override void Play(Enemy agent)
     {
-        base.Play(agent);
+        used = true;
         agent.behaviourTree.tree = newTree.Clone();
     }
 }

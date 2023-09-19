@@ -17,7 +17,7 @@ public enum CheckType
     groupFacing,
     flanking,
     sightLine,
-    ability
+    ability,
 }
 public enum AbilityCheckType
 {
@@ -33,6 +33,13 @@ public class IfElseNode : CompositeNode
     public float groupDistance;
     int first = 0; int second = 1; //used for readability
     public AbilityCheckType abilityCheck;
+    public oneTimeCheck oneTime;
+    public enum oneTimeCheck
+    {
+        Null,
+        Doing,
+        Completed,
+    };
 
     protected override void OnStart()
     {
@@ -77,8 +84,13 @@ public class IfElseNode : CompositeNode
     {
         for (int i = 0; i < agent.healthState.Value.Length; i++)
         {
+            if (i == agent.healthState.Value.Length - 1) return i;
+
             if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
             {
+                if (oneTime == oneTimeCheck.Doing)
+                    oneTime = oneTimeCheck.Completed;
+
                 return i + 1;
             }
         }
@@ -171,6 +183,9 @@ public class IfElseNode : CompositeNode
     
     protected override State OnUpdate()
     {
+        if (oneTime != oneTimeCheck.Null && oneTime == oneTimeCheck.Completed)
+            ChildUpdate(0);
+
         switch (checkType)
         {
             #region distanceChecks

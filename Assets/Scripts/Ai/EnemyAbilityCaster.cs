@@ -63,7 +63,6 @@ public class EnemyAbilityCaster : MonoBehaviour
             {
                 highWeight = weight;
                 curAbility = caster.abilities[i];
-                Debug.Log(curAbility.name);
             }
         }
     }
