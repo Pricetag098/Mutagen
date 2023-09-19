@@ -790,9 +790,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 10241
   aimDir: {x: 0, y: 0, z: 0}
+  animator:
+    enabled: 0
+    val: {fileID: 1152481481284940205}
   cursor:
     enabled: 0
     val: {fileID: 0}
+  fwVelAnimationKey: fwVel
+  lrVelAnimationKey: lrVel
 --- !u!114 &3302166959065098341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +896,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   animator:
     enabled: 0
-    val: {fileID: 0}
+    val: {fileID: 1152481481284940205}
   ownerHealth: {fileID: 3302166959065098347}
   rigidbody:
     enabled: 1
