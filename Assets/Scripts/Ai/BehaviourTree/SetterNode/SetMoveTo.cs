@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-//using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public enum TargetType
 {
     player,
     self,
     away_danger,
-    //dash_player,
-    //dash_danger
+    group
 };
 
 public class SetMoveTo : SetterNode
@@ -27,7 +25,7 @@ public class SetMoveTo : SetterNode
     protected override void OnStop()
     {
 
-    }
+    }    
 
     protected override State OnUpdate()
     {
@@ -53,6 +51,10 @@ public class SetMoveTo : SetterNode
                 break;
             case TargetType.away_danger:
                 blackboard.moveToPosition = agent.transform.position + -(agent.dangerObject.transform.position - agent.transform.position).normalized;
+                break;
+            case TargetType.group:
+                blackboard.moveToPosition = agent.transform.position + manager.groupDir(agent) * awaySpeed;
+                Debug.Log("Group1");
                 break;
         }
 
