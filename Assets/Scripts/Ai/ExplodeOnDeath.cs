@@ -7,7 +7,8 @@ public class ExplodeOnDeath : MonoBehaviour
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float radius;
     [SerializeField] DamageData damage;
-    
+
+    [SerializeField] bool explodeOnAnyElement = true;
     [SerializeField] VfxSpawnRequest vfx;
     [SerializeField] DamageData damage2;
     [SerializeField] VfxSpawnRequest vfx2;
@@ -38,6 +39,8 @@ public class ExplodeOnDeath : MonoBehaviour
         }
         else
         {
+            if (!explodeOnAnyElement)
+                return;
             vfx.Play(transform.position, Vector3.up);
             List<Health> healths = new List<Health>();
             Collider[] hits = Physics.OverlapSphere(transform.position, radius, targetLayers);
