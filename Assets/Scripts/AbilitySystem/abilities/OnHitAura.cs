@@ -29,13 +29,14 @@ public class OnHitAura : MonoBehaviour
 
         timer.Reset();
         List<Health> healths = new List<Health>();
+        
         Collider[] hits = Physics.OverlapSphere(transform.position, radius, targetLayers);
         foreach (Collider hit in hits)
         {
             HitBox hb;
             if (hit.GetComponent<Collider>().TryGetComponent(out hb))
             {
-                if (healths.Contains(hb.health))
+                if (healths.Contains(hb.health) || hb.health.gameObject == gameObject)
                 {
                     continue;
                 }
