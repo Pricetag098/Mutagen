@@ -2,29 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-//using static UnityEditor.Rendering.FilterWindow;
 
 public class FloatingTextManager : MonoBehaviour
 {
     [Header("References")]
-    public GameObject textContainer;
-    public ObjectPooler pooler;
+    [HideInInspector] public ObjectPooler pooler;
     public FloatingTextSettings settings;
     public int poolSize;
-    [HideInInspector] public List<FloatingText> floatingTexts = new List<FloatingText>(5);
+    [HideInInspector] public List<FloatingText> floatingTexts = new List<FloatingText>();
 
     private void Start()
     {
         FindObjectOfType<PlayerAbilityCaster>().GetComponent<FloatingTextTarget>().textManager = this;
-        pooler = new GameObject().AddComponent<ObjectPooler>();
+
+        pooler = GetComponent<ObjectPooler>();
         pooler.CreatePool(settings.textPrefab, poolSize);
+
+        for(int i = 0; i < poolSize; i++)
+        {
+            FloatingText txt = GetFloatingText();
+            txt.Hide();
+        }
     }
 
     private void FixedUpdate()
     {
         foreach(FloatingText txt in floatingTexts)
         {
-            txt.UpdateFloatingText();
+            txt.UpdateFloatingText();          
         }
     }
 
@@ -63,7 +68,7 @@ public class FloatingTextManager : MonoBehaviour
         {
             txt = new FloatingText();
             txt.go = pooler.Spawn();
-            txt.go.transform.SetParent(textContainer.transform);
+            txt.go.transform.SetParent(transform);
             txt.txt = txt.go.GetComponent<TextMeshProUGUI>();
             txt.manager = this;
             floatingTexts.Add(txt);

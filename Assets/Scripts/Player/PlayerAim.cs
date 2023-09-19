@@ -9,9 +9,11 @@ public class PlayerAim : MonoBehaviour
 	[SerializeField] LayerMask validRayLayers = 1;
     PlayerMovement playerMovement;
     public Vector3 aimDir;
-
+	[SerializeField] Optional<Animator> animator;
+	Rigidbody rb;
 	public Optional<Image> cursor;
-
+	[SerializeField] string fwVelAnimationKey = "fwVel";
+	[SerializeField] string lrVelAnimationKey = "lrVel";
 	float angleConstant;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class PlayerAim : MonoBehaviour
 		angleConstant = Camera.main.transform.rotation.eulerAngles.x;
 		angleConstant = Mathf.Tan(angleConstant * Mathf.Deg2Rad);
 		angleConstant = 1 / angleConstant;
+		rb = GetComponent<Rigidbody>();
 	}
 
 	private void OnEnable()
@@ -63,6 +66,17 @@ public class PlayerAim : MonoBehaviour
 			aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
 		}
 		playerMovement.body.transform.forward = aimDir;
+	}
+
+	private void Update()
+	{
+		float fwVel = Vector3.Dot(aimDir, rb.velocity);
+		float lrVel = Vector3.Dot(Vector3.Cross(aimDir,Vector3.up),rb.velocity);
+		if (animator.Enabled)
+		{
+			animator.Value.SetFloat(fwVelAnimationKey, fwVel);
+			animator.Value.SetFloat(lrVelAnimationKey, lrVel);
+		}
 	}
 
 	private void OnDestroy()

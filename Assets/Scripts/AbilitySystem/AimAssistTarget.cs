@@ -40,7 +40,7 @@ public class AimAssistTarget : MonoBehaviour
 		switch (velSource) 
         { 
             case VelSources.rigidBody: return rb.velocity;
-            case VelSources.ai: return agent.velocity;
+            case VelSources.ai: return agent.enabled ? agent.velocity : Vector3.zero;
             case VelSources.position: return velocity;
             default: return Vector3.zero;
         }

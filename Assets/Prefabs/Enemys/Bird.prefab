@@ -427,7 +427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1592605977087693756
 Transform:
   m_ObjectHideFlags: 0
@@ -435,7 +435,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592605977087693635}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 84.466644, y: 38.707664, z: 40.836384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1054,7 +1054,7 @@ GameObject:
   - component: {fileID: 3109258454431184228}
   - component: {fileID: 3109258454431184231}
   - component: {fileID: 3109258455316525588}
-  - component: {fileID: 4881054319408014951}
+  - component: {fileID: 8630449307238892081}
   m_Layer: 6
   m_Name: Nav
   m_TagString: Untagged
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   health: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 469585395277284949}
   manager: {fileID: 0}
   invisMat:
     enabled: 0
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textManager: {fileID: 0}
---- !u!114 &4881054319408014951
+--- !u!114 &8630449307238892081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1247,10 +1247,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3688869026341188912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2bda3ea914bfe48b8ddecfa290d1b7, type: 3}
+  m_Script: {fileID: 11500000, guid: d8b825a864436984db0d2dcc3e670e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1592605977087693635}
+  hb: {fileID: 8496643042579400190}
+  colliders:
+  - {fileID: 5278532293565700822}
+  render:
+  - {fileID: 1613492445950299957}
+  fadeRate: 1.5
+  ragdollForce: 2
 --- !u!1 &3857585269822018926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1630,8 @@ GameObject:
   - component: {fileID: 4758841957178474604}
   - component: {fileID: 469585395277284949}
   - component: {fileID: 8248539985872841530}
+  - component: {fileID: 3933291890068804045}
+  - component: {fileID: 6061417505515301808}
   m_Layer: 0
   m_Name: shoebill blockout 005 with rig
   m_TagString: Untagged
@@ -1687,6 +1695,35 @@ MonoBehaviour:
   - m_Rig: {fileID: 745140749036947220}
     m_Active: 1
   m_Effectors: []
+--- !u!54 &3933291890068804045
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278532293565700822}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &6061417505515301808
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278532293565700822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.5, y: 3, z: 0}
 --- !u!1 &5797534608963550737
 GameObject:
   m_ObjectHideFlags: 0

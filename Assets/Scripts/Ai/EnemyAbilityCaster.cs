@@ -6,7 +6,7 @@ public class EnemyAbilityCaster : MonoBehaviour
 {
     [Header("References")]
     [HideInInspector] public AbilityCaster caster;
-    [SerializeField] Loadout curLoadout; //shown for debugging
+    public Loadout curLoadout;
     [Tooltip("Keep loadouts in order of Normal, Light, Gravity, Tech")]
     public Loadout[] loadoutVariations;
     Enemy enemy;
@@ -63,7 +63,6 @@ public class EnemyAbilityCaster : MonoBehaviour
             {
                 highWeight = weight;
                 curAbility = caster.abilities[i];
-                Debug.Log(curAbility.name);
             }
         }
     }
