@@ -235,12 +235,15 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   health: {fileID: 0}
+  anim: {fileID: 0}
+  manager: {fileID: 0}
+  invisMat:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
-  anim: {fileID: 0}
-  manager: {fileID: 0}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -274,9 +277,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
   curLoadout: {fileID: 0}
-  loadoutVariations: []
+  loadoutVariations:
+  - {fileID: 11400000, guid: b5e666755e0c102438d8037d8cda9e8d, type: 2}
+  - {fileID: 11400000, guid: a6a71ebdee8dd7d44ab4a9c827b0e9e6, type: 2}
+  - {fileID: 11400000, guid: 3e004bbd7b92404449327b4cac4575b3, type: 2}
+  - {fileID: 11400000, guid: e760e73a2ecc27c4ba54c6268a19f926, type: 2}
   castOrigin: {fileID: 845482942551037442}
+  curAbility: {fileID: 0}
   projectileDeviation: 10
+  rangedDeterence: 0
+  repeatDeterence: 0
+  distanceMultiplier: 0
+  innerRange: 0
+  chanceDeductionRange: 0
 --- !u!114 &766449932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89f7527bc9b5634d8cbe418e4da0299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 95d551b8267195a429a464667d57be85, type: 2}
+  tree: {fileID: 11400000, guid: ef39649670a12a54ab5ed038020d38dc, type: 2}
 --- !u!114 &766449933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 0}
+  - {fileID: 0}
   animator:
     enabled: 0
     val: {fileID: 0}
@@ -330,6 +344,7 @@ MonoBehaviour:
   rigidbody:
     enabled: 0
     val: {fileID: 0}
+  castBool: 1
   baseAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
 --- !u!114 &1726635645
 MonoBehaviour:
