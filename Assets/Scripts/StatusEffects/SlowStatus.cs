@@ -5,10 +5,13 @@ using UnityEngine;
 public class SlowStatus : StatusEffect
 {
     public float slowPercent = 1;
+    public float duration;
 
+    Timer timer;
     protected override void OnAdd()
     {
-        if(health.TryGetComponent(out Enemy enemy))
+        timer = new Timer(duration, false);
+        if (health.TryGetComponent(out Enemy enemy))
         {
             enemy.movementMultiplier -= slowPercent;
         }
@@ -16,6 +19,12 @@ public class SlowStatus : StatusEffect
         {
             playerStats.speedMulti -= slowPercent;
         }
+    }
+    public override void Tick()
+    {
+        if (timer.complete)
+            health.RemoveStatusEffect(this);
+
     }
     protected override void OnRemove()
     {
@@ -41,5 +50,6 @@ public class SlowStatus : StatusEffect
             playerStats.speedMulti -= slowStatus.slowPercent;
         }
         slowPercent += slowStatus.slowPercent;
+        timer.maxTime += slowStatus.duration;
     }
 }
