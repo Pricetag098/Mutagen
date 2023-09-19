@@ -1200,6 +1200,8 @@ GameObject:
   - component: {fileID: 2632990004301316659}
   - component: {fileID: 2094660047686689200}
   - component: {fileID: 8110280998305819554}
+  - component: {fileID: 5272749216697541724}
+  - component: {fileID: 4423117867926224807}
   m_Layer: 0
   m_Name: DeerForAlfondle
   m_TagString: Untagged
@@ -1262,6 +1264,36 @@ MonoBehaviour:
   - m_Rig: {fileID: 8080761072168347898}
     m_Active: 1
   m_Effectors: []
+--- !u!136 &5272749216697541724
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441193055107455113}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 1
+  m_Height: 3.86
+  m_Direction: 2
+  m_Center: {x: 0, y: 1.73, z: 0}
+--- !u!54 &4423117867926224807
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441193055107455113}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3497352518148543688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,8 +1610,8 @@ GameObject:
   - component: {fileID: 647904883047142289}
   - component: {fileID: 647904883047142290}
   - component: {fileID: 647904883047142291}
-  - component: {fileID: 4079052344334723192}
   - component: {fileID: 1744176796866398432}
+  - component: {fileID: 7638721380246561957}
   m_Layer: 6
   m_Name: Nav
   m_TagString: Untagged
@@ -1744,6 +1776,8 @@ MonoBehaviour:
     enabled: 0
     val: 
   circlingDistance: 5
+  setDrop: 1
+  setDropIndex: 1
   actionCooldown: 1.5
   movementSpeed: 20
   movementCooldown: 1
@@ -1752,19 +1786,6 @@ MonoBehaviour:
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
---- !u!114 &4079052344334723192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4612950867557837820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2bda3ea914bfe48b8ddecfa290d1b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 7291066357127662991}
 --- !u!114 &1744176796866398432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,6 +1799,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textManager: {fileID: 0}
+--- !u!114 &7638721380246561957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612950867557837820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b825a864436984db0d2dcc3e670e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hb: {fileID: 495153374445034290}
+  colliders:
+  - {fileID: 3441193055107455113}
+  render:
+  - {fileID: 7412119237863741989}
+  fadeRate: 1.5
+  ragdollForce: 1.2
 --- !u!1 &4640020522738667171
 GameObject:
   m_ObjectHideFlags: 0
