@@ -15,11 +15,16 @@ public class PlayerAbilityCaster : MonoBehaviour
 	PlayerAim aim;
 	PlayerMovement movement;
     [SerializeField] Optional<AbilityDisplay> display;
+
+	private void Awake()
+	{
+		caster = GetComponent<AbilityCaster>();
+	}
 	private void Start()
 	{
 		aim = GetComponent<PlayerAim>();
 		movement = GetComponent<PlayerMovement>();
-		caster = GetComponent<AbilityCaster>();
+		
 		if (display.Enabled)
 			display.Value.UpdateUI(caster.abilities);
 	}
