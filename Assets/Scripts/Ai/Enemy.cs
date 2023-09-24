@@ -13,11 +13,13 @@ public class Enemy : MonoBehaviour
     public Animator anim;
     public EnemyManager manager;
     public Optional<Material> invisMat;
+    public Optional<PipeColourChanger> pipeColourChanger;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject;
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
+    public GameObject[] randoms;
 
     //behaviour bools
     [HideInInspector] public bool isMoving;
@@ -26,24 +28,11 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
-    [HideInInspector] public bool isRetreating;
-    public bool retreating() 
-    {
-        if (isRetreating)
-        {
-            if(Time.time - lastRetreat > retreatingTimer)
-            {
-                isRetreating = false;
-                return false;
-            }
-            return true;
-        }
-        lastRetreat = Time.time;
-        isRetreating = true;
-        return true;
-    }
+
+    [Header("Declutter Stats")]
+    [HideInInspector] public bool isSeperating;
     public float retreatingTimer = 2;
-    float lastRetreat;
+    float lastSeperate;
 
     [Header("Stats")]
     public float movementMultiplier = 1;
@@ -66,7 +55,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float delayMoveTimer;
 
 
-
     void Start()
     {
         //referencing components
@@ -77,9 +65,52 @@ public class Enemy : MonoBehaviour
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
 
+        Randomize();
+
         health.OnHit += OnHit;
         health.OnDeath += OnDie; 
         defaultSpeed = movementSpeed;
+    }
+
+    void Randomize()
+    {
+        //objects are kept active to help with designing, then disabled here
+        //for (int i = 0; i < randoms.Length; i++)
+        //{
+        //    randoms[i].active = false;
+        //}
+
+
+
+        int activeCount = Random.Range(1, 3);
+        Debug.Log(activeCount);
+        for(int i = 0; i < activeCount; i++)
+        {
+            int active = Random.Range(0, 3);
+            if (!randoms[active].active)
+            {
+                if (active != 2)
+                    active++;
+                else
+                    active = 0;
+            }
+                randoms[active].active = false;
+        }
+
+        activeCount = Random.Range(0, 3);
+        Debug.Log(activeCount);
+        for (int i = 0; i < activeCount; i++)
+        {
+            int active = Random.Range(3, 6);
+            if (!randoms[active].active)
+            {
+                if (active != 5)
+                    active++;
+                else
+                    active = 0;
+            }
+                randoms[active].active = false;
+        }
     }
 
     public void BindTree(BehaviourTree newTree)
@@ -144,6 +175,22 @@ public class Enemy : MonoBehaviour
     public void KnockBack(Vector3 knockbackDirection) //set the ai's nav object position to give "skitter" effect
     {
         transform.position +=  knockbackDirection;
+    }
+
+    public bool seperating()
+    {
+        if (isSeperating)
+        {
+            if (Time.time - lastSeperate > retreatingTimer)
+            {
+                isSeperating = false;
+                return false;
+            }
+            return true;
+        }
+        lastSeperate = Time.time;
+        isSeperating = true;
+        return true;
     }
 
     private void OnTriggerEnter(Collider other)

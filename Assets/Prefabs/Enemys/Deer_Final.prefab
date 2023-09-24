@@ -90,7 +90,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &644643851730171809
 GameObject:
@@ -1305,6 +1305,7 @@ GameObject:
   - component: {fileID: 7559546584225299483}
   - component: {fileID: 9088010546826795165}
   - component: {fileID: 1238117163977272138}
+  - component: {fileID: 605590364893699231}
   m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
@@ -1372,6 +1373,26 @@ MonoBehaviour:
   updateVals: 0
   fixedUpdate: 1
   target: {fileID: 4011060687625559464}
+--- !u!114 &605590364893699231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497352518148543688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c490e37aaf29e17449a16e694b687a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pipesMat:
+  - {fileID: 4566020619569398759}
+  - {fileID: 4517970578455601118}
+  - {fileID: 4340338138302135150}
+  tempFix:
+  - {fileID: 2100000, guid: 3bd2012c322c57d4bb13362d62eaed7f, type: 2}
+  - {fileID: 2100000, guid: 1480bde6afd99d24b8b3b533a0c4d7be, type: 2}
+  testColor: {r: 1, g: 0, b: 0.4448824, a: 1}
 --- !u!1 &3734845702381607873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,12 +1784,21 @@ MonoBehaviour:
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+  - {fileID: 7660361672389595297}
+  - {fileID: 9117639578113799898}
+  - {fileID: 7263695957169262184}
+  - {fileID: 7815873756385598223}
+  - {fileID: 1205097987562141975}
+  - {fileID: 8733507102099710937}
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
+  isSeperating: 0
+  retreatingTimer: 2
   movementMultiplier: 1
   healthState:
     enabled: 0

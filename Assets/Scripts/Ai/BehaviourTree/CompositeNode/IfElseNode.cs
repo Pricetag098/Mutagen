@@ -104,7 +104,7 @@ public class IfElseNode : CompositeNode
         int count = 0;
         for (int i = 0; i < manager.enemyList.Count; i++)
         {
-            if (manager.enemyList[i] != agent && !manager.enemyList[i].retreating())
+            if (manager.enemyList[i] != agent && !manager.enemyList[i].seperating())
             {
                 float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
                 if (dist < groupCheckDistance)

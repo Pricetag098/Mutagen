@@ -437,17 +437,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -924,17 +928,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -1277,17 +1285,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -1533,17 +1545,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -1595,6 +1611,7 @@ MonoBehaviour:
   assignedElement:
     enabled: 0
     val: 0
+  elementColours: []
   inFront: []
   seperateDist: 0
   moveCount: 1
@@ -1781,6 +1798,30 @@ PrefabInstance:
       propertyPath: floatingTextManager
       value: 
       objectReference: {fileID: 627584704}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: assignedElement.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1480bde6afd99d24b8b3b533a0c4d7be, type: 2}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bd2012c322c57d4bb13362d62eaed7f, type: 2}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: a20c3a415148abc45b23f28f6a0390b0, type: 2}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 375679de74e24354d81d92207fad936d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09b9895357bc004289e9811235e02a5, type: 3}
 --- !u!1 &726065742
@@ -2003,6 +2044,7 @@ MonoBehaviour:
   assignedElement:
     enabled: 0
     val: 0
+  elementColours: []
   inFront: []
   seperateDist: 0
   moveCount: 0
@@ -2207,17 +2249,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -2288,6 +2334,17 @@ Transform:
   m_Father: {fileID: 1465496443}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &882093944 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 605590364893699231, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
+  m_PrefabInstance: {fileID: 987148386}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c490e37aaf29e17449a16e694b687a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &896568916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4412503601567956949, guid: 1eb54d8d85aca23438966995d4cc5aff, type: 3}
@@ -2472,6 +2529,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1223064534}
     m_Modifications:
+    - target: {fileID: 647904883047142291, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
+      propertyPath: pipeColourChanger.val
+      value: 
+      objectReference: {fileID: 882093944}
+    - target: {fileID: 647904883047142291, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
+      propertyPath: pipeColourChanger.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3067,67 +3132,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1423998856231553701, guid: d09b9895357bc004289e9811235e02a5, type: 3}
   m_PrefabInstance: {fileID: 722125000}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1288412006
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1223064534}
-    m_Modifications:
-    - target: {fileID: 647904883047142291, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1961595581}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 33.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662991, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_Name
-      value: Deer_Final (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
 --- !u!1 &1330994452
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,17 +4151,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -4179,63 +4187,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6923498956041676626, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
   m_PrefabInstance: {fileID: 1635515854}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1753811470
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1223064534}
-    m_Modifications:
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 38.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662991, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_Name
-      value: Deer_Final (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
 --- !u!1 &1761336678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,6 +4304,7 @@ MonoBehaviour:
   assignedElement:
     enabled: 0
     val: 0
+  elementColours: []
   inFront: []
   seperateDist: 0
   moveCount: 0
@@ -9855,17 +9807,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -10069,17 +10025,21 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:

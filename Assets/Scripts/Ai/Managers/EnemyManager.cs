@@ -13,6 +13,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Element")]
     int elementIndex;
     public Optional<Element> assignedElement;
+    public Material[] elementColours;
 
     //detection stat
     bool activated;
@@ -34,6 +35,7 @@ public class EnemyManager : MonoBehaviour
     protected void Awake()
     {
         elementIndex = Random.Range(0, 3);
+        Debug.Log(elementIndex);
         for (int i = 0; i < transform.childCount; i++)
         {
             Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
@@ -60,7 +62,6 @@ public class EnemyManager : MonoBehaviour
 
         return dir.normalized;
     }
-    
 
     public void Add(Enemy agent)
     {
@@ -74,6 +75,8 @@ public class EnemyManager : MonoBehaviour
         if (assignedElement.Enabled)
         {
             int value = (int)assignedElement.Value;
+            agent.pipeColourChanger.Value.Change(elementColours[value]);
+            //renderer.SetColor("Emissive", elementColours[value]);
             caster.AssignLoadout(caster.loadoutVariations[value]);
             return;
         }
@@ -84,6 +87,8 @@ public class EnemyManager : MonoBehaviour
         else 
             caster.AssignLoadout(caster.loadoutVariations[0]);
 
+        agent.pipeColourChanger.Value.Change(elementColours[elementIndex]);
+        //renderer.SetColor("Emissive", elementColours[elementIndex]);
     }
 
     private void FixedUpdate()
