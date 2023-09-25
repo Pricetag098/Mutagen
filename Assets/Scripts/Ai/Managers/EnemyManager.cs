@@ -70,6 +70,10 @@ public class EnemyManager : MonoBehaviour
         agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
         agent.player = player;
 
+
+        if (!agent.pipeColourChanger.Enabled)
+            return;
+
         EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
 
         if (assignedElement.Enabled)

@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
-    public GameObject[] randoms;
+    public Optional<GameObject[]> randoms;
 
     //behaviour bools
     [HideInInspector] public bool isMoving;
@@ -47,12 +47,14 @@ public class Enemy : MonoBehaviour
     public float actionCooldown;
     public float movementSpeed;
     public float movementCooldown;
+    public float retaliateCooldown;
     [Range(0f,10f)]
     public float delayMoveRange;
     [HideInInspector] public float defaultMovementSpeed;
     [HideInInspector] public float actionTimer;
     [HideInInspector] public float movementTimer;
     [HideInInspector] public float delayMoveTimer;
+    [HideInInspector] public float retaliateTimer;
 
 
     void Start()
@@ -74,27 +76,22 @@ public class Enemy : MonoBehaviour
 
     void Randomize()
     {
-        //objects are kept active to help with designing, then disabled here
-        //for (int i = 0; i < randoms.Length; i++)
-        //{
-        //    randoms[i].active = false;
-        //}
-
-
+        if (!randoms.Enabled)
+            return;
 
         int activeCount = Random.Range(1, 3);
         Debug.Log(activeCount);
         for(int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(0, 3);
-            if (!randoms[active].active)
+            if (!randoms.Value[active].active)
             {
                 if (active != 2)
                     active++;
                 else
                     active = 0;
             }
-                randoms[active].active = false;
+                randoms.Value[active].active = false;
         }
 
         activeCount = Random.Range(0, 3);
@@ -102,14 +99,14 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(3, 6);
-            if (!randoms[active].active)
+            if (!randoms.Value[active].active)
             {
                 if (active != 5)
                     active++;
                 else
                     active = 0;
             }
-                randoms[active].active = false;
+                randoms.Value[active].active = false;
         }
     }
 
@@ -127,6 +124,7 @@ public class Enemy : MonoBehaviour
     void OnHit(DamageData data)
     {
         retaliate = true;
+        retaliateTimer = Time.time;
     }
 
     void OnDie(DamageData data)
@@ -177,7 +175,7 @@ public class Enemy : MonoBehaviour
         transform.position +=  knockbackDirection;
     }
 
-    public bool seperating()
+    public bool Seperating()
     {
         if (isSeperating)
         {
