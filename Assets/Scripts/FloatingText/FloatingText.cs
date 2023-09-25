@@ -47,15 +47,7 @@ public class FloatingText
 
         float textDivide = damage % 10;
 
-        //will create cleaner way of defining
-        if (damage <= 9)
-            txt.text = damage.ToString().Substring(0, 1);
-        else if (damage < 100)
-            txt.text = damage.ToString().Substring(0, 2);
-        else if (damage < 1000)
-            txt.text = damage.ToString().Substring(0, 3);
-        else 
-            txt.text = damage.ToString().Substring(0,4);
+        txt.text = ((int)damage).ToString();
 
         lastShown = Time.time - manager.settings.addedMergeDuration;
         other.Hide();

@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public Optional<PipeColourChanger> pipeColourChanger;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject;
-    [HideInInspector] public BehaviourTreeRunner behaviourTree;
+    public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
     public Optional<GameObject[]> randoms;
@@ -84,8 +84,6 @@ public class Enemy : MonoBehaviour
 
     public void Deactivate()
     {
-
-
         behaviourTree.enabled = false;
         this.enabled = false;
     }

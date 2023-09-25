@@ -47,7 +47,6 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemyList.Count; i++)
         {
             enemyList[i].Deactivate();
-
             //enemyList[i].transform.parent.gameObject.active = false;
         }
     }
