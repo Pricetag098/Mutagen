@@ -437,17 +437,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -459,11 +465,13 @@ MonoBehaviour:
   actionCooldown: 1
   movementSpeed: 10
   movementCooldown: 1
+  retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!114 &233376910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +491,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 0
   distanceMultiplier: 0
   innerRange: 0
@@ -900,6 +909,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 0
   distanceMultiplier: 0
   innerRange: 0
@@ -924,17 +934,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -946,11 +962,13 @@ MonoBehaviour:
   actionCooldown: 1
   movementSpeed: 10
   movementCooldown: 1
+  retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!1 &509665984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,7 +1028,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 524149288}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.24, z: 0}
+  m_LocalPosition: {x: 21.69, y: 1.24, z: 0}
   m_LocalScale: {x: 8.8577, y: 8.8577, z: 8.8577}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1253,6 +1271,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 0
   distanceMultiplier: 0
   innerRange: 0
@@ -1277,17 +1296,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -1299,11 +1324,13 @@ MonoBehaviour:
   actionCooldown: 1
   movementSpeed: 10
   movementCooldown: 1
+  retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!114 &608274234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,6 +1536,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 0
   distanceMultiplier: 0
   innerRange: 0
@@ -1533,17 +1561,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -1555,11 +1589,13 @@ MonoBehaviour:
   actionCooldown: 1
   movementSpeed: 10
   movementCooldown: 1
+  retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!1 &706876119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,6 +1631,7 @@ MonoBehaviour:
   assignedElement:
     enabled: 0
     val: 0
+  elementColours: []
   inFront: []
   seperateDist: 0
   moveCount: 1
@@ -1718,6 +1755,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7913598835283695161, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
   m_PrefabInstance: {fileID: 1824858087}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &715710675 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
+  m_PrefabInstance: {fileID: 987148386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &722125000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1728,6 +1770,10 @@ PrefabInstance:
     - target: {fileID: 1423998856231553700, guid: d09b9895357bc004289e9811235e02a5, type: 3}
       propertyPath: m_Name
       value: EnemyManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423998856231553700, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1423998856231553701, guid: d09b9895357bc004289e9811235e02a5, type: 3}
       propertyPath: m_RootOrder
@@ -1781,6 +1827,30 @@ PrefabInstance:
       propertyPath: floatingTextManager
       value: 
       objectReference: {fileID: 627584704}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: assignedElement.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1480bde6afd99d24b8b3b533a0c4d7be, type: 2}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bd2012c322c57d4bb13362d62eaed7f, type: 2}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: a20c3a415148abc45b23f28f6a0390b0, type: 2}
+    - target: {fileID: 1423998856231553702, guid: d09b9895357bc004289e9811235e02a5, type: 3}
+      propertyPath: elementColours.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 375679de74e24354d81d92207fad936d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09b9895357bc004289e9811235e02a5, type: 3}
 --- !u!1 &726065742
@@ -2003,6 +2073,7 @@ MonoBehaviour:
   assignedElement:
     enabled: 0
     val: 0
+  elementColours: []
   inFront: []
   seperateDist: 0
   moveCount: 0
@@ -2183,6 +2254,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 10
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 5
   distanceMultiplier: 0
   innerRange: 0
@@ -2207,17 +2279,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -2229,11 +2307,13 @@ MonoBehaviour:
   actionCooldown: 2.5
   movementSpeed: 15
   movementCooldown: 1.5
+  retaliateCooldown: 0
   delayMoveRange: 2.97
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!195 &854425206
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2470,23 +2550,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1223064534}
+    m_TransformParent: {fileID: 1861590287}
     m_Modifications:
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: 62.966644
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 38.017666
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19
+      value: 48.266384
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2494,15 +2574,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2519,6 +2599,10 @@ PrefabInstance:
     - target: {fileID: 7291066357127662991, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
       propertyPath: m_Name
       value: Deer_Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 7291066357127662991, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
@@ -3067,67 +3151,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1423998856231553701, guid: d09b9895357bc004289e9811235e02a5, type: 3}
   m_PrefabInstance: {fileID: 722125000}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1288412006
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1223064534}
-    m_Modifications:
-    - target: {fileID: 647904883047142291, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1961595581}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -16.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 33.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662991, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_Name
-      value: Deer_Final (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
 --- !u!1 &1330994452
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,6 +3456,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 0
   distanceMultiplier: 0
   innerRange: 0
@@ -4123,6 +4147,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 0
   distanceMultiplier: 0
   innerRange: 0
@@ -4147,17 +4172,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -4169,73 +4200,18 @@ MonoBehaviour:
   actionCooldown: 1
   movementSpeed: 10
   movementCooldown: 1
+  retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!4 &1732050471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6923498956041676626, guid: 42765f688a1189949aaa9bbe9a9ca549, type: 3}
   m_PrefabInstance: {fileID: 1635515854}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1753811470
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1223064534}
-    m_Modifications:
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 38.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662960, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7291066357127662991, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
-      propertyPath: m_Name
-      value: Deer_Final (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cb2434abce0755d4e9b066049cd4d37e, type: 3}
 --- !u!1 &1761336678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,6 +4329,7 @@ MonoBehaviour:
   assignedElement:
     enabled: 0
     val: 0
+  elementColours: []
   inFront: []
   seperateDist: 0
   moveCount: 0
@@ -4530,6 +4507,7 @@ Transform:
   - {fileID: 1133058611459247863}
   - {fileID: 7946562672035237671}
   - {fileID: 165893868553483506}
+  - {fileID: 715710675}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7294,6 +7272,71 @@ Transform:
   m_Father: {fileID: 5753567422317650856}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3005109054806423959
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1223064534}
+    m_Modifications:
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610158, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610193, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_Name
+      value: Boss_FirstPass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1911991460784610193, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600188827786855821, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1961595581}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a85d31daec4cc049ae9f352f36fb63e, type: 3}
 --- !u!1 &3067517228393031803
 GameObject:
   m_ObjectHideFlags: 0
@@ -8308,6 +8351,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3252667119498824983, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252667119498824983, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 36.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3434152102384812233, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -8375,6 +8426,10 @@ PrefabInstance:
     - target: {fileID: 7640512511776659416, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
       propertyPath: m_Name
       value: 'CoreObjects '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640512511776659416, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
@@ -9855,17 +9910,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -9877,11 +9938,13 @@ MonoBehaviour:
   actionCooldown: 0
   movementSpeed: 0
   movementCooldown: 0
+  retaliateCooldown: 0
   delayMoveRange: 0
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!1 &6864788521957754995
 GameObject:
   m_ObjectHideFlags: 0
@@ -10069,17 +10132,23 @@ MonoBehaviour:
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
   behaviourTree: {fileID: 0}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isRetreating: 0
+  isSeperating: 0
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
@@ -10091,11 +10160,13 @@ MonoBehaviour:
   actionCooldown: 1.5
   movementSpeed: 20
   movementCooldown: 1
+  retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!114 &7091954435136983061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10116,6 +10187,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 5
   distanceMultiplier: 0
   innerRange: 0

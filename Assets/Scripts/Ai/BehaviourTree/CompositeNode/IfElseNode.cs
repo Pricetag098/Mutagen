@@ -81,6 +81,20 @@ public class IfElseNode : CompositeNode
             return true;
     }
 
+    bool retaliateCheck()
+    {
+        if (!agent.retaliate)
+            return false;
+
+        if (Time.time - agent.retreatingTimer > agent.retaliateCooldown)
+        {
+            agent.retaliate = false;
+            return false;
+        }
+        else return true;
+
+    }
+
     int healthCheck()
     {
         for (int i = 0; i < agent.healthState.Value.Length; i++)
@@ -104,7 +118,7 @@ public class IfElseNode : CompositeNode
         int count = 0;
         for (int i = 0; i < manager.enemyList.Count; i++)
         {
-            if (manager.enemyList[i] != agent && !manager.enemyList[i].retreating())
+            if (manager.enemyList[i] != agent && !manager.enemyList[i].Seperating())
             {
                 float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
                 if (dist < groupCheckDistance)
@@ -237,7 +251,7 @@ public class IfElseNode : CompositeNode
 
             //waiting to take retaliate action
             case CheckType.retaliate:
-                if (agent.retaliate)
+                if (retaliateCheck())
                     ChildUpdate(first);
                 else ChildUpdate(second);
                 break;
