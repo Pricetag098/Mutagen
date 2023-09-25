@@ -15,6 +15,7 @@ public class BehaviourTreeRunner : MonoBehaviour
 
     private void Update()
     {
+        
         tree.Update();
     }
 }

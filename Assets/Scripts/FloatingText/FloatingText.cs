@@ -20,6 +20,7 @@ public class FloatingText
     public float motionSpeed;
     public float followStrength;
     public float damage;
+    public bool canMerge = true;
     
     public void Show()
     {
@@ -95,6 +96,8 @@ public class FloatingText
         {
             if (!othertxt.active)
                 return;
+
+
 
             if (this != othertxt && follow == othertxt.follow)
             {

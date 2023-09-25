@@ -6,13 +6,13 @@
     <SplitView fixed-pane-initial-dimension="300" style="width: auto;">
         <ui:VisualElement name="left-panel" style="align-items: stretch;">
             <SplitView orientation="Vertical" fixed-pane-initial-dimension="180">
-                <ui:VisualElement name="inspector-container">
+                <ui:VisualElement name="inspector-container" style="height: 250px;">
                     <ui:Label text="Inspector" display-tooltip-when-elided="true" style="background-color: rgb(60, 60, 60);" />
                     <InspectorView style="height: 166px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Blackboard-container">
+                <ui:VisualElement name="Blackboard-container" style="height: 80%;">
                     <ui:Label text="Blackboard" display-tooltip-when-elided="true" style="background-color: rgb(60, 60, 60);" />
-                    <ui:IMGUIContainer />
+                    <ui:IMGUIContainer style="height: auto;" />
                 </ui:VisualElement>
             </SplitView>
         </ui:VisualElement>

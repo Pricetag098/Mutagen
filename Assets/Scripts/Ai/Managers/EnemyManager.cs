@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> enemyList = new List<Enemy>();
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
+    Vector3 startPos;
 
     [Header("Element")]
     int elementIndex;
@@ -34,8 +35,10 @@ public class EnemyManager : MonoBehaviour
 
     protected void Awake()
     {
+        //Debugging
+        startPos = transform.position;
+
         elementIndex = Random.Range(0, 3);
-        Debug.Log(elementIndex);
         for (int i = 0; i < transform.childCount; i++)
         {
             Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
@@ -43,7 +46,9 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < enemyList.Count; i++)
         {
-            enemyList[i].transform.parent.gameObject.active = false;
+            enemyList[i].Deactivate();
+
+            //enemyList[i].transform.parent.gameObject.active = false;
         }
     }
 
@@ -71,9 +76,6 @@ public class EnemyManager : MonoBehaviour
         agent.player = player;
 
 
-        if (!agent.pipeColourChanger.Enabled)
-            return;
-
         EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
 
         if (assignedElement.Enabled)
@@ -91,18 +93,23 @@ public class EnemyManager : MonoBehaviour
         else 
             caster.AssignLoadout(caster.loadoutVariations[0]);
 
+        if(agent.pipeColourChanger.Enabled)
         agent.pipeColourChanger.Value.Change(elementColours[elementIndex]);
         //renderer.SetColor("Emissive", elementColours[elementIndex]);
     }
 
     private void FixedUpdate()
     {
+        //temp
+        transform.position = startPos;
+
         if (inFront.Count > moveCount)
         {
             MoveAgent(inFront.Last());
         }
     }
 
+    //change to start attacking instead of spawn
     private void OnTriggerEnter(Collider collision)
     {
         HitBox player;
@@ -113,7 +120,10 @@ public class EnemyManager : MonoBehaviour
 
             for (int i = 0; i < enemyList.Count; i++)
             {
-                enemyList[i].transform.parent.gameObject.active = true;
+                enemyList[i].enabled = true;
+                enemyList[i].Activate();
+
+                //enemyList[i].transform.parent.gameObject.active = true;
             }
             activated = true;
         }

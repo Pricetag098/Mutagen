@@ -19,7 +19,9 @@ public class EnemyAbilityCaster : MonoBehaviour
 
     [Header("Decision Stats")]
     public float rangedDeterence;
+    public float meleeDeterence;
     public float repeatDeterence;
+    [Min (1)]
     public float distanceMultiplier;
     public float innerRange;
     [Range(0f, 100f)]
@@ -71,8 +73,13 @@ public class EnemyAbilityCaster : MonoBehaviour
     {
         float value = 0;
 
+        if(ability.abilityName == "Empty")
+            return 1 + -float.MaxValue;
+
+
         RangedAbility ranged = ability as RangedAbility;
-        if (ranged)
+        MissilesAbility missile = ability as MissilesAbility;
+        if (ranged || missile)
         {
             float dist = Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
             if (dist > innerRange)
@@ -85,7 +92,7 @@ public class EnemyAbilityCaster : MonoBehaviour
         if (melee)
         {
             if (melee.GetCoolDownPercent() < 0.9f)
-                value -= 30;
+                value -= meleeDeterence;
 
             value -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
         }

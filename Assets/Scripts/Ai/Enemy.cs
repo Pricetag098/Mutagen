@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float retaliateTimer;
 
 
-    void Start()
+    void Awake()
     {
         //referencing components
         agent = GetComponent<NavMeshAgent>();
@@ -66,12 +66,28 @@ public class Enemy : MonoBehaviour
         behaviourTree = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
+    }
 
+    private void Start()
+    {
         Randomize();
 
         health.OnHit += OnHit;
-        health.OnDeath += OnDie; 
+        health.OnDeath += OnDie;
         defaultSpeed = movementSpeed;
+    }
+
+    public void Activate()
+    {
+        behaviourTree.enabled = true;
+    }
+
+    public void Deactivate()
+    {
+
+
+        behaviourTree.enabled = false;
+        this.enabled = false;
     }
 
     void Randomize()
