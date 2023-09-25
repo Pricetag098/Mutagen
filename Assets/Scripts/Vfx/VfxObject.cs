@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class VfxObject : MonoBehaviour
 {
     Optional<ParticleSystem> particle;
+	Optional<VisualEffect> visualEffect;
 	Optional<SoundPlayer> soundPlayer;
 	PooledObject pooledObject;
 	Transform target;
@@ -14,9 +16,10 @@ public class VfxObject : MonoBehaviour
 	{
 		particle.Value = GetComponentInChildren<ParticleSystem>();
 		soundPlayer.Value = GetComponentInChildren<SoundPlayer>();
+		visualEffect.Value = GetComponentInChildren<VisualEffect>();
 		particle.Enabled = particle.Value != null;
 		soundPlayer.Enabled = soundPlayer.Value != null;
-
+		visualEffect.Enabled = visualEffect.Value != null;
 		pooledObject = GetComponent<PooledObject>();
 		pooledObject.OnDespawn += OnDespawn;
 	}
@@ -31,6 +34,8 @@ public class VfxObject : MonoBehaviour
 	{
 		if(particle.Enabled)
 			particle.Value.Play();
+		if(visualEffect.Enabled)
+			visualEffect.Value.Play();
 		if(soundPlayer.Enabled)
 		soundPlayer.Value.Play();
 	}
@@ -45,9 +50,11 @@ public class VfxObject : MonoBehaviour
 	{
 		hasTarget = false;
 		if (particle.Enabled)
-			particle.Value.Play();
+			particle.Value.Stop();
 		if (soundPlayer.Enabled)
-			soundPlayer.Value.Play();
+			soundPlayer.Value.Stop();
+		if (visualEffect.Enabled)
+			visualEffect.Value.Stop();
 	}
 
 	
