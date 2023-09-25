@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
         for(int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(0, 3);
-            if (!randoms.Value[active].active)
+            if (!randoms.Value[active].activeInHierarchy)
             {
                 if (active != 2)
                     active++;
@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(3, 6);
-            if (!randoms.Value[active].active)
+            if (!randoms.Value[active].activeInHierarchy)
             {
                 if (active != 5)
                     active++;
