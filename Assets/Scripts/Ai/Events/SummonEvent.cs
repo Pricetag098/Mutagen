@@ -12,6 +12,7 @@ public class SummonEvent : Event
 
     public override void Play(Enemy agent)
     {
+        Debug.Log("Summon");
         used = true;
 
         EnemyManager manager = agent.manager;

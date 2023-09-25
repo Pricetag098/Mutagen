@@ -52,7 +52,6 @@ public class Ragdoll : MonoBehaviour
 
         foreach (Renderer r in render)
         {
-            Debug.Log("Fading");
             alpha -= Time.deltaTime * fadeRate;
 
             r.material.SetFloat("_Tweak_transparency", alpha);
