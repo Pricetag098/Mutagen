@@ -1113,35 +1113,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   agent: {fileID: 0}
-  health: {fileID: 0}
+  health: {fileID: 3109258454431184228}
   anim: {fileID: 469585395277284949}
   manager: {fileID: 0}
   invisMat:
     enabled: 0
     val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
-  behaviourTree: {fileID: 0}
+  behaviourTree: {fileID: 3109258454431184229}
   eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
+  isSeperating: 0
+  retreatingTimer: 2
   movementMultiplier: 1
   healthState:
     enabled: 0
     val: 
   circlingDistance: 5
+  setDrop: 0
+  setDropIndex: 0
   actionCooldown: 2.5
   movementSpeed: 15
   movementCooldown: 1.5
+  retaliateCooldown: 0
   delayMoveRange: 2.97
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!114 &3109258454431184226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,6 +1177,7 @@ MonoBehaviour:
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
+  meleeDeterence: 0
   repeatDeterence: 5
   distanceMultiplier: 0
   innerRange: 0

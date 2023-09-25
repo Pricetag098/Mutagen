@@ -39,13 +39,8 @@ public class FloatingTextManager : MonoBehaviour
 
         floatingText.damage = data.damage;
 
-        //text
-        if(data.damage <= 9)
-            floatingText.txt.text =  data.damage.ToString().Substring(0, 1);
-        else if(data.damage < 100)
-            floatingText.txt.text = data.damage.ToString().Substring(0, 2);
-        else
-            floatingText.txt.text = data.damage.ToString().Substring(0, 3);
+
+        floatingText.txt.text = ((int)data.damage).ToString();
         floatingText.txt.fontSize = settings.baseTextSize + (data.damage / 10);
         floatingText.txt.color = settings.colors[(int)data.type];
 

@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public Optional<PipeColourChanger> pipeColourChanger;
     [HideInInspector] public EnemyAbilityCaster caster;
     [HideInInspector] public GameObject dangerObject;
-    [HideInInspector] public BehaviourTreeRunner behaviourTree;
+    public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
     public Optional<GameObject[]> randoms;
@@ -84,8 +84,6 @@ public class Enemy : MonoBehaviour
 
     public void Deactivate()
     {
-
-
         behaviourTree.enabled = false;
         this.enabled = false;
     }
@@ -100,7 +98,7 @@ public class Enemy : MonoBehaviour
         for(int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(0, 3);
-            if (!randoms.Value[active].active)
+            if (!randoms.Value[active].activeInHierarchy)
             {
                 if (active != 2)
                     active++;
@@ -115,7 +113,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(3, 6);
-            if (!randoms.Value[active].active)
+            if (!randoms.Value[active].activeInHierarchy)
             {
                 if (active != 5)
                     active++;

@@ -21,14 +21,17 @@ public class FloatingText
     public float followStrength;
     public float damage;
     public bool canMerge = true;
+
+    Vector3 followCameraPos { get { return Camera.main.WorldToScreenPoint(follow.transform.position); } }
     
     public void Show()
     {
         active = true;
         lastShown = Time.time;
         go.SetActive(true);
-        Vector3 curDev = new Vector3(Random.Range(-deviation, deviation), Random.Range(-deviation, deviation), 0);       
-        go.transform.position = Camera.main.WorldToScreenPoint(follow.transform.position + curDev);
+        Vector3 curDev = new Vector3(Random.Range(-deviation, deviation), Random.Range(-deviation, deviation), 0);
+
+        go.transform.position = followCameraPos;
 
         followHealth = follow.GetComponent<Health>();
     }
@@ -45,17 +48,7 @@ public class FloatingText
     {
         damage += other.damage;
 
-        float textDivide = damage % 10;
-
-        //will create cleaner way of defining
-        if (damage <= 9)
-            txt.text = damage.ToString().Substring(0, 1);
-        else if (damage < 100)
-            txt.text = damage.ToString().Substring(0, 2);
-        else if (damage < 1000)
-            txt.text = damage.ToString().Substring(0, 3);
-        else 
-            txt.text = damage.ToString().Substring(0,4);
+        txt.text = ((int)damage).ToString();
 
         lastShown = Time.time - manager.settings.addedMergeDuration;
         other.Hide();
@@ -72,7 +65,10 @@ public class FloatingText
             return;
         }
 
-
+        if(Vector3.Distance(go.transform.position, followCameraPos) > 500)
+        {
+            Hide();
+        }
 
         if (!followHealth.dead)
         {
@@ -80,10 +76,10 @@ public class FloatingText
             float dist = Vector3.Distance(dir , follow.transform.position);
             if (dist > manager.settings.followDist)
                 go.transform.position +=
-                    ((Camera.main.WorldToScreenPoint(follow.transform.position)) - go.transform.position).normalized * followStrength;
+                    (followCameraPos - go.transform.position).normalized * followStrength;
             else
                 go.transform.position +=
-                    ((Camera.main.WorldToScreenPoint(follow.transform.position)) - go.transform.position).normalized * (followStrength / 3);
+                    (followCameraPos - go.transform.position).normalized * (followStrength / 3);
             
             go.transform.position += motion * motionSpeed * Time.deltaTime;
         }
@@ -96,8 +92,6 @@ public class FloatingText
         {
             if (!othertxt.active)
                 return;
-
-
 
             if (this != othertxt && follow == othertxt.follow)
             {
