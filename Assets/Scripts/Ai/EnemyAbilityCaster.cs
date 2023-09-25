@@ -12,6 +12,7 @@ public class EnemyAbilityCaster : MonoBehaviour
     Enemy enemy;
     Transform player;
     public Transform castOrigin;
+    public Ability defaultAbility;
     [HideInInspector] public Ability curAbility;
 
     [Header("Stats")]
@@ -44,6 +45,15 @@ public class EnemyAbilityCaster : MonoBehaviour
         {
             caster.abilities[i] = Instantiate(curLoadout.abilities[i]);
             caster.abilities[i].Equip(caster);
+        }
+
+        if(curLoadout.abilities.Length < caster.abilities.Length)
+        {
+            int difference = curLoadout.abilities.Length - caster.abilities.Length;
+            for(int i = curLoadout.abilities.Length + 1; i < caster.abilities.Length; i++)
+            {
+                caster.abilities[i] = defaultAbility;
+            }
         }
     }
 
