@@ -19,8 +19,16 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] float walkAltDirectionMulti = 2;
 	[SerializeField] float gravityForce = 1000;
 
-	
-	Rigidbody rb;
+	[SerializeField] float sprintDelay = 5;
+	public float timeSinceLastInteruption;
+    [Header("SprintSettings")]
+    [SerializeField] float sprintMaxSpeed = 10;
+    [SerializeField] float sprintAcceleration = 1000;
+    [SerializeField] float sprintSlowForce = 1000;
+    [SerializeField] float sprintControlForce = 1000;
+    [SerializeField] float sprintAltDirectionMulti = 2;
+
+    Rigidbody rb;
     Vector2 inputDir;
 
 	public Vector3 movementDir;
@@ -30,7 +38,12 @@ public class PlayerMovement : MonoBehaviour
     {
         lastSafeLocation = transform.position;
         rb = GetComponent<Rigidbody>();
+		GetComponent<Health>().OnHit += ResetSprint;
     }
+	void ResetSprint(DamageData data)
+	{
+		timeSinceLastInteruption = 0;
+	}
 
 	private void OnEnable()
 	{
@@ -46,11 +59,20 @@ public class PlayerMovement : MonoBehaviour
     {
         inputDir = moveDir.action.ReadValue<Vector2>();
 		movementDir = orientation.forward * inputDir.y + orientation.right * inputDir.x;
+		timeSinceLastInteruption += Time.deltaTime;
     }
 
 	private void FixedUpdate()
 	{
-		Move(walkMaxSpeed,walkAcceleration,walkSlowForce,walkControlForce,walkAltDirectionMulti);
+		if(timeSinceLastInteruption < sprintDelay)
+		{
+            Move(walkMaxSpeed, walkAcceleration, walkSlowForce, walkControlForce, walkAltDirectionMulti);
+        }
+		else
+		{
+			Move(sprintMaxSpeed, sprintAcceleration, sprintSlowForce, sprintControlForce, sprintAltDirectionMulti);
+		}
+		
 	}
 
 	void Move(float maxSpeed, float acceleration, float slowForce, float controlForce, float altDirectionMulti)

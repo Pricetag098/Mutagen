@@ -12,6 +12,8 @@ public class EffectAuraAbility : Ability
     [SerializeField] List<OnHitEffect> onHitEffects;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float cooldown;
+    [SerializeField] float offset;
+    [SerializeField] string animationTrigger;
     Timer timer;
 
     protected override void OnEquip()
@@ -22,6 +24,10 @@ public class EffectAuraAbility : Ability
     {
         if (!timer.complete)
             return;
+
+        data.origin = caster.transform.position;
+        data.origin.y += offset;
+
         timer.Reset();
         if(vfx.Enabled)
         vfx.Value.Play(data.origin, data.aimDirection);
@@ -42,6 +48,9 @@ public class EffectAuraAbility : Ability
                 {
                     hb.health.AddStatusEffect(statusEffect);
                 }
+
+                if (caster.animator.Enabled)
+                    caster.animator.Value.SetTrigger(animationTrigger);
             }
         }
     }

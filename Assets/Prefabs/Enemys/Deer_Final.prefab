@@ -1749,9 +1749,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 95aa990fb7fb02945995aa5054bd6cb0, type: 2}
   - {fileID: 11400000, guid: b29ec4fabd5842049bfb51afefa5aa60, type: 2}
   castOrigin: {fileID: 647904882652686651}
+  defaultAbility: {fileID: 0}
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 20
+  meleeDeterence: 0
   repeatDeterence: 0
   distanceMultiplier: 0
   innerRange: 0
@@ -1784,12 +1786,8 @@ MonoBehaviour:
   behaviourTree: {fileID: 647904883047142289}
   eventManager: {fileID: 0}
   randoms:
-  - {fileID: 7660361672389595297}
-  - {fileID: 9117639578113799898}
-  - {fileID: 7263695957169262184}
-  - {fileID: 7815873756385598223}
-  - {fileID: 1205097987562141975}
-  - {fileID: 8733507102099710937}
+    enabled: 0
+    val: []
   isMoving: 0
   performingAction: 0
   isInDanger: 0
@@ -1800,19 +1798,21 @@ MonoBehaviour:
   retreatingTimer: 2
   movementMultiplier: 1
   healthState:
-    enabled: 0
-    val: 
+    enabled: 1
+    val: 4600000096000000
   circlingDistance: 5
   setDrop: 1
   setDropIndex: 1
   actionCooldown: 1.5
   movementSpeed: 20
   movementCooldown: 1
+  retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   actionTimer: 0
   movementTimer: 0
   delayMoveTimer: 0
+  retaliateTimer: 0
 --- !u!114 &1744176796866398432
 MonoBehaviour:
   m_ObjectHideFlags: 0

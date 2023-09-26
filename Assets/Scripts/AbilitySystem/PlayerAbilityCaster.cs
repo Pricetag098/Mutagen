@@ -62,15 +62,23 @@ public class PlayerAbilityCaster : MonoBehaviour
 		switch (caster.abilities[index].castType)
 		{
 			case Ability.CastTypes.passive:
+				movement.timeSinceLastInteruption = 0;
 				caster.CastAbility(index, CreateCastData());
 				break;
 			case Ability.CastTypes.hold:
 				if (action.IsPressed())
-					caster.CastAbility(index, CreateCastData());
+				{
+                    movement.timeSinceLastInteruption = 0;
+                    caster.CastAbility(index, CreateCastData());
+                }
+					
 				break;
 			case Ability.CastTypes.press:
 				if (action.WasPressedThisFrame())
-					caster.CastAbility(index, CreateCastData());
+				{
+                    movement.timeSinceLastInteruption = 0;
+                    caster.CastAbility(index, CreateCastData());
+                }	
 				break;
 			case Ability.CastTypes.disabled:
 				break;

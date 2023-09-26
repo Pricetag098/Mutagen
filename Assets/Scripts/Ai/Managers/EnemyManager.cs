@@ -9,7 +9,6 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> enemyList = new List<Enemy>();
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
-    Vector3 startPos;
 
     [Header("Element")]
     int elementIndex;
@@ -35,9 +34,6 @@ public class EnemyManager : MonoBehaviour
 
     protected void Awake()
     {
-        //Debugging
-        startPos = transform.position;
-
         elementIndex = Random.Range(0, 3);
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -80,6 +76,7 @@ public class EnemyManager : MonoBehaviour
         if (assignedElement.Enabled)
         {
             int value = (int)assignedElement.Value;
+            if(agent.pipeColourChanger.Enabled)
             agent.pipeColourChanger.Value.Change(elementColours[value]);
             //renderer.SetColor("Emissive", elementColours[value]);
             caster.AssignLoadout(caster.loadoutVariations[value]);
@@ -99,9 +96,6 @@ public class EnemyManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //temp
-        transform.position = startPos;
-
         if (inFront.Count > moveCount)
         {
             MoveAgent(inFront.Last());

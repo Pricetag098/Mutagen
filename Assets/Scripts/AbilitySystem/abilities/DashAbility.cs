@@ -23,6 +23,8 @@ public class DashAbility : Ability
 
 	protected Vector3 startPoint,endPoint,direction;
 	Transform castOrigin;
+
+	public string animationTrigger;
 	protected override void OnEquip()
 	{
 		maxStam = rechargeTime * Casts;
@@ -83,6 +85,9 @@ public class DashAbility : Ability
 		endPoint = caster.transform.position + direction * dashDistance;
 		if (dashFx.Enabled)
 			dashFx.Value.Play(castOrigin.position, direction,castOrigin);
+
+		if (caster.animator.Enabled)
+			caster.animator.Value.SetTrigger(animationTrigger);
 	}
 
 	

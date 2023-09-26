@@ -20,7 +20,7 @@ public class FloatingText
     public float motionSpeed;
     public float followStrength;
     public float damage;
-    public bool canMerge = true;
+    //public bool canMerge = true;
 
     Vector3 followCameraPos { get { return Camera.main.WorldToScreenPoint(follow.transform.position); } }
     
