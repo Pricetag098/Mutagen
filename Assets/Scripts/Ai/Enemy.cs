@@ -96,7 +96,6 @@ public class Enemy : MonoBehaviour
             return;
 
         int activeCount = Random.Range(1, 3);
-        Debug.Log(activeCount);
         for(int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(0, 3);
@@ -110,8 +109,10 @@ public class Enemy : MonoBehaviour
                 randoms.Value[active].active = false;
         }
 
+        if (randoms.Value.Length < 3)
+            return;
+
         activeCount = Random.Range(0, 3);
-        Debug.Log(activeCount);
         for (int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(3, 6);
@@ -136,7 +137,7 @@ public class Enemy : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             Debug.Log("Detected");
-            anim.SetTrigger("Headbutt");
+            anim.SetTrigger("Detected");
         }
 
     }
