@@ -29,6 +29,8 @@ public class RangedAbility : Ability
 
     bool startedCasting;
     [SerializeField] Optional<VfxSpawnRequest> vfx;
+
+    [SerializeField] string animationTrigger;
     protected override void OnEquip()
     {
         projectileSpawner = new GameObject().AddComponent<ObjectPooler>();
@@ -90,6 +92,9 @@ public class RangedAbility : Ability
         projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,CreateDamageData(damage),onHitEffectList);
         if (OnCast != null)
             OnCast(lastCastdata);
+
+        if (caster.animator.Enabled)
+            caster.animator.Value.SetTrigger(animationTrigger);
     }
 
 	public override void OnDrawGizmos()
