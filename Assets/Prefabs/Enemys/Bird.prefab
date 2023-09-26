@@ -214,7 +214,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627609372034429025}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -226,7 +226,7 @@ Transform:
   - {fileID: 5517335019079074219}
   m_Father: {fileID: 2008015110128837335}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &6133422335050182817
 Animator:
   serializedVersion: 4
@@ -237,7 +237,7 @@ Animator:
   m_GameObject: {fileID: 627609372034429025}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f98018c32fa911f46a96863841ae5fe5, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46417009f0a8c59488a646f43f986c10, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_Data:
     m_Root: {fileID: 5382287055024541198}
     m_Mid: {fileID: 9108259652892936144}
-    m_Tip: {fileID: 2761378882054106258}
+    m_Tip: {fileID: 8039525958720880412}
     m_Target: {fileID: 7872407543327275224}
     m_Hint: {fileID: 0}
     m_TargetPositionWeight: 1
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   health: {fileID: 3109258454431184228}
-  anim: {fileID: 0}
+  anim: {fileID: 6133422335050182817}
   manager: {fileID: 0}
   invisMat:
     enabled: 0
@@ -1365,14 +1365,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
-  curLoadout: {fileID: 0}
+  curLoadout: {fileID: 11400000, guid: b5e666755e0c102438d8037d8cda9e8d, type: 2}
   loadoutVariations:
   - {fileID: 11400000, guid: b5e666755e0c102438d8037d8cda9e8d, type: 2}
   - {fileID: 11400000, guid: a6a71ebdee8dd7d44ab4a9c827b0e9e6, type: 2}
   - {fileID: 11400000, guid: 3e004bbd7b92404449327b4cac4575b3, type: 2}
   - {fileID: 11400000, guid: e760e73a2ecc27c4ba54c6268a19f926, type: 2}
   castOrigin: {fileID: 2350188884245559915}
-  defaultAbility: {fileID: 0}
+  defaultAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
@@ -1429,8 +1429,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   animator:
-    enabled: 0
-    val: {fileID: 0}
+    enabled: 1
+    val: {fileID: 6133422335050182817}
   ownerHealth: {fileID: 3109258454431184228}
   rigidbody:
     enabled: 0
@@ -1464,9 +1464,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hb: {fileID: 8496643042579400190}
   colliders:
-  - {fileID: 0}
+  - {fileID: 627609372034429025}
   render:
-  - {fileID: 0}
+  - {fileID: 6309803205863466370}
   fadeRate: 1.5
   ragdollForce: 2
 --- !u!1 &3737502162718273959
@@ -2252,7 +2252,7 @@ MonoBehaviour:
   m_Data:
     m_Root: {fileID: 5039934185154655625}
     m_Mid: {fileID: 2006319922891449823}
-    m_Tip: {fileID: 2817644023664888664}
+    m_Tip: {fileID: 774897012483040370}
     m_Target: {fileID: 6460181019412163319}
     m_Hint: {fileID: 0}
     m_TargetPositionWeight: 1

@@ -28,6 +28,8 @@ public class MissilesAbility : Ability
     [Header("aim assist")]
     [SerializeField] AimAssist aimAssist;
 
+    [SerializeField] string animationTrigger;
+
     
 
     protected CastData lastCastdata;
@@ -104,6 +106,9 @@ public class MissilesAbility : Ability
                     Vector3 midPoint = Vector3.Lerp(lastCastdata.origin, hb.transform.position, .5f) + upDir * circlePos.y + rightDir * circlePos.x;
 
                     projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, CreateDamageData(damage),projectileSpeed,hb);
+
+                    if (caster.animator.Enabled)
+                        caster.animator.Value.SetTrigger(animationTrigger);
                 }
             }
 		}
