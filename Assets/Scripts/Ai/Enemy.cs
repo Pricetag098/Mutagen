@@ -80,6 +80,8 @@ public class Enemy : MonoBehaviour
     public void Activate()
     {
         behaviourTree.enabled = true;
+        Debug.Log("Detected");
+        anim.SetTrigger("Detected");
     }
 
     public void Deactivate()
@@ -131,7 +133,11 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Debug.Log("Detected");
+            anim.SetTrigger("Headbutt");
+        }
 
     }
 
