@@ -87,7 +87,7 @@ public class DashAbility : Ability
 			dashFx.Value.Play(castOrigin.position, direction,castOrigin);
 
 		if (caster.animator.Enabled)
-			caster.animator.Value.SetTrigger("Dash");
+			caster.animator.Value.SetTrigger(animationTrigger);
 	}
 
 	
