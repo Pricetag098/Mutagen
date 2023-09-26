@@ -43,6 +43,7 @@ public class AbilityCaster : MonoBehaviour
         playerStats.Enabled = TryGetComponent(out tempStats);
         playerStats.Value = tempStats;
     }
+
     public void SetAbility(Ability ability,int index,bool spawnPickup = true)
 	{
         ability = Instantiate(ability);
