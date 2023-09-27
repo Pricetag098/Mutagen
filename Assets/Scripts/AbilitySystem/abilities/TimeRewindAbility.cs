@@ -14,6 +14,8 @@ public class TimeRewindAbility : Ability
     [SerializeField] Vector3 lineOffset;
     [SerializeField] int step = 3;
     [SerializeField] VfxSpawnRequest vfx;
+    [SerializeField] GameObject bodyPrefab;
+    GameObject body;
     struct TimeData 
     { 
         public Vector3 position;
@@ -53,16 +55,34 @@ public class TimeRewindAbility : Ability
                 positionHistory.Add(new TimeData(caster.transform.position, Time.time));
                 timer.Reset();
                 reversing = false;
-            }
+				body.SetActive(false);
+				lineRenderer.enabled = false;
+			}
             else
             caster.transform.position = positionHistory[index].position;
+            
 		}
 		else
 		{
-            positionHistory.Add(new TimeData(caster.transform.position,Time.time));
+			
+			positionHistory.Add(new TimeData(caster.transform.position,Time.time));
             while (positionHistory[0].time < Time.time - maxTime && positionHistory.Count > 0)
             {
                 positionHistory.RemoveAt(0);
+            }
+            body.transform.position = positionHistory[0].position;
+            if(positionHistory.Count > 1)
+            {
+                Vector3 dir = positionHistory[1].position - positionHistory[0].position;
+                dir.y = 0;
+                if(dir != Vector3.zero)
+                {
+					body.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+
+				}
+                
+
+                
             }
 		}
         
@@ -80,7 +100,13 @@ public class TimeRewindAbility : Ability
 			{
                 lineRenderer.SetPosition(i, positionHistory[positionHistory.Count - i -1].position + lineOffset);
 			}
+			if (timer.complete)
+			{
+				body.SetActive(true);
+                lineRenderer.enabled = true;
+			}
 		}
+        
     }
 
     public override float GetCoolDownPercent()
@@ -92,10 +118,13 @@ public class TimeRewindAbility : Ability
 		if(linePrefab.Enabled)
             lineRenderer = Instantiate(linePrefab.Value).GetComponent<LineRenderer>();
         timer = new Timer(coolDown);
+        body = Instantiate(bodyPrefab);
+
 	}
 	protected override void OnUnEquip(Ability replacement)
 	{
         if (linePrefab.Enabled)
             Destroy(lineRenderer.gameObject);
+        Destroy(body.gameObject);
     }
 }
