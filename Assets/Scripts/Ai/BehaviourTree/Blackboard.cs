@@ -6,10 +6,12 @@ using UnityEngine.AI;
 [System.Serializable]
 public class Blackboard
 {
-    public Vector3 moveToPosition;
-    public GameObject rotateTowardsObject;
-    public Vector3 targetPosition;
+    [HideInInspector] public Vector3 moveToPosition;
+    [HideInInspector] public GameObject rotateTowardsObject;
+    [HideInInspector] public Vector3 targetPosition;
     public Ability[] abilities;
     public EnemyManager manager;
-    [HideInInspector] float delayMoveTimer;
+    float delayMoveTimer;
+    [HideInInspector] public Vector3 awayPosition;
+
 }

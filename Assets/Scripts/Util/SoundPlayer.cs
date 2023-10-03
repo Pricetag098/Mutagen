@@ -23,7 +23,7 @@ public class SoundPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Play()
@@ -34,6 +34,10 @@ public class SoundPlayer : MonoBehaviour
         rand *= pitchRange;
         source.pitch = basePitch + rand;
         source.clip = clip;
+
+        //Jason wrote for sound manager
+        source.volume = MapManager.GetVolume(MapManager.VolumeType.SFX);
+
         source.Play();
      
     }
