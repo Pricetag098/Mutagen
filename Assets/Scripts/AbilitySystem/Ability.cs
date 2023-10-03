@@ -14,6 +14,7 @@ public enum Element
 public class Ability : ScriptableObject
 {
     public string abilityName;
+    [Multiline] public string abilityDescription;
     public Sprite icon;
     protected AbilityCaster caster;
     public delegate void CastDelegate(CastData data);
