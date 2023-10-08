@@ -67,6 +67,12 @@ public class SettingsMenu : MonoBehaviour
     }
     #endregion
 
+    public void onClose()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void SetQuality(int index)
     {
         qualityIndex = index;

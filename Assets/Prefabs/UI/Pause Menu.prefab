@@ -922,6 +922,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56fc11201ed22449b389ecec418114b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pause
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1527e972-20f9-411c-86fa-bf13a1644ab8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -8197291531979555017, guid: 19fac495a12425a448b03de33eeab52d, type: 3}
   menu: {fileID: 7055274060706960814}
 --- !u!1 &4379671437456932236
 GameObject:
@@ -2730,10 +2742,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7055274060706960808}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7055274060706960814}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: onClose
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
