@@ -8,25 +8,24 @@ using TMPro;
 public class SettingsMenu : MonoBehaviour
 {
     [Header("Refs")]
-    public Slider[] sliders;
+    public VolumeSlider[] sliders;
     public TMP_Dropdown dropdown;
-    public AudioMixer mixer;
 
-    [HideInInspector] public float SFXVolume;
+     public float SFXVolume;
     [HideInInspector] public float musicVolume;
     [HideInInspector] public float ambientVolume;
-    public float maxVolume = 100;
+    public float maxVolume = 0;
     [HideInInspector] public int qualityIndex;
     [HideInInspector] public bool isFullscreen;
 
-    private void Start()
+    void Start()
     {
-        SetAllVolume(maxVolume);
+        //SetAllVolume(maxVolume);
 
         SettingsManager.SetSettings(this);
 
         //testing
-        if(gameObject.active)
+        if (gameObject.active)
             gameObject.SetActive(false);
     }
 
@@ -34,41 +33,37 @@ public class SettingsMenu : MonoBehaviour
     public void SetSFXVolume(float val) 
     {
         SFXVolume = val;
-        sliders[0].value = SFXVolume;
-        //
-        mixer.SetFloat("Volume", SFXVolume);
+        sliders[0].SetFloat(SFXVolume);
     }
     public void SetMusicVolume(float val)
     {
         musicVolume = val;
-        sliders[1].value = musicVolume;
-        mixer.SetFloat("Volume", musicVolume);
+        sliders[1].SetFloat(musicVolume);
     }
     public void SetAmbientVolume(float val)
     {
         ambientVolume = val;
-        sliders[2].value = ambientVolume;
-        mixer.SetFloat("Volume", ambientVolume);
+        sliders[2].SetFloat(ambientVolume);
     }
 
     public void SetAllVolume(float val1, float val2, float val3)
     {
         SFXVolume = val1;
-        sliders[0].value = SFXVolume;
+        sliders[0].SetFloat(SFXVolume);
         musicVolume = val2;
-        sliders[1].value = musicVolume;
+        sliders[1].SetFloat(musicVolume);
         ambientVolume = val3;
-        sliders[2].value = ambientVolume;
+        sliders[2].SetFloat(ambientVolume);
     }
 
     public void SetAllVolume(float val)
     {
         SFXVolume = val;
-        sliders[0].value = SFXVolume;
+        sliders[0].SetFloat(SFXVolume);
         musicVolume = val;
-        sliders[1].value = musicVolume;
+        sliders[1].SetFloat(musicVolume);
         ambientVolume = val;
-        sliders[2].value = ambientVolume;
+        sliders[2].SetFloat(ambientVolume);
     }
     #endregion
 
