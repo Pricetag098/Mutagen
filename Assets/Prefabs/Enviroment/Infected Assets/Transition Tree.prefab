@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 2585240615238268023}
   - component: {fileID: 8022435292810335360}
   - component: {fileID: 2407170549467809788}
+  - component: {fileID: 2256797824143358290}
   m_Layer: 0
   m_Name: Tree_Door
   m_TagString: Untagged
@@ -160,14 +161,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095984512581286235}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.9071182, z: -0, w: 0.420876}
+  m_LocalPosition: {x: -4.46, y: 14.6, z: -6.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3348164283070331713}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -130.22, z: 0}
 --- !u!33 &8022435292810335360
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -123212537969952598, guid: 03eee8d3a7608e14892ac5e8d9724c14, type: 3}
+  - {fileID: 2100000, guid: ae714c2eacdfafb4f96f082b7394b833, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,6 +219,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2256797824143358290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095984512581286235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.9281964, y: 10.684592, z: 1.3595358}
+  m_Center: {x: -0.000038146973, y: 5.342296, z: 0.00006133318}
 --- !u!1 &1389861239408751517
 GameObject:
   m_ObjectHideFlags: 0
