@@ -7,10 +7,10 @@ public class Leg : MonoBehaviour
     [SerializeField] List<Leg> neighbouringLegs;
 
     [SerializeField] Transform idealLegPos;
-    [SerializeField] float maxDistance;
+    [SerializeField] float maxDistance,distanceLimit;
     [SerializeField] float rayLength = 1;
     [SerializeField] float yOffset;
-    [SerializeField] float travelSpeed;
+    [SerializeField] float travelSpeed,travelTimeLimit;
     [SerializeField] AnimationCurve easingFunction = AnimationCurve.Linear(0, 0, 1, 1);
     [SerializeField] LayerMask ground;
     public bool moving;
@@ -20,7 +20,7 @@ public class Leg : MonoBehaviour
     Vector3 midPoint;
     Vector3 targetPosition;
 
-    [SerializeField]float maxStepDistance;
+   [SerializeField]float maxStepDistance;
 
     float endYOffset=0;
     // Start is called before the first frame update
@@ -41,10 +41,10 @@ public class Leg : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-		if (CanMove())
+        float distance = Vector3.Distance(transform.position, idealLegPos.position + Vector3.up * endYOffset);
+        if (CanMove())
 		{
-            float distance = Vector3.Distance(transform.position, idealLegPos.position + Vector3.up * endYOffset);
+            
             if(distance > maxDistance)
 			{
                 timer = 0;
@@ -52,7 +52,6 @@ public class Leg : MonoBehaviour
                 originalPosition = transform.position;
                 if (distance > maxStepDistance)
                 {
-                    
                     originalPosition = idealLegPos.position + (transform.position - idealLegPos.position).normalized * maxStepDistance;
                 }
                 targetPosition = idealLegPos.position + (idealLegPos.position - originalPosition) * .8f; //* (maxDistance * .5f);
@@ -61,12 +60,15 @@ public class Leg : MonoBehaviour
                 
 
                 maxTimer = Vector3.Distance(originalPosition, targetPosition) / travelSpeed;
+                if (maxTimer > travelTimeLimit)
+                    maxTimer = travelTimeLimit;
                 RaycastHit hit;
                 if (Physics.Raycast(targetPosition + Vector3.up * (Mathf.Max(originalPosition.y, targetPosition.y) + rayLength / 2), Vector3.down, out hit, rayLength / 2, ground))
                 {
                     targetPosition = hit.point;
                     //endYOffset = hit.point.y - idealLegPos.position.y;
                 }
+                
                 endYOffset = targetPosition.y - idealLegPos.position.y;
                 midPoint = Vector3.Lerp(originalPosition, targetPosition, .5f);
                 midPoint.y = Mathf.Max(originalPosition.y, targetPosition.y) + yOffset;
@@ -74,8 +76,14 @@ public class Leg : MonoBehaviour
 
             
 		}
+        
+        
         transform.position = QaudraticLerp(originalPosition, midPoint, targetPosition,easingFunction.Evaluate(Mathf.Clamp01(timer/maxTimer)));
-        if(timer >= maxTimer && moving)
+        if (distance > distanceLimit)
+        {
+            //transform.position = (idealLegPos.position + Vector3.up * endYOffset - transform.position).normalized * distanceLimit;
+        }
+        if (timer >= maxTimer && moving)
 		{
             moving = false;
 		}
@@ -98,7 +106,26 @@ public class Leg : MonoBehaviour
 
 	private void OnDrawGizmosSelected()
 	{
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(idealLegPos.position + Vector3.up *  endYOffset,maxDistance);
+        if (!moving)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(idealLegPos.position + Vector3.up * endYOffset, maxDistance);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(idealLegPos.position + Vector3.up * endYOffset, distanceLimit);
+        }
+        else
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(originalPosition, .1f);
+            Gizmos.DrawWireSphere(midPoint, .1f);
+            Gizmos.DrawWireSphere(targetPosition, .1f);
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(originalPosition, midPoint);
+            Gizmos.DrawLine(midPoint, targetPosition);
+        }
+        
+        
+
+
 	}
 }
