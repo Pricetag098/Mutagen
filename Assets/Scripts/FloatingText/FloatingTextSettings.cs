@@ -22,5 +22,6 @@ public class FloatingTextSettings : ScriptableObject
     public float textSpread;
     public float motionSpeed;
     public float followStrength;
+    public float closeFollowStrength;
     public float followDist = 50;
 }
