@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
+[Serializable]
 public class SettingsData
 {
     public float SFXVolume;
     public float musicVolume;
     public float ambientVolume;
     public float maxVolume;
-    bool isFullScreen;
-    int qualityIndex;
+    public bool isFullScreen;
+    public int qualityIndex;
 
     public void SetupSettings(SettingsMenu menu)
     {
@@ -27,4 +30,9 @@ public class SettingsData
         isFullScreen = menu.isFullscreen;
         qualityIndex = menu.qualityIndex;
     }
+
+    //public void GetObjectData(SerializationInfo info, StreamingContext context)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }

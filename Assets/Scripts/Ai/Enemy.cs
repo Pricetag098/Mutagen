@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
 
-
+    #region startupfunctions
     void Awake()
     {
         //referencing components
@@ -131,6 +131,7 @@ public class Enemy : MonoBehaviour
     {
         behaviourTree.tree = newTree.Clone();
     }
+    #endregion
 
     void Update()
     {
@@ -150,10 +151,10 @@ public class Enemy : MonoBehaviour
 
     void OnDie(DamageData data)
     {
-        manager.enemyList.Remove(this);
 
 
-        int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
+
+
 
         if (setDrop)
         {
@@ -163,7 +164,7 @@ public class Enemy : MonoBehaviour
             drop.transform.position = offset;
         }
 
-
+        int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
         if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
         {
             GameObject drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
@@ -171,6 +172,8 @@ public class Enemy : MonoBehaviour
             offset.y += 1;
             drop.transform.position = offset;
         }
+
+        manager.enemyList.Remove(this);
     }
 
     public void ChangeMovementSpeed(float speed)
@@ -210,23 +213,5 @@ public class Enemy : MonoBehaviour
         lastSeperate = Time.time;
         isSeperating = true;
         return true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //if(other.transform.gameObject.layer == hazardLM)
-        //{
-        //    dangerObject = other.transform.gameObject;
-        //    isInDanger = true;
-        //}
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //if(other.transform == dangerObject)
-        //{
-        //    dangerObject = null;
-        //    isInDanger = false;
-        //}
     }
 }

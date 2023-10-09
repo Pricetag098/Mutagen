@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         pauseAction.action.performed += Pause;
+        //menu = GetComponentInChildren<SettingsMenu>();
     }
 
     private void Update()
