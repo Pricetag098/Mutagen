@@ -10,6 +10,7 @@ public class SettingsMenu : MonoBehaviour
     [Header("Refs")]
     public Slider[] sliders;
     public TMP_Dropdown dropdown;
+    public AudioMixer mixer;
 
     [HideInInspector] public float SFXVolume;
     [HideInInspector] public float musicVolume;
@@ -22,7 +23,7 @@ public class SettingsMenu : MonoBehaviour
     {
         SetAllVolume(maxVolume);
 
-        MapManager.SetSettings(this);
+        SettingsManager.SetSettings(this);
 
         //testing
         if(gameObject.active)
@@ -34,16 +35,20 @@ public class SettingsMenu : MonoBehaviour
     {
         SFXVolume = val;
         sliders[0].value = SFXVolume;
+        //
+        mixer.SetFloat("Volume", SFXVolume);
     }
     public void SetMusicVolume(float val)
     {
         musicVolume = val;
         sliders[1].value = musicVolume;
+        mixer.SetFloat("Volume", musicVolume);
     }
     public void SetAmbientVolume(float val)
     {
         ambientVolume = val;
         sliders[2].value = ambientVolume;
+        mixer.SetFloat("Volume", ambientVolume);
     }
 
     public void SetAllVolume(float val1, float val2, float val3)
@@ -92,7 +97,7 @@ public class SettingsMenu : MonoBehaviour
         SetQuality(2);
         SetFullScreen(true);
 
-        MapManager.SaveSettings(this);
+        SettingsManager.SaveSettings(this);
     }
 
     public void onQuit()
@@ -102,6 +107,6 @@ public class SettingsMenu : MonoBehaviour
 
     public void SaveSettings()
     {
-        MapManager.SaveSettings(this);
+        SettingsManager.SaveSettings(this);
     }
 }

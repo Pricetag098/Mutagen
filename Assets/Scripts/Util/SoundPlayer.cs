@@ -36,7 +36,7 @@ public class SoundPlayer : MonoBehaviour
         source.clip = clip;
 
         //Jason wrote for sound manager
-        source.volume = MapManager.GetVolume(MapManager.VolumeType.SFX);
+        //source.volume = SettingsManager.GetVolume(VolumeType.SFX);
 
         source.Play();
      
