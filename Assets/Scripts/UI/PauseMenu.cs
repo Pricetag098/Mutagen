@@ -12,7 +12,6 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         pauseAction.action.performed += Pause;
-        //menu = GetComponentInChildren<SettingsMenu>();
     }
 
     private void Update()
@@ -36,12 +35,12 @@ public class PauseMenu : MonoBehaviour
 
         if (!menu.gameObject.active)
         {
-            SettingsManager.SaveSettings(menu);
+            //SettingsManager.SaveSettings(menu);
             Time.timeScale = 1;
         }
         else
         {
-            SettingsManager.SetSettings(menu);
+            //SettingsManager.SetSettings(menu);
             Time.timeScale = 0;
         }
     }

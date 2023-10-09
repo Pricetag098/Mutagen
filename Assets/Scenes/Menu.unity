@@ -1948,7 +1948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1975471475}
-  - component: {fileID: 1975471474}
+  - component: {fileID: 1975471476}
   m_Layer: 0
   m_Name: SettingsManager
   m_TagString: Untagged
@@ -1956,21 +1956,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1975471474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975471473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83275547b88e8d9418658537a6190dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sfx: {fileID: 24100000, guid: bc54efbb3ade2e84d9043ce41d572234, type: 2}
-  music: {fileID: 24100000, guid: 00e88c1fccd83e8438c918cfe7619a54, type: 2}
-  ambient: {fileID: 24100000, guid: c159abdbe51b9b84b997ad6be233e933, type: 2}
 --- !u!4 &1975471475
 Transform:
   m_ObjectHideFlags: 0
@@ -1986,6 +1971,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1975471476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975471473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb244385ecb86ef4ca02c397bb89024f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: Settings.cfg
+  useEncryption: 0
 --- !u!1 &1978906734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,9 +3774,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6126788026038018730}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: SetFullScreen
+      - m_Target: {fileID: 6126788026023224680}
+        m_TargetAssemblyTypeName: FullScreenBool, Assembly-CSharp
+        m_MethodName: SetBool
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3798,6 +3797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6126788026023224679}
   - component: {fileID: 6126788026023224676}
+  - component: {fileID: 6126788026023224680}
   m_Layer: 0
   m_Name: FullScreen
   m_TagString: Untagged
@@ -3827,6 +3827,19 @@ RectTransform:
   m_AnchoredPosition: {x: 16, y: 91.6}
   m_SizeDelta: {x: 377.6148, y: 77.4998}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6126788026023224680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126788026023224678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627f73e566941484f939c0ed5b62de62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggle: {fileID: 6126788026023224676}
 --- !u!114 &6126788026038018730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3834,7 +3847,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6126788026038018732}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fe24acdc8c883b40946872d5e1f3e65, type: 3}
   m_Name: 
@@ -4151,6 +4164,7 @@ GameObject:
   - component: {fileID: 6126788026093726628}
   - component: {fileID: 6126788026093726631}
   - component: {fileID: 6126788026093726630}
+  - component: {fileID: 6126788026093726682}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -4181,6 +4195,19 @@ RectTransform:
   m_AnchoredPosition: {x: 223.9, y: -0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6126788026093726682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126788026093726680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99001dbc1a0f62a42a1b18d6055f240e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropDown: {fileID: 6126788026093726630}
 --- !u!222 &6126788026254879114
 CanvasRenderer:
   m_ObjectHideFlags: 0

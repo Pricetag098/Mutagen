@@ -16,12 +16,10 @@ public class VolumeSlider : MonoBehaviour, IDataPersistance<SettingsData>
         slider = GetComponent<Slider>();    
     }
 
-
     public void SetFloat(float f)
     {
-        //volume = Mathf.Log10(f) * 20;
         volume = f;
-        slider.value = volume;
+        
         audioMixer.audioMixer.SetFloat(path,volume);
     }
     void IDataPersistance<SettingsData>.SaveData(ref SettingsData data)
@@ -33,6 +31,6 @@ public class VolumeSlider : MonoBehaviour, IDataPersistance<SettingsData>
     {
         volume = data.SFXVolume;
         SetFloat(volume);
+        slider.value = volume;
     }
-
 }

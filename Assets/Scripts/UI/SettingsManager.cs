@@ -37,7 +37,7 @@ public class SettingsManager : MonoBehaviour
     {
         if (instance.settingsData != null)
         {
-            instance.settingsData.SetupSettings(menu);   
+            //instance.settingsData.SetupSettings(menu);   
         }
     }
 
@@ -60,12 +60,12 @@ public class SettingsManager : MonoBehaviour
     {
         if (instance.settingsData != null)
         {
-            instance.settingsData.SaveSettings(menu);
+            //instance.settingsData.SaveSettings(menu);
         }
         else
         {
             instance.settingsData = new SettingsData();
-            instance.settingsData.SaveSettings(menu);
+            //instance.settingsData.SaveSettings(menu);
         }
     }
 }
