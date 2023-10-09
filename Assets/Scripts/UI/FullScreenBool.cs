@@ -6,6 +6,11 @@ public class FullScreenBool : MonoBehaviour, IDataPersistance<SettingsData>
 {
     bool isFullscreen;
 
+    public void SetBool(bool set)
+    {
+        isFullscreen = set;
+    }
+
     public void LoadData(SettingsData data)
     {
         //data.i
