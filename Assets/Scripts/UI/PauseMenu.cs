@@ -19,20 +19,28 @@ public class PauseMenu : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        pauseAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        pauseAction.action.Disable();
+    }
+
     void Pause(InputAction.CallbackContext context)
     {
         menu.gameObject.SetActive(!menu.transform.gameObject.active);
 
         if (!menu.gameObject.active)
         {
-            Debug.Log("Close");
-            MapManager.SaveSettings(menu);
+            SettingsManager.SaveSettings(menu);
             Time.timeScale = 1;
         }
         else
         {
-            Debug.Log("Open");
-            MapManager.SetSettings(menu);
+            SettingsManager.SetSettings(menu);
             Time.timeScale = 0;
         }
     }

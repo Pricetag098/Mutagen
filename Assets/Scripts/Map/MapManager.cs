@@ -22,7 +22,6 @@ public class MapManager : MonoBehaviour
     public int mapTeir = 0;
 
     public PlayerData playerData = null;
-    public SettingsData settingsData = null;
 
 
     private void Awake()
@@ -40,7 +39,6 @@ public class MapManager : MonoBehaviour
             inputAction.action.performed += InputFinishLoading;
             SceneManager.sceneLoaded += LevelLoaded;
             playerData = null;
-            settingsData = null;
         }
         
     }
@@ -172,79 +170,4 @@ public class MapManager : MonoBehaviour
             spawnPos = exit.InverseTransformPoint(player.transform.position);
 		}
 	} 
-
-
-    //Jason Code for settings, can move this code to its own singlton & dontdestroyonload
-    public static void SetSettings(SettingsMenu menu)
-    {
-        if (instance.settingsData != null)
-        {
-            instance.settingsData.SetupSettings(menu);
-        }
-    }
-
-    public static float GetVolume(VolumeType type)
-    {
-        switch (type)
-        {
-            case VolumeType.SFX:
-                 return instance.settingsData.SFXVolume / instance.settingsData.maxVolume;
-            case VolumeType.music:
-                return instance.settingsData.musicVolume / instance.settingsData.maxVolume;
-            case VolumeType.ambient:
-                return instance.settingsData.ambientVolume / instance.settingsData.maxVolume;
-            default:
-                return instance.settingsData.SFXVolume / instance.settingsData.maxVolume;
-        }
-
-    }
-
-    public static void SaveSettings(SettingsMenu menu)
-    {
-        if (instance.settingsData != null)
-        {
-            instance.settingsData.SaveSettings(menu);
-        }
-        else
-        {
-            instance.settingsData = new SettingsData();
-            instance.settingsData.SaveSettings(menu);
-        }
-
-    }
-
-    public enum VolumeType
-    {
-        SFX,
-        music,
-        ambient
-    }
-
-    public class SettingsData
-    {
-        public float SFXVolume;
-        public float musicVolume;
-        public float ambientVolume;
-        public float maxVolume;
-        bool isFullScreen;
-        int qualityIndex;
-
-        public void SetupSettings(SettingsMenu menu)
-        {
-            menu.SetAllVolume(SFXVolume, musicVolume, ambientVolume);
-            menu.SetFullScreen(isFullScreen);
-            menu.SetQuality(qualityIndex);
-        }
-
-        public void SaveSettings(SettingsMenu menu)
-        {
-            SFXVolume = menu.SFXVolume;
-            musicVolume = menu.musicVolume;
-            ambientVolume = menu.ambientVolume;
-            maxVolume = menu.maxVolume;
-            isFullScreen = menu.isFullscreen;
-            qualityIndex = menu.qualityIndex;
-        }
-
-    }
 }
