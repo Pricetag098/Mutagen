@@ -1781,15 +1781,14 @@ MonoBehaviour:
   health: {fileID: 0}
   anim: {fileID: 2094660047686689200}
   manager: {fileID: 0}
+  caster: {fileID: 0}
+  behaviourTree: {fileID: 647904883047142289}
   invisMat:
     enabled: 0
     val: {fileID: 0}
   pipeColourChanger:
     enabled: 1
     val: {fileID: 605590364893699231}
-  caster: {fileID: 0}
-  dangerObject: {fileID: 0}
-  behaviourTree: {fileID: 647904883047142289}
   eventManager: {fileID: 0}
   randoms:
     enabled: 1
@@ -1812,9 +1811,10 @@ MonoBehaviour:
   healthState:
     enabled: 1
     val: 4600000096000000
-  circlingDistance: 5
-  setDrop: 1
-  setDropIndex: 1
+  flankDistance: 5
+  setDrop:
+    enabled: 0
+    val: {fileID: 0}
   actionCooldown: 1.5
   movementSpeed: 20
   movementCooldown: 1
