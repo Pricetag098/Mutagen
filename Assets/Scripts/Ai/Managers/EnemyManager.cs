@@ -34,19 +34,22 @@ public class EnemyManager : MonoBehaviour
 
     protected void Awake()
     {
+        //randomly assigned which element the deers and birds use
         elementIndex = Random.Range(0, 3);
+
+        //adds each enemy to a list
         for (int i = 0; i < transform.childCount; i++)
         {
             Add(transform.GetChild(i).GetComponentInChildren<Enemy>());
         }
-
+        //deactives each of them to allow idle anims
         for (int i = 0; i < enemyList.Count; i++)
         {
             enemyList[i].Deactivate();
-            //enemyList[i].transform.parent.gameObject.active = false;
         }
     }
 
+    //gets the average direction of each enemy in the list to allow for decluttering
     public Vector3 groupDir(Enemy agent)
     {
         Vector3 dir = Vector3.zero;
@@ -65,20 +68,26 @@ public class EnemyManager : MonoBehaviour
 
     public void Add(Enemy agent)
     {
-        enemyList.Add(agent);
+        //checks if enemy was not removed from moving list
+        foreach(Enemy enemy in moving)
+        {
+            if (enemy == agent)
+                moving.Remove(agent);
+        }
+
+        //assigns the agents variables
+;       enemyList.Add(agent);
         agent.manager = this;
         agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
         agent.player = player;
 
-
         EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
-
+        //allows for testing of specific elements
         if (assignedElement.Enabled)
         {
             int value = (int)assignedElement.Value;
             if(agent.pipeColourChanger.Enabled)
             agent.pipeColourChanger.Value.Change(elementColours[value]);
-            //renderer.SetColor("Emissive", elementColours[value]);
             caster.AssignLoadout(caster.loadoutVariations[value]);
             return;
         }
@@ -91,34 +100,14 @@ public class EnemyManager : MonoBehaviour
 
         if(agent.pipeColourChanger.Enabled)
         agent.pipeColourChanger.Value.Change(elementColours[elementIndex]);
-        //renderer.SetColor("Emissive", elementColours[elementIndex]);
     }
 
+    //checks if agents need to start flanking player to avoid cluttering
     private void FixedUpdate()
     {
         if (inFront.Count > moveCount)
         {
             MoveAgent(inFront.Last());
-        }
-    }
-
-    //change to start attacking instead of spawn
-    private void OnTriggerEnter(Collider collision)
-    {
-        HitBox player;
-        if(collision.gameObject.TryGetComponent<HitBox>(out player))
-        {
-            if (activated)
-                return;
-
-            for (int i = 0; i < enemyList.Count; i++)
-            {
-                enemyList[i].enabled = true;
-                enemyList[i].Activate();
-
-                //enemyList[i].transform.parent.gameObject.active = true;
-            }
-            activated = true;
         }
     }
 
@@ -129,4 +118,23 @@ public class EnemyManager : MonoBehaviour
         agent.flanking = true;
         agent.Flank();
     }
+
+    //on player collision allow enemies to start attacking 
+    private void OnTriggerEnter(Collider collision)
+    {
+        HitBox player;
+        if(collision.gameObject.TryGetComponent<HitBox>(out player))
+        {
+            if (activated)
+                return;
+
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                enemyList[i].Activate();
+            }
+            activated = true;
+        }
+    }
+
+
 }
