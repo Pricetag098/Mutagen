@@ -52,7 +52,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetDefault()
     {
-        SetAllVolume(sliders[0].slider.maxValue);
+        SetAllVolume(1);
         SetQuality(2);
         SetFullScreen(true);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations.Rigging;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class Enemy : MonoBehaviour
     public Health health;
     public Animator anim;
     public EnemyManager manager;
+    [HideInInspector] public EnemyAbilityCaster caster;
+    public BehaviourTreeRunner behaviourTree;
+
+    [Header("Optional References")]
     public Optional<Material> invisMat;
     public Optional<PipeColourChanger> pipeColourChanger;
-    [HideInInspector] public EnemyAbilityCaster caster;
-    [HideInInspector] public GameObject dangerObject;
-    public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
     public Optional<GameObject[]> randoms;
@@ -38,10 +40,9 @@ public class Enemy : MonoBehaviour
     public float movementMultiplier = 1;
     [Tooltip("In order of lowest to highest")]
     public Optional<int[]> healthState;
-    public float circlingDistance = 5;
+    public float flankDistance = 5;
     float defaultSpeed;
-    public bool setDrop; 
-    public int setDropIndex;
+    public Optional<Ability> setDrop;
 
     [Header("Timers")]
     public float actionCooldown;
@@ -70,17 +71,20 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Randomize();
-
         health.OnHit += OnHit;
         health.OnDeath += OnDie;
         defaultSpeed = movementSpeed;
     }
 
+    private void FixedUpdate()
+    {
+        anim.SetFloat("Speed", agent.speed);
+    }
+
+    //used for idle animations and starting to attack the player
     public void Activate()
     {
         behaviourTree.enabled = true;
-        Debug.Log("Detected");
         anim.SetTrigger("Detected");
     }
 
@@ -90,7 +94,8 @@ public class Enemy : MonoBehaviour
         this.enabled = false;
     }
 
-    void Randomize()
+    //randomizes parts
+    public void Randomize()
     {
         if (!randoms.Enabled)
             return;
@@ -133,49 +138,38 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Debug.Log("Detected");
-            anim.SetTrigger("Detected");
-        }
-
-    }
-
     void OnHit(DamageData data)
     {
         retaliate = true;
         retaliateTimer = Time.time;
     }
 
+    //drop ability on death, can set dedicated drop.
     void OnDie(DamageData data)
     {
+        GameObject drop = null;
 
-
-
-
-
-        if (setDrop)
+        if (setDrop.Enabled)
         {
-            GameObject drop = Instantiate(caster.caster.abilities[setDropIndex].pickupPrefab.Value);
-            Vector3 offset = transform.position;
-            offset.y += 1;
-            drop.transform.position = offset;
+            drop = Instantiate(setDrop.Value.pickupPrefab.Value);
         }
-
-        int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
-        if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
+        else
         {
-            GameObject drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
-            Vector3 offset = transform.position;
-            offset.y += 1;
-            drop.transform.position = offset;
+            int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
+            if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
+            {
+                drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
+            }
         }
+        //offsets position to avoid spawning in ground
+        Vector3 offset = transform.position;
+        offset.y += 1;
+        drop.transform.position = offset;
 
         manager.enemyList.Remove(this);
     }
 
+    //speed functions
     public void ChangeMovementSpeed(float speed)
     {
         movementSpeed = speed;
@@ -188,9 +182,10 @@ public class Enemy : MonoBehaviour
         ChangeMovementSpeed(movementSpeed * movementMultiplier);
     }
 
+    //movement functions
     public void Flank()
     {
-        Vector3 playerFlank = player.transform.position + (-player.transform.forward * circlingDistance);
+        Vector3 playerFlank = player.transform.position + (-player.transform.forward * flankDistance);
         agent.SetDestination(playerFlank);
     }
 
