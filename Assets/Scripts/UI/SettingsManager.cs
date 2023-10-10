@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using static MapManager;
+
+public enum VolumeType
+{
+    SFX,
+    music,
+    ambient
+}
 
 public class SettingsManager : MonoBehaviour
 {
     static SettingsManager instance;
 
     public SettingsData settingsData = null;
-    public AudioMixerGroup vfx,music,ambient;
+    public AudioMixer sfx,music,ambient;
     
-
     private void Awake()
     {
         //if already instanced, destroy new gameObject
@@ -26,15 +31,13 @@ public class SettingsManager : MonoBehaviour
             instance = this;
             settingsData = null;
         }
-
-        //vfx.audioMixer.se
     }
 
     public static void SetSettings(SettingsMenu menu)
     {
         if (instance.settingsData != null)
         {
-            instance.settingsData.SetupSettings(menu);
+            //instance.settingsData.SetupSettings(menu);   
         }
     }
 
@@ -51,53 +54,18 @@ public class SettingsManager : MonoBehaviour
             default:
                 return instance.settingsData.SFXVolume / instance.settingsData.maxVolume;
         }
-
     }
 
     public static void SaveSettings(SettingsMenu menu)
     {
         if (instance.settingsData != null)
         {
-            instance.settingsData.SaveSettings(menu);
+            //instance.settingsData.SaveSettings(menu);
         }
         else
         {
             instance.settingsData = new SettingsData();
-            instance.settingsData.SaveSettings(menu);
+            //instance.settingsData.SaveSettings(menu);
         }
-    }
-}
-
-public enum VolumeType
-{
-    SFX,
-    music,
-    ambient
-}
-
-public class SettingsData
-{
-    public float SFXVolume;
-    public float musicVolume;
-    public float ambientVolume;
-    public float maxVolume;
-    bool isFullScreen;
-    int qualityIndex;
-
-    public void SetupSettings(SettingsMenu menu)
-    {
-        menu.SetAllVolume(SFXVolume, musicVolume, ambientVolume);
-        menu.SetFullScreen(isFullScreen);
-        menu.SetQuality(qualityIndex);
-    }
-
-    public void SaveSettings(SettingsMenu menu)
-    {
-        SFXVolume = menu.SFXVolume;
-        musicVolume = menu.musicVolume;
-        ambientVolume = menu.ambientVolume;
-        maxVolume = menu.maxVolume;
-        isFullScreen = menu.isFullscreen;
-        qualityIndex = menu.qualityIndex;
     }
 }

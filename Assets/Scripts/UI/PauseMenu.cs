@@ -8,15 +8,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] InputActionProperty pauseAction;
     public SettingsMenu menu;
 
-
     private void Start()
     {
         pauseAction.action.performed += Pause;
-    }
-
-    private void Update()
-    {
-
     }
 
     private void OnEnable()
@@ -35,13 +29,15 @@ public class PauseMenu : MonoBehaviour
 
         if (!menu.gameObject.active)
         {
-            SettingsManager.SaveSettings(menu);
             Time.timeScale = 1;
+            PlayerSettingsHandler.instance.SaveGame();
         }
+
         else
         {
-            SettingsManager.SetSettings(menu);
             Time.timeScale = 0;
+            PlayerSettingsHandler.instance.LoadGame();
         }
+
     }
 }
