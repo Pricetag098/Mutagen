@@ -81,6 +81,9 @@ public class EnemyManager : MonoBehaviour
         agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
         agent.player = player;
 
+        if(agent.randoms.Enabled)
+            agent.Randomize();
+
         EnemyAbilityCaster caster = agent.GetComponent<EnemyAbilityCaster>();
         //allows for testing of specific elements
         if (assignedElement.Enabled)
@@ -130,6 +133,7 @@ public class EnemyManager : MonoBehaviour
 
             for (int i = 0; i < enemyList.Count; i++)
             {
+                enemyList[i].enabled = true;
                 enemyList[i].Activate();
             }
             activated = true;

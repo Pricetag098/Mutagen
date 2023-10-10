@@ -69,17 +69,20 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Randomize();
-
         health.OnHit += OnHit;
         health.OnDeath += OnDie;
         defaultSpeed = movementSpeed;
     }
 
+    private void FixedUpdate()
+    {
+        Debug.Log(agent.speed);
+        anim.SetFloat("Speed", agent.speed);
+    }
+
     public void Activate()
     {
         behaviourTree.enabled = true;
-        Debug.Log("Detected");
         anim.SetTrigger("Detected");
     }
 
@@ -89,7 +92,7 @@ public class Enemy : MonoBehaviour
         this.enabled = false;
     }
 
-    void Randomize()
+    public void Randomize()
     {
         if (!randoms.Enabled)
             return;

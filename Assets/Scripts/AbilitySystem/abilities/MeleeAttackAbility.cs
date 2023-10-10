@@ -6,6 +6,7 @@ using UnityEngine;
 public class MeleeAttackAbility : Ability
 {
     [SerializeField] float damage;
+	[SerializeField] float damageRange;
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float swingsPerMin = 1000;
 	[SerializeField] float swingRadius,swingRange;
@@ -50,7 +51,12 @@ public class MeleeAttackAbility : Ability
 						continue;
 					healths.Add(hb.health);
 					OnHit(hb,data.aimDirection);
-					hb.OnHit(CreateDamageData(damage));
+
+                    damage += Random.Range(-damageRange, damageRange);
+                    if (damage < 0)
+                        damage = 0;
+
+                    hb.OnHit(CreateDamageData(damage));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
 					if (hitPoint == Vector3.zero)

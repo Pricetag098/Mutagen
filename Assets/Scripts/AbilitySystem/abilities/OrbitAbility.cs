@@ -21,6 +21,7 @@ public class OrbitAbility : Ability
     [SerializeField] float midPointOffset;
     [SerializeField] float range;
     [SerializeField] float damage;
+    [SerializeField] float damageRange;
     [SerializeField] AimAssist aimAssist;
     [SerializeField] VfxSpawnRequest spawnFx;
     protected override void OnEquip()
@@ -49,6 +50,9 @@ public class OrbitAbility : Ability
 
             Vector3 endPoint = data.origin + aimAssistDir * range;
             Vector3 midPoint = data.origin + aimAssistDir * midPointOffset;
+            damage += Random.Range(-damageRange, damageRange);
+            if (damage < 0)
+                damage = 0;
             orb.GetComponent<OrbitProjectile>().Shoot(endPoint, midPoint, this, flySpeed,CreateDamageData(damage));
 
         }
