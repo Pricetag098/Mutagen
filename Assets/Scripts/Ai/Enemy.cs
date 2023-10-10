@@ -12,11 +12,12 @@ public class Enemy : MonoBehaviour
     public Health health;
     public Animator anim;
     public EnemyManager manager;
+    [HideInInspector] public EnemyAbilityCaster caster;
+    public BehaviourTreeRunner behaviourTree;
+
+    [Header("Optional References")]
     public Optional<Material> invisMat;
     public Optional<PipeColourChanger> pipeColourChanger;
-    [HideInInspector] public EnemyAbilityCaster caster;
-    [HideInInspector] public GameObject dangerObject;
-    public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
     public Optional<GameObject[]> randoms;
@@ -76,10 +77,10 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(agent.speed);
         anim.SetFloat("Speed", agent.speed);
     }
 
+    //used for idle animations and starting to attack the player
     public void Activate()
     {
         behaviourTree.enabled = true;
@@ -92,6 +93,7 @@ public class Enemy : MonoBehaviour
         this.enabled = false;
     }
 
+    //randomizes parts
     public void Randomize()
     {
         if (!randoms.Enabled)
