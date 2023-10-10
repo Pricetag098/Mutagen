@@ -23,12 +23,13 @@ public class PlayerSettingsHandler : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
+        
         instance = this;
         persistanceObjects = FindAllDataPersistance();
 
         fileHandler = new FileDataHandler<SettingsData>(Application.persistentDataPath, fileName, useEncryption);
         LoadGame();
+        DontDestroyOnLoad(gameObject);
     }
 
     public void NewGame()
@@ -73,7 +74,7 @@ public class PlayerSettingsHandler : MonoBehaviour
 
     List<IDataPersistance<SettingsData>> FindAllDataPersistance()
     {
-        IEnumerable<IDataPersistance<SettingsData>> list = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance<SettingsData>>();
+        IEnumerable<IDataPersistance<SettingsData>> list = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistance<SettingsData>>();
         return new List<IDataPersistance<SettingsData>>(list);
     }
 

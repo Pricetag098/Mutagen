@@ -12,6 +12,7 @@ public class SettingsMenu : MonoBehaviour
     public QualityDropDown dropDown;
     public FullScreenBool fullScreen;
 
+
     void Start()
     {
 
@@ -33,6 +34,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void onClose()
     {
+        Debug.Log("Save");
+        PlayerSettingsHandler.instance.SaveGame();
         gameObject.SetActive(false);
         Time.timeScale = 1;
     }
@@ -52,17 +55,10 @@ public class SettingsMenu : MonoBehaviour
         SetAllVolume(sliders[0].slider.maxValue);
         SetQuality(2);
         SetFullScreen(true);
-
-        SettingsManager.SaveSettings(this);
     }
 
     public void onQuit()
     {
         Application.Quit();
-    }
-
-    public void SaveSettings()
-    {
-        SettingsManager.SaveSettings(this);
     }
 }

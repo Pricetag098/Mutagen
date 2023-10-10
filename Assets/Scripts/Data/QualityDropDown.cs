@@ -15,12 +15,12 @@ public class QualityDropDown : MonoBehaviour, IDataPersistance<SettingsData>
         QualitySettings.SetQualityLevel(index);
     }
 
-    public void SaveData(ref SettingsData data)
+    void IDataPersistance<SettingsData>.SaveData(ref SettingsData data)
     {
         data.qualityIndex = index;
     }
 
-    public void LoadData(SettingsData data)
+    void IDataPersistance<SettingsData>.LoadData(SettingsData data)
     {
         index = data.qualityIndex;
         SetIndex(index);
