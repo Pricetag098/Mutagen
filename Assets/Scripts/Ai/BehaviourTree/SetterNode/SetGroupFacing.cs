@@ -21,7 +21,7 @@ public class SetGroupFacing : SetterNode
     Vector3 groupFacing()
     {
         Vector3 playerFlank = player.transform.position + 
-            ((-player.transform.forward * agent.circlingDistance).normalized);
+            ((-player.transform.forward * agent.flankDistance).normalized);
         return playerFlank;
     }
 }

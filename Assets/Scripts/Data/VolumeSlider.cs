@@ -19,7 +19,6 @@ public class VolumeSlider : MonoBehaviour, IDataPersistance<SettingsData>
 
     public void SetFloat(float f)
     {
-
         volume = f;
         slider.value = volume;
         audioMixer.audioMixer.SetFloat(path, Mathf.Log10(f) * 20);
