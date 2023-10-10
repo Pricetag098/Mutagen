@@ -19,6 +19,7 @@ public class FloatingText
     public float deviation;
     public float motionSpeed;
     public float followStrength;
+    public float closeFollowStrength;
     public float damage;
     //public bool canMerge = true;
 
@@ -50,6 +51,9 @@ public class FloatingText
 
         txt.text = ((int)damage).ToString();
 
+        if(other.txt.fontSize > txt.fontSize)
+            txt.fontSize = other.txt.fontSize;
+
         lastShown = Time.time - manager.settings.addedMergeDuration;
         other.Hide();
     }
@@ -75,13 +79,16 @@ public class FloatingText
             Vector3 dir = (Camera.main.WorldToScreenPoint(follow.transform.position) - go.transform.position);
             float dist = Vector3.Distance(dir , follow.transform.position);
             if (dist > manager.settings.followDist)
+            {
                 go.transform.position +=
                     (followCameraPos - go.transform.position).normalized * followStrength;
+                go.transform.position += motion * motionSpeed * Time.fixedDeltaTime;
+            }
             else
                 go.transform.position +=
-                    (followCameraPos - go.transform.position).normalized * (followStrength / 3);
+                    (followCameraPos - go.transform.position).normalized * (closeFollowStrength) * Time.fixedDeltaTime;
             
-            go.transform.position += motion * motionSpeed * Time.deltaTime;
+
         }
         else
             Hide();
