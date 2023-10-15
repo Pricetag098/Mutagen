@@ -34,6 +34,14 @@ public class Ragdoll : MonoBehaviour
         if (!dead)
             return;
 
+        if (agent.droppedAbility.Enabled)
+        {
+
+
+
+
+            return;
+        }
 
         for (int i = 0; i < transform.parent.childCount; i++)
         {
@@ -109,7 +117,6 @@ public class Ragdoll : MonoBehaviour
         agent.agent.enabled = false;
         agent.behaviourTree.enabled = false;
         agent.enabled = false;
-
 
     }
 }

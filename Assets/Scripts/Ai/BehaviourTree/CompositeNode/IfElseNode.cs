@@ -192,8 +192,10 @@ public class IfElseNode : CompositeNode
 
             case AbilityCheckType.Dash:
                 return agent.caster.curAbility.GetType() == typeof(DashAbility);
+            default:
+                return false;
         }
-        return false;
+
     }
     
     protected override State OnUpdate()

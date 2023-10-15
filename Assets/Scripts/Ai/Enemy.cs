@@ -23,6 +23,11 @@ public class Enemy : MonoBehaviour
     Material defaultMat;
     public Optional<GameObject[]> randoms;
 
+    [Header("DropStats")]
+    public Optional<Ability> setDrop;
+    [Range(0,100)] public float dropChance;
+    [HideInInspector] public Optional<Ability> droppedAbility;
+
     //behaviour bools
     [HideInInspector] public bool isMoving;
     [HideInInspector] public bool performingAction;
@@ -32,8 +37,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool retaliate;
 
     [Header("Declutter Stats")]
-    [HideInInspector] public bool isSeperating;
     public float retreatingTimer = 2;
+    [HideInInspector] public bool isSeperating;
     float lastSeperate;
 
     [Header("Stats")]
@@ -42,7 +47,6 @@ public class Enemy : MonoBehaviour
     public Optional<int[]> healthState;
     public float flankDistance = 5;
     float defaultSpeed;
-    public Optional<Ability> setDrop;
 
     [Header("Timers")]
     public float actionCooldown;
@@ -146,29 +150,46 @@ public class Enemy : MonoBehaviour
         retaliateTimer = Time.time;
     }
 
-    //drop ability on death, can set dedicated drop.
+    //randomlydrop ability on death, can set dedicated drop.
     void OnDie(DamageData data)
     {
-        GameObject drop = null;
-
         if (setDrop.Enabled)
         {
-            drop = Instantiate(setDrop.Value.pickupPrefab.Value);
+            droppedAbility.Enabled = true;
+            droppedAbility.Value = setDrop.Value;
+            //drop = Instantiate(setDrop.Value.pickupPrefab.Value);
+            //Vector3 offset = transform.position;
+            //offset.y += 1;
+            //drop.transform.position = offset;
         }
         else
         {
-            int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
-            if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
-            {
-                drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
-            }
+            DropAbility();
         }
-        //offsets position to avoid spawning in ground
-        Vector3 offset = transform.position;
-        offset.y += 1;
-        drop.transform.position = offset;
 
         manager.enemyList.Remove(this);
+    }
+
+    void DropAbility()
+    {
+        float dropping = Random.Range(0, 100);
+        if(dropping > dropChance)
+        {
+            return;
+        }
+
+        int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
+        if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
+        {
+
+            //drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
+        }
+        droppedAbility.Enabled = true;
+        droppedAbility.Value = caster.caster.abilities[randDrop];
+        //offsets position to avoid spawning in ground
+        //Vector3 offset = transform.position;
+        //offset.y += 1;
+        //drop.transform.position = offset;
     }
 
     //speed functions
