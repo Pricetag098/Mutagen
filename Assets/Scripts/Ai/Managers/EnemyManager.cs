@@ -10,6 +10,11 @@ public class EnemyManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
 
+    [Header("DropStats")]
+    [Range(0, 100)] public float dropChance;
+    public Ability[] dropPool;
+    bool droppedCheck;
+
     [Header("Element")]
     int elementIndex;
     public Optional<Element> assignedElement;
@@ -64,6 +69,25 @@ public class EnemyManager : MonoBehaviour
         }
 
         return dir.normalized;
+    }
+
+    public bool DropCheck()
+    {
+        float dropping = Random.Range(0, 100);
+        if (droppedCheck)
+            return true;
+        //if last enemy drop ability else random
+        if (enemyList.Count <= 0 && !droppedCheck)
+        {
+            if (!droppedCheck)
+                droppedCheck = true;
+        }
+        else if(dropping < dropChance && !droppedCheck)
+        {
+            if (!droppedCheck)
+                droppedCheck = true;
+        }
+        return !droppedCheck;
     }
 
     public void Add(Enemy agent)

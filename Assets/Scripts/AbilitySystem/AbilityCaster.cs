@@ -46,13 +46,7 @@ public class AbilityCaster : MonoBehaviour
 
     public void SetAbility(Ability ability,int index,bool spawnPickup = true)
 	{
-        ability = Instantiate(ability);
         abilities[index].UnEquip(ability);
-		if (abilities[index].pickupPrefab.Enabled && spawnPickup)
-		{
-            GameObject pickup = Instantiate(abilities[index].pickupPrefab.Value);
-            pickup.transform.position = transform.position;
-		}
         abilities[index] = ability;
         ability.Equip(this);
     }

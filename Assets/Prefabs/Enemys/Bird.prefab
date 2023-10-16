@@ -1316,15 +1316,14 @@ MonoBehaviour:
   health: {fileID: 3109258454431184228}
   anim: {fileID: 6133422335050182817}
   manager: {fileID: 0}
+  caster: {fileID: 0}
+  behaviourTree: {fileID: 3109258454431184229}
   invisMat:
     enabled: 0
     val: {fileID: 0}
   pipeColourChanger:
     enabled: 0
     val: {fileID: 0}
-  caster: {fileID: 0}
-  dangerObject: {fileID: 0}
-  behaviourTree: {fileID: 3109258454431184229}
   eventManager: {fileID: 0}
   randoms:
     enabled: 0
@@ -1341,9 +1340,10 @@ MonoBehaviour:
   healthState:
     enabled: 0
     val: 
-  circlingDistance: 5
-  setDrop: 0
-  setDropIndex: 0
+  flankDistance: 5
+  setDrop:
+    enabled: 0
+    val: {fileID: 0}
   actionCooldown: 2.5
   movementSpeed: 15
   movementCooldown: 1.5
@@ -1408,8 +1408,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 125
-  maxHealth: 125
+  health: 90
+  maxHealth: 90
   iFrames: 0
   maxIFrames: Infinity
   canHaveStatusEffects: 1

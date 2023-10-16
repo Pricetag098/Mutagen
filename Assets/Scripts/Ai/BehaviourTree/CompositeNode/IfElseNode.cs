@@ -182,16 +182,19 @@ public class IfElseNode : CompositeNode
 
     bool abilityTypeCheck(AbilityCheckType check)
     {
+        Ability abil = agent.caster.curAbility;
         switch (check)
         {
             case AbilityCheckType.Melee:
-                return agent.caster.curAbility.GetType() == typeof(MeleeAttackAbility);
+                return abil.GetType() == typeof(MeleeAttackAbility);
 
             case AbilityCheckType.Ranged:
-                return agent.caster.curAbility.GetType() == typeof(RangedAbility);
+                return abil.GetType() == typeof(RangedAbility);
 
             case AbilityCheckType.Dash:
-                return agent.caster.curAbility.GetType() == typeof(DashAbility);
+                return abil.GetType() == typeof(DashAbility) || abil.GetType() == typeof(DashApplysEffect);
+            default:
+                return false;
         }
         return false;
     }
