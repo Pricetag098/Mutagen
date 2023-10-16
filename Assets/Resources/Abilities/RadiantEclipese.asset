@@ -26,6 +26,7 @@ MonoBehaviour:
   releaseOnFullCharge: 1
   maxChargeTime: 0.5
   minChargeTime: 0.4
+  damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
@@ -77,15 +78,15 @@ MonoBehaviour:
   speedModifier: 0.8
   onHitEffectList: []
   aimAssist:
-    maxRange: 20
+    maxRange: 5
     aimAssistLayer:
       serializedVersion: 2
       m_Bits: 512
-    directionWeight: 10
-    distanceWeight: 5
+    directionWeight: 2.5
+    distanceWeight: 2
     priorityWeight: 1
-    minDirectionValue: 0.5
-    assistWeight: 1
+    minDirectionValue: -1
+    assistWeight: 0
   vfx:
     enabled: 0
     val: {fileID: 0}

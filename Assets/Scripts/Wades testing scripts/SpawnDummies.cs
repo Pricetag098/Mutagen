@@ -23,6 +23,13 @@ public class SpawnDummies : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("Yay");
+            if (spawnPos[0].childCount != 0 && spawnPos[1].childCount != 0)
+            {
+                Debug.Log("Lentils");
+                Destroy(spawnPos[0].GetChild(0));
+                Destroy(spawnPos[1].GetChild(0));
+
+            }
             foreach (GameObject creature in creatures)
             {
                 Instantiate(creature, spawnPos[i]);
@@ -33,5 +40,6 @@ public class SpawnDummies : MonoBehaviour
         {
             Debug.Log("HAHAhA :)");
         }
+        i = 0;
     }
 }
