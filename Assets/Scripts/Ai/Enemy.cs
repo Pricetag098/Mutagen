@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour
         retaliateTimer = Time.time;
     }
 
-    //randomlydrop ability on death, can set dedicated drop.
+    //removes ememy from manager list
     void OnDie(DamageData data)
     {
         manager.enemyList.Remove(this);

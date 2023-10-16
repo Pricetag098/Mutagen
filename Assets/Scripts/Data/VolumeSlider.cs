@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class VolumeSlider : MonoBehaviour, IDataPersistance<SettingsData>
 {
@@ -14,16 +15,21 @@ public class VolumeSlider : MonoBehaviour, IDataPersistance<SettingsData>
 
     private void Start()
     {
-        slider = GetComponent<Slider>();    
+        slider = GetComponent<Slider>();
+
+        TestSliderFix[] slidFix = FindObjectsOfType<TestSliderFix>();
+        for (int i = 0; i < slidFix.Length; i++)
+            slidFix[i].SetSlider(volume);
     }
 
     public void SetFloat(float f)
     {
+        
         volume = f;
         slider.value = volume;
         audioMixer.audioMixer.SetFloat(path, Mathf.Log10(f) * 20);
-        Debug.Log(volume);
     }
+
     void IDataPersistance<SettingsData>.SaveData(ref SettingsData data)
     {
         switch (volumeType)
@@ -54,9 +60,8 @@ public class VolumeSlider : MonoBehaviour, IDataPersistance<SettingsData>
                 volume = data.ambientVolume;
                 break;
         }
-
-        //Debug.Log("Loading");
         SetFloat(volume);
+
 
     }
 }

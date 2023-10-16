@@ -15,7 +15,7 @@ public class SettingsMenu : MonoBehaviour
 
     void Start()
     {
-
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void SetAllVolume(float val1, float val2, float val3)
