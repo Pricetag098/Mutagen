@@ -12,7 +12,7 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] float swingRadius,swingRange;
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
-	[SerializeField] List<OnHitEffect> hitEffects;
+	[SerializeField] protected List<OnHitEffect> hitEffects;
 	float angleCutoff;
 	float coolDown;
 	Timer timer;
@@ -35,7 +35,7 @@ public class MeleeAttackAbility : Ability
             if (OnCast != null)
                 OnCast(data);
             timer.Reset();
-
+			OnSwing(data.origin, data.aimDirection);
 			if (caster.animator.Enabled)
 				caster.animator.Value.SetTrigger(animationTrigger);
 			List<Health> healths = new List<Health>();
@@ -69,6 +69,11 @@ public class MeleeAttackAbility : Ability
 				}
 			}
 		}
+	}
+
+	protected virtual void OnSwing(Vector3 origin,Vector3 direction)
+	{
+
 	}
 
 	public override void OnDrawGizmos()
