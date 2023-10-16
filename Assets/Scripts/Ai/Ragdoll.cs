@@ -11,13 +11,18 @@ public class Ragdoll : MonoBehaviour
     Health health;
     public HitBox hb;
     public GameObject[] colliders;
-    Enemy agent;
+    public SecondOrderFollower follower;
+    public SecondOrderFacer facer;
     public Renderer[] render;
+    public AbilityPickupInteractable pickup;
+    Enemy agent;
+
 
     [Header("Stats")]
     public float fadeRate;
     public float ragdollForce;
     bool dead;
+    bool droppingAbility;
     float alpha;
     
 
@@ -34,14 +39,31 @@ public class Ragdoll : MonoBehaviour
         if (!dead)
             return;
 
-        if (agent.droppedAbility.Enabled)
+        if (!agent.manager.DropCheck() && !droppingAbility)
         {
+            droppingAbility = true;
+            for(int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].GetComponent<Collider>().enabled = false;
+                Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.velocity = Vector3.zero;
+            }
 
 
+            foreach(Renderer r in render)
+            {
+                r.material.SetFloat("_RimLight", 1);
 
+            }
+            //enable interactable
+            pickup.enabled = true;
+            pickup.GetComponent<Collider>().enabled = true;
 
             return;
         }
+        if (droppingAbility)
+            return;
 
         for (int i = 0; i < transform.parent.childCount; i++)
         {
@@ -75,24 +97,13 @@ public class Ragdoll : MonoBehaviour
     {
         dead = true;
 
-        Debug.Log("Ragdoll");
-
         //disable other colliders
         hb.transform.GetComponent<Collider>().enabled = false;
 
         for (int i = 0; i < transform.parent.childCount; i++)
         {
-            SecondOrderFollower follow;
-            if (transform.parent.GetChild(i).TryGetComponent<SecondOrderFollower>(out follow))
-            {
-                follow.enabled = false;
-            }
-
-            SecondOrderFacer facer;
-            if (transform.parent.GetChild(i).TryGetComponent<SecondOrderFacer>(out facer))
-            {
-                facer.enabled = false;
-            }
+            follower.enabled = false;
+            facer.enabled = false;
 
             Collider col;
             if (transform.parent.GetChild(i).TryGetComponent<Collider>(out col))
@@ -101,6 +112,12 @@ public class Ragdoll : MonoBehaviour
             }
         }
 
+        //disable components
+        agent.anim.enabled = false;
+        agent.agent.enabled = false;
+        agent.behaviourTree.enabled = false;
+        agent.enabled = false;
+
         //enable new colliders and turn on kinematic
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -108,15 +125,7 @@ public class Ragdoll : MonoBehaviour
             Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
-            Vector3 random = new Vector3(Random.Range(0, ragdollForce), 0, Random.Range(0, ragdollForce));
-            rb.AddForce((random + Vector3.up) * ragdollForce, ForceMode.Impulse);
         }
-
-        //disable components
-        agent.anim.enabled = false;
-        agent.agent.enabled = false;
-        agent.behaviourTree.enabled = false;
-        agent.enabled = false;
 
     }
 }

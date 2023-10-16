@@ -7,10 +7,13 @@ public class AbilityPickupInteractable : Interactable
     public Ability ability;
 	[SerializeField] GameObject hoverText;
 	[SerializeField] Image icon;
+
+	//Jason Code
+	public Enemy agent;
 	
 	public override void OnHover()
 	{
-		hoverText.SetActive(true);
+		//hoverText.SetActive(true);
 	}
 	public override void ExitHover()
 	{
@@ -19,15 +22,22 @@ public class AbilityPickupInteractable : Interactable
 	}
 	public override void Interact(Interactor interactor)
 	{
+		Debug.Log("Interact");
 		PlayerAbilityCaster player = interactor.GetComponent<PlayerAbilityCaster>();
 		if (player.abilitySelector.open)
 			return;
 		player.EquipAbility(ability);
 		interactor.hasTarget = false;
-		Destroy(transform.parent.gameObject);
+		Destroy(agent.transform.parent.gameObject);
 	}
 	private void Awake()
 	{
-		icon.sprite = ability.icon;
+        //icon.sprite = ability.icon;
 	}
+
+	private void Start()
+	{
+        //temp Jason Code
+        ability = agent.manager.dropPool[0];
+    }
 }
