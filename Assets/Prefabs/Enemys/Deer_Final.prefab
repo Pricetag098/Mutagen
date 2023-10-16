@@ -1,5 +1,68 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &539488874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 539488875}
+  - component: {fileID: 539488876}
+  - component: {fileID: 539488877}
+  m_Layer: 10
+  m_Name: PickupInteract
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &539488875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539488874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7559546584225299483}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &539488876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539488874}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eaa47c860734a94ba9f588bca6f8ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  ability: {fileID: 0}
+  hoverText: {fileID: 0}
+  icon: {fileID: 0}
+  agent: {fileID: 647904883047142291}
+--- !u!135 &539488877
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539488874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &172246327065422517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,7 +1272,7 @@ GameObject:
   - component: {fileID: 5272749216697541724}
   - component: {fileID: 4423117867926224807}
   - component: {fileID: 1740361962919885938}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DeerForAlfondle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1349,6 +1412,7 @@ Transform:
   - {fileID: 1231762237415435297}
   - {fileID: 647904882652686651}
   - {fileID: 2632990004301316659}
+  - {fileID: 539488875}
   m_Father: {fileID: 7291066357127662960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1818,16 +1882,13 @@ MonoBehaviour:
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isSeperating: 0
   retreatingTimer: 2
+  isSeperating: 0
   movementMultiplier: 1
   healthState:
     enabled: 1
     val: 4600000096000000
   flankDistance: 5
-  setDrop:
-    enabled: 0
-    val: {fileID: 0}
   actionCooldown: 1.5
   movementSpeed: 20
   movementCooldown: 1
@@ -1866,8 +1927,11 @@ MonoBehaviour:
   hb: {fileID: 495153374445034290}
   colliders:
   - {fileID: 3441193055107455113}
+  follower: {fileID: 1238117163977272138}
+  facer: {fileID: 9088010546826795165}
   render:
   - {fileID: 7412119237863741989}
+  pickup: {fileID: 539488876}
   fadeRate: 1.5
   ragdollForce: 1.2
 --- !u!1 &4640020522738667171
@@ -2700,7 +2764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7291066357127662960
 Transform:
   m_ObjectHideFlags: 0
