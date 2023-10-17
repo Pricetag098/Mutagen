@@ -229,7 +229,10 @@ public class IfElseNode : CompositeNode
                 break;
 
             case CheckType.isStunned:
-                if()
+                if (stunnedCheck())
+                    ChildUpdate(first);
+                else ChildUpdate(second);
+                break;
 
             case CheckType.flanking:
                 if (agent.flanking)
