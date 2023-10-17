@@ -49,6 +49,7 @@ public class FloatingTextManager : MonoBehaviour
         floatingText.deviation = settings.textDeviation;
         floatingText.motion = new Vector3((Random.Range(-settings.textSpread, settings.textSpread)), 1, 0);
         floatingText.followStrength = settings.followStrength;
+        floatingText.closeFollowStrength = settings.closeFollowStrength;
         floatingText.motionSpeed = settings.motionSpeed;
 
         floatingText.duration = settings.baseDuration;

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: RadiantEclipese
   m_EditorClassIdentifier: 
   abilityName: Radiant Eclipse
+  abilityDescription: This small gate like device speeds up anything that pass through
+    it to incredible speeds.
   icon: {fileID: 21300000, guid: a9848e92ce9f2b54fa1dda4532782a59, type: 3}
   element: 3
   pickupPrefab:
@@ -24,26 +26,27 @@ MonoBehaviour:
   releaseOnFullCharge: 1
   maxChargeTime: 0.5
   minChargeTime: 0.4
+  damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 100
       inSlope: 0
-      outSlope: 100
-      tangentMode: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 100
-      inSlope: 100
+      inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -72,14 +75,19 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speedModifier: 0.6
+  speedModifier: 0.8
+  onHitEffectList: []
   aimAssist:
-    maxRange: 20
+    maxRange: 5
     aimAssistLayer:
       serializedVersion: 2
       m_Bits: 512
-    directionWeight: 10
-    distanceWeight: 5
+    directionWeight: 2.5
+    distanceWeight: 2
     priorityWeight: 1
-    minDirectionValue: 0.5
-    assistWeight: 1
+    minDirectionValue: -1
+    assistWeight: 0
+  vfx:
+    enabled: 0
+    val: {fileID: 0}
+  animationTrigger: 

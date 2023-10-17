@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ranged Normal
   m_EditorClassIdentifier: 
   abilityName: 
+  abilityDescription: 
   icon: {fileID: 0}
   element: 0
   pickupPrefab:
@@ -23,27 +24,28 @@ MonoBehaviour:
   prefab: {fileID: 4891474550695880070, guid: e556cfb0eeb19b74ca4c95995649923f, type: 3}
   releaseOnFullCharge: 1
   maxChargeTime: 1
-  minChargeTime: 0.2
+  minChargeTime: 0.4
+  damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 10
+      inSlope: 3.492013
+      outSlope: 3.492013
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.30931476
     - serializedVersion: 3
       time: 1.0083333
-      value: 30
-      inSlope: 100
-      outSlope: 100
+      value: 20
+      inSlope: 4.833003
+      outSlope: 4.833003
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.4072687
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -53,18 +55,27 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 310.76584
-      outSlope: 310.76584
+      value: 50
+      inSlope: 61.292587
+      outSlope: 61.292587
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.2125
+      outWeight: 0.40419748
+    - serializedVersion: 3
+      time: 0.32130808
+      value: 68.02425
+      inSlope: 34.129704
+      outSlope: 34.129704
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.29807743
     - serializedVersion: 3
       time: 1
-      value: 100
-      inSlope: 2
-      outSlope: 2
+      value: 80
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

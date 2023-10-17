@@ -66,9 +66,9 @@ public class SetMoveTo : SetterNode
                     }
                     break;
                 }
-            case TargetType.away_danger:
-                blackboard.moveToPosition = agent.transform.position + -(agent.dangerObject.transform.position - agent.transform.position).normalized;
-                break;
+            //case TargetType.away_danger:
+            //    blackboard.moveToPosition = agent.transform.position + -(agent.dangerObject.transform.position - agent.transform.position).normalized;
+            //    break;
             case TargetType.group:
                 blackboard.moveToPosition = agent.transform.position + manager.groupDir(agent) * awayDistance;
                 break;

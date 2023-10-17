@@ -10,6 +10,7 @@ public class MissilesAbility : Ability
     protected ObjectPooler projectileSpawner;
 
     [SerializeField] float damage = 10;
+    [SerializeField] float damageRange;
     [SerializeField] float range = 100;
     [SerializeField] float spreadRad = 10;
     [SerializeField] float upOffset = 3;
@@ -104,7 +105,10 @@ public class MissilesAbility : Ability
                     circlePos.y = Mathf.Abs(circlePos.y);
 
                     Vector3 midPoint = Vector3.Lerp(lastCastdata.origin, hb.transform.position, .5f) + upDir * circlePos.y + rightDir * circlePos.x;
-
+                    
+                    damage += Random.Range(-damageRange, damageRange);
+                    if (damage < 0)
+                        damage = 0;
                     projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, CreateDamageData(damage),projectileSpeed,hb);
 
                     if (caster.animator.Enabled)

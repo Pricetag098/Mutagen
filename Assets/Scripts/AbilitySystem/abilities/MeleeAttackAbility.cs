@@ -6,12 +6,13 @@ using UnityEngine;
 public class MeleeAttackAbility : Ability
 {
     [SerializeField] float damage;
+	[SerializeField] float damageRange;
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float swingsPerMin = 1000;
 	[SerializeField] float swingRadius,swingRange;
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
-	[SerializeField] List<OnHitEffect> hitEffects;
+	[SerializeField] protected List<OnHitEffect> hitEffects;
 	float angleCutoff;
 	float coolDown;
 	Timer timer;
@@ -34,7 +35,7 @@ public class MeleeAttackAbility : Ability
             if (OnCast != null)
                 OnCast(data);
             timer.Reset();
-
+			OnSwing(data.origin, data.aimDirection);
 			if (caster.animator.Enabled)
 				caster.animator.Value.SetTrigger(animationTrigger);
 			List<Health> healths = new List<Health>();
@@ -50,7 +51,12 @@ public class MeleeAttackAbility : Ability
 						continue;
 					healths.Add(hb.health);
 					OnHit(hb,data.aimDirection);
-					hb.OnHit(CreateDamageData(damage));
+
+                    damage += Random.Range(-damageRange, damageRange);
+                    if (damage < 0)
+                        damage = 0;
+
+                    hb.OnHit(CreateDamageData(damage));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
 					if (hitPoint == Vector3.zero)
@@ -63,6 +69,11 @@ public class MeleeAttackAbility : Ability
 				}
 			}
 		}
+	}
+
+	protected virtual void OnSwing(Vector3 origin,Vector3 direction)
+	{
+
 	}
 
 	public override void OnDrawGizmos()

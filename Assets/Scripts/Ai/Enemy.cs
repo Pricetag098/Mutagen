@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations.Rigging;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,51 +14,46 @@ public class Enemy : MonoBehaviour
     public Health health;
     public Animator anim;
     public EnemyManager manager;
+    [HideInInspector] public EnemyAbilityCaster caster;
+    public BehaviourTreeRunner behaviourTree;
+
+    [Header("Optional References")]
     public Optional<Material> invisMat;
     public Optional<PipeColourChanger> pipeColourChanger;
-    [HideInInspector] public EnemyAbilityCaster caster;
-    [HideInInspector] public GameObject dangerObject;
-    public BehaviourTreeRunner behaviourTree;
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
     public Optional<GameObject[]> randoms;
 
     //behaviour bools
-    [HideInInspector] public bool isMoving;
-    [HideInInspector] public bool performingAction;
-    [HideInInspector] public bool isInDanger;
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
+    [HideInInspector] public bool isStunned;
 
     [Header("Declutter Stats")]
-    [HideInInspector] public bool isSeperating;
     public float retreatingTimer = 2;
+    [HideInInspector] public bool isSeperating;
     float lastSeperate;
 
     [Header("Stats")]
     public float movementMultiplier = 1;
     [Tooltip("In order of lowest to highest")]
     public Optional<int[]> healthState;
-    public float circlingDistance = 5;
+    public float flankDistance = 5;
     float defaultSpeed;
-    public bool setDrop; 
-    public int setDropIndex;
 
     [Header("Timers")]
-    public float actionCooldown;
     public float movementSpeed;
-    public float movementCooldown;
     public float retaliateCooldown;
+    public float stunDuration;
     [Range(0f,10f)]
     public float delayMoveRange;
     [HideInInspector] public float defaultMovementSpeed;
-    [HideInInspector] public float actionTimer;
-    [HideInInspector] public float movementTimer;
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
+    [HideInInspector] public float stunnedTimer;
 
-
+    #region startupfunctions
     void Awake()
     {
         //referencing components
@@ -66,21 +63,26 @@ public class Enemy : MonoBehaviour
         behaviourTree = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
+        player = FindObjectOfType<PlayerAbilityCaster>().GetComponent<PlayerAbilityCaster>();
+        manager = FindObjectOfType<EnemyManager>().GetComponent<EnemyManager>();
     }
 
     private void Start()
     {
-        Randomize();
-
         health.OnHit += OnHit;
         health.OnDeath += OnDie;
         defaultSpeed = movementSpeed;
     }
 
+    private void FixedUpdate()
+    {
+        anim.SetFloat("Speed", agent.speed);
+    }
+
+    //used for idle animations and starting to attack the player
     public void Activate()
     {
         behaviourTree.enabled = true;
-        Debug.Log("Detected");
         anim.SetTrigger("Detected");
     }
 
@@ -90,7 +92,8 @@ public class Enemy : MonoBehaviour
         this.enabled = false;
     }
 
-    void Randomize()
+    //randomizes parts
+    public void Randomize()
     {
         if (!randoms.Enabled)
             return;
@@ -131,16 +134,7 @@ public class Enemy : MonoBehaviour
     {
         behaviourTree.tree = newTree.Clone();
     }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Debug.Log("Detected");
-            anim.SetTrigger("Detected");
-        }
-
-    }
+    #endregion
 
     void OnHit(DamageData data)
     {
@@ -148,31 +142,20 @@ public class Enemy : MonoBehaviour
         retaliateTimer = Time.time;
     }
 
+    public void SetStunned(float stunTime)
+    {
+        stunDuration = stunTime;
+        isStunned = true;
+        stunnedTimer = Time.time;
+    }
+
+    //removes ememy from manager list
     void OnDie(DamageData data)
     {
         manager.enemyList.Remove(this);
-
-
-        int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
-
-        if (setDrop)
-        {
-            GameObject drop = Instantiate(caster.caster.abilities[setDropIndex].pickupPrefab.Value);
-            Vector3 offset = transform.position;
-            offset.y += 1;
-            drop.transform.position = offset;
-        }
-
-
-        if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
-        {
-            GameObject drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
-            Vector3 offset = transform.position;
-            offset.y += 1;
-            drop.transform.position = offset;
-        }
     }
 
+    //speed functions
     public void ChangeMovementSpeed(float speed)
     {
         movementSpeed = speed;
@@ -185,9 +168,10 @@ public class Enemy : MonoBehaviour
         ChangeMovementSpeed(movementSpeed * movementMultiplier);
     }
 
+    //movement functions
     public void Flank()
     {
-        Vector3 playerFlank = player.transform.position + (-player.transform.forward * circlingDistance);
+        Vector3 playerFlank = player.transform.position + (-player.transform.forward * flankDistance);
         agent.SetDestination(playerFlank);
     }
 
@@ -210,23 +194,5 @@ public class Enemy : MonoBehaviour
         lastSeperate = Time.time;
         isSeperating = true;
         return true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //if(other.transform.gameObject.layer == hazardLM)
-        //{
-        //    dangerObject = other.transform.gameObject;
-        //    isInDanger = true;
-        //}
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //if(other.transform == dangerObject)
-        //{
-        //    dangerObject = null;
-        //    isInDanger = false;
-        //}
     }
 }

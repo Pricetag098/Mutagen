@@ -1211,7 +1211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1911991460784610158
 Transform:
   m_ObjectHideFlags: 0
@@ -1752,9 +1752,11 @@ MonoBehaviour:
   - {fileID: 912021985490570867}
   idealLegPos: {fileID: 1911991459627363659}
   maxDistance: 1.5
+  distanceLimit: 0
   rayLength: 10
   yOffset: 2
   travelSpeed: 35
+  travelTimeLimit: 0
   easingFunction:
     serializedVersion: 2
     m_Curve:
@@ -2082,6 +2084,7 @@ MonoBehaviour:
   loadoutVariations:
   - {fileID: 11400000, guid: 10b1879f3afc5c849ba6698365116cdb, type: 2}
   castOrigin: {fileID: 8600188828449373989}
+  defaultAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   curAbility: {fileID: 0}
   projectileDeviation: 0
   rangedDeterence: 0
@@ -2115,7 +2118,7 @@ MonoBehaviour:
     val: {fileID: 0}
   caster: {fileID: 0}
   dangerObject: {fileID: 0}
-  behaviourTree: {fileID: 0}
+  behaviourTree: {fileID: 8600188827786855823}
   eventManager: {fileID: 0}
   randoms:
     enabled: 0
@@ -2719,9 +2722,11 @@ MonoBehaviour:
   - {fileID: 3275219992478117540}
   idealLegPos: {fileID: 1911991459268979443}
   maxDistance: 1.5
+  distanceLimit: 0
   rayLength: 10
   yOffset: 2
   travelSpeed: 35
+  travelTimeLimit: 0
   easingFunction:
     serializedVersion: 2
     m_Curve:
@@ -2889,9 +2894,11 @@ MonoBehaviour:
   - {fileID: 3275219992478117540}
   idealLegPos: {fileID: 1911991460304349630}
   maxDistance: 1.5
+  distanceLimit: 0
   rayLength: 10
   yOffset: 2
   travelSpeed: 35
+  travelTimeLimit: 0
   easingFunction:
     serializedVersion: 2
     m_Curve:
@@ -3615,9 +3622,11 @@ MonoBehaviour:
   - {fileID: 912021985490570867}
   idealLegPos: {fileID: 1911991460872754977}
   maxDistance: 1.5
+  distanceLimit: 0
   rayLength: 10
   yOffset: 2
   travelSpeed: 35
+  travelTimeLimit: 0
   easingFunction:
     serializedVersion: 2
     m_Curve:
