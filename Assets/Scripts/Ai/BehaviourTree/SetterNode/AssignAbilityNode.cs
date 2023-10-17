@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AssignAbilityNode : SetterNode
 {
+    public Optional<Ability> excludedAbility;
 
     protected override void OnStart()
     {
@@ -18,7 +19,7 @@ public class AssignAbilityNode : SetterNode
 
     protected override State OnUpdate()
     {
-        agent.caster.GetAbility();
+        agent.caster.GetAbility(excludedAbility.Value);
         return child.Update();
     }
 }

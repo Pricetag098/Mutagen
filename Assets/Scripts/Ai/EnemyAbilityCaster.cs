@@ -57,12 +57,17 @@ public class EnemyAbilityCaster : MonoBehaviour
         }
     }
 
-    public void GetAbility()
+    public void GetAbility(Ability excluded)
     {
         float highWeight = 0;
         for (int i = 0; i < curLoadout.abilities.Length; i++)
         {
+
             float weight = 100;
+
+            if (curLoadout.abilities[i] == excluded)
+                weight = -10000;
+
             if (caster.abilities[i] == curAbility)
                 weight -= repeatDeterence;
 
