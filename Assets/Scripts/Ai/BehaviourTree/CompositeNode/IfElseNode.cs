@@ -77,7 +77,11 @@ public class IfElseNode : CompositeNode
             if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
             {
                 if (oneTime == oneTimeCheck.Doing)
+                {
+                    Debug.Log("OneTime");
                     oneTime = oneTimeCheck.Completed;
+                }
+
 
                 return i + 1;
             }
