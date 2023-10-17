@@ -23,8 +23,8 @@ MonoBehaviour:
   castType: 1
   prefab: {fileID: 6231445986190520247, guid: 1569cc8101878f24dbb818cb15017f41, type: 3}
   releaseOnFullCharge: 1
-  maxChargeTime: 0.5
-  minChargeTime: 0.4
+  maxChargeTime: 0.02
+  minChargeTime: 0.01
   damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
@@ -32,18 +32,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 100
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 100
-      inSlope: 100
-      outSlope: 0
-      tangentMode: 0
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -55,21 +55,21 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 100
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      value: 70
+      inSlope: 1.1320801
+      outSlope: 1.1320801
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.25
     - serializedVersion: 3
       time: 1
       value: 100
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
+      inSlope: 64.005775
+      outSlope: 64.005775
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.054166675
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -89,4 +89,4 @@ MonoBehaviour:
   vfx:
     enabled: 0
     val: {fileID: 0}
-  animationTrigger: Attack1
+  animationTrigger: Light
