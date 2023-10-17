@@ -182,6 +182,9 @@ public class IfElseNode : CompositeNode
 
     bool abilityTypeCheck(AbilityCheckType check)
     {
+        if (!caster.curAbility)
+            return false;
+
         Ability abil = agent.caster.curAbility;
         switch (check)
         {
@@ -196,7 +199,7 @@ public class IfElseNode : CompositeNode
             default:
                 return false;
         }
-        return false;
+        //return false;
     }
     
     protected override State OnUpdate()

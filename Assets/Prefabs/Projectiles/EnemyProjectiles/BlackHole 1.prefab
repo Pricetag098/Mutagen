@@ -52,6 +52,31 @@ MonoBehaviour:
   vfx:
     enabled: 0
     val: {fileID: 0}
+  lifeTime: Infinity
+  velocityMultiplierOverLifetime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6421163463526193209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,11 +95,12 @@ MonoBehaviour:
   radius: 5
   damage:
     damage: 10
-    type: 1
+    type: 2
     target: {fileID: 0}
   tickTime: 0.5
   onHitEffects:
   - {fileID: 11400000, guid: 85463fef0c8e7d044ace5a12f893e584, type: 2}
+  statusEffects: []
 --- !u!54 &4642083085112353960
 Rigidbody:
   m_ObjectHideFlags: 0

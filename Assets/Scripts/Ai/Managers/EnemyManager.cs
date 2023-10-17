@@ -115,7 +115,7 @@ public class EnemyManager : MonoBehaviour
             int value = (int)assignedElement.Value;
             if(agent.pipeColourChanger.Enabled)
             agent.pipeColourChanger.Value.Change(elementColours[value]);
-            if (caster.loadoutVariations.Count() > elementIndex)
+            if (caster.loadoutVariations.Count() -1 > elementIndex)
                 caster.AssignLoadout(caster.loadoutVariations[value]);
             else
                 caster.AssignLoadout(caster.loadoutVariations[0]);

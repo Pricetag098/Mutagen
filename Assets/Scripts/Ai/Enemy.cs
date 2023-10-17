@@ -141,6 +141,7 @@ public class Enemy : MonoBehaviour
 
     void OnHit(DamageData data)
     {
+        Debug.Log("Hit");
         retaliate = true;
         retaliateTimer = Time.time;
     }
