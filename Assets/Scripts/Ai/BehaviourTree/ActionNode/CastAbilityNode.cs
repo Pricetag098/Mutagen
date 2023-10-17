@@ -72,7 +72,7 @@ public class CastAbilityNode : ActionNode
 
         if (ability.castType == Ability.CastTypes.hold)
         {
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
             if (timer > castTime)
             {
                 timer = 0;
