@@ -8,7 +8,7 @@ public enum CheckType
     DistanceLessThan,
     DistanceGreaterThan,
     Health,
-    isInDanger,
+    isStunned,
     retaliate,
     delayMove,
     groupDistance,
@@ -66,6 +66,19 @@ public class IfElseNode : CompositeNode
         }
         else return true;
 
+    }
+
+    bool stunnedCheck()
+    {
+        if (!agent.isStunned)
+            return false;
+
+        if(Time.time - agent.stunnedTimer > agent.stunDuration)
+        {
+            agent.isStunned = false;
+            return false;
+        }
+        return true;
     }
 
     int healthCheck()
@@ -214,6 +227,9 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(first);
                 else ChildUpdate(second);
                 break;
+
+            case CheckType.isStunned:
+                if()
 
             case CheckType.flanking:
                 if (agent.flanking)
