@@ -8,9 +8,7 @@ public enum CheckType
     DistanceLessThan,
     DistanceGreaterThan,
     Health,
-    isMoving,
-    isDoingAction,
-    isInDanger,
+    isStunned,
     retaliate,
     delayMove,
     groupDistance,
@@ -30,11 +28,11 @@ public class IfElseNode : CompositeNode
 {
     public CheckType checkType;
     public float distanceCheck;
-    public float groupDistance;
-    public float groupCheckDistance;
-    int first = 0; int second = 1; //used for readability
+    public Optional<float> groupDistance;
+    public Optional<float> groupCheckDistance;
+    int first = 0; int second = 1;
     public AbilityCheckType abilityCheck;
-    public oneTimeCheck oneTime;
+    public Optional<oneTimeCheck> oneTime;
     public enum oneTimeCheck
     {
         Null,
@@ -56,31 +54,6 @@ public class IfElseNode : CompositeNode
         return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
     }
 
-    bool isMovingReset()
-    {
-        if (agent.isMoving && Time.time - agent.movementTimer > agent.movementCooldown)
-        {
-            agent.isMoving = false;
-            return true;
-        }
-        return false;
-    }
-
-    bool performingActionReset()
-    {
-        if (agent.performingAction)
-        {
-            if (Time.time - agent.actionTimer > agent.actionCooldown)
-            {
-                agent.performingAction = false;
-                return true;
-            }
-            return false;
-        }
-        else
-            return true;
-    }
-
     bool retaliateCheck()
     {
         if (!agent.retaliate)
@@ -95,6 +68,19 @@ public class IfElseNode : CompositeNode
 
     }
 
+    bool stunnedCheck()
+    {
+        if (!agent.isStunned)
+            return false;
+
+        if(Time.time - agent.stunnedTimer > agent.stunDuration)
+        {
+            agent.isStunned = false;
+            return false;
+        }
+        return true;
+    }
+
     int healthCheck()
     {
         for (int i = 0; i < agent.healthState.Value.Length; i++)
@@ -103,8 +89,12 @@ public class IfElseNode : CompositeNode
 
             if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
             {
-                if (oneTime == oneTimeCheck.Doing)
-                    oneTime = oneTimeCheck.Completed;
+                if (oneTime.Value == oneTimeCheck.Doing)
+                {
+                    Debug.Log("OneTime");
+                    oneTime.Value = oneTimeCheck.Completed;
+                }
+
 
                 return i + 1;
             }
@@ -121,7 +111,7 @@ public class IfElseNode : CompositeNode
             if (manager.enemyList[i] != agent && !manager.enemyList[i].Seperating())
             {
                 float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
-                if (dist < groupCheckDistance)
+                if (dist < groupCheckDistance.Value)
                 {
                     count++;
                     average += dist;
@@ -182,6 +172,9 @@ public class IfElseNode : CompositeNode
 
     bool abilityTypeCheck(AbilityCheckType check)
     {
+        if (!caster.curAbility)
+            return false;
+
         Ability abil = agent.caster.curAbility;
         switch (check)
         {
@@ -196,12 +189,12 @@ public class IfElseNode : CompositeNode
             default:
                 return false;
         }
-        return false;
+        //return false;
     }
     
     protected override State OnUpdate()
     {
-        if (oneTime != oneTimeCheck.Null && oneTime == oneTimeCheck.Completed)
+        if (oneTime.Value != oneTimeCheck.Null && oneTime.Value == oneTimeCheck.Completed)
             ChildUpdate(0);
 
         switch (checkType)
@@ -228,33 +221,15 @@ public class IfElseNode : CompositeNode
                 break;
 
             #region behaviourChecks
-            //curently moving check
-            case CheckType.isMoving:
-                if (!isMovingReset())
-                    ChildUpdate(first);
-                else
-                    ChildUpdate(second);
-                break;
-
-            //currently doing action
-            case CheckType.isDoingAction:
-                if (!performingActionReset())
-                    ChildUpdate(first);
-                else
-                    ChildUpdate(second);
-                break;
-
-            //currently in danger check
-            case CheckType.isInDanger:
-                if (agent.isInDanger)
-                    ChildUpdate(first);
-                else
-                    ChildUpdate(second);
-                break;
-
             //waiting to take retaliate action
             case CheckType.retaliate:
                 if (retaliateCheck())
+                    ChildUpdate(first);
+                else ChildUpdate(second);
+                break;
+
+            case CheckType.isStunned:
+                if (stunnedCheck())
                     ChildUpdate(first);
                 else ChildUpdate(second);
                 break;
@@ -285,7 +260,7 @@ public class IfElseNode : CompositeNode
                 break;
             //cluttered together
             case CheckType.groupDistance:
-                if (groupDistanceCheck() < groupDistance)
+                if (groupDistanceCheck() < groupDistance.Value)
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);

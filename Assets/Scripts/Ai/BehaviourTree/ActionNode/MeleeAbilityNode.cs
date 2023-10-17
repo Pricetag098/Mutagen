@@ -22,8 +22,6 @@ public class MeleeAbilityNode : ActionNode
     protected override State OnUpdate()
     {
         caster.CastAbility(abilityIndex,agent.caster.CreateCastData());
-        agent.performingAction = true;
-        agent.actionTimer = Time.time;
 
 
         return State.Success;

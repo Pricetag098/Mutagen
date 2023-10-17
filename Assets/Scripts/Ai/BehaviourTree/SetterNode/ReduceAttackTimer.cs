@@ -19,8 +19,6 @@ public class ReduceAttackTimer : SetterNode
 
     protected override State OnUpdate()
     {
-        float amount = agent.actionCooldown / reduceMultiplier;
-        //agent.actionCooldown /= reduceMultiplier;
         return child.Update();
     }
 }

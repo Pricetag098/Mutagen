@@ -17,10 +17,8 @@ public class Ragdoll : MonoBehaviour
     public AbilityPickupInteractable pickup;
     Enemy agent;
 
-
     [Header("Stats")]
     public float fadeRate;
-    public float ragdollForce;
     bool dead;
     bool droppingAbility;
     float alpha;
@@ -54,7 +52,6 @@ public class Ragdoll : MonoBehaviour
             foreach(Renderer r in render)
             {
                 r.material.SetFloat("_RimLight", 1);
-
             }
             //enable interactable
             pickup.enabled = true;

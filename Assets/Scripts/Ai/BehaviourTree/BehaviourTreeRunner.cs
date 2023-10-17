@@ -13,7 +13,7 @@ public class BehaviourTreeRunner : MonoBehaviour
         tree.Bind(GetComponent<Enemy>());
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         
         tree.Update();

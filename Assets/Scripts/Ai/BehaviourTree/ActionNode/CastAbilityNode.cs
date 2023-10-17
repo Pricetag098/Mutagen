@@ -46,7 +46,7 @@ public class CastAbilityNode : ActionNode
     {
         Ability.CastData data = agent.caster.CreateCastData();
 
-        if(ability.GetType() == typeof (DashAbility))
+        if(ability.GetType() == typeof (DashAbility) || ability.GetType() == typeof(DashApplysEffect))
         {
             data.moveDirection = (blackboard.moveToPosition - agent.transform.position).normalized * 10;
         }
@@ -67,12 +67,9 @@ public class CastAbilityNode : ActionNode
             }
         }
 
-        agent.performingAction = true;
-        agent.actionTimer = Time.time;
-
         if (ability.castType == Ability.CastTypes.hold)
         {
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
             if (timer > castTime)
             {
                 timer = 0;

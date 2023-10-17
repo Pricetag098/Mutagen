@@ -2483,6 +2483,7 @@ GameObject:
   - component: {fileID: 612971446032934327}
   - component: {fileID: 8886051274978227307}
   - component: {fileID: 1211402838275245478}
+  - component: {fileID: 3562663628168686187}
   m_Layer: 5
   m_Name: New Ability selector
   m_TagString: Untagged
@@ -2536,7 +2537,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openTime: 0.1
   buttonEntryTime: 0.25
+  buttonEntranceDelay: 0.05
   buttonOffset: {x: -500, y: 0, z: 0}
+  ppVolume: {fileID: 3562663628168686187}
 --- !u!114 &612971446032934327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2606,6 +2609,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &3562663628168686187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6143907950838021649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 0}
 --- !u!1 &6335782893928426250
 GameObject:
   m_ObjectHideFlags: 0
