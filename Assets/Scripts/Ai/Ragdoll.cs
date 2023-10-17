@@ -20,7 +20,6 @@ public class Ragdoll : MonoBehaviour
 
     [Header("Stats")]
     public float fadeRate;
-    public float ragdollForce;
     bool dead;
     bool droppingAbility;
     float alpha;
