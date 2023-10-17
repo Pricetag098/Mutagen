@@ -10,6 +10,11 @@ public class EnemyManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
 
+    [Header("DropStats")]
+    [Range(0, 100)] public float dropChance;
+    public Ability[] dropPool;
+    bool droppedCheck;
+
     [Header("Element")]
     int elementIndex;
     public Optional<Element> assignedElement;
@@ -66,6 +71,25 @@ public class EnemyManager : MonoBehaviour
         return dir.normalized;
     }
 
+    public bool DropCheck()
+    {
+        float dropping = Random.Range(0, 100);
+        if (droppedCheck)
+            return true;
+        //if last enemy drop ability else random
+        if (enemyList.Count <= 0 && !droppedCheck)
+        {
+            if (!droppedCheck)
+                droppedCheck = true;
+        }
+        else if(dropping < dropChance && !droppedCheck)
+        {
+            if (!droppedCheck)
+                droppedCheck = true;
+        }
+        return !droppedCheck;
+    }
+
     public void Add(Enemy agent)
     {
         //checks if enemy was not removed from moving list
@@ -91,7 +115,7 @@ public class EnemyManager : MonoBehaviour
             int value = (int)assignedElement.Value;
             if(agent.pipeColourChanger.Enabled)
             agent.pipeColourChanger.Value.Change(elementColours[value]);
-            if (caster.loadoutVariations.Count() > elementIndex)
+            if (caster.loadoutVariations.Count() -1 > elementIndex)
                 caster.AssignLoadout(caster.loadoutVariations[value]);
             else
                 caster.AssignLoadout(caster.loadoutVariations[0]);
@@ -131,6 +155,7 @@ public class EnemyManager : MonoBehaviour
         HitBox player;
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
+            Debug.Log("Hit");
             if (activated)
                 return;
 

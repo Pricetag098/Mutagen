@@ -36,6 +36,10 @@ public class PauseMenu : MonoBehaviour
         else
         {
             Time.timeScale = 0;
+            for (int i = 0; i < menu.sliders.Length; i++)
+            {
+
+            }
             PlayerSettingsHandler.instance.LoadGame();
         }
 

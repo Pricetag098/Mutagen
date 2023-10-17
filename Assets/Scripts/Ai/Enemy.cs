@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
@@ -24,16 +25,14 @@ public class Enemy : MonoBehaviour
     public Optional<GameObject[]> randoms;
 
     //behaviour bools
-    [HideInInspector] public bool isMoving;
-    [HideInInspector] public bool performingAction;
-    [HideInInspector] public bool isInDanger;
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
+    [HideInInspector] public bool isStunned;
 
     [Header("Declutter Stats")]
-    [HideInInspector] public bool isSeperating;
     public float retreatingTimer = 2;
+    [HideInInspector] public bool isSeperating;
     float lastSeperate;
 
     [Header("Stats")]
@@ -42,20 +41,17 @@ public class Enemy : MonoBehaviour
     public Optional<int[]> healthState;
     public float flankDistance = 5;
     float defaultSpeed;
-    public Optional<Ability> setDrop;
 
     [Header("Timers")]
-    public float actionCooldown;
     public float movementSpeed;
-    public float movementCooldown;
     public float retaliateCooldown;
+    public float stunDuration;
     [Range(0f,10f)]
     public float delayMoveRange;
     [HideInInspector] public float defaultMovementSpeed;
-    [HideInInspector] public float actionTimer;
-    [HideInInspector] public float movementTimer;
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
+    [HideInInspector] public float stunnedTimer;
 
     #region startupfunctions
     void Awake()
@@ -146,28 +142,16 @@ public class Enemy : MonoBehaviour
         retaliateTimer = Time.time;
     }
 
-    //drop ability on death, can set dedicated drop.
+    public void SetStunned(float stunTime)
+    {
+        stunDuration = stunTime;
+        isStunned = true;
+        stunnedTimer = Time.time;
+    }
+
+    //removes ememy from manager list
     void OnDie(DamageData data)
     {
-        GameObject drop = null;
-
-        if (setDrop.Enabled)
-        {
-            drop = Instantiate(setDrop.Value.pickupPrefab.Value);
-        }
-        else
-        {
-            int randDrop = Random.Range(0, caster.caster.abilities.Count() - 1);
-            if (caster.curLoadout.abilities[randDrop].pickupPrefab.Enabled)
-            {
-                drop = Instantiate(caster.caster.abilities[randDrop].pickupPrefab.Value);
-            }
-        }
-        //offsets position to avoid spawning in ground
-        Vector3 offset = transform.position;
-        offset.y += 1;
-        drop.transform.position = offset;
-
         manager.enemyList.Remove(this);
     }
 
