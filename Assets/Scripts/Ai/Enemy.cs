@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
+    [HideInInspector] public bool isStunned;
 
     [Header("Declutter Stats")]
     public float retreatingTimer = 2;
@@ -43,11 +45,13 @@ public class Enemy : MonoBehaviour
     [Header("Timers")]
     public float movementSpeed;
     public float retaliateCooldown;
+    public float stunDuration;
     [Range(0f,10f)]
     public float delayMoveRange;
     [HideInInspector] public float defaultMovementSpeed;
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
+    [HideInInspector] public float stunnedTimer;
 
     #region startupfunctions
     void Awake()
@@ -136,6 +140,13 @@ public class Enemy : MonoBehaviour
     {
         retaliate = true;
         retaliateTimer = Time.time;
+    }
+
+    public void SetStunned(float stunTime)
+    {
+        stunDuration = stunTime;
+        isStunned = true;
+        stunnedTimer = Time.time;
     }
 
     //removes ememy from manager list
