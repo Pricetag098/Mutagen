@@ -155,6 +155,7 @@ public class EnemyManager : MonoBehaviour
         HitBox player;
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
+            Debug.Log("Hit");
             if (activated)
                 return;
 
