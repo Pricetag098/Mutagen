@@ -28,11 +28,11 @@ public class IfElseNode : CompositeNode
 {
     public CheckType checkType;
     public float distanceCheck;
-    public float groupDistance;
-    public float groupCheckDistance;
-    int first = 0; int second = 1; //used for readability
+    public Optional<float> groupDistance;
+    public Optional<float> groupCheckDistance;
+    int first = 0; int second = 1;
     public AbilityCheckType abilityCheck;
-    public oneTimeCheck oneTime;
+    public Optional<oneTimeCheck> oneTime;
     public enum oneTimeCheck
     {
         Null,
@@ -76,10 +76,10 @@ public class IfElseNode : CompositeNode
 
             if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
             {
-                if (oneTime == oneTimeCheck.Doing)
+                if (oneTime.Value == oneTimeCheck.Doing)
                 {
                     Debug.Log("OneTime");
-                    oneTime = oneTimeCheck.Completed;
+                    oneTime.Value = oneTimeCheck.Completed;
                 }
 
 
@@ -98,7 +98,7 @@ public class IfElseNode : CompositeNode
             if (manager.enemyList[i] != agent && !manager.enemyList[i].Seperating())
             {
                 float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
-                if (dist < groupCheckDistance)
+                if (dist < groupCheckDistance.Value)
                 {
                     count++;
                     average += dist;
@@ -181,7 +181,7 @@ public class IfElseNode : CompositeNode
     
     protected override State OnUpdate()
     {
-        if (oneTime != oneTimeCheck.Null && oneTime == oneTimeCheck.Completed)
+        if (oneTime.Value != oneTimeCheck.Null && oneTime.Value == oneTimeCheck.Completed)
             ChildUpdate(0);
 
         switch (checkType)
@@ -241,7 +241,7 @@ public class IfElseNode : CompositeNode
                 break;
             //cluttered together
             case CheckType.groupDistance:
-                if (groupDistanceCheck() < groupDistance)
+                if (groupDistanceCheck() < groupDistance.Value)
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);

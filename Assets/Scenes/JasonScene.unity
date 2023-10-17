@@ -988,20 +988,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1656899332
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656899327}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1710682798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1592605977087693756, guid: ff3159a16cbbd6942a40372efde89a44, type: 3}
@@ -4221,9 +4207,6 @@ MonoBehaviour:
   randoms:
     enabled: 0
     val: []
-  isMoving: 0
-  performingAction: 0
-  isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
@@ -4234,14 +4217,10 @@ MonoBehaviour:
     enabled: 0
     val: 
   flankDistance: 5
-  actionCooldown: 1.5
   movementSpeed: 20
-  movementCooldown: 1
   retaliateCooldown: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
-  actionTimer: 0
-  movementTimer: 0
   delayMoveTimer: 0
   retaliateTimer: 0
 --- !u!114 &7091954435136983061
@@ -4875,7 +4854,7 @@ PrefabInstance:
     - target: {fileID: 343049529420119189, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: b930847b350c3df4292cd292f42d2f1f, type: 2}
     - target: {fileID: 2496971386840656132, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
       propertyPath: m_Height
       value: 5
@@ -4946,7 +4925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4630340342187268832, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4630340342187268832, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5016,6 +4995,10 @@ PrefabInstance:
       propertyPath: loadoutVariations.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: f1dd44664fbb00b4eb2d0fb1c9dd7ed3, type: 2}
+    - target: {fileID: 8962174975456743338, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
+      propertyPath: tree
+      value: 
+      objectReference: {fileID: 11400000, guid: e3aa8017cf9a17f4f954df83285fb868, type: 2}
     - target: {fileID: 8962174975456743339, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
       propertyPath: animator.val
       value: 
