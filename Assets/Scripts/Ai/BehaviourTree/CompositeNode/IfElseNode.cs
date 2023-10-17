@@ -8,8 +8,6 @@ public enum CheckType
     DistanceLessThan,
     DistanceGreaterThan,
     Health,
-    isMoving,
-    isDoingAction,
     isInDanger,
     retaliate,
     delayMove,
@@ -56,31 +54,6 @@ public class IfElseNode : CompositeNode
         return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
     }
 
-    bool isMovingReset()
-    {
-        if (agent.isMoving && Time.time - agent.movementTimer > agent.movementCooldown)
-        {
-            agent.isMoving = false;
-            return true;
-        }
-        return false;
-    }
-
-    bool performingActionReset()
-    {
-        if (agent.performingAction)
-        {
-            if (Time.time - agent.actionTimer > agent.actionCooldown)
-            {
-                agent.performingAction = false;
-                return true;
-            }
-            return false;
-        }
-        else
-            return true;
-    }
-
     bool retaliateCheck()
     {
         if (!agent.retaliate)
@@ -104,7 +77,11 @@ public class IfElseNode : CompositeNode
             if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
             {
                 if (oneTime == oneTimeCheck.Doing)
+                {
+                    Debug.Log("OneTime");
                     oneTime = oneTimeCheck.Completed;
+                }
+
 
                 return i + 1;
             }
@@ -231,30 +208,6 @@ public class IfElseNode : CompositeNode
                 break;
 
             #region behaviourChecks
-            //curently moving check
-            case CheckType.isMoving:
-                if (!isMovingReset())
-                    ChildUpdate(first);
-                else
-                    ChildUpdate(second);
-                break;
-
-            //currently doing action
-            case CheckType.isDoingAction:
-                if (!performingActionReset())
-                    ChildUpdate(first);
-                else
-                    ChildUpdate(second);
-                break;
-
-            //currently in danger check
-            case CheckType.isInDanger:
-                if (agent.isInDanger)
-                    ChildUpdate(first);
-                else
-                    ChildUpdate(second);
-                break;
-
             //waiting to take retaliate action
             case CheckType.retaliate:
                 if (retaliateCheck())

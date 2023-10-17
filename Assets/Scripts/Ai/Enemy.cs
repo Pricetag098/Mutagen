@@ -24,9 +24,6 @@ public class Enemy : MonoBehaviour
     public Optional<GameObject[]> randoms;
 
     //behaviour bools
-    [HideInInspector] public bool isMoving;
-    [HideInInspector] public bool performingAction;
-    [HideInInspector] public bool isInDanger;
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
@@ -44,15 +41,11 @@ public class Enemy : MonoBehaviour
     float defaultSpeed;
 
     [Header("Timers")]
-    public float actionCooldown;
     public float movementSpeed;
-    public float movementCooldown;
     public float retaliateCooldown;
     [Range(0f,10f)]
     public float delayMoveRange;
     [HideInInspector] public float defaultMovementSpeed;
-    [HideInInspector] public float actionTimer;
-    [HideInInspector] public float movementTimer;
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
 
@@ -141,7 +134,6 @@ public class Enemy : MonoBehaviour
 
     void OnHit(DamageData data)
     {
-        Debug.Log("Hit");
         retaliate = true;
         retaliateTimer = Time.time;
     }

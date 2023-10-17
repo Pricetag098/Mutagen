@@ -17,7 +17,6 @@ public class MoveToNode : ActionNode
 
     protected override State OnUpdate()
     {
-        agent.isMoving = true;
         agent.agent.SetDestination(blackboard.moveToPosition);
         return State.Success;
     }

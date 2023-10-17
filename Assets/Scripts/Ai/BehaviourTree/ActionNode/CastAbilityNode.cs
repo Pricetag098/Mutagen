@@ -67,9 +67,6 @@ public class CastAbilityNode : ActionNode
             }
         }
 
-        agent.performingAction = true;
-        agent.actionTimer = Time.time;
-
         if (ability.castType == Ability.CastTypes.hold)
         {
             timer += Time.fixedDeltaTime;
