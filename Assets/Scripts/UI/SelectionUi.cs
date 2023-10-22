@@ -22,21 +22,34 @@ public class SelectionUi : MonoBehaviour
     {
         buttons = GetComponentsInChildren<SelectionButton>();
 
+        Close();
+		DOTween.Kill(this, true);
+	}
+
+
+    public void OpenWith(Ability[] abilities)
+    {
 
     }
+
+
     [ContextMenu("open")]
     public void Open()
     {
         DOTween.Kill(this, true);
         openSequence = DOTween.Sequence(this);
-        
-        openSequence.Append(transform.DOScaleX(1, openTime));
+		for (int i = 0; i < buttons.Length; i++)
+		{
+			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, 0));
+		}
+		openSequence.Append(transform.DOScaleX(1, openTime));
         openSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 1, openTime));
-        openSequence.AppendInterval(openTime);
-        for (int i = 0; i < buttons.Length; i++)
+		
+		//openSequence.AppendInterval(openTime);
+		for (int i = 0; i < buttons.Length; i++)
         {
-            
-            openSequence.Join(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition, buttonEntryTime)).SetEase(Ease.InSine);
+			
+			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition, buttonEntryTime)).SetEase(Ease.InSine);
             openSequence.AppendInterval(buttonEntranceDelay);
         }
         
@@ -46,17 +59,18 @@ public class SelectionUi : MonoBehaviour
     {
         DOTween.Kill(this,true);
         closeSequence = DOTween.Sequence(this);
-        
-        
-        for (int i = 0; i < buttons.Length; i++)
+
+
+        for (int i = buttons.Length-1; i >= 0; i--)
         {
-            if(i!=0)
-            closeSequence.AppendInterval(buttonEntranceDelay);
-            closeSequence.Join(buttons[buttons.Length-i-1].GetComponent<RectTransform>().DOAnchorPos(buttons[buttons.Length-i-1].startPosition + buttonOffset, buttonEntryTime)).SetEase(Ease.OutSine);
-            
+
+            closeSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, buttonEntryTime)).SetEase(Ease.InSine);
+
+            //closeSequence.AppendInterval(buttonEntranceDelay);
+
         }
-        closeSequence.AppendInterval(buttonEntryTime);
-        
+        //closeSequence.AppendInterval(buttonEntryTime);
+
         closeSequence.Append(transform.DOScaleX(0, openTime));
         closeSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0, openTime));
 
