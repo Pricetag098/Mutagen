@@ -11,28 +11,32 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] LayerMask groundingLayer;
 	[SerializeField] float groundingRange;
 
-	[Header("MovementSettings")]
-	[SerializeField] float walkMaxSpeed = 10; 
-	[SerializeField] float walkAcceleration = 1000; 
-	[SerializeField] float walkSlowForce = 1000;
-	[SerializeField] float walkControlForce = 1000;
-	[SerializeField] float walkAltDirectionMulti = 2;
-	[SerializeField] float gravityForce = 1000;
+    
+    [SerializeField]MovementData walk, sprint;
 
-	[SerializeField] float sprintDelay = 5;
+    [SerializeField] Transform groundingPoint;
+    [SerializeField] float groundingRadius;
+    [SerializeField] float minSurface;
+    [SerializeField] float surfaceCheckRange;
+    [SerializeField] float gravityForce = 1000;
+    [SerializeField] Vector3 gravityDir;
+
+    [SerializeField] float sprintDelay = 5;
 	public float timeSinceLastInteruption;
-    [Header("SprintSettings")]
-    [SerializeField] float sprintMaxSpeed = 10;
-    [SerializeField] float sprintAcceleration = 1000;
-    [SerializeField] float sprintSlowForce = 1000;
-    [SerializeField] float sprintControlForce = 1000;
-    [SerializeField] float sprintAltDirectionMulti = 2;
+    
 
     Rigidbody rb;
     Vector2 inputDir;
 
 	public Vector3 movementDir;
 	Vector3 lastSafeLocation;
+
+    [System.Serializable]
+    class MovementData
+    {
+        public float speed;
+        public float accleration;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -66,91 +70,123 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if(timeSinceLastInteruption < sprintDelay)
 		{
-            Move(walkMaxSpeed, walkAcceleration, walkSlowForce, walkControlForce, walkAltDirectionMulti);
+            Move(walk);
         }
 		else
 		{
-			Move(sprintMaxSpeed, sprintAcceleration, sprintSlowForce, sprintControlForce, sprintAltDirectionMulti);
+			Move(sprint);
 		}
 		
 	}
+    bool touchingSurface;
+    Vector3 surfaceNormal;
+    RaycastHit lastSurface;
+    bool IsGrounded()
+    {
+        RaycastHit hit;
+        bool isGrounded = Physics.CheckSphere(groundingPoint.position, groundingRadius, groundingLayer) && Vector3.Dot(surfaceNormal, orientation.up) > minSurface;
 
-	void Move(float maxSpeed, float acceleration, float slowForce, float controlForce, float altDirectionMulti)
-	{
+        if (Physics.SphereCast(orientation.position, groundingRadius, -orientation.up, out hit, surfaceCheckRange * 5, groundingLayer))
+        {
+            surfaceNormal = hit.normal;
+            touchingSurface = hit.distance <= surfaceCheckRange;
+            lastSurface = hit;
+        }
+        else
+        {
+            touchingSurface = false;
+        }
+        return isGrounded;
+    }
+    void Move(MovementData data)
+    {
+        Vector3 idealVel = Vector3.ProjectOnPlane((orientation.forward * inputDir.y + orientation.right * inputDir.x) * data.speed * playerStats.speedMulti, surfaceNormal);
+        Vector3 vel = rb.velocity;
+        Vector3 turningForce = idealVel - vel;
+        rb.AddForce(turningForce * data.accleration * playerStats.accelerationMulti);
 
-		acceleration *= Time.fixedDeltaTime;
-		slowForce *= Time.fixedDeltaTime;
-		controlForce *= Time.fixedDeltaTime;
-		
-		Vector3 force = Vector3.zero;
+        if (!touchingSurface)
+        {
+            rb.AddForce(gravityDir);
+        }
+    }
 
-		Vector3 playerVel = rb.velocity;
+    //void Move(float maxSpeed, float acceleration, float slowForce, float controlForce, float altDirectionMulti)
+    //{
 
-		//Project player velocity to relative vectors on the player
-		//basicaly calculating what the velocity is in the players forward/backward and left/right direction
-		float fwVel = Vector3.Dot(playerVel, orientation.forward * Mathf.Sign(inputDir.y));
-		float rightVel = Vector3.Dot(playerVel, orientation.right * Mathf.Sign(inputDir.x));
+    //	acceleration *= Time.fixedDeltaTime;
+    //	slowForce *= Time.fixedDeltaTime;
+    //	controlForce *= Time.fixedDeltaTime;
 
+    //	Vector3 force = Vector3.zero;
 
-		if (fwVel < maxSpeed * playerStats.speedMulti * Mathf.Abs(inputDir.y))
-		{
-			Vector3 forceDir = orientation.forward * inputDir.y * acceleration * playerStats.accelerationMulti;
+    //	Vector3 playerVel = rb.velocity;
 
-			if (Mathf.Sign(fwVel) < 0)
-			{
-				forceDir *= altDirectionMulti;
-			}
-			force += forceDir;
-		}
-
-		if (rightVel < maxSpeed * playerStats.speedMulti * Mathf.Abs(inputDir.x))
-		{
-			Vector3 forceDir = orientation.right * inputDir.x * acceleration * playerStats.accelerationMulti;
-			if (Mathf.Sign(rightVel) < 0)
-			{
-				forceDir *= altDirectionMulti;
-			}
-			force += forceDir;
-		}
-
-		//reduce velocity in directions were not moving
-		if (inputDir.y == 0)
-			force += slowForce * Vector3.Dot(playerVel, orientation.forward) * -orientation.forward;
-		if (inputDir.x == 0)
-			force += slowForce * Vector3.Dot(playerVel, orientation.right) * -orientation.right;
-		
-
-
-
-		//project the forward velocity onto the floor for walking on slopes
-		RaycastHit hit;
-		if (Physics.Raycast(orientation.position, -orientation.up, out hit, groundingRange, groundingLayer))
-		{
-			force = Vector3.ProjectOnPlane(force, hit.normal);
-			lastSafeLocation = transform.position;
-		}
-		else
-		{
-			rb.AddForce(-orientation.up *gravityForce * Time.fixedDeltaTime,ForceMode.VelocityChange);
-		}
+    //	//Project player velocity to relative vectors on the player
+    //	//basicaly calculating what the velocity is in the players forward/backward and left/right direction
+    //	float fwVel = Vector3.Dot(playerVel, orientation.forward * Mathf.Sign(inputDir.y));
+    //	float rightVel = Vector3.Dot(playerVel, orientation.right * Mathf.Sign(inputDir.x));
 
 
+    //	if (fwVel < maxSpeed * playerStats.speedMulti * Mathf.Abs(inputDir.y))
+    //	{
+    //		Vector3 forceDir = orientation.forward * inputDir.y * acceleration * playerStats.accelerationMulti;
 
-		rb.AddForce(force);
-		if (rb.velocity.magnitude > maxSpeed * playerStats.speedMulti)
-		{
-			rb.AddForce(-rb.velocity.normalized * controlForce);
-		}
+    //		if (Mathf.Sign(fwVel) < 0)
+    //		{
+    //			forceDir *= altDirectionMulti;
+    //		}
+    //		force += forceDir;
+    //	}
+
+    //	if (rightVel < maxSpeed * playerStats.speedMulti * Mathf.Abs(inputDir.x))
+    //	{
+    //		Vector3 forceDir = orientation.right * inputDir.x * acceleration * playerStats.accelerationMulti;
+    //		if (Mathf.Sign(rightVel) < 0)
+    //		{
+    //			forceDir *= altDirectionMulti;
+    //		}
+    //		force += forceDir;
+    //	}
+
+    //	//reduce velocity in directions were not moving
+    //	if (inputDir.y == 0)
+    //		force += slowForce * Vector3.Dot(playerVel, orientation.forward) * -orientation.forward;
+    //	if (inputDir.x == 0)
+    //		force += slowForce * Vector3.Dot(playerVel, orientation.right) * -orientation.right;
 
 
-		//if (animator.Enabled)
-		//{
-		//	animator.Value.SetFloat(forwardVelocityParam, fwVel);
-		//	animator.Value.SetFloat(horizontalVelocityParam, rightVel);
-		//}
-	}
 
-	private void OnDrawGizmosSelected()
+
+    //	//project the forward velocity onto the floor for walking on slopes
+    //	RaycastHit hit;
+    //	if (Physics.Raycast(orientation.position, -orientation.up, out hit, groundingRange, groundingLayer))
+    //	{
+    //		force = Vector3.ProjectOnPlane(force, hit.normal);
+    //		lastSafeLocation = transform.position;
+    //	}
+    //	else
+    //	{
+    //		rb.AddForce(-orientation.up *gravityForce * Time.fixedDeltaTime,ForceMode.VelocityChange);
+    //	}
+
+
+
+    //	rb.AddForce(force);
+    //	if (rb.velocity.magnitude > maxSpeed * playerStats.speedMulti)
+    //	{
+    //		rb.AddForce(-rb.velocity.normalized * controlForce);
+    //	}
+
+
+    //	//if (animator.Enabled)
+    //	//{
+    //	//	animator.Value.SetFloat(forwardVelocityParam, fwVel);
+    //	//	animator.Value.SetFloat(horizontalVelocityParam, rightVel);
+    //	//}
+    //}
+
+    private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.red;
 
