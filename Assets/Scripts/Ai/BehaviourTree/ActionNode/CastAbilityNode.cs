@@ -74,12 +74,14 @@ public class CastAbilityNode : ActionNode
             {
                 timer = 0;
                 if (agent.retaliate) agent.retaliate = false;
+                agent.actionTimer = Time.time;
                 return State.Success;
             }
 
             else return State.Running;
         }
         if(agent.retaliate) agent.retaliate = false;
+        agent.actionTimer = Time.time;
         return State.Success;
     }
 }

@@ -554,8 +554,8 @@ GameObject:
   - component: {fileID: 60378925308937080}
   - component: {fileID: 343049529420119189}
   - component: {fileID: 8476024904272100115}
-  - component: {fileID: 1656899331}
   - component: {fileID: 740044062183476289}
+  - component: {fileID: 1656899331}
   m_Layer: 0
   m_Name: TigerFINAL
   m_TagString: Untagged
@@ -592,7 +592,7 @@ Animator:
   m_GameObject: {fileID: 836916350466513346}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b930847b350c3df4292cd292f42d2f1f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -618,6 +618,20 @@ MonoBehaviour:
   - m_Rig: {fileID: 526414304405338783}
     m_Active: 1
   m_Effectors: []
+--- !u!136 &740044062183476289
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836916350466513346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1656899331
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -634,20 +648,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &740044062183476289
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836916350466513346}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1063772684657538239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,6 +2224,7 @@ MonoBehaviour:
   delayMove: 0
   flanking: 0
   retaliate: 0
+  isStunned: 0
   retreatingTimer: 2
   isSeperating: 0
   movementMultiplier: 1
@@ -2231,12 +2232,16 @@ MonoBehaviour:
     enabled: 1
     val: 0000000032000000
   flankDistance: 5
+  actionCooldown: 1
   movementSpeed: 20
   retaliateCooldown: 0
+  stunDuration: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   delayMoveTimer: 0
   retaliateTimer: 0
+  stunnedTimer: 0
+  actionTimer: 0
 --- !u!114 &7829885259189179611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5441,7 +5446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9220300258059560285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.194, z: 0.448}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0.448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

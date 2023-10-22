@@ -8,6 +8,7 @@ public enum CheckType
     DistanceLessThan,
     DistanceGreaterThan,
     Health,
+    Action,
     isStunned,
     retaliate,
     delayMove,
@@ -60,6 +61,17 @@ public class IfElseNode : CompositeNode
             return false;
 
         if (Time.time - agent.retreatingTimer > agent.retaliateCooldown)
+        {
+            agent.retaliate = false;
+            return false;
+        }
+        else return true;
+
+    }
+
+    bool actionCheck()
+    {
+        if (Time.time - agent.actionTimer > agent.actionCooldown)
         {
             agent.retaliate = false;
             return false;
@@ -221,6 +233,13 @@ public class IfElseNode : CompositeNode
                 break;
 
             #region behaviourChecks
+            //action check
+            case CheckType.Action:
+                if (actionCheck())
+                    ChildUpdate(first);
+                else ChildUpdate(second);
+                break;
+
             //waiting to take retaliate action
             case CheckType.retaliate:
                 if (retaliateCheck())
