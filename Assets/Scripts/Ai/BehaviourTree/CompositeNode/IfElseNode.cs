@@ -34,7 +34,7 @@ public class IfElseNode : CompositeNode
     int first = 0; int second = 1;
     public AbilityCheckType abilityCheck;
     public Optional<oneTimeCheck> oneTime;
-    public Optional<Ability> cooldownCheck;
+    public Optional<int> cooldownCheckIndex;
     public enum oneTimeCheck
     {
         Null,
@@ -196,17 +196,9 @@ public class IfElseNode : CompositeNode
 
     bool abilityCooldownCheck()
     {
-        Ability check = null;
-        foreach(Ability ability in agent.caster.caster.abilities)
-        {
-            if(cooldownCheck.Value == ability)
-            {
-                check = ability;
-            }
-        }
-        if (check == null) return false;
-        MeleeAttackAbility melee = check as MeleeAttackAbility;
-        DashAbility dash = check as DashAbility;
+        AbilityCaster aCaster = agent.caster.caster;
+        MeleeAttackAbility melee = aCaster.abilities[cooldownCheckIndex.Value] as MeleeAttackAbility;
+        DashAbility dash = aCaster.abilities[cooldownCheckIndex.Value] as DashAbility;
         if (melee || dash)
         {
             float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
