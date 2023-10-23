@@ -22,6 +22,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -31,7 +32,7 @@ MonoBehaviour:
   child: {fileID: 6826603080312831701}
   away: 0
   type: 0
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &-9113508679634313189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,6 +55,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -83,6 +85,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -94,10 +97,19 @@ MonoBehaviour:
   - {fileID: 8530882909147201}
   checkType: 4
   distanceCheck: 0
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &-8727266069249632553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +132,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -150,6 +163,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -172,13 +186,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 64bd4fbb831a0ec45bb9280dfb478a38
-  position: {x: 1328, y: 25.880005}
+  position: {x: 1312, y: 46}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -208,6 +223,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -236,6 +252,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -266,6 +283,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -295,6 +313,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -326,6 +345,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -336,6 +356,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 1
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &-7469313342650793468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +379,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -389,6 +411,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -398,12 +421,21 @@ MonoBehaviour:
   children:
   - {fileID: -8477257804816774268}
   - {fileID: 2440774806036168268}
-  checkType: 4
+  checkType: 3
   distanceCheck: 0
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &-6691335434459040089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +458,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -457,6 +490,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -488,6 +522,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -517,6 +552,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -528,10 +564,19 @@ MonoBehaviour:
   - {fileID: 7784833014362007097}
   checkType: 12
   distanceCheck: 0
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &-5650371252251650776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,6 +599,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -584,6 +630,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -612,6 +659,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -641,6 +689,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -670,6 +719,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -700,6 +750,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -735,6 +786,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -746,10 +798,19 @@ MonoBehaviour:
   - {fileID: 1283161932657168902}
   checkType: 1
   distanceCheck: 5
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &-2218276315602470883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,6 +833,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -801,6 +863,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -832,6 +895,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -860,6 +924,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -889,6 +954,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -899,6 +965,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 0
   rotate: 0
+  deviatedDirection: 0
 --- !u!114 &-1693018699633674387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,6 +988,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -930,7 +998,7 @@ MonoBehaviour:
   child: {fileID: 8379773967982726382}
   away: 0
   type: 1
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &-888284857751293105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,6 +1021,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -981,6 +1050,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -992,10 +1062,19 @@ MonoBehaviour:
   - {fileID: -8956190927614420905}
   checkType: 6
   distanceCheck: 0
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &-689954475402598481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,13 +1090,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 23f4b3c124d3b274e8efe2a852714b3f
-  position: {x: 512, y: -992.12}
+  position: {x: 512, y: -997}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1027,7 +1107,7 @@ MonoBehaviour:
   child: {fileID: -5267634751288314666}
   away: 0
   type: 0
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &-310371351124915720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1050,6 +1130,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1059,7 +1140,7 @@ MonoBehaviour:
   child: {fileID: 7950603815984282504}
   away: 0
   type: 0
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,6 +1244,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &8530882909147201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1185,6 +1267,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1192,6 +1275,9 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   child: {fileID: -5735118412673854170}
+  excludedAbility:
+    enabled: 0
+    val: []
 --- !u!114 &39215146081673673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,6 +1300,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1223,7 +1310,7 @@ MonoBehaviour:
   child: {fileID: -8642674299213580971}
   away: 0
   type: 0
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &745512119101768536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,6 +1333,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1255,12 +1343,21 @@ MonoBehaviour:
   children:
   - {fileID: -8337265607169556167}
   - {fileID: -4284675990755500378}
-  checkType: 12
+  checkType: 10
   distanceCheck: 0
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &802434170984012706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,6 +1380,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1312,6 +1410,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1341,6 +1440,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1369,6 +1469,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1378,7 +1479,7 @@ MonoBehaviour:
   child: {fileID: 2133588497826162133}
   away: 0
   type: 1
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &1372361431602610119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,6 +1502,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1429,6 +1531,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1438,12 +1541,21 @@ MonoBehaviour:
   children:
   - {fileID: -689954475402598481}
   - {fileID: -6835825660733845357}
-  checkType: 6
+  checkType: 4
   distanceCheck: 0
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &1702630554366077572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,6 +1578,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1476,6 +1589,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 0
   rotate: 0
+  deviatedDirection: 0
 --- !u!114 &1798041342956302694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1498,6 +1612,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1533,6 +1648,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1543,6 +1659,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 1
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &2013855151085244890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,6 +1682,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1595,6 +1713,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1624,6 +1743,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1652,6 +1772,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1661,7 +1782,7 @@ MonoBehaviour:
   child: {fileID: 7070773477191734396}
   away: 0
   type: 0
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &2440774806036168268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1677,13 +1798,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2a8f0747016f6c248917ddb77c1db081
-  position: {x: 929, y: -858.12}
+  position: {x: 924, y: -843.5}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1691,6 +1813,9 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   child: {fileID: 745512119101768536}
+  excludedAbility:
+    enabled: 0
+    val: []
 --- !u!114 &2509420112758607361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,6 +1838,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1742,6 +1868,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1753,10 +1880,19 @@ MonoBehaviour:
   - {fileID: -1693018699633674387}
   checkType: 0
   distanceCheck: 5
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &2577334948179596720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1779,6 +1915,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1808,6 +1945,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1836,6 +1974,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1846,6 +1985,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 1
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &3733512289874160805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,6 +2008,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1889,13 +2030,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3738d33a80bda764685e662beb329646
-  position: {x: 841, y: 426.88}
+  position: {x: 848, y: 437}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1906,6 +2048,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 1
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &4116519848889843710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1928,6 +2071,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1938,6 +2082,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 0
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &4500011710186606574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,6 +2105,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -1970,6 +2116,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 0
   rotate: 0
+  deviatedDirection: 0
 --- !u!114 &4974615072755074931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1992,6 +2139,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2022,6 +2170,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2051,6 +2200,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2061,6 +2211,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 1
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &5445188327534018943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,6 +2234,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2093,6 +2245,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 0
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &5497914759626060174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2115,6 +2268,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2127,10 +2281,19 @@ MonoBehaviour:
   - {fileID: -8727266069249632553}
   checkType: 2
   distanceCheck: 0
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &5505901685953801424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2153,6 +2316,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2183,6 +2347,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2192,7 +2357,7 @@ MonoBehaviour:
   child: {fileID: -5610647586049304367}
   away: 1
   type: 0
-  awaySpeed: 50
+  awayDistance: 0
 --- !u!114 &5887752569687580768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2215,6 +2380,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2245,6 +2411,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2274,6 +2441,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2285,10 +2453,19 @@ MonoBehaviour:
   - {fileID: 8553198261672352886}
   checkType: 0
   distanceCheck: 2
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &6826603080312831701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,6 +2488,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2339,6 +2517,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2368,6 +2547,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2396,6 +2576,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2426,6 +2607,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2456,6 +2638,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2467,10 +2650,19 @@ MonoBehaviour:
   - {fileID: 39215146081673673}
   checkType: 1
   distanceCheck: 5
-  groupDistance: 0
-  groupCheckDistance: 0
+  groupDistance:
+    enabled: 0
+    val: 0
+  groupCheckDistance:
+    enabled: 0
+    val: 0
   abilityCheck: 0
-  oneTime: 0
+  oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &7950603815984282504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2493,6 +2685,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2514,13 +2707,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3a108759155a20b4ea39040aa04ac991
-  position: {x: 1320, y: -92.119995}
+  position: {x: 1320, y: -109.5}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2550,6 +2744,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2559,7 +2754,7 @@ MonoBehaviour:
   child: {fileID: 6077543943518441915}
   away: 0
   type: 1
-  awaySpeed: 0
+  awayDistance: 0
 --- !u!114 &9036615979545127504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2582,6 +2777,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2591,7 +2787,7 @@ MonoBehaviour:
   child: {fileID: -888284857751293105}
   away: 1
   type: 0
-  awaySpeed: 50
+  awayDistance: 5
 --- !u!114 &9117333510991578183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2614,6 +2810,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
@@ -2624,6 +2821,7 @@ MonoBehaviour:
   tempCastTime: 0
   assigned: 0
   rotate: 0
+  deviatedDirection: 0
 --- !u!114 &9197972668477809400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2646,6 +2844,7 @@ MonoBehaviour:
     targetPosition: {x: 0, y: 0, z: 0}
     abilities: []
     manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
   agent: {fileID: 0}
   caster: {fileID: 0}
   abilities: []
