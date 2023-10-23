@@ -10,6 +10,7 @@ public class CastAbilityNode : ActionNode
     public float tempCastTime;
     public bool assigned;
     public bool rotate;
+    [SerializeField] bool deviatedDirection;
     AbilityCaster aCaster;
     float castTime;
     float timer;
@@ -45,8 +46,16 @@ public class CastAbilityNode : ActionNode
     protected override State OnUpdate()
     {
         Ability.CastData data = agent.caster.CreateCastData();
+        if (deviatedDirection)
+        {
+            float dev = Random.Range(-caster.projectileDeviation, caster.projectileDeviation);
 
-        if(ability.GetType() == typeof (DashAbility) || ability.GetType() == typeof(DashApplysEffect))
+            data.aimDirection = new Vector3((player.transform.position.x - agent.transform.position.x)
+                + dev, 0, (player.transform.position.z - agent.transform.position.z) + dev).normalized;
+
+        }
+
+        if (ability.GetType() == typeof (DashAbility) || ability.GetType() == typeof(DashApplysEffect))
         {
             data.moveDirection = (blackboard.moveToPosition - agent.transform.position).normalized * 10;
         }

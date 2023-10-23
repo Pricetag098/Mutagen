@@ -140,7 +140,6 @@ public class EnemyAbilityCaster : MonoBehaviour
         float dev = Random.Range(-projectileDeviation, projectileDeviation);
         data.aimDirection = new Vector3((player.position.x - transform.position.x) + dev, 0,
             (player.position.z - transform.position.z) + dev).normalized;
-        //data.aimDirection *= -1;
         data.moveDirection = Vector3.zero;
         data.effectOrigin = castOrigin;
         return data;

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -10,11 +11,23 @@ public class SelectionButton : MonoBehaviour, IPointerEnterHandler, ISelectHandl
     public float tweenScale;
     public Vector3 startPosition;
     Button button;
+    public int index;
+    [SerializeField]Image oldIcon, newIcon;
+    [SerializeField]TextMeshProUGUI title, description;
     private void Awake()
     {
         button = GetComponent<Button>();
         startPosition = GetComponent<RectTransform>().anchoredPosition;
     }
+
+    public void SetValues(Ability newAbility,Ability oldAbiliy)
+    {
+        title.text = newAbility.abilityName + " > " + oldAbiliy.abilityName;
+        description.text = newAbility.abilityDescription;
+        oldIcon.sprite = oldAbiliy.icon;
+        newIcon.sprite = newAbility.icon;
+    }
+
 
     public void TweenScale(float variable)
     {
@@ -37,6 +50,7 @@ public class SelectionButton : MonoBehaviour, IPointerEnterHandler, ISelectHandl
     public void OnSelect(BaseEventData eventData)
     {
         transform.DOKill();
+        GetComponentInParent<SelectionUi>().Select(index);
         TweenSelect();
     }
 
