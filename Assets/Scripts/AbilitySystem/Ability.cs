@@ -22,14 +22,14 @@ public class Ability : ScriptableObject
     public CastDelegate OnCast;
     public Optional<GameObject> pickupPrefab;
 
-    [System.Flags]
+    //[System.Flags]
 	public enum SlotMask 
     { 
         basic = 1,
         range = 2,
-        dash = 4,
-        ability2 = 8,
-        ability3 = 16
+        dash = 3,
+        specialUtility = 4,
+        specialDamage = 5
     }
 
     public SlotMask slotMask;

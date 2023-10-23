@@ -554,8 +554,8 @@ GameObject:
   - component: {fileID: 60378925308937080}
   - component: {fileID: 343049529420119189}
   - component: {fileID: 8476024904272100115}
-  - component: {fileID: 1656899331}
   - component: {fileID: 740044062183476289}
+  - component: {fileID: 1656899331}
   m_Layer: 0
   m_Name: TigerFINAL
   m_TagString: Untagged
@@ -592,7 +592,7 @@ Animator:
   m_GameObject: {fileID: 836916350466513346}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b930847b350c3df4292cd292f42d2f1f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -618,6 +618,20 @@ MonoBehaviour:
   - m_Rig: {fileID: 526414304405338783}
     m_Active: 1
   m_Effectors: []
+--- !u!136 &740044062183476289
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836916350466513346}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1656899331
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -634,20 +648,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &740044062183476289
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836916350466513346}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1063772684657538239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,7 +2099,7 @@ NavMeshAgent:
   m_Speed: 10
   m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 1000
+  m_AngularSpeed: 100
   m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -2120,8 +2120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 150
-  maxHealth: 150
+  health: 750
+  maxHealth: 750
   iFrames: 0
   maxIFrames: Infinity
   canHaveStatusEffects: 1
@@ -2185,13 +2185,13 @@ MonoBehaviour:
   castOrigin: {fileID: 9220300258059560286}
   defaultAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   curAbility: {fileID: 0}
-  projectileDeviation: 0
+  projectileDeviation: 5000
   rangedDeterence: 10
   meleeDeterence: 0
   repeatDeterence: 20
   distanceMultiplier: 0
   innerRange: 0
-  chanceDeductionRange: 55.9
+  chanceDeductionRange: 10
 --- !u!114 &8962174975456743336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,19 +2224,22 @@ MonoBehaviour:
   delayMove: 0
   flanking: 0
   retaliate: 0
+  isStunned: 0
   retreatingTimer: 2
   isSeperating: 0
+  movementSpeed: 10
   movementMultiplier: 1
   healthState:
     enabled: 1
-    val: 0000000032000000
+    val: 00000000fa000000
   flankDistance: 5
-  movementSpeed: 20
   retaliateCooldown: 0
+  stunDuration: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
   delayMoveTimer: 0
   retaliateTimer: 0
+  stunnedTimer: 0
 --- !u!114 &7829885259189179611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5441,7 +5444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9220300258059560285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.194, z: 0.448}
+  m_LocalPosition: {x: 0, y: 0.156, z: 0.576}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

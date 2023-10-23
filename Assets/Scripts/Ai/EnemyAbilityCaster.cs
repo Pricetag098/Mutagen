@@ -57,16 +57,19 @@ public class EnemyAbilityCaster : MonoBehaviour
         }
     }
 
-    public void GetAbility(Ability excluded)
+    public void GetAbility(Ability[] excluded)
     {
         float highWeight = 0;
         for (int i = 0; i < curLoadout.abilities.Length; i++)
         {
 
             float weight = 100;
+            for(int x = 0; x < excluded.Length; x++)
+            {
+                if (curLoadout.abilities[i] == excluded[x])
+                    weight = -10000;
+            }
 
-            if (curLoadout.abilities[i] == excluded)
-                weight = -10000;
 
             if (caster.abilities[i] == curAbility)
                 weight -= repeatDeterence;
@@ -107,7 +110,7 @@ public class EnemyAbilityCaster : MonoBehaviour
         if (melee)
         {
             if (melee.GetCoolDownPercent() < 0.9f)
-                value -= meleeDeterence;
+                value -= 30;
 
             value -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
         }

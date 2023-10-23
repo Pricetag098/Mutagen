@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class AbilityPickupInteractable : Interactable
 {
-    public Ability ability;
+    public Ability[] abilitys;
 	[SerializeField] GameObject hoverText;
 	[SerializeField] Image icon;
 
@@ -20,13 +20,22 @@ public class AbilityPickupInteractable : Interactable
 		if(hoverText != null)
 		hoverText.SetActive(false);
 	}
+
+	public void SetAbilities(Ability[] other)
+	{
+		for(int i = 0; i < other.Length; i++)
+		{
+			abilitys[i] = other[i];
+		}
+	}
+
 	public override void Interact(Interactor interactor)
 	{
 		Debug.Log("Interact");
 		PlayerAbilityCaster player = interactor.GetComponent<PlayerAbilityCaster>();
 		if (player.abilitySelector.open)
 			return;
-		player.EquipAbility(ability);
+		//player.EquipAbility(ability);
 		interactor.hasTarget = false;
 		Destroy(agent.transform.parent.gameObject);
 	}
@@ -35,9 +44,4 @@ public class AbilityPickupInteractable : Interactable
         //icon.sprite = ability.icon;
 	}
 
-	private void Start()
-	{
-        //temp Jason Code
-        ability = agent.manager.dropPool[0];
-    }
 }

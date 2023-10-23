@@ -15,7 +15,8 @@ public enum CheckType
     groupFacing,
     flanking,
     sightLine,
-    ability
+    abilityType,
+    abilityCooldown
 }
 public enum AbilityCheckType
 {
@@ -33,6 +34,7 @@ public class IfElseNode : CompositeNode
     int first = 0; int second = 1;
     public AbilityCheckType abilityCheck;
     public Optional<oneTimeCheck> oneTime;
+    public Optional<int> cooldownCheckIndex;
     public enum oneTimeCheck
     {
         Null,
@@ -191,7 +193,24 @@ public class IfElseNode : CompositeNode
         }
         //return false;
     }
-    
+
+    bool abilityCooldownCheck()
+    {
+        AbilityCaster aCaster = agent.caster.caster;
+        MeleeAttackAbility melee = aCaster.abilities[cooldownCheckIndex.Value] as MeleeAttackAbility;
+        DashAbility dash = aCaster.abilities[cooldownCheckIndex.Value] as DashAbility;
+        if (melee || dash)
+        {
+            float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
+            if (cooldown < 0.9f)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     protected override State OnUpdate()
     {
         if (oneTime.Value != oneTimeCheck.Null && oneTime.Value == oneTimeCheck.Completed)
@@ -275,11 +294,16 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
-            case CheckType.ability:
+            case CheckType.abilityType:
                 if (abilityTypeCheck(abilityCheck))
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
+                break;
+            case CheckType.abilityCooldown:
+                if (abilityCooldownCheck())
+                    ChildUpdate(first);
+                else ChildUpdate(second);
                 break;
         }
         return State.Running;
