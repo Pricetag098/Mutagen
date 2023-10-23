@@ -57,16 +57,19 @@ public class EnemyAbilityCaster : MonoBehaviour
         }
     }
 
-    public void GetAbility(Ability excluded)
+    public void GetAbility(Ability[] excluded)
     {
         float highWeight = 0;
         for (int i = 0; i < curLoadout.abilities.Length; i++)
         {
 
             float weight = 100;
+            for(int x = 0; x < excluded.Length; x++)
+            {
+                if (curLoadout.abilities[i] == excluded[x])
+                    weight = -10000;
+            }
 
-            if (curLoadout.abilities[i] == excluded)
-                weight = -10000;
 
             if (caster.abilities[i] == curAbility)
                 weight -= repeatDeterence;
@@ -137,6 +140,7 @@ public class EnemyAbilityCaster : MonoBehaviour
         float dev = Random.Range(-projectileDeviation, projectileDeviation);
         data.aimDirection = new Vector3((player.position.x - transform.position.x) + dev, 0,
             (player.position.z - transform.position.z) + dev).normalized;
+        //data.aimDirection *= -1;
         data.moveDirection = Vector3.zero;
         data.effectOrigin = castOrigin;
         return data;
