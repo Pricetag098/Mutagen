@@ -211,7 +211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647904882652686650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6700001, z: 1.7700001}
+  m_LocalPosition: {x: 0, y: 1.88, z: 2.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1876,12 +1876,10 @@ MonoBehaviour:
     - {fileID: 7815873756385598223}
     - {fileID: 1205097987562141975}
     - {fileID: 8733507102099710937}
-  isMoving: 0
-  performingAction: 0
-  isInDanger: 0
   delayMove: 0
   flanking: 0
   retaliate: 0
+  isStunned: 0
   retreatingTimer: 2
   isSeperating: 0
   movementMultiplier: 1
@@ -1889,16 +1887,14 @@ MonoBehaviour:
     enabled: 1
     val: 4600000096000000
   flankDistance: 5
-  actionCooldown: 1.5
   movementSpeed: 20
-  movementCooldown: 1
   retaliateCooldown: 0
+  stunDuration: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
-  actionTimer: 0
-  movementTimer: 0
   delayMoveTimer: 0
   retaliateTimer: 0
+  stunnedTimer: 0
 --- !u!114 &1744176796866398432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,7 +1929,6 @@ MonoBehaviour:
   - {fileID: 7412119237863741989}
   pickup: {fileID: 539488876}
   fadeRate: 1.5
-  ragdollForce: 1.2
 --- !u!1 &4640020522738667171
 GameObject:
   m_ObjectHideFlags: 0

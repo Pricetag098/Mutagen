@@ -110,7 +110,7 @@ public class EnemyAbilityCaster : MonoBehaviour
         if (melee)
         {
             if (melee.GetCoolDownPercent() < 0.9f)
-                value -= meleeDeterence;
+                value -= 30;
 
             value -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
         }
