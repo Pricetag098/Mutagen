@@ -15,7 +15,8 @@ public enum CheckType
     groupFacing,
     flanking,
     sightLine,
-    ability
+    abilityType,
+    abilityCooldown
 }
 public enum AbilityCheckType
 {
@@ -33,6 +34,7 @@ public class IfElseNode : CompositeNode
     int first = 0; int second = 1;
     public AbilityCheckType abilityCheck;
     public Optional<oneTimeCheck> oneTime;
+    public Optional<Ability> cooldownCheck;
     public enum oneTimeCheck
     {
         Null,
@@ -51,7 +53,6 @@ public class IfElseNode : CompositeNode
     bool distCheck()
     {
         float distance = Vector3.Distance(agent.transform.position, blackboard.targetPosition);
-        Debug.Log(distance);
         return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
     }
 
@@ -192,7 +193,32 @@ public class IfElseNode : CompositeNode
         }
         //return false;
     }
-    
+
+    bool abilityCooldownCheck()
+    {
+        Ability check = null;
+        foreach(Ability ability in agent.caster.caster.abilities)
+        {
+            if(cooldownCheck.Value == ability)
+            {
+                check = ability;
+            }
+        }
+        if (check == null) return false;
+        MeleeAttackAbility melee = check as MeleeAttackAbility;
+        DashAbility dash = check as DashAbility;
+        if (melee || dash)
+        {
+            float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
+            if (cooldown < 0.9f)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     protected override State OnUpdate()
     {
         if (oneTime.Value != oneTimeCheck.Null && oneTime.Value == oneTimeCheck.Completed)
@@ -276,11 +302,16 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
-            case CheckType.ability:
+            case CheckType.abilityType:
                 if (abilityTypeCheck(abilityCheck))
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
+                break;
+            case CheckType.abilityCooldown:
+                if (abilityCooldownCheck())
+                    ChildUpdate(first);
+                else ChildUpdate(second);
                 break;
         }
         return State.Running;
