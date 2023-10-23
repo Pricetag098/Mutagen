@@ -55,6 +55,7 @@ public class Ragdoll : MonoBehaviour
             }
             //enable interactable
             pickup.enabled = true;
+            pickup.SetAbilities(agent.manager.dropPool);
             pickup.GetComponent<Collider>().enabled = true;
 
             return;
