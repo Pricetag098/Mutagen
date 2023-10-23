@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AssignAbilityNode : SetterNode
 {
-    public Optional<Ability> excludedAbility;
+    public Optional<Ability[]> excludedAbility;
 
     protected override void OnStart()
     {

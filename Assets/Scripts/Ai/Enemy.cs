@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour
     float defaultSpeed;
 
     [Header("Timers")]
-    public float actionCooldown;
     public float movementSpeed;
     public float retaliateCooldown;
     public float stunDuration;
@@ -53,7 +52,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
     [HideInInspector] public float stunnedTimer;
-    [HideInInspector] public float actionTimer;
 
     #region startupfunctions
     void Awake()
