@@ -23,8 +23,8 @@ MonoBehaviour:
   castType: 1
   prefab: {fileID: 8606946681965044731, guid: f25c8482cb4de2742b7699190aaf75af, type: 3}
   releaseOnFullCharge: 1
-  maxChargeTime: 0.1
-  minChargeTime: 0.5
+  maxChargeTime: 0.02
+  minChargeTime: 0.01
   damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
@@ -75,7 +75,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedModifier: -0.6
-  onHitEffectList: []
+  onHitEffectList:
+  - {fileID: 11400000, guid: 85463fef0c8e7d044ace5a12f893e584, type: 2}
   aimAssist:
     maxRange: 100
     aimAssistLayer:
@@ -89,4 +90,4 @@ MonoBehaviour:
   vfx:
     enabled: 0
     val: {fileID: 0}
-  animationTrigger: 
+  animationTrigger: Special
