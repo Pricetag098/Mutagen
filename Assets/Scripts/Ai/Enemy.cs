@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
     float lastSeperate;
 
     [Header("Stats")]
+    public float movementSpeed;
     public float movementMultiplier = 1;
     [Tooltip("In order of lowest to highest")]
     public Optional<int[]> healthState;
@@ -43,7 +44,6 @@ public class Enemy : MonoBehaviour
     float defaultSpeed;
 
     [Header("Timers")]
-    public float movementSpeed;
     public float retaliateCooldown;
     public float stunDuration;
     [Range(0f,10f)]
