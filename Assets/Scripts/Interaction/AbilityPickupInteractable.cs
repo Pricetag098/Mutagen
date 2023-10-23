@@ -1,4 +1,4 @@
-using System.Collections;
+	using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +37,8 @@ public class AbilityPickupInteractable : Interactable
 			return;
 		//player.EquipAbility(ability);
 		interactor.hasTarget = false;
-		Destroy(agent.transform.parent.gameObject);
+		//Destroy(agent.transform.parent.gameObject);
+		enabled = false; 
 	}
 	private void Awake()
 	{
