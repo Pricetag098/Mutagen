@@ -10,7 +10,7 @@ public class SelectionUi : MonoBehaviour
 
     SelectionButton[] buttons;
     Sequence openSequence;
-
+    public bool open;
     Sequence closeSequence;
     public float openTime = 0.1f;
     public float buttonEntryTime = .1f;
@@ -49,7 +49,7 @@ public class SelectionUi : MonoBehaviour
     [ContextMenu("open")]
     public void Open()
     {
-        
+        open = true;
         DOTween.Kill(this, true);
         openSequence = DOTween.Sequence(this);
         
@@ -74,6 +74,7 @@ public class SelectionUi : MonoBehaviour
     [ContextMenu("close")]
     public void Close()
     {
+        open = false;
         DOTween.Kill(this,true);
         closeSequence = DOTween.Sequence(this);
 

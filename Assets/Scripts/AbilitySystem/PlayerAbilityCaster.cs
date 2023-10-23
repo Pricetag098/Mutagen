@@ -10,7 +10,7 @@ public class PlayerAbilityCaster : MonoBehaviour
     [SerializeField] InputActionProperty abilityAction3;
     [SerializeField] InputActionProperty abilityAction4;
 	public Transform castOrigin;
-	public AbilitySelector abilitySelector;
+	public SelectionUi abilitySelector;
 	[HideInInspector]public AbilityCaster caster;
 	PlayerAim aim;
 	PlayerMovement movement;
@@ -114,14 +114,14 @@ public class PlayerAbilityCaster : MonoBehaviour
 		return false;
 	}
 
-	public void EquipAbility(Ability ability)
-	{
-		if (!TryEquipAbility(ability))
-		{
-			abilitySelector.Open(ability);
-		}
+	//public void EquipAbility(Ability ability)
+	//{
+	//	if (!TryEquipAbility(ability))
+	//	{
+	//		abilitySelector.Open(ability);
+	//	}
 		
-	}
+	//}
 	public void SetAbility(Ability ability, int index)
 	{
 		caster.SetAbility(ability, index);
