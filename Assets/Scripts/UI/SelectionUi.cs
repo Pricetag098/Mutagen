@@ -59,7 +59,7 @@ public class SelectionUi : MonoBehaviour
 		}
 		openSequence.Append(transform.DOScaleX(1, openTime));
         openSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 1, openTime));
-        openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
+        //openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
 
         //openSequence.AppendInterval(openTime);
         for (int i = 0; i < buttons.Length; i++)
@@ -91,7 +91,7 @@ public class SelectionUi : MonoBehaviour
 
         closeSequence.Append(transform.DOScaleX(0, openTime));
         closeSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0, openTime));
-        closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
+        //closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
 
     }
 

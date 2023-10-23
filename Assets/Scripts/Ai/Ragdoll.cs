@@ -89,6 +89,8 @@ public class Ragdoll : MonoBehaviour
                 Destroy(transform.parent.gameObject);
             }
         }
+
+
     }
 
     void OnDie(DamageData data)
