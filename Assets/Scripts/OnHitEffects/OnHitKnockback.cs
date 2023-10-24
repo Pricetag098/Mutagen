@@ -18,7 +18,7 @@ public class OnHitKnockback : OnHitEffect
         Rigidbody rb;
         if(hitBox.health.TryGetComponent(out rb))
         {
-            rb.AddForce(direction * force);
+            rb.AddForce(direction * force,ForceMode.VelocityChange);
         }
     }
 }
