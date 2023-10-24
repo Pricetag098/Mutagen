@@ -8,7 +8,7 @@ public class CameraControler : MonoBehaviour
     bool boundCamera;
     [SerializeField] float time;
     Transform parent;
-    
+    [SerializeField] Ease ease;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +24,12 @@ public class CameraControler : MonoBehaviour
     public void Bind(Transform target)
     {
         transform.parent = null;
-        transform.DOMove(target.position, time).SetEase(Ease.InSine);
+        transform.DOMove(target.position, time).SetEase(ease);
         
     }
     public void Release()
     {
         transform.parent = parent;
-        transform.DOLocalMove(Vector3.zero, time).SetEase(Ease.InSine);
+        transform.DOLocalMove(Vector3.zero, time).SetEase(ease);
     }
 }
