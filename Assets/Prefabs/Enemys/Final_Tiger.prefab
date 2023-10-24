@@ -2123,8 +2123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e6b7a731295a4419cac122c2c59086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 750
-  maxHealth: 750
+  health: 20
+  maxHealth: 20
   iFrames: 0
   maxIFrames: Infinity
   canHaveStatusEffects: 1
@@ -2143,6 +2143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
+  - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
@@ -2168,7 +2169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89f7527bc9b5634d8cbe418e4da0299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: e3aa8017cf9a17f4f954df83285fb868, type: 2}
+  tree: {fileID: 11400000, guid: 8ccd96907fafe0a458d3f17f7e24e942, type: 2}
 --- !u!114 &8962174975456743337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,16 +2183,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caster: {fileID: 0}
-  curLoadout: {fileID: 11400000, guid: f1dd44664fbb00b4eb2d0fb1c9dd7ed3, type: 2}
+  curLoadout: {fileID: 11400000, guid: 10b1879f3afc5c849ba6698365116cdb, type: 2}
   loadoutVariations:
-  - {fileID: 11400000, guid: f1dd44664fbb00b4eb2d0fb1c9dd7ed3, type: 2}
+  - {fileID: 11400000, guid: 10b1879f3afc5c849ba6698365116cdb, type: 2}
   castOrigin: {fileID: 9220300258059560286}
   defaultAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   curAbility: {fileID: 0}
-  projectileDeviation: 5000
-  rangedDeterence: 10
+  projectileDeviation: 0
+  rangedDeterence: 0
   meleeDeterence: 0
-  repeatDeterence: 20
+  repeatDeterence: 50
   distanceMultiplier: 0
   innerRange: 0
   chanceDeductionRange: 10
@@ -2209,7 +2210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   agent: {fileID: 0}
-  health: {fileID: 0}
+  health: {fileID: 8962174975456743340}
   anim: {fileID: 343049529420119189}
   manager: {fileID: 0}
   caster: {fileID: 0}
@@ -2230,13 +2231,13 @@ MonoBehaviour:
   isStunned: 0
   retreatingTimer: 2
   isSeperating: 0
-  movementSpeed: 10
+  movementSpeed: 20
   movementMultiplier: 1
   healthState:
     enabled: 1
-    val: 00000000fa000000
+    val: 14000000e8030000d0070000
   flankDistance: 5
-  retaliateCooldown: 0
+  retaliateCooldown: 5
   stunDuration: 0
   delayMoveRange: 4
   defaultMovementSpeed: 0
@@ -2281,6 +2282,8 @@ MonoBehaviour:
   - {fileID: 4343672430762639437}
   pickup: {fileID: 1285623437}
   fadeRate: 1
+  ragdollSideForce: 0
+  ragdollUpForce: 0
 --- !u!1 &3839801079526965267
 GameObject:
   m_ObjectHideFlags: 0

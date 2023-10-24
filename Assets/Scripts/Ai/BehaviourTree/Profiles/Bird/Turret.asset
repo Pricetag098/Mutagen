@@ -15,7 +15,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8bdedb1b4d2ecf746bbf88410fb0abde
-  position: {x: 413, y: 335.8222}
+  position: {x: 479.00006, y: 374.00003}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -30,6 +30,7 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   children:
+  - {fileID: -5524680819271771078}
   - {fileID: -4979703124641624808}
   checkType: 11
   distanceCheck: 0
@@ -41,6 +42,9 @@ MonoBehaviour:
     val: 0
   abilityCheck: 0
   oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
     enabled: 0
     val: 0
 --- !u!114 &-6456087154318107867
@@ -87,7 +91,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: cbfa614a75e43744198353991d18f3ce
-  position: {x: 0, y: 0}
+  position: {x: 249.77141, y: 496.00003}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -116,7 +120,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 3dc96b9b70eb43744a83b395b66ac29c
-  position: {x: 364.0001, y: 471.8221}
+  position: {x: 470.85687, y: 488}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -167,6 +171,7 @@ MonoBehaviour:
   tempCastTime: 1000
   assigned: 0
   rotate: 0
+  deviatedDirection: 0
 --- !u!114 &-1875147206965916749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +187,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 661bbf2b62f5680499e780d6172e8be5
-  position: {x: 0, y: 0}
+  position: {x: -11.999982, y: -304.835}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -196,8 +201,10 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  children: []
-  checkType: 0
+  children:
+  - {fileID: 9147347206679639441}
+  - {fileID: 3548578196193527912}
+  checkType: 3
   distanceCheck: 0
   groupDistance:
     enabled: 0
@@ -207,6 +214,9 @@ MonoBehaviour:
     val: 0
   abilityCheck: 0
   oneTime:
+    enabled: 0
+    val: 0
+  cooldownCheckIndex:
     enabled: 0
     val: 0
 --- !u!114 &-1752065902695074711
@@ -253,6 +263,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &-1566322297543444965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +281,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: dd880d812429c4946856e9bddbf81d13
-  position: {x: 367.0001, y: 998.8221}
+  position: {x: 473.85684, y: 1015}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -300,7 +313,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 78fa84f3ccb9a9c429f3f371cb5e80b6
-  position: {x: 480.00027, y: 1171.8223}
+  position: {x: 586.8568, y: 1188}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -329,7 +342,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 8339958c21229614fa47b63d6d051576
-  position: {x: 42.000175, y: 487.82217}
+  position: {x: 38.000206, y: 487.99997}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -402,7 +415,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 801393637c9266c418378172a5a70e7a
-  position: {x: 213.99994, y: 1163.8221}
+  position: {x: 372.00006, y: 1196}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -420,6 +433,7 @@ MonoBehaviour:
   tempCastTime: 1
   assigned: 0
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &1459763926536477007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +449,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: b4283785ba7055a4296b45cdfacb493a
-  position: {x: 364.0001, y: 750.8221}
+  position: {x: 470.85687, y: 767}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -557,6 +571,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &4610185600592367882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,7 +618,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: bd2fa6d7d9ab05a4fa8415089a6b5115
-  position: {x: 359.00024, y: 883.822}
+  position: {x: 465.85684, y: 900.00006}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -631,7 +648,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: f16051969b7e6584aa02b2b228f77d2f
-  position: {x: 356.00027, y: 576.822}
+  position: {x: 462.85687, y: 592.99994}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -707,7 +724,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 3548578196193527912}
+  child: {fileID: -1875147206965916749}
 --- !u!114 &9147347206679639441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +740,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 7fa51a90f009f924592ab3c8ea8a7d16
-  position: {x: -0.00005865097, y: 169.82217}
+  position: {x: -169.94235, y: -132.99997}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
