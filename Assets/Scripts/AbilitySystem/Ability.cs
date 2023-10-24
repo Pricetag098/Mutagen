@@ -25,11 +25,11 @@ public class Ability : ScriptableObject
     //[System.Flags]
 	public enum SlotMask 
     { 
-        basic = 1,
-        range = 2,
-        dash = 3,
-        specialUtility = 4,
-        specialDamage = 5
+        basic,
+        range,
+        dash,
+        specialUtility,
+        specialDamage
     }
 
     public SlotMask slotMask;
