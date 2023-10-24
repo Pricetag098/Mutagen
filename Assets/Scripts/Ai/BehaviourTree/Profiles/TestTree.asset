@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3094833645412053280
+--- !u!114 &-4548606120469826820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855db6ddb1b607f418736fb0e3aeb801, type: 3}
-  m_Name: AutoFail
+  m_Script: {fileID: 11500000, guid: b057a989e2c76144ba4840403edcddcd, type: 3}
+  m_Name: RepeatCastNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 94a9795f20cc4754f80b244451638ce4
-  position: {x: 198, y: 508}
+  guid: b197181de208c7141ada66c30ee96958
+  position: {x: -120, y: 349}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -29,6 +29,42 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+  abilityIndex: 0
+  repeatCount: 5
+  waitTime: 20
+  assigned: 0
+  rotate: 1
+  deviatedDirection: 0
+--- !u!114 &-1453977366481679140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
+  m_Name: DebugLogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 476ac85b9bc6630408fae47c5d5f0514
+  position: {x: 125, y: 347}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  message: Cast
 --- !u!114 &-172443999009110987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,7 +80,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ad8d1da1b6956374d88269844aa85e4d
-  position: {x: 0, y: 0}
+  position: {x: -17, y: 0}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -58,7 +94,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 133727715389003675}
+  child: {fileID: 6432874393208131337}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,11 +111,10 @@ MonoBehaviour:
   treeState: 0
   nodes:
   - {fileID: -172443999009110987}
-  - {fileID: 133727715389003675}
-  - {fileID: 8158462754188590985}
-  - {fileID: 3741267317589607922}
-  - {fileID: 7639005151621773142}
-  - {fileID: -3094833645412053280}
+  - {fileID: 6432874393208131337}
+  - {fileID: -4548606120469826820}
+  - {fileID: 8610434254302207851}
+  - {fileID: -1453977366481679140}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -87,7 +122,7 @@ MonoBehaviour:
     abilities: []
     manager: {fileID: 0}
     awayPosition: {x: 0, y: 0, z: 0}
---- !u!114 &133727715389003675
+--- !u!114 &6432874393208131337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,13 +131,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe69704289996a489578c93061d36fb, type: 3}
-  m_Name: SetMoveTo
+  m_Script: {fileID: 11500000, guid: 7991d7105f1070148988a459f4df4abb, type: 3}
+  m_Name: SetRotateTowards
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: fe85136971ff6c4428cf196392287860
-  position: {x: 8, y: 133}
+  guid: 1e0ba317686aea5408db58e5547815f3
+  position: {x: -1, y: 120}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -116,11 +151,9 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 0}
-  away: 0
-  type: 0
-  awayDistance: 0
---- !u!114 &3741267317589607922
+  child: {fileID: 8610434254302207851}
+  target: 0
+--- !u!114 &8610434254302207851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,8 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: b0710621d114cfc4587e152f46881ce5
-  position: {x: 8, y: 351}
+  guid: 4a3cf70ec75173c4d8eddd1e91cef3b6
+  position: {x: 7, y: 220}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -150,66 +183,5 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   children:
-  - {fileID: 8158462754188590985}
-  - {fileID: 7639005151621773142}
-  - {fileID: -3094833645412053280}
---- !u!114 &7639005151621773142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
-  m_Name: DebugLogNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 08dd53590cb77204c83f066227b15d5c
-  position: {x: 7, y: 500}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-    awayPosition: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  player: {fileID: 0}
-  description: 
-  message: Reached
---- !u!114 &8158462754188590985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
-  m_Name: MoveToNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 3930568664a15784fb1d0e963a734000
-  position: {x: -174, y: 492}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-    awayPosition: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  player: {fileID: 0}
-  description: 
-  repeatTillReached: 1
+  - {fileID: -4548606120469826820}
+  - {fileID: -1453977366481679140}
