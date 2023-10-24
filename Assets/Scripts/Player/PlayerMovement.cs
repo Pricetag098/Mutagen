@@ -64,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
         inputDir = moveDir.action.ReadValue<Vector2>();
 		movementDir = orientation.forward * inputDir.y + orientation.right * inputDir.x;
 		timeSinceLastInteruption += Time.deltaTime;
+        if(movementDir == Vector3.zero)
+        {
+            timeSinceLastInteruption = 0;
+        }
     }
 
 	private void FixedUpdate()
