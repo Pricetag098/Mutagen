@@ -37,6 +37,7 @@ public class SetMoveTo : SetterNode
             {
                 case TargetType.player:
                     blackboard.moveToPosition = player.transform.position;
+                    //Debug.Log("Set");
                     break;
                 case TargetType.self:
                     blackboard.moveToPosition = agent.transform.position;
@@ -50,6 +51,7 @@ public class SetMoveTo : SetterNode
         {
             case TargetType.player:
                 {
+                    //if already running away, continue
                     if(blackboard.awayPosition != Vector3.zero)
                     {
                         if (Vector3.Distance(agent.transform.position, blackboard.awayPosition) < 2f)
@@ -66,9 +68,6 @@ public class SetMoveTo : SetterNode
                     }
                     break;
                 }
-            //case TargetType.away_danger:
-            //    blackboard.moveToPosition = agent.transform.position + -(agent.dangerObject.transform.position - agent.transform.position).normalized;
-            //    break;
             case TargetType.group:
                 blackboard.moveToPosition = agent.transform.position + manager.groupDir(agent) * awayDistance;
                 break;
