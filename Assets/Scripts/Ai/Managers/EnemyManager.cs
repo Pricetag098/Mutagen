@@ -13,7 +13,7 @@ public class EnemyManager : MonoBehaviour
     [Header("DropStats")]
     [Range(0, 100)] public float dropChance;
     public Ability[] dropPool;
-    bool droppedCheck;
+    bool hasDropped;
 
     [Header("Element")]
     int elementIndex;
@@ -74,20 +74,19 @@ public class EnemyManager : MonoBehaviour
     public bool DropCheck()
     {
         float dropping = Random.Range(0, 100);
-        if (droppedCheck)
-            return true;
+        //if already assigned a drop enemy, return
+        if (hasDropped)
+            return false;
         //if last enemy drop ability else random
-        if (enemyList.Count <= 0 && !droppedCheck)
+        if (enemyList.Count <= 1)
         {
-            if (!droppedCheck)
-                droppedCheck = true;
+            hasDropped = true;
         }
-        else if(dropping < dropChance && !droppedCheck)
+        else if (dropping < dropChance)
         {
-            if (!droppedCheck)
-                droppedCheck = true;
+            hasDropped = true;
         }
-        return !droppedCheck;
+        return hasDropped;
     }
 
     public void Add(Enemy agent)
@@ -155,7 +154,7 @@ public class EnemyManager : MonoBehaviour
         HitBox player;
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
-            Debug.Log("Hit");
+            //Debug.Log("Hit");
             if (activated)
                 return;
 

@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class MoveToNode : ActionNode
 {
+    [SerializeField] bool repeatTillReached;
     protected override void OnStart()
     {
 
@@ -17,7 +18,21 @@ public class MoveToNode : ActionNode
 
     protected override State OnUpdate()
     {
-        agent.agent.SetDestination(blackboard.moveToPosition);
-        return State.Success;
+        if (repeatTillReached)
+        {
+            if (Vector3.Distance(blackboard.moveToPosition, agent.transform.position) < agent.agent.stoppingDistance)
+                return State.Success;
+
+            //Debug.Log("Running");
+            agent.agent.SetDestination(blackboard.moveToPosition);
+            return State.Running;
+        }
+        else
+        {
+            agent.agent.SetDestination(blackboard.moveToPosition);
+            return State.Success;
+        }
+
+
     }
 }

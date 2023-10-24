@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Animations.Rigging;
+//using UnityEngine.Animations.Rigging;
 
 public class Enemy : MonoBehaviour
 {
