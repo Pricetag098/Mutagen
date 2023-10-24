@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveToNode : ActionNode
+public class MoveTillReachedNode : ActionNode
 {
     [SerializeField] bool repeatTillReached;
     protected override void OnStart()
     {
-        Debug.Log("Startfuh");
+        Debug.Log("Start");
     }
 
     protected override void OnStop()
@@ -20,10 +20,11 @@ public class MoveToNode : ActionNode
     {
         if (repeatTillReached)
         {
+            Debug.Log("Running");
             if (Vector3.Distance(blackboard.moveToPosition, agent.transform.position) < 5)
                 return State.Success;
 
-            Debug.Log("Running");
+            //Debug.Log("Running");
             agent.agent.SetDestination(blackboard.moveToPosition);
             return State.Running;
         }
@@ -32,7 +33,5 @@ public class MoveToNode : ActionNode
             agent.agent.SetDestination(blackboard.moveToPosition);
             return State.Success;
         }
-
-
     }
 }
