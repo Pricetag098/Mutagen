@@ -29,6 +29,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+  repeatTillReached: 0
 --- !u!114 &-9051419385325252384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,9 +228,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &-3724489099386066688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,9 +577,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &914403431866639793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,7 +646,7 @@ MonoBehaviour:
   - {fileID: -3724489099386066688}
   - {fileID: -9051419385325252384}
   checkType: 1
-  distanceCheck: 1
+  distanceCheck: 2.5
   groupDistance:
     enabled: 0
     val: 0
@@ -656,9 +657,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &2301273402380708455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,6 +755,7 @@ MonoBehaviour:
   tempCastTime: 1
   assigned: 1
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &4017315318443509549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +814,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+  repeatTillReached: 0
 --- !u!114 &5472847040579343297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,6 +848,7 @@ MonoBehaviour:
   tempCastTime: 1
   assigned: 1
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &5598493812949747452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,11 +914,11 @@ MonoBehaviour:
   children:
   - {fileID: -2365547460815570020}
   - {fileID: 2038517271602597954}
-  checkType: 8
+  checkType: 6
   distanceCheck: 0
   groupDistance:
-    enabled: 0
-    val: 0
+    enabled: 1
+    val: 1
   groupCheckDistance:
     enabled: 0
     val: 0
@@ -922,9 +926,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &6090306726537933267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,9 +1067,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &9185229369735936598
 MonoBehaviour:
   m_ObjectHideFlags: 0
