@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     public PlayerAbilityCaster player;
 
     [Header("DropStats")]
+    public bool guaranteeDrop = true;
     [Range(0, 100)] public float dropChance;
     public Ability[] dropPool;
     bool hasDropped;
