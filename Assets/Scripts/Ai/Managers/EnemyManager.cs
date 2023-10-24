@@ -79,7 +79,7 @@ public class EnemyManager : MonoBehaviour
         if (hasDropped)
             return false;
         //if last enemy drop ability else random
-        if (enemyList.Count <= 1)
+        if (enemyList.Count <= 0)
         {
             hasDropped = true;
         }
