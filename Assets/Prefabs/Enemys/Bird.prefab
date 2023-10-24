@@ -1362,19 +1362,22 @@ MonoBehaviour:
   delayMove: 0
   flanking: 0
   retaliate: 0
+  isStunned: 0
   retreatingTimer: 2
   isSeperating: 0
+  movementSpeed: 15
   movementMultiplier: 1
   healthState:
     enabled: 0
     val: 
   flankDistance: 5
-  movementSpeed: 15
   retaliateCooldown: 0
+  stunDuration: 0
   delayMoveRange: 1
   defaultMovementSpeed: 0
   delayMoveTimer: 0
   retaliateTimer: 0
+  stunnedTimer: 0
 --- !u!114 &3109258454431184226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3107,7 +3110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  ability: {fileID: 0}
+  abilitys:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hoverText: {fileID: 0}
   icon: {fileID: 0}
   agent: {fileID: 3109258454431184227}

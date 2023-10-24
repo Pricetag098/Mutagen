@@ -46,7 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  ability: {fileID: 0}
+  abilitys:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hoverText: {fileID: 0}
   icon: {fileID: 0}
   agent: {fileID: 8962174975456743336}
@@ -726,8 +729,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbouringLegs:
-  - {fileID: 4105556640625003393}
-  - {fileID: 316770879384472072}
+  - {fileID: 2719797577713134303}
+  - {fileID: 2781381332516463859}
   idealLegPos: {fileID: 1857959545831358381}
   maxDistance: 1.5
   distanceLimit: 3
@@ -2079,7 +2082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3790244150921131975}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.036, y: 0, z: 0.114}
   m_LocalScale: {x: 0.07692307, y: 0.07692307, z: 0.07692307}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2095,16 +2098,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 3790244150921131975}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 4
+  m_Radius: 8
   m_Speed: 10
-  m_Acceleration: 20
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 100
-  m_StoppingDistance: 5
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 5
+  m_Height: 8.01
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -2894,7 +2897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbouringLegs:
-  - {fileID: 4105556640625003393}
+  - {fileID: 29571871839203383}
   - {fileID: 316770879384472072}
   idealLegPos: {fileID: 4630340343310937285}
   maxDistance: 1.5
@@ -3002,8 +3005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbouringLegs:
-  - {fileID: 4105556640625003393}
-  - {fileID: 316770879384472072}
+  - {fileID: 2719797577713134303}
+  - {fileID: 7334587450402034886}
   idealLegPos: {fileID: 3177088704522147707}
   maxDistance: 1.5
   distanceLimit: 3
@@ -4106,8 +4109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbouringLegs:
+  - {fileID: 316770879384472072}
   - {fileID: 29571871839203383}
-  - {fileID: 2719797577713134303}
   idealLegPos: {fileID: 8954607833460413240}
   maxDistance: 1.5
   distanceLimit: 3
@@ -4309,7 +4312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbouringLegs:
-  - {fileID: 29571871839203383}
+  - {fileID: 4105556640625003393}
   - {fileID: 2719797577713134303}
   idealLegPos: {fileID: 4630340341589567536}
   maxDistance: 1.5
@@ -5359,7 +5362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbouringLegs:
   - {fileID: 4105556640625003393}
-  - {fileID: 316770879384472072}
+  - {fileID: 2719797577713134303}
+  - {fileID: 2781381332516463859}
   idealLegPos: {fileID: 7996356434794420991}
   maxDistance: 1.5
   distanceLimit: 3

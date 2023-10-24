@@ -1,4 +1,4 @@
-using System.Collections;
+	using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,9 +35,12 @@ public class AbilityPickupInteractable : Interactable
 		PlayerAbilityCaster player = interactor.GetComponent<PlayerAbilityCaster>();
 		if (player.abilitySelector.open)
 			return;
+
+		player.abilitySelector.OpenWith(abilitys);
 		//player.EquipAbility(ability);
 		interactor.hasTarget = false;
-		Destroy(agent.transform.parent.gameObject);
+		//Destroy(agent.transform.parent.gameObject);
+		enabled = false; 
 	}
 	private void Awake()
 	{
