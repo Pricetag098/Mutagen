@@ -14,32 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Bow
   abilityDescription: My trusty bow and arrow it's been with me for many a hunt
-  icon: {fileID: 21300000, guid: da8bafe7e998b7a46babd9ed5a2608d5, type: 3}
+  icon: {fileID: 21300000, guid: ea0a976e2840ade4aa512527937c7327, type: 3}
   element: 0
   pickupPrefab:
     enabled: 1
     val: {fileID: 7523146627320602946, guid: 405c1776749dd9748a6541306bcfda3e, type: 3}
-  slotMask: 2
+  slotMask: 1
   castType: 1
   prefab: {fileID: 1036542219973673062, guid: 63925f9704c67394589b05446b20541b, type: 3}
   releaseOnFullCharge: 1
   maxChargeTime: 1.5
   minChargeTime: 0.25
+  damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 143.5774
-      outSlope: 143.5774
+      inSlope: 46.572624
+      outSlope: 46.572624
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.5153242
-      value: 74.9889
+      value: 25
       inSlope: 5.635967
       outSlope: 5.635967
       tangentMode: 0
@@ -48,7 +49,7 @@ MonoBehaviour:
       outWeight: 1
     - serializedVersion: 3
       time: 0.9524769
-      value: 99.93295
+      value: 50
       inSlope: 0.47553572
       outSlope: 0.47553572
       tangentMode: 0
@@ -57,7 +58,7 @@ MonoBehaviour:
       outWeight: 0.24285713
     - serializedVersion: 3
       time: 1.05
-      value: 100
+      value: 50
       inSlope: 1.757864
       outSlope: 1.757864
       tangentMode: 0
@@ -65,13 +66,13 @@ MonoBehaviour:
       inWeight: 0.7186482
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.5
-      value: 75
-      inSlope: -1.6820694
-      outSlope: -1.6820694
+      time: 2
+      value: 0.23349059
+      inSlope: 10.640583
+      outSlope: 10.640583
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 1
       outWeight: 0.36785227
     m_PreInfinity: 2
     m_PostInfinity: 2

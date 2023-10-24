@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 public class SelectionUi : MonoBehaviour
 {
 
-    SelectionButton[] buttons;
+    [SerializeField]SelectionButton[] buttons;
     Sequence openSequence;
     public bool open;
     Sequence closeSequence;
@@ -19,7 +19,7 @@ public class SelectionUi : MonoBehaviour
     //public float buttonShowDelay = 1;
     public Vector3 buttonOffset;
     public Volume ppVolume;
-    Ability[] abilityOptions;
+    [SerializeField]Ability[] abilityOptions;
     private void Awake()
     {
         playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
@@ -32,9 +32,10 @@ public class SelectionUi : MonoBehaviour
 
     public void OpenWith(Ability[] abilities)
     {
-        for(int i = 0; i < buttons.Length; i++)
+        for(int i = 0; i < buttons.Length || i < abilities.Length; i++)
         {
-            buttons[i].SetValues(abilities[i], playerAbilityCaster.caster.abilities[(int)abilities[i].slotMask]);
+            buttons[i].SetValues(abilities[i],
+                playerAbilityCaster.caster.abilities[(int)abilities[i].slotMask]);
         }
         abilityOptions = abilities;
         Open();

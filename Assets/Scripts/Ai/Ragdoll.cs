@@ -19,8 +19,11 @@ public class Ragdoll : MonoBehaviour
 
     [Header("Stats")]
     public float fadeRate;
+    public float ragdollSideForce;
+    public float ragdollUpForce;
     bool dead;
     bool droppingAbility;
+    bool abilityDropped;
     float alpha;
     
 
@@ -37,9 +40,9 @@ public class Ragdoll : MonoBehaviour
         if (!dead)
             return;
 
-        if (!agent.manager.DropCheck() && !droppingAbility)
+        if (droppingAbility && !abilityDropped)
         {
-            droppingAbility = true;
+            abilityDropped = true;
             for(int i = 0; i < colliders.Length; i++)
             {
                 colliders[i].GetComponent<Collider>().enabled = false;
@@ -60,7 +63,7 @@ public class Ragdoll : MonoBehaviour
 
             return;
         }
-        if (droppingAbility)
+        if (abilityDropped)
             return;
 
         for (int i = 0; i < transform.parent.childCount; i++)
@@ -118,14 +121,29 @@ public class Ragdoll : MonoBehaviour
         agent.behaviourTree.enabled = false;
         agent.enabled = false;
 
+        Rigidbody rb = null;
+        
         //enable new colliders and turn on kinematic
         for (int i = 0; i < colliders.Length; i++)
         {
             colliders[i].GetComponent<Collider>().enabled = true;
-            Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
+            rb = colliders[i].GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
+
         }
 
+        //if designated as drop source, dont add force to ragdoll
+        if (!agent.manager.DropCheck() || !agent.manager.guaranteeDrop)
+        {
+            Debug.Log("Hit");
+            Vector3 forceDirection = new Vector3(transform.position.x + Random.Range(-ragdollSideForce, ragdollSideForce),
+                    Random.Range(0, ragdollUpForce), transform.position.y + Random.Range(-ragdollSideForce, ragdollSideForce));
+            rb.AddForce(forceDirection, ForceMode.Impulse);
+        }
+        else
+        {
+            droppingAbility = true;
+        }
     }
 }
