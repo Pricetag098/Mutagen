@@ -59,7 +59,7 @@ public class SelectionUi : MonoBehaviour
 			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, 0));
 		}
 		openSequence.Append(transform.DOScaleX(1, openTime));
-        openSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 1, openTime));
+        openSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0.35f, openTime));
         //openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
 
         //openSequence.AppendInterval(openTime);
