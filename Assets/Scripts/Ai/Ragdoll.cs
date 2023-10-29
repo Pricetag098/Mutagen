@@ -43,25 +43,7 @@ public class Ragdoll : MonoBehaviour
         if (droppingAbility && !abilityDropped)
         {
             abilityDropped = true;
-            for(int i = 0; i < colliders.Length; i++)
-            {
-                colliders[i].GetComponent<Collider>().enabled = false;
-                Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
-                rb.useGravity = false;
-                rb.velocity = Vector3.zero;
-            }
-
-
-            foreach(Renderer r in render)
-            {
-                r.material.SetFloat("_RimLight", 1);
-            }
-            //enable interactable
-            pickup.enabled = true;
-            pickup.SetAbilities(agent.manager.dropPool);
-            pickup.GetComponent<Collider>().enabled = true;
-
-            return;
+            SetDrop();
         }
         if (abilityDropped)
             return;
@@ -92,8 +74,95 @@ public class Ragdoll : MonoBehaviour
                 Destroy(transform.parent.gameObject);
             }
         }
+    }
 
+    void SetDrop()
+    {
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].GetComponent<Collider>().enabled = false;
+            Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+        }
 
+        foreach (Renderer r in render)
+        {
+            r.material.SetFloat("_RimLight", 1);
+        }
+
+        Ability[] droppedAbilities = new Ability[pickup.abilitys.Length];
+        int attemptCount = 0;
+        bool full = false;
+        int[] usedIndex = new int[pickup.abilitys.Length];
+
+        while (!full)
+        {
+            int index = Random.Range(0, agent.manager.dropPool.Length);
+
+            bool assigned = false;
+            for(int i = 0; i < usedIndex.Length; i++)
+            {
+                if(droppedAbilities[i] != null)
+                {
+                    if (index == usedIndex[i])
+                    {
+                        assigned = true;
+                    }
+                }
+            }
+            if (!assigned)
+            {
+                for(int i = 0; i < droppedAbilities.Length; i++)
+                {
+                    //find slot that hasnt been assigned
+                    if (droppedAbilities[i] == null)
+                    {
+                        droppedAbilities[i] = agent.manager.dropPool[index];
+                        usedIndex[i] = index;
+                        break;
+                    }
+                }
+            }
+
+            attemptCount++;
+
+            if (attemptCount >= 15)
+            {
+                for(int i = 0; i < droppedAbilities.Length; i++)
+                {
+                    if (droppedAbilities[i] == null)
+                    {
+                        droppedAbilities[i] = agent.manager.dropPool[0];
+                    }
+                }
+            }
+
+            int count = 0;
+            for (int i = 0; i < droppedAbilities.Length; i++)
+            {
+                if (droppedAbilities[i] == null)
+                {
+                    break;
+                }
+                else
+                {
+                    count++;
+                }
+
+            }
+            if(count == droppedAbilities.Length)
+            {
+                full = true;
+            }
+        }
+
+        //enable interactable
+        pickup.enabled = true;
+        pickup.SetAbilities(droppedAbilities);
+        pickup.GetComponent<Collider>().enabled = true;
+
+        return;
     }
 
     void OnDie(DamageData data)
