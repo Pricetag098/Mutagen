@@ -61,7 +61,7 @@ public class IfElseNode : CompositeNode
         if (!agent.retaliate)
             return false;
 
-        if (Time.time - agent.retreatingTimer > agent.retaliateCooldown)
+        if (Time.time - agent.retaliateTimer > agent.retaliateCooldown)
         {
             agent.retaliate = false;
             return false;
@@ -112,11 +112,14 @@ public class IfElseNode : CompositeNode
         {
             if (manager.enemyList[i] != agent && !manager.enemyList[i].Seperating())
             {
-                float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
-                if (dist < groupCheckDistance.Value)
+                if (manager.enemyList[i] != null)
                 {
-                    count++;
-                    average += dist;
+                    float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
+                    if (dist < groupCheckDistance.Value)
+                    {
+                        count++;
+                        average += dist;
+                    }
                 }
             }
         }
@@ -191,7 +194,6 @@ public class IfElseNode : CompositeNode
             default:
                 return false;
         }
-        //return false;
     }
 
     bool abilityCooldownCheck()
@@ -296,9 +298,14 @@ public class IfElseNode : CompositeNode
 
             case CheckType.abilityType:
                 if (abilityTypeCheck(abilityCheck))
+                {
                     ChildUpdate(first);
+                }
                 else
+                {
                     ChildUpdate(second);
+                }
+
                 break;
             case CheckType.abilityCooldown:
                 if (abilityCooldownCheck())
