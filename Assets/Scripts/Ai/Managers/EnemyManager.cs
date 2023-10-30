@@ -28,7 +28,7 @@ public class EnemyManager : MonoBehaviour
     public Material[] elementColours;
 
     //detection stat
-    bool activated;
+    [HideInInspector] public bool activated;
 
     //stalker stats/refs
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
@@ -211,15 +211,20 @@ public class EnemyManager : MonoBehaviour
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
             //Debug.Log("Hit");
-            if (activated)
-                return;
-
-            for (int i = 0; i < enemyList.Count; i++)
-            {
-                enemyList[i].enabled = true;
-                enemyList[i].Activate();
-            }
-            activated = true;
+            Activate();
         }
+    }
+
+    public void Activate()
+    {
+        if (activated)
+            return;
+
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].enabled = true;
+            enemyList[i].Activate();
+        }
+        activated = true;
     }
 }
