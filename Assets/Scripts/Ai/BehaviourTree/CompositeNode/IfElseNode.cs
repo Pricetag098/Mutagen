@@ -53,7 +53,6 @@ public class IfElseNode : CompositeNode
     bool distCheck()
     {
         float distance = Vector3.Distance(agent.transform.position, blackboard.targetPosition);
-        Debug.Log(distance);
         return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
     }
 
@@ -97,8 +96,6 @@ public class IfElseNode : CompositeNode
                     Debug.Log("OneTime");
                     oneTime.Value = oneTimeCheck.Completed;
                 }
-
-
                 return i + 1;
             }
         }
@@ -216,8 +213,11 @@ public class IfElseNode : CompositeNode
 
     protected override State OnUpdate()
     {
-        if (oneTime.Value != oneTimeCheck.Null && oneTime.Value == oneTimeCheck.Completed)
-            ChildUpdate(0);
+        if (oneTime.Value != oneTimeCheck.Null && oneTime.Value == oneTimeCheck.Completed) 
+        { 
+            ChildUpdate(1);
+        }
+
 
         switch (checkType)
         {
