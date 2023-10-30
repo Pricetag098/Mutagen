@@ -15,7 +15,7 @@ public class SelectionUi : MonoBehaviour
     public float openTime = 0.1f;
     public float buttonEntryTime = .1f;
     public float buttonEntranceDelay = .05f;
-    
+    CanvasGroup group;
     PlayerAbilityCaster playerAbilityCaster;
     //public float buttonShowDelay = 1;
     public Vector3 buttonOffset;
@@ -25,6 +25,7 @@ public class SelectionUi : MonoBehaviour
     {
         playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
         buttons = GetComponentsInChildren<SelectionButton>();
+        group = GetComponent<CanvasGroup>();
         DOTween.defaultTimeScaleIndependent = true;
         Close();
 		DOTween.Kill(this, true);
@@ -61,6 +62,8 @@ public class SelectionUi : MonoBehaviour
     [ContextMenu("open")]
     public void Open()
     {
+        if (open)
+            return;
         open = true;
         DOTween.Kill(this, true);
         openSequence = DOTween.Sequence(this);
@@ -71,6 +74,7 @@ public class SelectionUi : MonoBehaviour
 		}
 		openSequence.Append(transform.DOScaleX(1, openTime));
         openSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0.35f, openTime));
+        openSequence.Join(group.DOFade(1, openTime));
         //openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
 
         //openSequence.AppendInterval(openTime);
@@ -101,7 +105,8 @@ public class SelectionUi : MonoBehaviour
         }
         //closeSequence.AppendInterval(buttonEntryTime);
 
-        closeSequence.Append(transform.DOScaleX(0, openTime));
+        closeSequence.Append(transform.DOScaleX(0.01f, openTime));
+        closeSequence.Join(group.DOFade(0, 1));
         closeSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0, openTime));
         
         //closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
