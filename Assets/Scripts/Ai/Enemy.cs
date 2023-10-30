@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
     public void Deactivate()
     {
         behaviourTree.enabled = false;
-        this.enabled = false;
+        //this.enabled = false;
     }
 
     //randomizes parts
