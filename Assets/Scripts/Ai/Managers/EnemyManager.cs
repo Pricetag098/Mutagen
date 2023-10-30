@@ -145,6 +145,7 @@ public class EnemyManager : MonoBehaviour
 
     public void Remove(Enemy agent)
     {
+        Debug.Log("Remove");
         enemyList.Remove(agent);
 
         int emptyCount = 0;
