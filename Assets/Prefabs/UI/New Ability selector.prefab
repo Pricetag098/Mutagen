@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6881697691906445994}
   - component: {fileID: 1209374548628007853}
   - component: {fileID: 4973770740285714887}
-  - component: {fileID: 3951430279935942683}
   - component: {fileID: 6721640156396114390}
   - component: {fileID: 9004608646994525723}
+  - component: {fileID: 480799143614418890}
   m_Layer: 5
   m_Name: New Ability selector
   m_TagString: Untagged
@@ -104,32 +104,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3951430279935942683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784656700189698657}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 30
-    m_Bottom: 10
-  m_ChildAlignment: 1
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!114 &6721640156396114390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +134,18 @@ MonoBehaviour:
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: a29e8e13a2e4bdd4e8f0650844710087, type: 2}
+--- !u!225 &480799143614418890
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784656700189698657}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3370414779837388773
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,17 +297,9 @@ PrefabInstance:
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5364906334476513598, guid: f337c99a79a2de6479dfa829b6e42170, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 6e275a20cfc01df44a84c89060041a26, type: 2}
-    - target: {fileID: 5364906334476513598, guid: f337c99a79a2de6479dfa829b6e42170, type: 3}
       propertyPath: m_fontSizeBase
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 5364906334476513598, guid: f337c99a79a2de6479dfa829b6e42170, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -5781738389102660626, guid: 6e275a20cfc01df44a84c89060041a26, type: 2}
     - target: {fileID: 6124645766427809346, guid: f337c99a79a2de6479dfa829b6e42170, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
