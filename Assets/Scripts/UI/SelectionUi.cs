@@ -8,18 +8,19 @@ using UnityEngine.Rendering;
 public class SelectionUi : MonoBehaviour
 {
 
-    SelectionButton[] buttons;
+    [SerializeField]SelectionButton[] buttons;
     Sequence openSequence;
     public bool open;
     Sequence closeSequence;
     public float openTime = 0.1f;
     public float buttonEntryTime = .1f;
     public float buttonEntranceDelay = .05f;
+    
     PlayerAbilityCaster playerAbilityCaster;
     //public float buttonShowDelay = 1;
     public Vector3 buttonOffset;
     public Volume ppVolume;
-    Ability[] abilityOptions;
+    [SerializeField]Ability[] abilityOptions;
     private void Awake()
     {
         playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
@@ -32,9 +33,10 @@ public class SelectionUi : MonoBehaviour
 
     public void OpenWith(Ability[] abilities)
     {
-        for(int i = 0; i < buttons.Length; i++)
+        for(int i = 0; i < buttons.Length || i < abilities.Length; i++)
         {
-            buttons[i].SetValues(abilities[i], playerAbilityCaster.caster.abilities[(int)abilities[i].slotMask]);
+            buttons[i].SetValues(abilities[i],
+                playerAbilityCaster.caster.abilities[(int)abilities[i].slotMask]);
         }
         abilityOptions = abilities;
         Open();
@@ -42,6 +44,8 @@ public class SelectionUi : MonoBehaviour
 
     public void Select(int index)
     {
+        if (!open)
+            return;
         playerAbilityCaster.SetAbility(abilityOptions[index],(int)abilityOptions[index].slotMask);
         //gameObject.SetActive(false);
         Close();
@@ -58,7 +62,7 @@ public class SelectionUi : MonoBehaviour
 			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, 0));
 		}
 		openSequence.Append(transform.DOScaleX(1, openTime));
-        openSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 1, openTime));
+        openSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0.35f, openTime));
         //openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
 
         //openSequence.AppendInterval(openTime);
@@ -91,6 +95,7 @@ public class SelectionUi : MonoBehaviour
 
         closeSequence.Append(transform.DOScaleX(0, openTime));
         closeSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0, openTime));
+        
         //closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
 
     }

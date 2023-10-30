@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7814889349478234906}
   - component: {fileID: 3155822305359908266}
   - component: {fileID: 5872713432884156929}
-  - component: {fileID: 7266968218131505723}
   - component: {fileID: 8221085356865412162}
-  m_Layer: 0
+  - component: {fileID: 4822098585589605022}
+  m_Layer: 7
   m_Name: Radiant Eclipse Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7080620132596766156}
-  m_LocalRotation: {x: -0, y: 0.30631498, z: -0, w: 0.9519302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 9019450727155670213}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 35.675, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3155822305359908266
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -94,20 +94,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!136 &7266968218131505723
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7080620132596766156}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.62
-  m_Height: 5.08
-  m_Direction: 0
-  m_Center: {x: -1.91, y: 0, z: 0}
 --- !u!114 &8221085356865412162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +114,21 @@ MonoBehaviour:
     damage: 75
     type: 1
     target: {fileID: 0}
-  vfx: {fileID: 0}
+  vfx: {fileID: 11400000, guid: 922107a056edc7345bed3c7853a198dc, type: 2}
+--- !u!136 &4822098585589605022
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080620132596766156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.59
+  m_Height: 6.3811917
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 2.82}
 --- !u!1001 &7034521459986638527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -154,11 +154,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2068319194765408890, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2068319194765408890, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2068319194765408890, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2068319194765408890, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2068319194765408890, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -180,9 +180,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4348464852544625549, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348464852544625549, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348464852544625549, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348464852544625549, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348464852544625549, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348464852544625549, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723839496126175433, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8537626229526584573, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
       propertyPath: m_Name
       value: 'Radiant Eclipse '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537626229526584573, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fe0b6a5e50224d4c9f4f00aa5f60e3b, type: 3}

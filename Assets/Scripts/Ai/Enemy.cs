@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour
     //removes ememy from manager list
     void OnDie(DamageData data)
     {
-        manager.enemyList.Remove(this);
+        manager.Remove(this);
     }
 
     //speed functions

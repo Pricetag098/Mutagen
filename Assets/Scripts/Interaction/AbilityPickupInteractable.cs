@@ -31,7 +31,6 @@ public class AbilityPickupInteractable : Interactable
 
 	public override void Interact(Interactor interactor)
 	{
-		Debug.Log("Interact");
 		PlayerAbilityCaster player = interactor.GetComponent<PlayerAbilityCaster>();
 		if (player.abilitySelector.open)
 			return;
@@ -39,7 +38,7 @@ public class AbilityPickupInteractable : Interactable
 		player.abilitySelector.OpenWith(abilitys);
 		//player.EquipAbility(ability);
 		interactor.hasTarget = false;
-		//Destroy(agent.transform.parent.gameObject);
+		Destroy(agent.transform.parent.gameObject);
 		enabled = false; 
 	}
 	private void Awake()
