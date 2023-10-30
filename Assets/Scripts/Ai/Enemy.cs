@@ -153,6 +153,8 @@ public class Enemy : MonoBehaviour
     void OnDie(DamageData data)
     {
         manager.Remove(this);
+        manager.enemyList.Remove(this);
+        enabled = false;
     }
 
     //speed functions

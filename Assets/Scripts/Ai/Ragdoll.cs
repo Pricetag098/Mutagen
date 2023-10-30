@@ -188,7 +188,7 @@ public class Ragdoll : MonoBehaviour
         agent.anim.enabled = false;
         agent.agent.enabled = false;
         agent.behaviourTree.enabled = false;
-        agent.enabled = false;
+        //agent.enabled = false;
 
         Rigidbody rb = null;
         

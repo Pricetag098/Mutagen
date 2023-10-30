@@ -11,6 +11,11 @@ public class EnemyManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
 
+    //empty list stats
+    [HideInInspector] public bool empty;
+    public int listCount;
+
+
     [Header("DropStats")]
     public bool guaranteeDrop = true;
     [Range(0, 100)] public float dropChance;
@@ -110,6 +115,8 @@ public class EnemyManager : MonoBehaviour
                 moving.Remove(agent);
         }
 
+        listCount++;
+
         //assigns the agents variables
 ;       enemyList.Add(agent);
         agent.manager = this;
@@ -148,21 +155,30 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("Remove");
         enemyList.Remove(agent);
 
-        int emptyCount = 0;
+        listCount--;
+
+        if(listCount == enemyList.Count)
+        {
+            empty = true;
+            Debug.Log("Empty");
+        }
+
+        //int emptyCount = 0;
 
         for (int i = 0; i < managers.Count; i++)
         {
-            if (managers[i].enemyList.Count <= 0)
+            if (!managers[i].empty)
             {
-                emptyCount++;
+                break;
             }
+            //disable exit
         }
 
-        if(emptyCount == managers.Count)
-        {
-            Debug.Log("Empty");
-            //open exit
-        }
+        //if(emptyCount == managers.Count)
+        //{
+        //    Debug.Log("Empty");
+        //    //open exit
+        //}
     }
 
     //checks if agents need to start flanking player to avoid cluttering
