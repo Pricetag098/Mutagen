@@ -53,6 +53,7 @@ public class IfElseNode : CompositeNode
     bool distCheck()
     {
         float distance = Vector3.Distance(agent.transform.position, blackboard.targetPosition);
+        Debug.Log(distance);
         return checkType == CheckType.DistanceLessThan ? distance < distanceCheck : distance > distanceCheck;
     }
 
