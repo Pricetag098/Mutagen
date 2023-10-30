@@ -26,13 +26,16 @@ public class SelectionUi : MonoBehaviour
         playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
         buttons = GetComponentsInChildren<SelectionButton>();
         group = GetComponent<CanvasGroup>();
-        DOTween.defaultTimeScaleIndependent = true;
-        Close();
+        
+	}
+	private void Start()
+	{
+		DOTween.defaultTimeScaleIndependent = true;
+		Close();
 		DOTween.Kill(this, true);
 	}
 
-
-    public void OpenWith(Ability[] abilities)
+	public void OpenWith(Ability[] abilities)
     {
         for(int i = 0; i < buttons.Length || i < abilities.Length; i++)
         {
@@ -68,7 +71,7 @@ public class SelectionUi : MonoBehaviour
         DOTween.Kill(this, true);
         openSequence = DOTween.Sequence(this);
         
-		for (int i = 0; i < buttons.Length; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, 0));
 		}
@@ -95,7 +98,7 @@ public class SelectionUi : MonoBehaviour
         closeSequence = DOTween.Sequence(this);
 
 
-        for (int i = buttons.Length-1; i >= 0; i--)
+        for (int i = 2; i >= 0; i--)
         {
 
             closeSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, buttonEntryTime)).SetEase(Ease.InSine);
@@ -105,7 +108,7 @@ public class SelectionUi : MonoBehaviour
         }
         //closeSequence.AppendInterval(buttonEntryTime);
 
-        closeSequence.Append(transform.DOScaleX(0.01f, openTime));
+        closeSequence.Append(transform.DOScaleX(0, openTime));
         closeSequence.Join(group.DOFade(0, 1));
         closeSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0, openTime));
         
