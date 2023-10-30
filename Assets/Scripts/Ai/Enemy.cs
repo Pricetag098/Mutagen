@@ -138,6 +138,8 @@ public class Enemy : MonoBehaviour
 
     void OnHit(DamageData data)
     {
+        if (!manager.activated)
+            manager.Activate();
         retaliate = true;
         retaliateTimer = Time.time;
     }
