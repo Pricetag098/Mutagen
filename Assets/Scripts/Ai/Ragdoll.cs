@@ -204,7 +204,7 @@ public class Ragdoll : MonoBehaviour
         }
 
         //if designated as drop source, dont add force to ragdoll
-        if (!agent.manager.DropCheck())
+        if (!agent.manager.guaranteeDrop || !agent.manager.DropCheck())
         {
             Vector3 forceDirection = new Vector3(transform.position.x + Random.Range(-ragdollSideForce, ragdollSideForce),
                     Random.Range(0, ragdollUpForce), transform.position.y + Random.Range(-ragdollSideForce, ragdollSideForce));
