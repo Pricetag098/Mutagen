@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
         player = FindObjectOfType<PlayerAbilityCaster>().GetComponent<PlayerAbilityCaster>();
-        manager = FindObjectOfType<EnemyManager>().GetComponent<EnemyManager>();
+        //manager = FindObjectOfType<EnemyManager>().GetComponent<EnemyManager>();
     }
 
     private void Start()
