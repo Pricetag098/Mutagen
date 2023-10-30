@@ -36,7 +36,14 @@ public class MeleeAttackAbility : Ability
 			swung = false;
         }
 	}
-	
+	protected override void OnUnEquip(Ability replacement)
+	{
+		if(swung)
+        {
+			caster.ChangeSpeed(speedModifier);
+			swung = false;
+		}
+	}
 	protected override void DoCast(CastData data)
 	{
 		if(timer.complete)
