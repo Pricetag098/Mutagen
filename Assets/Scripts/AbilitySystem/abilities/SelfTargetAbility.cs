@@ -9,6 +9,7 @@ public class SelfTargetAbility : Ability
     
     protected override void DoCast(CastData data)
     {
+        Debug.Log("Heal");
         caster.ownerHealth.TakeDmg(CreateDamageData(damageAmount*Time.deltaTime));
     }
 }

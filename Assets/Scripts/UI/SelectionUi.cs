@@ -15,6 +15,7 @@ public class SelectionUi : MonoBehaviour
     public float openTime = 0.1f;
     public float buttonEntryTime = .1f;
     public float buttonEntranceDelay = .05f;
+    
     PlayerAbilityCaster playerAbilityCaster;
     //public float buttonShowDelay = 1;
     public Vector3 buttonOffset;
@@ -43,6 +44,8 @@ public class SelectionUi : MonoBehaviour
 
     public void Select(int index)
     {
+        if (!open)
+            return;
         playerAbilityCaster.SetAbility(abilityOptions[index],(int)abilityOptions[index].slotMask);
         //gameObject.SetActive(false);
         Close();
@@ -92,6 +95,7 @@ public class SelectionUi : MonoBehaviour
 
         closeSequence.Append(transform.DOScaleX(0, openTime));
         closeSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0, openTime));
+        
         //closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
 
     }

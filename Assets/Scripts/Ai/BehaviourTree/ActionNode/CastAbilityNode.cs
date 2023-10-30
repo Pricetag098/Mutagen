@@ -83,6 +83,7 @@ public class CastAbilityNode : ActionNode
             {
                 timer = 0;
                 if (agent.retaliate) agent.retaliate = false;
+
                 return State.Success;
             }
 

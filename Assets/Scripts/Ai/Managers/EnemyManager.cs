@@ -98,7 +98,6 @@ public class EnemyManager : MonoBehaviour
             hasDropped = true;
         }
 
-        Debug.Log(hasDropped);
         return hasDropped;
     }
 
