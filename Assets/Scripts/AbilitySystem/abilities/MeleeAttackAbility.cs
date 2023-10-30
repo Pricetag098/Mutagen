@@ -21,7 +21,9 @@ public class MeleeAttackAbility : Ability
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
-		timer = new Timer(coolDown,true,() => { caster.ChangeSpeed(speedModifier); Debug.Log("Test"); });
+		caster.ChangeSpeed(-speedModifier);
+
+        timer = new Timer(coolDown,true,() => { caster.ChangeSpeed(speedModifier); Debug.Log("Test"); });
 	}
 
 	public override void Tick()
