@@ -66,7 +66,6 @@ public class Ragdoll : MonoBehaviour
         foreach (Renderer r in render)
         {
             alpha -= Time.deltaTime * fadeRate;
-
             r.material.SetFloat("_Tweak_transparency", alpha);
 
             if (alpha <= -1)
@@ -189,7 +188,7 @@ public class Ragdoll : MonoBehaviour
         agent.anim.enabled = false;
         agent.agent.enabled = false;
         agent.behaviourTree.enabled = false;
-        agent.enabled = false;
+        //agent.enabled = false;
 
         Rigidbody rb = null;
         

@@ -11,6 +11,11 @@ public class EnemyManager : MonoBehaviour
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
 
+    //empty list stats
+    [HideInInspector] public bool empty;
+    public int listCount;
+
+
     [Header("DropStats")]
     public bool guaranteeDrop = true;
     [Range(0, 100)] public float dropChance;
@@ -23,7 +28,7 @@ public class EnemyManager : MonoBehaviour
     public Material[] elementColours;
 
     //detection stat
-    bool activated;
+    [HideInInspector] public bool activated;
 
     //stalker stats/refs
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
@@ -110,6 +115,8 @@ public class EnemyManager : MonoBehaviour
                 moving.Remove(agent);
         }
 
+        listCount++;
+
         //assigns the agents variables
 ;       enemyList.Add(agent);
         agent.manager = this;
@@ -145,13 +152,26 @@ public class EnemyManager : MonoBehaviour
 
     public void Remove(Enemy agent)
     {
+        Debug.Log("Remove");
         enemyList.Remove(agent);
+
+        listCount--;
+
+        if(listCount == 0)
+        {
+            empty = true;
+            Debug.Log("Empty");
+        }
 
         int emptyCount = 0;
 
         for (int i = 0; i < managers.Count; i++)
         {
-            if (managers[i].enemyList.Count <= 0)
+            if (!managers[i].empty)
+            {
+                break;
+            }
+            if (managers[i].empty)
             {
                 emptyCount++;
             }
@@ -159,7 +179,10 @@ public class EnemyManager : MonoBehaviour
 
         if(emptyCount == managers.Count)
         {
-            Debug.Log("Empty");
+            Debug.Log("Disable");
+            //disable exit
+            GameObject exit = FindObjectOfType<Exit>().transform.GetChild(0).gameObject;
+            exit.SetActive(false);
             //open exit
         }
     }
@@ -188,15 +211,20 @@ public class EnemyManager : MonoBehaviour
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
             //Debug.Log("Hit");
-            if (activated)
-                return;
-
-            for (int i = 0; i < enemyList.Count; i++)
-            {
-                enemyList[i].enabled = true;
-                enemyList[i].Activate();
-            }
-            activated = true;
+            Activate();
         }
+    }
+
+    public void Activate()
+    {
+        if (activated)
+            return;
+
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].enabled = true;
+            enemyList[i].Activate();
+        }
+        activated = true;
     }
 }
