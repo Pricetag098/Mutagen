@@ -163,7 +163,7 @@ public class EnemyManager : MonoBehaviour
             Debug.Log("Empty");
         }
 
-        //int emptyCount = 0;
+        int emptyCount = 0;
 
         for (int i = 0; i < managers.Count; i++)
         {
@@ -171,14 +171,20 @@ public class EnemyManager : MonoBehaviour
             {
                 break;
             }
-            //disable exit
+            if (managers[i].empty)
+            {
+                emptyCount++;
+            }
         }
 
-        //if(emptyCount == managers.Count)
-        //{
-        //    Debug.Log("Empty");
-        //    //open exit
-        //}
+        if(emptyCount == managers.Count)
+        {
+            Debug.Log("Disable");
+            //disable exit
+            GameObject exit = FindObjectOfType<Exit>().transform.GetChild(0).gameObject;
+            exit.SetActive(false);
+            //open exit
+        }
     }
 
     //checks if agents need to start flanking player to avoid cluttering

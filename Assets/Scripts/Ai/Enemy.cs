@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour
     {
         manager.Remove(this);
         manager.enemyList.Remove(this);
-        enabled = false;
+        //enabled = false;
     }
 
     //speed functions
