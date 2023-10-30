@@ -18,23 +18,30 @@ public class MeleeAttackAbility : Ability
 	float coolDown;
 	Timer timer;
 	[SerializeField] string animationTrigger;
+	bool swung = false;
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
 		caster.ChangeSpeed(-speedModifier);
 
-        timer = new Timer(coolDown,true,() => { caster.ChangeSpeed(speedModifier); Debug.Log("Test"); });
+        timer = new Timer(coolDown,true);
 	}
 
 	public override void Tick()
 	{
 		timer.Tick();
+		if(timer.complete && swung)
+        {
+			caster.ChangeSpeed(speedModifier);
+			swung = false;
+        }
 	}
 	
 	protected override void DoCast(CastData data)
 	{
 		if(timer.complete)
 		{
+			swung = true;
 			caster.ChangeSpeed(-speedModifier);
             if (OnCast != null)
                 OnCast(data);
@@ -74,6 +81,7 @@ public class MeleeAttackAbility : Ability
 			}
 		}
 	}
+	
 	
 	protected virtual void OnSwing(Vector3 origin,Vector3 direction)
 	{
