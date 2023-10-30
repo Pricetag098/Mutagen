@@ -70,11 +70,12 @@ public class MeleeAttackAbility : Ability
 					healths.Add(hb.health);
 					OnHit(hb,data.aimDirection);
 
-                    damage += Random.Range(-damageRange, damageRange);
-                    if (damage < 0)
-                        damage = 0;
+					float tempdmg = damage;
+                    tempdmg += Random.Range(-damageRange, damageRange);
+                    if (tempdmg < 0)
+                        tempdmg = 0;
 
-                    hb.OnHit(CreateDamageData(damage));
+                    hb.OnHit(CreateDamageData(tempdmg));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
 					if (hitPoint == Vector3.zero)
