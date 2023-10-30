@@ -71,7 +71,8 @@ public class Ragdoll : MonoBehaviour
 
             if (alpha <= -1)
             {
-                Destroy(transform.parent.gameObject);
+                transform.parent.gameObject.SetActive(false);
+                //Destroy(transform.parent.gameObject);
             }
         }
     }
@@ -203,9 +204,8 @@ public class Ragdoll : MonoBehaviour
         }
 
         //if designated as drop source, dont add force to ragdoll
-        if (!agent.manager.DropCheck() || !agent.manager.guaranteeDrop)
+        if (!agent.manager.DropCheck())
         {
-            Debug.Log("Hit");
             Vector3 forceDirection = new Vector3(transform.position.x + Random.Range(-ragdollSideForce, ragdollSideForce),
                     Random.Range(0, ragdollUpForce), transform.position.y + Random.Range(-ragdollSideForce, ragdollSideForce));
             rb.AddForce(forceDirection, ForceMode.Impulse);

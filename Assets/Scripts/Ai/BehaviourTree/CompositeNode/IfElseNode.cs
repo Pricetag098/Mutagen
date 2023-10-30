@@ -112,11 +112,14 @@ public class IfElseNode : CompositeNode
         {
             if (manager.enemyList[i] != agent && !manager.enemyList[i].Seperating())
             {
-                float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
-                if (dist < groupCheckDistance.Value)
+                if (manager.enemyList[i] != null)
                 {
-                    count++;
-                    average += dist;
+                    float dist = Vector3.Distance(agent.transform.position, manager.enemyList[i].transform.position);
+                    if (dist < groupCheckDistance.Value)
+                    {
+                        count++;
+                        average += dist;
+                    }
                 }
             }
         }

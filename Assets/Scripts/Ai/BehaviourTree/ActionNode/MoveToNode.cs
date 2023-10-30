@@ -8,7 +8,7 @@ public class MoveToNode : ActionNode
     [SerializeField] bool repeatTillReached;
     protected override void OnStart()
     {
-        Debug.Log("Startfuh");
+
     }
 
     protected override void OnStop()
