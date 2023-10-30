@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("References")]
     public List<Enemy> enemyList = new List<Enemy>();
+    public List<EnemyManager> managers = new List<EnemyManager>();
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
 
@@ -53,6 +54,13 @@ public class EnemyManager : MonoBehaviour
         {
             enemyList[i].Deactivate();
         }
+
+        //find all managers in scene and add to list
+        EnemyManager[] list = FindObjectsOfType<EnemyManager>();
+        for(int i = 0; i < list.Length; i++)
+        {
+            managers.Add(list[i]);
+        }
     }
 
     //gets the average direction of each enemy in the list to allow for decluttering
@@ -74,12 +82,14 @@ public class EnemyManager : MonoBehaviour
 
     public bool DropCheck()
     {
-        float dropping = Random.Range(0, 100);
         //if already assigned a drop enemy, return
         if (hasDropped)
             return false;
+
+        float dropping = Random.Range(0, 100);
+
         //if last enemy drop ability else random
-        if (enemyList.Count <= 0)
+        if (enemyList.Count == 1)
         {
             hasDropped = true;
         }
@@ -87,6 +97,7 @@ public class EnemyManager : MonoBehaviour
         {
             hasDropped = true;
         }
+
         return hasDropped;
     }
 
@@ -132,6 +143,27 @@ public class EnemyManager : MonoBehaviour
         agent.pipeColourChanger.Value.Change(elementColours[elementIndex]);
     }
 
+    public void Remove(Enemy agent)
+    {
+        enemyList.Remove(agent);
+
+        int emptyCount = 0;
+
+        for (int i = 0; i < managers.Count; i++)
+        {
+            if (managers[i].enemyList.Count <= 0)
+            {
+                emptyCount++;
+            }
+        }
+
+        if(emptyCount == managers.Count)
+        {
+            Debug.Log("Empty");
+            //open exit
+        }
+    }
+
     //checks if agents need to start flanking player to avoid cluttering
     private void FixedUpdate()
     {
@@ -167,6 +199,4 @@ public class EnemyManager : MonoBehaviour
             activated = true;
         }
     }
-
-
 }

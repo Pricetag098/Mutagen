@@ -104,6 +104,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 			{
 				if (ability.slotMask.HasFlag((Ability.SlotMask)Mathf.Pow(2,i)))
 				{
+					Debug.Log("Player");
 					SetAbility(ability,i);
 					
 					return true;

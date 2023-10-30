@@ -13,6 +13,7 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
+	[SerializeField] float speedModifier;
 	float angleCutoff;
 	float coolDown;
 	Timer timer;
@@ -20,7 +21,7 @@ public class MeleeAttackAbility : Ability
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
-		timer = new Timer(coolDown);
+		timer = new Timer(coolDown,true,() => { caster.ChangeSpeed(speedModifier); /*Debug.Log("Test"); */});
 	}
 
 	public override void Tick()
@@ -32,6 +33,7 @@ public class MeleeAttackAbility : Ability
 	{
 		if(timer.complete)
 		{
+			caster.ChangeSpeed(-speedModifier);
             if (OnCast != null)
                 OnCast(data);
             timer.Reset();
@@ -70,7 +72,7 @@ public class MeleeAttackAbility : Ability
 			}
 		}
 	}
-
+	
 	protected virtual void OnSwing(Vector3 origin,Vector3 direction)
 	{
 
