@@ -157,7 +157,7 @@ public class EnemyManager : MonoBehaviour
 
         listCount--;
 
-        if(listCount == enemyList.Count)
+        if(listCount == 0)
         {
             empty = true;
             Debug.Log("Empty");
