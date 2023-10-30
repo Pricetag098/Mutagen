@@ -89,7 +89,7 @@ public class EnemyManager : MonoBehaviour
         float dropping = Random.Range(0, 100);
 
         //if last enemy drop ability else random
-        if (enemyList.Count < 1)
+        if (enemyList.Count == 1)
         {
             hasDropped = true;
         }
@@ -98,7 +98,6 @@ public class EnemyManager : MonoBehaviour
             hasDropped = true;
         }
 
-        Debug.Log(hasDropped);
         return hasDropped;
     }
 
