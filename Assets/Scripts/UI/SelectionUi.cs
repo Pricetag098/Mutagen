@@ -35,8 +35,16 @@ public class SelectionUi : MonoBehaviour
     {
         for(int i = 0; i < buttons.Length || i < abilities.Length; i++)
         {
-            buttons[i].SetValues(abilities[i],
+            if((int)abilities[i].slotMask < playerAbilityCaster.caster.abilities.Length)
+            {
+                buttons[i].SetValues(abilities[i],
                 playerAbilityCaster.caster.abilities[(int)abilities[i].slotMask]);
+            }
+            else
+            {
+                Debug.Log(abilities[i]);
+            }
+            
         }
         abilityOptions = abilities;
         Open();
