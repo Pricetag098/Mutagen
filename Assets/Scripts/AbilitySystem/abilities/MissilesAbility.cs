@@ -105,11 +105,11 @@ public class MissilesAbility : Ability
                     circlePos.y = Mathf.Abs(circlePos.y);
 
                     Vector3 midPoint = Vector3.Lerp(lastCastdata.origin, hb.transform.position, .5f) + upDir * circlePos.y + rightDir * circlePos.x;
-                    
-                    damage += Random.Range(-damageRange, damageRange);
-                    if (damage < 0)
-                        damage = 0;
-                    projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, CreateDamageData(damage),projectileSpeed,hb);
+                    float tempdmg = damage;
+                    tempdmg += Random.Range(-damageRange, damageRange);
+                    if (tempdmg < 0)
+                        tempdmg = 0;
+                    projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, CreateDamageData(tempdmg),projectileSpeed,hb);
 
                     if (caster.animator.Enabled)
                         caster.animator.Value.SetTrigger(animationTrigger);
