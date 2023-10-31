@@ -407,22 +407,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2510899699033911700, guid: f30259e86c690b747bcca350e317d54c, type: 3}
   m_PrefabInstance: {fileID: 3931586208903157465}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &1043956334 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5833205623135025003, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
-  m_PrefabInstance: {fileID: 4378461215063328537}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1082553290 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1302747767684744068, guid: d8617676ea4e5444a94c6d3624d7875a, type: 3}
-  m_PrefabInstance: {fileID: 4378461215063328537}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1118552518
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,10 +522,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityCaster: {fileID: 1961595581}
-  heldIcon: {fileID: 1082553290}
+  heldIcon: {fileID: 0}
   open: 0
   fadeTime: 0.2
-  buttonParent: {fileID: 1043956334}
+  buttonParent: {fileID: 0}
   title: {fileID: 0}
   description: {fileID: 1833625445}
 --- !u!1 &1330994452
@@ -4673,6 +4657,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1528999129}
     m_Modifications:
+    - target: {fileID: 2496971386840656132, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4630340342187268639, guid: 2c50ccd310110564b8b25135920a5cf4, type: 3}
       propertyPath: m_Name
       value: Final_Tiger

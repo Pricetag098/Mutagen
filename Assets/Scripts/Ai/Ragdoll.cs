@@ -25,7 +25,6 @@ public class Ragdoll : MonoBehaviour
     bool droppingAbility;
     bool abilityDropped;
     float alpha;
-    
 
     private void Start()
     {
@@ -202,7 +201,6 @@ public class Ragdoll : MonoBehaviour
             rb = colliders[i].GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
-
         }
 
         //if designated as drop source, dont add force to ragdoll
