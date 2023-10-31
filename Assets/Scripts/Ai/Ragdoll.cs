@@ -105,9 +105,12 @@ public class Ragdoll : MonoBehaviour
             {
                 if(droppedAbilities[i] != null)
                 {
-                    if (index == usedIndex[i])
+                    for(int j = 0; j < agent.player.caster.abilities.Length; j++)
                     {
-                        assigned = true;
+                        if (index == usedIndex[i] || agent.player.caster.abilities[i])
+                        {
+                            assigned = true;
+                        }
                     }
                 }
             }
@@ -133,7 +136,7 @@ public class Ragdoll : MonoBehaviour
                 {
                     if (droppedAbilities[i] == null)
                     {
-                        droppedAbilities[i] = agent.manager.dropPool[0];
+                        droppedAbilities[i] = agent.manager.dropPool[index];
                     }
                 }
             }

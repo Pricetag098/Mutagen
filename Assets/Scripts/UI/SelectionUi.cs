@@ -1,13 +1,11 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class SelectionUi : MonoBehaviour
 {
-
     [SerializeField]SelectionButton[] buttons;
     Sequence openSequence;
     public bool open;
@@ -26,7 +24,8 @@ public class SelectionUi : MonoBehaviour
         playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
         buttons = GetComponentsInChildren<SelectionButton>();
         group = GetComponent<CanvasGroup>();
-        
+
+        DOTween.defaultTimeScaleIndependent = true;
 	}
 	private void Start()
 	{
@@ -67,6 +66,7 @@ public class SelectionUi : MonoBehaviour
     {
         if (open)
             return;
+
         open = true;
         DOTween.Kill(this, true);
         openSequence = DOTween.Sequence(this);
@@ -85,10 +85,12 @@ public class SelectionUi : MonoBehaviour
         {
 			
 			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition, buttonEntryTime)).SetEase(Ease.InSine);
+            
             openSequence.AppendInterval(buttonEntranceDelay);
         }
-        
-        
+
+        //openSequence.AsyncWaitForCompletion(() => { Time.timeScale = 0; });
+        //openSequence.AppendCallback(() => { Time.timeScale = 0; });
     }
     [ContextMenu("close")]
     public void Close()
@@ -96,7 +98,6 @@ public class SelectionUi : MonoBehaviour
         open = false;
         DOTween.Kill(this,true);
         closeSequence = DOTween.Sequence(this);
-
 
         for (int i = 2; i >= 0; i--)
         {
