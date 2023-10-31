@@ -87,12 +87,13 @@ public class RangedAbility : Ability
             vfx.Value.Play(lastCastdata.origin, lastCastdata.aimDirection);
         float chargeVal = (chargeTime - minChargeTime) / (maxChargeTime - minChargeTime);
         float damage = chargeDamageCurve.Evaluate(chargeVal);
-        damage += Random.Range(-damageRange, damageRange);
-        if (damage < 0)
-            damage = 0;
+        float tempdmg = damage;
+        tempdmg += Random.Range(-damageRange, damageRange);
+        if (tempdmg < 0)
+            tempdmg = 0;
         float speed = chargeVelocityCurve.Evaluate(chargeVal);
         Vector3 velocity = speed * aimAssist.GetAssistedAimDir(lastCastdata.aimDirection,lastCastdata.origin,speed);
-        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,CreateDamageData(damage),onHitEffectList);
+        projectileSpawner.Spawn().GetComponent<Projectile>().Launch(lastCastdata.origin,velocity,CreateDamageData(tempdmg),onHitEffectList);
         if (OnCast != null)
             OnCast(lastCastdata);
 
