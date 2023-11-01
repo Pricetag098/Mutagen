@@ -616,7 +616,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: -4498028169557371222}
+  child: {fileID: 7740837936020190101}
   target: 0
 --- !u!114 &-2906457756156193826
 MonoBehaviour:
@@ -649,7 +649,7 @@ MonoBehaviour:
   description: 
   abilityIndex: 0
   tempCastTime: 1
-  assigned: 0
+  assigned: 1
   rotate: 1
   deviatedDirection: 0
 --- !u!114 &-2437404100633827852
@@ -980,7 +980,7 @@ MonoBehaviour:
   - {fileID: -7779369489726340449}
   - {fileID: -2990830114424155632}
   checkType: 1
-  distanceCheck: 6
+  distanceCheck: 8
   groupDistance:
     enabled: 0
     val: 0
@@ -1028,8 +1028,8 @@ MonoBehaviour:
   description: 
   abilityIndex: 2
   repeatCount: 3
-  waitTime: 0.1
-  assigned: 0
+  waitTime: 0.5
+  assigned: 1
   rotate: 1
   deviatedDirection: 1
 --- !u!114 &2980768739605291930
@@ -1296,7 +1296,9 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  children: []
+  children:
+  - {fileID: -4498028169557371222}
+  - {fileID: -6640204086245066591}
   checkType: 11
   distanceCheck: 0
   groupDistance:
@@ -1305,7 +1307,7 @@ MonoBehaviour:
   groupCheckDistance:
     enabled: 0
     val: 0
-  abilityCheck: 1
+  abilityCheck: 0
   oneTime:
     enabled: 0
     val: 0
