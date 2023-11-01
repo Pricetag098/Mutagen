@@ -2103,7 +2103,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 100
-  m_StoppingDistance: 7
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2143,7 +2143,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
-  - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
@@ -2189,13 +2188,14 @@ MonoBehaviour:
   castOrigin: {fileID: 9220300258059560286}
   defaultAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   curAbility: {fileID: 0}
-  projectileDeviation: 0
+  projectileDeviation: 50000
   rangedDeterence: 0
-  meleeDeterence: 0
+  meleeDeterence: 50
+  otherDeterence: 20
   repeatDeterence: 50
   distanceMultiplier: 0
   innerRange: 0
-  chanceDeductionRange: 10
+  chanceDeductionRange: 63.4
 --- !u!114 &8962174975456743336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2235,7 +2235,7 @@ MonoBehaviour:
   movementMultiplier: 1
   healthState:
     enabled: 1
-    val: 14000000e8030000d0070000
+    val: fa000000ee020000
   flankDistance: 5
   retaliateCooldown: 5
   stunDuration: 0
@@ -5451,7 +5451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9220300258059560285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.156, z: 0.576}
+  m_LocalPosition: {x: 0, y: 0.1854, z: 0.3751}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

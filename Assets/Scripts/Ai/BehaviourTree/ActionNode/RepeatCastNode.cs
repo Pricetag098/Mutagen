@@ -32,7 +32,7 @@ public class RepeatCastNode : ActionNode
 
         if (ability.castType == Ability.CastTypes.hold)
         {
-            castTime = 1;
+            //castTime = 1;
         }
 
         if (ability.GetType() == typeof(RangedAbility))
