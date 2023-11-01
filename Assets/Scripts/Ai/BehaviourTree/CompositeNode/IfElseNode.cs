@@ -16,6 +16,7 @@ public enum CheckType
     flanking,
     sightLine,
     abilityType,
+    isAbility,
     abilityCooldown
 }
 public enum AbilityCheckType
@@ -35,6 +36,7 @@ public class IfElseNode : CompositeNode
     public AbilityCheckType abilityCheck;
     public Optional<oneTimeCheck> oneTime;
     public Optional<int> cooldownCheckIndex;
+    public Optional<Ability> isAbility;
     public enum oneTimeCheck
     {
         Null,
@@ -199,7 +201,8 @@ public class IfElseNode : CompositeNode
         AbilityCaster aCaster = agent.caster.caster;
         MeleeAttackAbility melee = aCaster.abilities[cooldownCheckIndex.Value] as MeleeAttackAbility;
         DashAbility dash = aCaster.abilities[cooldownCheckIndex.Value] as DashAbility;
-        if (melee || dash)
+        DashApplysEffect dasheffect = aCaster.abilities[cooldownCheckIndex.Value] as DashApplysEffect;
+        if (melee || dash || dasheffect)
         {
             float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
             if (cooldown < 0.9f)
@@ -209,6 +212,13 @@ public class IfElseNode : CompositeNode
         }
 
         return true;
+    }
+
+    bool isAbilityCheck()
+    {
+        EnemyAbilityCaster aCaster = agent.caster;
+        Debug.Log(aCaster.curAbility == isAbility.Value);
+        return aCaster.curAbility == isAbility.Value;
     }
 
     protected override State OnUpdate()
@@ -297,6 +307,7 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
+            #region abilityChecks
             case CheckType.abilityType:
                 if (abilityTypeCheck(abilityCheck))
                 {
@@ -313,6 +324,13 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(first);
                 else ChildUpdate(second);
                 break;
+
+            case CheckType.isAbility:
+                if (isAbilityCheck())
+                    ChildUpdate(first);
+                else ChildUpdate(second);
+                break;
+                #endregion
         }
         return State.Running;
     }
