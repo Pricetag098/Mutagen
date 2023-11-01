@@ -90,6 +90,7 @@ public class SelectionUi : MonoBehaviour
         }
 
         //openSequence.AsyncWaitForCompletion(() => { Time.timeScale = 0; });
+        
         //openSequence.AppendCallback(() => { Time.timeScale = 0; });
     }
     [ContextMenu("close")]

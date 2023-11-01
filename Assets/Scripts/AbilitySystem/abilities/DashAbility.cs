@@ -20,10 +20,12 @@ public class DashAbility : Ability
 
 	Rigidbody rb;
 	Timer dashTimer;
-
+	bool canUse = true;
 	protected Vector3 startPoint,endPoint,direction;
 	Transform castOrigin;
-
+	[SerializeField] AimAssist aimAssist;
+	[SerializeField] float gcRange;
+	[SerializeField] LayerMask layer;
 	public string animationTrigger;
 	protected override void OnEquip()
 	{
@@ -48,6 +50,10 @@ public class DashAbility : Ability
 			return;
 		}
 		stam = Mathf.Clamp(stam + Time.deltaTime, 0, maxStam);
+		if(stam == maxStam)
+		{
+			canUse = true;
+		}
 	}
 
 	public override float GetCoolDownPercent()
@@ -56,7 +62,7 @@ public class DashAbility : Ability
 	}
 	protected override void DoCast(CastData data)
 	{
-		if (dashing)
+		if (dashing || !canUse)
 			return;
 		
 			
@@ -64,9 +70,17 @@ public class DashAbility : Ability
 		{
 			castOrigin = data.effectOrigin;
 			stam -= rechargeTime;
+			if(stam < rechargeTime)
+			{
+				canUse = false;
+			}
 			dashTimer.Reset();
 			caster.ownerHealth.AddIFrames(iFramesGranted);
-			direction = data.moveDirection;
+
+			direction = aimAssist.GetAssistedAimDir(data.moveDirection,caster.transform.position,dashVel);
+			direction.y = 0;
+			if(Physics.Raycast(caster.transform.position,Vector3.down,out RaycastHit hit,gcRange,layer))
+				direction = Vector3.ProjectOnPlane(direction,hit.normal);
 			dashing = true;
 			DoDash();
 
