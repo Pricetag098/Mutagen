@@ -20,10 +20,10 @@ public class MoveToNode : ActionNode
     {
         if (repeatTillReached)
         {
-            if (Vector3.Distance(blackboard.moveToPosition, agent.transform.position) < agent.agent.stoppingDistance)
+            if (Vector3.Distance(blackboard.moveToPosition, agent.transform.position) < 5)
                 return State.Success;
 
-            //Debug.Log("Running");
+            Debug.Log("Running");
             agent.agent.SetDestination(blackboard.moveToPosition);
             return State.Running;
         }

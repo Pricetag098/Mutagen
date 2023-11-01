@@ -46,14 +46,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList: []
+  managers: []
   floatingTextManager: {fileID: 0}
   player: {fileID: 0}
+  empty: 0
+  listCount: 0
   guaranteeDrop: 1
-  dropChance: 100
+  dropChance: 33
   dropPool:
-  - {fileID: 11400000, guid: 1e9da3dd4ddb5124297cc470b1ab7211, type: 2}
-  - {fileID: 11400000, guid: 1e9da3dd4ddb5124297cc470b1ab7211, type: 2}
-  - {fileID: 11400000, guid: 1e9da3dd4ddb5124297cc470b1ab7211, type: 2}
+  - {fileID: 11400000, guid: a1cae631387106648ba3a5389adeb0e6, type: 2}
+  - {fileID: 11400000, guid: 561d8b12e0dec8e4a8b71281c322f522, type: 2}
+  - {fileID: 11400000, guid: 3a8db2b4551bd144b9f28f3f5654bacd, type: 2}
+  - {fileID: 11400000, guid: a88a4f23cf9af764c9abf24a3ee9046e, type: 2}
+  - {fileID: 11400000, guid: 70887ae75155d334ba467f938145b809, type: 2}
+  - {fileID: 11400000, guid: a8174ed3ca34d2941a3ec6234a00d1b3, type: 2}
+  - {fileID: 11400000, guid: 98bcf88b8442b27449336073b9f9efc1, type: 2}
+  - {fileID: 11400000, guid: 9fd0894e39d964048a5405e20d283053, type: 2}
+  - {fileID: 11400000, guid: 563ea29f631d11646b058cc2471d9c5a, type: 2}
+  - {fileID: 11400000, guid: 2ae168c8da8759b419c9f7dcb3f23f48, type: 2}
+  - {fileID: 11400000, guid: 3b349ca2b72d602469788bee06ff1073, type: 2}
+  - {fileID: 11400000, guid: fb2eebcd799b7de4c850d8442463ccbc, type: 2}
   assignedElement:
     enabled: 1
     val: 2
@@ -62,9 +74,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3bd2012c322c57d4bb13362d62eaed7f, type: 2}
   - {fileID: 2100000, guid: a20c3a415148abc45b23f28f6a0390b0, type: 2}
   - {fileID: 2100000, guid: 375679de74e24354d81d92207fad936d, type: 2}
+  activated: 0
   inFront: []
   seperateDist: 5
-  moveCount: 1
+  moveCount: 5
   moving: []
 --- !u!135 &1423998856231553703
 SphereCollider:

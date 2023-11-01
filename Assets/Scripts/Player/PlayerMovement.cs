@@ -90,7 +90,10 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
         bool isGrounded = Physics.CheckSphere(groundingPoint.position, groundingRadius, groundingLayer) && Vector3.Dot(surfaceNormal, orientation.up) > minSurface;
-
+        if(isGrounded)
+        {
+            lastSafeLocation = transform.position;
+        }
         if (Physics.SphereCast(orientation.position, groundingRadius, -orientation.up, out hit, surfaceCheckRange * 5, groundingLayer))
         {
             surfaceNormal = hit.normal;

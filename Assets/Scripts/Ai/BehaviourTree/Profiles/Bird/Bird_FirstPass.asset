@@ -32,7 +32,7 @@ MonoBehaviour:
   child: {fileID: -491695611181100088}
   away: 1
   type: 0
-  awayDistance: 50
+  awayDistance: 10
 --- !u!114 &-7965268996679188033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+  repeatTillReached: 0
 --- !u!114 &-6984239856918223337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,9 +107,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &-6456087154318107867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,9 +245,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &-4641993205508701950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +346,7 @@ MonoBehaviour:
   tempCastTime: 1000
   assigned: 0
   rotate: 0
+  deviatedDirection: 0
 --- !u!114 &-1752065902695074711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,9 +391,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &-1566322297543444965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +514,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+  repeatTillReached: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,6 +598,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+  repeatTillReached: 0
 --- !u!114 &612810583228451888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +629,7 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   child: {fileID: -9025325485208977883}
-  speed: 20
+  speed: 50
 --- !u!114 &633624648342885745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,6 +694,7 @@ MonoBehaviour:
   tempCastTime: 1
   assigned: 0
   rotate: 1
+  deviatedDirection: 0
 --- !u!114 &1459763926536477007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +851,7 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   child: {fileID: 8711204037585232764}
-  speed: 20
+  speed: 50
 --- !u!114 &4322101250369810014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,9 +896,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
+  cooldownCheckIndex:
     enabled: 0
-    val: {fileID: 0}
+    val: 0
 --- !u!114 &5254458324376102297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,6 +928,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+  repeatTillReached: 0
 --- !u!114 &6956174404552736088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,9 +973,9 @@ MonoBehaviour:
   oneTime:
     enabled: 0
     val: 0
-  cooldownCheck:
-    enabled: 1
-    val: {fileID: 11400000, guid: 64e81e928a70b0e49adb1bbb3dc4822e, type: 2}
+  cooldownCheckIndex:
+    enabled: 0
+    val: 0
 --- !u!114 &7081402274892928581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1100,7 @@ MonoBehaviour:
   child: {fileID: 5254458324376102297}
   away: 1
   type: 0
-  awayDistance: 50
+  awayDistance: 10
 --- !u!114 &9099719122941348372
 MonoBehaviour:
   m_ObjectHideFlags: 0

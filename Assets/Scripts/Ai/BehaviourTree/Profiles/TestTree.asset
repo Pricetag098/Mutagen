@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4548606120469826820
+--- !u!114 &-6111902421960519736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b057a989e2c76144ba4840403edcddcd, type: 3}
-  m_Name: RepeatCastNode
+  m_Script: {fileID: 11500000, guid: ebe69704289996a489578c93061d36fb, type: 3}
+  m_Name: SetMoveTo
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: b197181de208c7141ada66c30ee96958
-  position: {x: -120, y: 349}
+  guid: 528e83c1a2f3f1a4c887bb10a10b1e05
+  position: {x: -19, y: 105}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -29,13 +29,11 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  abilityIndex: 0
-  repeatCount: 5
-  waitTime: 20
-  assigned: 0
-  rotate: 1
-  deviatedDirection: 0
---- !u!114 &-1453977366481679140
+  child: {fileID: -4397782995555733239}
+  away: 0
+  type: 0
+  awayDistance: 0
+--- !u!114 &-4397782995555733239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,13 +42,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
-  m_Name: DebugLogNode
+  m_Script: {fileID: 11500000, guid: 3eb2efefee061fe4caa6f7a82d5dd07e, type: 3}
+  m_Name: RepeatUntilFail
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 476ac85b9bc6630408fae47c5d5f0514
-  position: {x: 125, y: 347}
+  guid: 89581a3bdaaf0e34facd5abb776574f6
+  position: {x: -14, y: 220}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -64,7 +62,40 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  message: Cast
+  child: {fileID: -1169403991772355223}
+--- !u!114 &-1169403991772355223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cee60411060b76747b4d62b133610c18, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 688e87a7af6edbd44871c7cc94aa01a0
+  position: {x: -9, y: 339}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  children:
+  - {fileID: 8651283542364698315}
+  - {fileID: 4343327377396471841}
+  - {fileID: 589427391799224158}
 --- !u!114 &-172443999009110987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +125,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 6432874393208131337}
+  child: {fileID: -6111902421960519736}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,10 +142,12 @@ MonoBehaviour:
   treeState: 0
   nodes:
   - {fileID: -172443999009110987}
-  - {fileID: 6432874393208131337}
-  - {fileID: -4548606120469826820}
-  - {fileID: 8610434254302207851}
-  - {fileID: -1453977366481679140}
+  - {fileID: -6111902421960519736}
+  - {fileID: 8651283542364698315}
+  - {fileID: -1169403991772355223}
+  - {fileID: 4343327377396471841}
+  - {fileID: -4397782995555733239}
+  - {fileID: 589427391799224158}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -122,7 +155,7 @@ MonoBehaviour:
     abilities: []
     manager: {fileID: 0}
     awayPosition: {x: 0, y: 0, z: 0}
---- !u!114 &6432874393208131337
+--- !u!114 &589427391799224158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,13 +164,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7991d7105f1070148988a459f4df4abb, type: 3}
-  m_Name: SetRotateTowards
+  m_Script: {fileID: 11500000, guid: 855db6ddb1b607f418736fb0e3aeb801, type: 3}
+  m_Name: AutoFail
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 1e0ba317686aea5408db58e5547815f3
-  position: {x: -1, y: 120}
+  guid: 154b83f8c5aaf2d47a5d86a3eb8c2d6f
+  position: {x: 188, y: 481}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -151,9 +184,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 8610434254302207851}
-  target: 0
---- !u!114 &8610434254302207851
+--- !u!114 &4343327377396471841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,13 +193,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cee60411060b76747b4d62b133610c18, type: 3}
-  m_Name: SequencerNode
+  m_Script: {fileID: 11500000, guid: b6a296f63dee99c45b9d51e90c7e0853, type: 3}
+  m_Name: DebugLogNode
   m_EditorClassIdentifier: 
   state: 0
   started: 0
-  guid: 4a3cf70ec75173c4d8eddd1e91cef3b6
-  position: {x: 7, y: 220}
+  guid: f40442112998291409ec41f4f9778c51
+  position: {x: -1, y: 489}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -182,6 +213,34 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  children:
-  - {fileID: -4548606120469826820}
-  - {fileID: -1453977366481679140}
+  message: jhgikjhvv
+--- !u!114 &8651283542364698315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d07c36d77033c445b27c014116305b5, type: 3}
+  m_Name: MoveToNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 7f6442f5fe6f37744bf02e165524a686
+  position: {x: -189, y: 489}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  repeatTillReached: 1

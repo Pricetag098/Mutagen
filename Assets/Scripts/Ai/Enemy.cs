@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
         player = FindObjectOfType<PlayerAbilityCaster>().GetComponent<PlayerAbilityCaster>();
-        manager = FindObjectOfType<EnemyManager>().GetComponent<EnemyManager>();
+        //manager = FindObjectOfType<EnemyManager>().GetComponent<EnemyManager>();
     }
 
     private void Start()
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
     public void Deactivate()
     {
         behaviourTree.enabled = false;
-        this.enabled = false;
+        //this.enabled = false;
     }
 
     //randomizes parts
@@ -138,6 +138,8 @@ public class Enemy : MonoBehaviour
 
     void OnHit(DamageData data)
     {
+        if (!manager.activated)
+            manager.Activate();
         retaliate = true;
         retaliateTimer = Time.time;
     }
@@ -152,7 +154,9 @@ public class Enemy : MonoBehaviour
     //removes ememy from manager list
     void OnDie(DamageData data)
     {
+        manager.Remove(this);
         manager.enemyList.Remove(this);
+        //enabled = false;
     }
 
     //speed functions

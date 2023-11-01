@@ -64,12 +64,9 @@ public class TransparencyScript : MonoBehaviour
         reset = false;
         if (other.GetComponent<HitBox>())
         {
-            Debug.Log("player");
             if ( alpha != -1)
             {
                 fade = true;
-                Debug.Log("Fading out");
-
             }
         }
     }
@@ -79,12 +76,9 @@ public class TransparencyScript : MonoBehaviour
         fade = false;
         if (other.GetComponent<HitBox>())
         {
-            Debug.Log("player");
             if (alpha != 0)
             {
                 reset= true;
-                Debug.Log("Fading in");
-
             }
         }
     }

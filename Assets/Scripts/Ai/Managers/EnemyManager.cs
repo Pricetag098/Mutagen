@@ -7,8 +7,14 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("References")]
     public List<Enemy> enemyList = new List<Enemy>();
+    public List<EnemyManager> managers = new List<EnemyManager>();
     public FloatingTextManager floatingTextManager;
     public PlayerAbilityCaster player;
+
+    //empty list stats
+    [HideInInspector] public bool empty;
+    public int listCount;
+
 
     [Header("DropStats")]
     public bool guaranteeDrop = true;
@@ -22,7 +28,7 @@ public class EnemyManager : MonoBehaviour
     public Material[] elementColours;
 
     //detection stat
-    bool activated;
+    [HideInInspector] public bool activated;
 
     //stalker stats/refs
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
@@ -53,6 +59,13 @@ public class EnemyManager : MonoBehaviour
         {
             enemyList[i].Deactivate();
         }
+
+        //find all managers in scene and add to list
+        EnemyManager[] list = FindObjectsOfType<EnemyManager>();
+        for(int i = 0; i < list.Length; i++)
+        {
+            managers.Add(list[i]);
+        }
     }
 
     //gets the average direction of each enemy in the list to allow for decluttering
@@ -74,12 +87,14 @@ public class EnemyManager : MonoBehaviour
 
     public bool DropCheck()
     {
-        float dropping = Random.Range(0, 100);
         //if already assigned a drop enemy, return
         if (hasDropped)
             return false;
+
+        float dropping = Random.Range(0, 100);
+
         //if last enemy drop ability else random
-        if (enemyList.Count <= 0)
+        if (enemyList.Count == 1)
         {
             hasDropped = true;
         }
@@ -87,6 +102,7 @@ public class EnemyManager : MonoBehaviour
         {
             hasDropped = true;
         }
+
         return hasDropped;
     }
 
@@ -98,6 +114,8 @@ public class EnemyManager : MonoBehaviour
             if (enemy == agent)
                 moving.Remove(agent);
         }
+
+        listCount++;
 
         //assigns the agents variables
 ;       enemyList.Add(agent);
@@ -132,6 +150,43 @@ public class EnemyManager : MonoBehaviour
         agent.pipeColourChanger.Value.Change(elementColours[elementIndex]);
     }
 
+    public void Remove(Enemy agent)
+    {
+        Debug.Log("Remove");
+        enemyList.Remove(agent);
+
+        listCount--;
+
+        if(listCount == 0)
+        {
+            empty = true;
+            Debug.Log("Empty");
+        }
+
+        int emptyCount = 0;
+
+        for (int i = 0; i < managers.Count; i++)
+        {
+            if (!managers[i].empty)
+            {
+                break;
+            }
+            if (managers[i].empty)
+            {
+                emptyCount++;
+            }
+        }
+
+        if(emptyCount == managers.Count)
+        {
+            Debug.Log("Disable");
+            //disable exit
+            GameObject exit = FindObjectOfType<Exit>().transform.GetChild(0).gameObject;
+            exit.SetActive(false);
+            //open exit
+        }
+    }
+
     //checks if agents need to start flanking player to avoid cluttering
     private void FixedUpdate()
     {
@@ -156,17 +211,20 @@ public class EnemyManager : MonoBehaviour
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
             //Debug.Log("Hit");
-            if (activated)
-                return;
-
-            for (int i = 0; i < enemyList.Count; i++)
-            {
-                enemyList[i].enabled = true;
-                enemyList[i].Activate();
-            }
-            activated = true;
+            Activate();
         }
     }
 
+    public void Activate()
+    {
+        if (activated)
+            return;
 
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].enabled = true;
+            enemyList[i].Activate();
+        }
+        activated = true;
+    }
 }

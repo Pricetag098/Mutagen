@@ -13,25 +13,43 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
+	[SerializeField] float speedModifier;
 	float angleCutoff;
 	float coolDown;
 	Timer timer;
 	[SerializeField] string animationTrigger;
+	bool swung = false;
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
-		timer = new Timer(coolDown);
+		//caster.ChangeSpeed(-speedModifier);
+
+        timer = new Timer(coolDown,true);
 	}
 
 	public override void Tick()
 	{
 		timer.Tick();
+		if(timer.complete && swung)
+        {
+			caster.ChangeSpeed(speedModifier);
+			swung = false;
+        }
 	}
-	
+	protected override void OnUnEquip(Ability replacement)
+	{
+		if(swung)
+        {
+			caster.ChangeSpeed(speedModifier);
+			swung = false;
+		}
+	}
 	protected override void DoCast(CastData data)
 	{
 		if(timer.complete)
 		{
+			swung = true;
+			caster.ChangeSpeed(-speedModifier);
             if (OnCast != null)
                 OnCast(data);
             timer.Reset();
@@ -52,11 +70,12 @@ public class MeleeAttackAbility : Ability
 					healths.Add(hb.health);
 					OnHit(hb,data.aimDirection);
 
-                    damage += Random.Range(-damageRange, damageRange);
-                    if (damage < 0)
-                        damage = 0;
+					float tempdmg = damage;
+                    tempdmg += Random.Range(-damageRange, damageRange);
+                    if (tempdmg < 0)
+                        tempdmg = 0;
 
-                    hb.OnHit(CreateDamageData(damage));
+                    hb.OnHit(CreateDamageData(tempdmg));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
 					if (hitPoint == Vector3.zero)
@@ -70,7 +89,8 @@ public class MeleeAttackAbility : Ability
 			}
 		}
 	}
-
+	
+	
 	protected virtual void OnSwing(Vector3 origin,Vector3 direction)
 	{
 

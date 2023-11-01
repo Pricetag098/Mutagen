@@ -50,10 +50,11 @@ public class OrbitAbility : Ability
 
             Vector3 endPoint = data.origin + aimAssistDir * range;
             Vector3 midPoint = data.origin + aimAssistDir * midPointOffset;
-            damage += Random.Range(-damageRange, damageRange);
-            if (damage < 0)
-                damage = 0;
-            orb.GetComponent<OrbitProjectile>().Shoot(endPoint, midPoint, this, flySpeed,CreateDamageData(damage));
+            float tempdmg = damage;
+            tempdmg += Random.Range(-damageRange, damageRange);
+            if (tempdmg < 0)
+                tempdmg = 0;
+            orb.GetComponent<OrbitProjectile>().Shoot(endPoint, midPoint, this, flySpeed,CreateDamageData(tempdmg));
 
         }
     }
