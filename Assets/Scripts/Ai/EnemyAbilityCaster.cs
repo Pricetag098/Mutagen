@@ -63,12 +63,13 @@ public class EnemyAbilityCaster : MonoBehaviour
         float highWeight = 0;
         for (int i = 0; i < curLoadout.abilities.Length; i++)
         {
-
             float weight = 100;
             for(int x = 0; x < excluded.Length; x++)
             {
                 if (curLoadout.abilities[i] == excluded[x])
-                    weight = -10000;
+                {
+                    weight = -1000;
+                }
             }
 
 
