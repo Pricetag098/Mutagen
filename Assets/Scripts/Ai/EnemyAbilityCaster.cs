@@ -21,6 +21,7 @@ public class EnemyAbilityCaster : MonoBehaviour
     [Header("Decision Stats")]
     public float rangedDeterence;
     public float meleeDeterence;
+    public float otherDeterence;
     public float repeatDeterence;
     [Min (1)]
     public float distanceMultiplier;
@@ -94,6 +95,8 @@ public class EnemyAbilityCaster : MonoBehaviour
         if(ability.abilityName == "Empty")
             return 1 + -float.MaxValue;
 
+        bool other = true;
+
 
         RangedAbility ranged = ability as RangedAbility;
         MissilesAbility missile = ability as MissilesAbility;
@@ -104,6 +107,8 @@ public class EnemyAbilityCaster : MonoBehaviour
                 value += dist;
             else
                 value -= rangedDeterence;
+
+            other = false;
         }
 
         MeleeAttackAbility melee = ability as MeleeAttackAbility;
@@ -113,6 +118,7 @@ public class EnemyAbilityCaster : MonoBehaviour
                 value -= 30;
 
             value -= Vector3.Distance(transform.position, player.transform.position) * distanceMultiplier;
+            other = false;
         }
 
         DashAbility dash = ability as DashAbility;
@@ -120,6 +126,7 @@ public class EnemyAbilityCaster : MonoBehaviour
         {
             if (dash.GetCoolDownPercent() < 0.9f)
                 value -= 30;
+            other = false;
         }
 
         OrbitAbility orbit = ability as OrbitAbility;
@@ -127,6 +134,12 @@ public class EnemyAbilityCaster : MonoBehaviour
         {
             if (orbit.GetCoolDownPercent() < 0.9f)
                 value -= 30;
+            other = false;
+        }
+
+        if (other)
+        {
+            value -= otherDeterence;
         }
 
         return value;

@@ -25,10 +25,11 @@ public class RepeatCastNode : ActionNode
         if (assigned)
         {
             ability = agent.caster.curAbility;
-            return;
+            //return;
         }
+        else ability = aCaster.abilities[abilityIndex];
 
-        ability = aCaster.abilities[abilityIndex];
+
         if (ability.castType == Ability.CastTypes.hold)
         {
             castTime = 1;
