@@ -50,7 +50,11 @@ public class RepeatCastNode : ActionNode
     protected override State OnUpdate()
     {
         if (castCount >= repeatCount)
+        {
+            castCount = 0;
             return State.Success;
+        }
+
 
         if (waiting)
         {
