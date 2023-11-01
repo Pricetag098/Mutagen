@@ -14,6 +14,6 @@ public class HealthBar : MonoBehaviour
     void Update()
     {
         image.fillAmount = health.health/health.maxHealth;
-        text.text = (int)health.health + " / " + health.maxHealth;
+        text.text = (int)health.health + " | " + health.maxHealth;
     }
 }
