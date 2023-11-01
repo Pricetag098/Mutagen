@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
     public Optional<GameObject[]> randoms;
+    [HideInInspector] public delegate void OnActivate();
+    public OnActivate onActivate;
 
     //behaviour bools
     [HideInInspector] public bool delayMove;
@@ -83,6 +85,9 @@ public class Enemy : MonoBehaviour
     {
         behaviourTree.enabled = true;
         anim.SetTrigger("Detected");
+
+        if(onActivate != null)
+            onActivate();
     }
 
     public void Deactivate()
