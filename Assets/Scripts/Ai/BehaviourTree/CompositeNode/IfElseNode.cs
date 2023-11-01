@@ -217,7 +217,6 @@ public class IfElseNode : CompositeNode
     bool isAbilityCheck()
     {
         EnemyAbilityCaster aCaster = agent.caster;
-        Debug.Log(aCaster.curAbility == isAbility.Value);
         return aCaster.curAbility == isAbility.Value;
     }
 
