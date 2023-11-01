@@ -36,7 +36,7 @@ public class HealthBar : MonoBehaviour
     {
         await hitEffect.DOFade(1, 1).AsyncWaitForCompletion();
         await dBar.DOFillAmount(hBar.fillAmount, 3).AsyncWaitForCompletion();
-        await hitEffect.DOFade(0, 1).AsyncWaitForCompletion();
+        await hitEffect.DOFade(0, 3).AsyncWaitForCompletion();
     }
 
     public async void DoTweenFill()
