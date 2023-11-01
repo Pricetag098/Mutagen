@@ -81,13 +81,14 @@ public class Interactor : MonoBehaviour
             
 
         Interactable bestTarget = null;
+        bool foundInteractable = false;
         float bestVal = float.NegativeInfinity;
         for (int i = 0; i < colliders.Length; i++)
         {
             Interactable target;
             if (colliders[i].TryGetComponent(out target))
             {
-
+                foundInteractable = true;
 
                 Vector3 casterToTarget = target.transform.position - origin;
                 casterToTarget.y = 0;
@@ -106,6 +107,6 @@ public class Interactor : MonoBehaviour
             }
         }
         interactable = bestTarget;
-        return true;
+        return foundInteractable;
     }
 }
