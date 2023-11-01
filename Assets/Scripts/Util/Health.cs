@@ -52,7 +52,7 @@ public class Health : MonoBehaviour
         dead = false;
         health = maxHealth;
     }
-    void Die(DamageData data)
+    public void Die(DamageData data)
 	{
         if(dead)
             return;

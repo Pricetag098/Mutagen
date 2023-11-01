@@ -13,7 +13,7 @@ public class AbilityPickupInteractable : Interactable
 	
 	public override void OnHover()
 	{
-		//hoverText.SetActive(true);
+		hoverText.SetActive(true);
 	}
 	public override void ExitHover()
 	{
