@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336a04130e277a147b6ae89954b26f2c, type: 3}
   m_Name: Attract
   m_EditorClassIdentifier: 
-  abilityName: Attract
-  abilityDescription: 'This device generates creates a point of infinte mass scking
-    everything around it.
-
-    I wonder if it could be reversed?'
+  abilityName: Singularity Vacuum
+  abilityDescription: Summon a singularity which creates strong gavitational forces
+    which pulls enemies towards it and grouping them up while dealing damage.
   icon: {fileID: 21300000, guid: cd9e1a75477e6324d959fc0bd2730ae4, type: 3}
   element: 2
   pickupPrefab:
@@ -35,11 +33,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 20
-      inSlope: -0.2059241
-      outSlope: -0.2059241
+      inSlope: 10
+      outSlope: 10
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2
+      value: 40
+      inSlope: 10
+      outSlope: 10
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2

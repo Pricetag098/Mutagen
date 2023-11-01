@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336a04130e277a147b6ae89954b26f2c, type: 3}
   m_Name: RadiantEclipese
   m_EditorClassIdentifier: 
-  abilityName: Radiant Eclipse
-  abilityDescription: This small gate like device speeds up anything that pass through
-    it to incredible speeds.
+  abilityName: Radiant Lance
+  abilityDescription: Weave together a ray of light which shoots towards enemies
+    at a constant, powerful rate.
   icon: {fileID: 21300000, guid: d557104c2474de64d9e41659fccfd84e, type: 3}
   element: 1
   pickupPrefab:
@@ -67,7 +67,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedModifier: 0.8
-  onHitEffectList: []
+  onHitEffectList:
+  - {fileID: 11400000, guid: 0e76b26503b14a94a90de7b00cefc510, type: 2}
   aimAssist:
     maxRange: 5
     aimAssistLayer:

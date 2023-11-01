@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498386e90953b744bbb6407eeb9fdd2a, type: 3}
   m_Name: Emp
   m_EditorClassIdentifier: 
-  abilityName: Emp
-  abilityDescription: A Small device positivly pulsing  with energy, it could probably
-    fry those machines.
+  abilityName: E.M.P.
+  abilityDescription: Activating our E.M.P. creates a large buble around you, all
+    nemies within it are stunned for a short time also doing damage on hit.
   icon: {fileID: 21300000, guid: b9559c9c9e25a334e8708caaad2e3857, type: 3}
   element: 3
   pickupPrefab:
@@ -29,7 +29,8 @@ MonoBehaviour:
   damage: 10
   statusEffects:
   - {fileID: 11400000, guid: 992174573e3ba0847aa23724049c9224, type: 2}
-  onHitEffects: []
+  onHitEffects:
+  - {fileID: 11400000, guid: 0e76b26503b14a94a90de7b00cefc510, type: 2}
   layerMask:
     serializedVersion: 2
     m_Bits: 0
