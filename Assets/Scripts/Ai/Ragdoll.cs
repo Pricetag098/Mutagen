@@ -76,7 +76,7 @@ public class Ragdoll : MonoBehaviour
     }
 
     void SetDrop()
-    {
+     {
         //for (int i = 0; i < colliders.Length; i++)
         //{
         //    colliders[i].GetComponent<Collider>().enabled = false;

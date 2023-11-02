@@ -152,7 +152,6 @@ public class EnemyManager : MonoBehaviour
 
     public void Remove(Enemy agent)
     {
-        Debug.Log("Remove");
         enemyList.Remove(agent);
 
         listCount--;
@@ -160,7 +159,6 @@ public class EnemyManager : MonoBehaviour
         if(listCount == 0)
         {
             empty = true;
-            Debug.Log("Empty");
         }
 
         int emptyCount = 0;
