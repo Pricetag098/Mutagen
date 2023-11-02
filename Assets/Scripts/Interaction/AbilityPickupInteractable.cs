@@ -8,12 +8,12 @@ public class AbilityPickupInteractable : Interactable
 	[SerializeField] GameObject hoverText;
 	[SerializeField] Image icon;
 
-	//Jason Code
-	public Enemy agent;
+	////Jason Code
+	//public Enemy agent;
 	
 	public override void OnHover()
 	{
-		//hoverText.SetActive(true);
+		hoverText.SetActive(true);
 	}
 	public override void ExitHover()
 	{
@@ -38,7 +38,7 @@ public class AbilityPickupInteractable : Interactable
 		player.abilitySelector.OpenWith(abilitys);
 		//player.EquipAbility(ability);
 		interactor.hasTarget = false;
-		Destroy(agent.transform.parent.gameObject);
+		//Destroy(agent.transform.parent.gameObject);
 		enabled = false; 
 	}
 	private void Awake()
