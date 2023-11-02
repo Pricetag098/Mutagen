@@ -9,6 +9,8 @@ public class PlayerAim : MonoBehaviour
 	[SerializeField] LayerMask validRayLayers = 1;
     PlayerMovement playerMovement;
     public Vector3 aimDir;
+
+	public bool useMouse;
 	[SerializeField] Optional<Animator> animator;
 	Rigidbody rb;
 	public Optional<Image> cursor;
@@ -26,6 +28,8 @@ public class PlayerAim : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 	}
 
+	
+
 	private void OnEnable()
 	{
 		aimAction.action.Enable();
@@ -37,34 +41,13 @@ public class PlayerAim : MonoBehaviour
 
     void AimInput(InputAction.CallbackContext context)
 	{
+		if(useMouse) { return; }
 		Vector2 readVal = context.ReadValue<Vector2>();
-		if (context.action.activeControl.parent.device == Mouse.current.device)
-		{
-			if (cursor.Enabled)
-			{
-				cursor.Value.transform.position = readVal;
-				
-			}
-			RaycastHit hit;
-			Vector3 hitPoint;
-			float y;
-			if (Physics.Raycast(Camera.main.ScreenPointToRay(readVal), out hit, float.PositiveInfinity, validRayLayers))
-			{
-				hitPoint = hit.point;
-				hitPoint.y = 0;
-				y = hit.point.y;
-				Vector3 tempAimDir = (hitPoint - transform.position - playerMovement.orientation.forward * ((transform.position.y + playerMovement.orientation.localPosition.y) - y) * angleConstant).normalized;
-				aimDir = new Vector3(tempAimDir.x,0, tempAimDir.z);
-
-			}
-			
-			
-		}
-		else
-		{
-			Vector3 tempAimDir = playerMovement.orientation.forward * readVal.y + playerMovement.orientation.right * readVal.x;
-			aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
-		}
+		
+		
+		Vector3 tempAimDir = playerMovement.orientation.forward * readVal.y + playerMovement.orientation.right * readVal.x;
+		aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
+		
 		playerMovement.body.transform.forward = aimDir;
 	}
 
@@ -76,6 +59,24 @@ public class PlayerAim : MonoBehaviour
 		{
 			animator.Value.SetFloat(fwVelAnimationKey, fwVel);
 			animator.Value.SetFloat(lrVelAnimationKey, lrVel);
+		}
+		if (useMouse)
+		{
+			
+			RaycastHit hit;
+			Vector3 hitPoint;
+			float y;
+			if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, float.PositiveInfinity, validRayLayers))
+			{
+				hitPoint = hit.point;
+				hitPoint.y = 0;
+				y = hit.point.y;
+				Vector3 tempAimDir = (hitPoint - transform.position - playerMovement.orientation.forward * ((transform.position.y + playerMovement.orientation.localPosition.y) - y) * angleConstant).normalized;
+				aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
+
+			}
+
+
 		}
 	}
 
