@@ -14,7 +14,7 @@ public class Ragdoll : MonoBehaviour
     public SecondOrderFollower follower;
     public SecondOrderFacer facer;
     public Renderer[] render;
-    public AbilityPickupInteractable pickup;
+    public GameObject pickupPrefab;
     Enemy agent;
 
     [Header("Stats")]
@@ -39,13 +39,13 @@ public class Ragdoll : MonoBehaviour
         if (!dead)
             return;
 
-        if (droppingAbility && !abilityDropped)
-        {
-            abilityDropped = true;
-            SetDrop();
-        }
-        if (abilityDropped)
-            return;
+        //if (droppingAbility && !abilityDropped)
+        //{
+        //    abilityDropped = true;
+        //    SetDrop();
+        //}
+        //if (abilityDropped)
+        //    return;
 
         for (int i = 0; i < transform.parent.childCount; i++)
         {
@@ -77,18 +77,22 @@ public class Ragdoll : MonoBehaviour
 
     void SetDrop()
     {
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            colliders[i].GetComponent<Collider>().enabled = false;
-            Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.velocity = Vector3.zero;
-        }
+        //for (int i = 0; i < colliders.Length; i++)
+        //{
+        //    colliders[i].GetComponent<Collider>().enabled = false;
+        //    Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
+        //    rb.useGravity = false;
+        //    rb.velocity = Vector3.zero;
+        //}
 
-        foreach (Renderer r in render)
-        {
-            r.material.SetFloat("_RimLight", 1);
-        }
+        //foreach (Renderer r in render)
+        //{
+        //    r.material.SetFloat("_RimLight", 1);
+        //}
+
+        GameObject go = Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+        go.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        AbilityPickupInteractable pickup = go.GetComponentInChildren<AbilityPickupInteractable>();
 
         Ability[] droppedAbilities = new Ability[pickup.abilitys.Length];
         int attemptCount = 0;
@@ -164,9 +168,10 @@ public class Ragdoll : MonoBehaviour
         }
 
         //enable interactable
-        pickup.enabled = true;
+
+        //pickup.enabled = true;
         pickup.SetAbilities(droppedAbilities);
-        pickup.GetComponent<Collider>().enabled = true;
+        //pickup.GetComponent<Collider>().enabled = true;
 
         return;
     }
@@ -216,7 +221,8 @@ public class Ragdoll : MonoBehaviour
         }
         else
         {
-            droppingAbility = true;
+            SetDrop();
+            //droppingAbility = true;
         }
     }
 }
