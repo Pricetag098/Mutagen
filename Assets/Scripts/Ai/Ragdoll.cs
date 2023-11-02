@@ -14,7 +14,7 @@ public class Ragdoll : MonoBehaviour
     public SecondOrderFollower follower;
     public SecondOrderFacer facer;
     public Renderer[] render;
-    public AbilityPickupInteractable pickup;
+    public GameObject pickupPrefab;
     Enemy agent;
 
     [Header("Stats")]
@@ -25,7 +25,6 @@ public class Ragdoll : MonoBehaviour
     bool droppingAbility;
     bool abilityDropped;
     float alpha;
-    
 
     private void Start()
     {
@@ -40,13 +39,13 @@ public class Ragdoll : MonoBehaviour
         if (!dead)
             return;
 
-        if (droppingAbility && !abilityDropped)
-        {
-            abilityDropped = true;
-            SetDrop();
-        }
-        if (abilityDropped)
-            return;
+        //if (droppingAbility && !abilityDropped)
+        //{
+        //    abilityDropped = true;
+        //    SetDrop();
+        //}
+        //if (abilityDropped)
+        //    return;
 
         for (int i = 0; i < transform.parent.childCount; i++)
         {
@@ -70,26 +69,30 @@ public class Ragdoll : MonoBehaviour
 
             if (alpha <= -1)
             {
-                transform.parent.gameObject.SetActive(false);
-                //Destroy(transform.parent.gameObject);
+                //transform.parent.gameObject.SetActive(false);
+                Destroy(transform.parent.gameObject);
             }
         }
     }
 
     void SetDrop()
     {
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            colliders[i].GetComponent<Collider>().enabled = false;
-            Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.velocity = Vector3.zero;
-        }
+        //for (int i = 0; i < colliders.Length; i++)
+        //{
+        //    colliders[i].GetComponent<Collider>().enabled = false;
+        //    Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
+        //    rb.useGravity = false;
+        //    rb.velocity = Vector3.zero;
+        //}
 
-        foreach (Renderer r in render)
-        {
-            r.material.SetFloat("_RimLight", 1);
-        }
+        //foreach (Renderer r in render)
+        //{
+        //    r.material.SetFloat("_RimLight", 1);
+        //}
+
+        GameObject go = Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+        go.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        AbilityPickupInteractable pickup = go.GetComponentInChildren<AbilityPickupInteractable>();
 
         Ability[] droppedAbilities = new Ability[pickup.abilitys.Length];
         int attemptCount = 0;
@@ -98,19 +101,23 @@ public class Ragdoll : MonoBehaviour
 
         while (!full)
         {
-            int index = Random.Range(0, agent.manager.dropPool.Length);
+            int index = Random.Range(0, agent.manager.dropPool.abilities.Length);
 
             bool assigned = false;
             for(int i = 0; i < usedIndex.Length; i++)
             {
                 if(droppedAbilities[i] != null)
                 {
-                    for(int j = 0; j < agent.player.caster.abilities.Length; j++)
+                    for (int j = 0; j < agent.player.caster.abilities.Length; j++)
                     {
-                        if (index == usedIndex[i] || agent.player.caster.abilities[i])
+                        if (index == usedIndex[i])
                         {
-                            assigned = true;
+                            if (agent.player.caster.abilities[j])
+                            {
+                                assigned = true;
+                            }
                         }
+
                     }
                 }
             }
@@ -121,7 +128,7 @@ public class Ragdoll : MonoBehaviour
                     //find slot that hasnt been assigned
                     if (droppedAbilities[i] == null)
                     {
-                        droppedAbilities[i] = agent.manager.dropPool[index];
+                        droppedAbilities[i] = agent.manager.dropPool.abilities[index];
                         usedIndex[i] = index;
                         break;
                     }
@@ -136,7 +143,7 @@ public class Ragdoll : MonoBehaviour
                 {
                     if (droppedAbilities[i] == null)
                     {
-                        droppedAbilities[i] = agent.manager.dropPool[index];
+                        droppedAbilities[i] = agent.manager.dropPool.abilities[index];
                     }
                 }
             }
@@ -161,9 +168,10 @@ public class Ragdoll : MonoBehaviour
         }
 
         //enable interactable
-        pickup.enabled = true;
+
+        //pickup.enabled = true;
         pickup.SetAbilities(droppedAbilities);
-        pickup.GetComponent<Collider>().enabled = true;
+        //pickup.GetComponent<Collider>().enabled = true;
 
         return;
     }
@@ -202,7 +210,6 @@ public class Ragdoll : MonoBehaviour
             rb = colliders[i].GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
-
         }
 
         //if designated as drop source, dont add force to ragdoll
@@ -214,7 +221,8 @@ public class Ragdoll : MonoBehaviour
         }
         else
         {
-            droppingAbility = true;
+            SetDrop();
+            //droppingAbility = true;
         }
     }
 }

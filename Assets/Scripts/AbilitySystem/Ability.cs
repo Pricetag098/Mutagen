@@ -7,7 +7,8 @@ public enum Element
     None,
     Light,
     Gravity,
-    Tech
+    Tech,
+    Player
 }
 
 [CreateAssetMenu(menuName = "Abilities/Empty")]

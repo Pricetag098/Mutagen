@@ -26,7 +26,8 @@ public class SetMoveTo : SetterNode
 
     protected override void OnStop()
     {
-        blackboard.awayPosition = Vector3.zero;
+        //if(Vector3.Distance(agent.transform.position, blackboard.awayPosition) < 5)
+        //blackboard.awayPosition = Vector3.zero;
     }    
 
     protected override State OnUpdate()
@@ -37,7 +38,6 @@ public class SetMoveTo : SetterNode
             {
                 case TargetType.player:
                     blackboard.moveToPosition = player.transform.position;
-                    //Debug.Log("Set");
                     break;
                 case TargetType.self:
                     blackboard.moveToPosition = agent.transform.position;
@@ -51,17 +51,19 @@ public class SetMoveTo : SetterNode
         {
             case TargetType.player:
                 {
-                    //if already running away, continue
-                    if(blackboard.awayPosition != Vector3.zero)
-                    {
-                        if (Vector3.Distance(agent.transform.position, blackboard.awayPosition) < 2f)
-                        {
-                            blackboard.awayPosition = GetFleePosition();
-                            blackboard.moveToPosition = blackboard.awayPosition;
-                        }
-                        else return child.Update();
-                    }
-                    else
+                    ////if already running away, continue
+                    //if (blackboard.awayPosition != Vector3.zero)
+                    //{
+                    //    float dist = Vector3.Distance(agent.transform.position, blackboard.awayPosition);
+                    //    Debug.Log(agent.transform.position + " " + blackboard.awayPosition);
+                    //    if (dist < 10f)
+                    //    {
+                    //        blackboard.awayPosition = GetFleePosition();
+                    //        blackboard.moveToPosition = blackboard.awayPosition;
+                    //    }
+                    //    else return child.Update();
+                    //}
+                    //else
                     {
                         blackboard.awayPosition = GetFleePosition();
                         blackboard.moveToPosition = blackboard.awayPosition;
@@ -78,19 +80,27 @@ public class SetMoveTo : SetterNode
 
     Vector3 GetFleePosition()
     {
-        NavMeshHit hit;
-        NavMesh.SamplePosition(agent.transform.position + Random.onUnitSphere * awayDistance, out hit, awayDistance, NavMesh.AllAreas);
+        //NavMeshHit hit;
+        //NavMesh.SamplePosition(agent.transform.position + Random.onUnitSphere * awayDistance, out hit, awayDistance, NavMesh.AllAreas);
 
-        int i = 0;
-        while (Vector3.Angle(agent.transform.position - player.transform.position, agent.transform.position + hit.position) > 90)
-        {
-            NavMesh.SamplePosition(agent.transform.position + Random.onUnitSphere * awayDistance, out hit, awayDistance, NavMesh.AllAreas);
+        //Vector3 newPos = agent.transform.position;
+        //newPos.x += Random.Range(-awayDistance, awayDistance); newPos.z += Random.Range(-awayDistance, awayDistance);
 
-            i++;
-            if (i >= 30)
-                break;
-        }
-        return hit.position;
-    
+
+        //int i = 0;
+        //while (Vector3.Angle(agent.transform.position - player.transform.position, agent.transform.position + hit.position) > 90)
+        //{
+        //    NavMesh.SamplePosition(agent.transform.position + Random.onUnitSphere * awayDistance, out hit, awayDistance, NavMesh.AllAreas);
+
+        //    i++;
+        //    if (i >= 30)
+        //        break;
+        //}
+        //Vector3 temp = hit.position;
+        //temp.y = agent.transform.position.y;
+
+        Vector3 temp = (agent.transform.position - player.transform.position).normalized * awayDistance;
+
+        return temp;    
     }
 }

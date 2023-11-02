@@ -13,13 +13,13 @@ public class EnemyManager : MonoBehaviour
 
     //empty list stats
     [HideInInspector] public bool empty;
-    public int listCount;
+    public int listCount; //will remove later
 
 
     [Header("DropStats")]
     public bool guaranteeDrop = true;
     [Range(0, 100)] public float dropChance;
-    public Ability[] dropPool;
+    public DropPool dropPool;
     bool hasDropped;
 
     [Header("Element")]

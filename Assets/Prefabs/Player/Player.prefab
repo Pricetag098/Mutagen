@@ -199,10 +199,23 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -7416847381067583033, guid: 19fac495a12425a448b03de33eeab52d, type: 3}
+  mouseAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Mouse
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: f9b480ff-5379-4099-87c3-989d0768d515
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -730765049493204120, guid: 19fac495a12425a448b03de33eeab52d, type: 3}
   validRayLayers:
     serializedVersion: 2
     m_Bits: 10241
   aimDir: {x: 0, y: 0, z: 0}
+  useMouse: 1
   animator:
     enabled: 1
     val: {fileID: 1152481481284940205}
@@ -379,7 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
   maxRange: 3
   directionWeight: 1
   distanceWeight: 1
@@ -606,14 +619,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8410356206888800900}
-  m_LocalRotation: {x: -0.029430198, y: 0.83746, z: 0.54382044, w: 0.04532138}
-  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.1, z: 1}
   m_LocalScale: {x: 0.089825615, y: 0.08982562, z: 0.08982559}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1421863867957826458}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: -65.997, y: 173.805, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &4685386955491812298
 SpriteRenderer:
   m_ObjectHideFlags: 0

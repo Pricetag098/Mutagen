@@ -4,7 +4,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-//using UnityEngine.Animations.Rigging;
 
 public class Enemy : MonoBehaviour
 {
@@ -16,6 +15,8 @@ public class Enemy : MonoBehaviour
     public EnemyManager manager;
     [HideInInspector] public EnemyAbilityCaster caster;
     public BehaviourTreeRunner behaviourTree;
+    public Renderer renderer;
+    //public Color 
 
     [Header("Optional References")]
     public Optional<Material> invisMat;
@@ -23,12 +24,15 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EventManager eventManager;
     Material defaultMat;
     public Optional<GameObject[]> randoms;
+    [HideInInspector] public delegate void OnActivate();
+    public OnActivate onActivate;
 
     //behaviour bools
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
     [HideInInspector] public bool isStunned;
+    bool hitEffect;
 
     [Header("Declutter Stats")]
     public float retreatingTimer = 2;
@@ -52,6 +56,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
     [HideInInspector] public float stunnedTimer;
+    float hitFlashTimer;
 
     #region startupfunctions
     void Awake()
@@ -74,16 +79,14 @@ public class Enemy : MonoBehaviour
         defaultSpeed = movementSpeed;
     }
 
-    private void FixedUpdate()
-    {
-        anim.SetFloat("Speed", agent.speed);
-    }
-
     //used for idle animations and starting to attack the player
     public void Activate()
     {
         behaviourTree.enabled = true;
         anim.SetTrigger("Detected");
+
+        if(onActivate != null)
+            onActivate();
     }
 
     public void Deactivate()
@@ -136,10 +139,31 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
+    private void FixedUpdate()
+    {
+        anim.SetFloat("Speed", agent.speed);
+
+
+        if (!hitEffect)
+            return;
+
+        if(Time.time - hitFlashTimer > 0.1f)
+        {
+            renderer.material.SetFloat("_RimLight", 0);
+            hitEffect = false;
+        }
+
+    }
+
     void OnHit(DamageData data)
     {
         if (!manager.activated)
             manager.Activate();
+
+        renderer.material.SetFloat("_RimLight", 1);
+        hitEffect = true;
+        hitFlashTimer = Time.time;
+
         retaliate = true;
         retaliateTimer = Time.time;
     }

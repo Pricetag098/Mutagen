@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Attract
   m_EditorClassIdentifier: 
   abilityName: Singularity Vacuum
-  abilityDescription: Summon a singularity which creates strong gavitational forces
-    which pulls enemies towards it and grouping them up while dealing damage.
-  icon: {fileID: 21300000, guid: cd9e1a75477e6324d959fc0bd2730ae4, type: 3}
+  abilityDescription: Summon a singularity which creates strong gravitational forces
+    which pulls enemies towards it, grouping them up while dealing damage.
+  icon: {fileID: 21300000, guid: 88f295215f4e9194388bcd602466eade, type: 3}
   element: 2
   pickupPrefab:
     enabled: 1
@@ -79,15 +79,15 @@ MonoBehaviour:
   onHitEffectList:
   - {fileID: 11400000, guid: 15c7d0839fc5ace4fb878ea1e3700374, type: 2}
   aimAssist:
-    maxRange: 100
+    maxRange: 20
     aimAssistLayer:
       serializedVersion: 2
-      m_Bits: 512
-    directionWeight: 1
-    distanceWeight: 1
+      m_Bits: 2048
+    directionWeight: 10
+    distanceWeight: 5
     priorityWeight: 1
-    minDirectionValue: -1
-    assistWeight: 1
+    minDirectionValue: 1
+    assistWeight: 0.5
   vfx:
     enabled: 0
     val: {fileID: 0}
