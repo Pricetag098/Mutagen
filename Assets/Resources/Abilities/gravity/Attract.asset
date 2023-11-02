@@ -79,15 +79,15 @@ MonoBehaviour:
   onHitEffectList:
   - {fileID: 11400000, guid: 15c7d0839fc5ace4fb878ea1e3700374, type: 2}
   aimAssist:
-    maxRange: 100
+    maxRange: 20
     aimAssistLayer:
       serializedVersion: 2
-      m_Bits: 512
-    directionWeight: 1
-    distanceWeight: 1
+      m_Bits: 2048
+    directionWeight: 10
+    distanceWeight: 5
     priorityWeight: 1
-    minDirectionValue: -1
-    assistWeight: 1
+    minDirectionValue: 1
+    assistWeight: 0.5
   vfx:
     enabled: 0
     val: {fileID: 0}
