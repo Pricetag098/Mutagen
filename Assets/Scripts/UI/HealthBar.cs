@@ -12,6 +12,8 @@ public class HealthBar : MonoBehaviour
     public Image hBar;
     public Image dBar;
     public TMP_Text text;
+    public float damageThreshhold = 0;
+    public Optional<float> freezeframeTime;
 
     private void Start()
     {
@@ -20,28 +22,27 @@ public class HealthBar : MonoBehaviour
     }
     public void OnHit(DamageData damage)
     {
-        if(damage.damage >= 35)
+        if(damage.damage >= damageThreshhold)
         {
-        DoTweenFade();
+        
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(hitEffect.DOFade(1, 1));
+            sequence.Append(dBar.DOFillAmount(hBar.fillAmount, 3));
+            sequence.Append(hitEffect.DOFade(0, 3));
         }
-        hBar.fillAmount = health.health / health.maxHealth;
-        text.text = (int)health.health + " / " + health.maxHealth;
-        DoTweenFill();
+        if(freezeframeTime.Enabled)
+        DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, freezeframeTime.Value).SetEase(Ease.InOutBounce).SetLoops(1,LoopType.Yoyo);
 
-    }
+		hBar.fillAmount = health.health / health.maxHealth;
+        text.text = (int)health.health + " / " + health.maxHealth;
+        dBar.DOFillAmount(hBar.fillAmount, 3);
+
+
+	}
     //Async example
     public Image hitEffect;
 
-    public async void DoTweenFade()
-    {
-        await hitEffect.DOFade(1, 1).AsyncWaitForCompletion();
-        await dBar.DOFillAmount(hBar.fillAmount, 3).AsyncWaitForCompletion();
-        await hitEffect.DOFade(0, 3).AsyncWaitForCompletion();
-    }
-
-    public async void DoTweenFill()
-    {
-        await dBar.DOFillAmount(hBar.fillAmount, 3).AsyncWaitForCompletion();
-    }
+    
+    
 
 }
