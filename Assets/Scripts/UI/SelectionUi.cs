@@ -88,10 +88,10 @@ public class SelectionUi : MonoBehaviour
             
             openSequence.AppendInterval(buttonEntranceDelay);
 		}
-        openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
+        openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
 		//openSequence.AsyncWaitForCompletion(() => { Time.timeScale = 0; });
 
-		//openSequence.AppendCallback(() => { Time.timeScale = 0; });
+		openSequence.AppendCallback(() => { Time.timeScale = 0; });
 	}
     [ContextMenu("close")]
     public void Close()
