@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class PlayerAim : MonoBehaviour
 {
-    [SerializeField] InputActionProperty aimAction;
+    [SerializeField] InputActionProperty aimAction,mouseAction;
 	[SerializeField] LayerMask validRayLayers = 1;
     PlayerMovement playerMovement;
     public Vector3 aimDir;
@@ -22,6 +22,7 @@ public class PlayerAim : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         aimAction.action.performed += AimInput;
+		mouseAction.action.performed += AimMouse;
 		angleConstant = Camera.main.transform.rotation.eulerAngles.x;
 		angleConstant = Mathf.Tan(angleConstant * Mathf.Deg2Rad);
 		angleConstant = 1 / angleConstant;
@@ -33,10 +34,12 @@ public class PlayerAim : MonoBehaviour
 	private void OnEnable()
 	{
 		aimAction.action.Enable();
+		mouseAction.action.Enable();
 	}
 	private void OnDisable()
 	{
 		aimAction.action.Disable();
+		mouseAction.action.Disable();
 	}
 
     void AimInput(InputAction.CallbackContext context)
@@ -49,7 +52,37 @@ public class PlayerAim : MonoBehaviour
 		aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
 		
 		playerMovement.body.transform.forward = aimDir;
+
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
+
+	void AimMouse(InputAction.CallbackContext context)
+	{
+		if (useMouse)
+		{
+
+			RaycastHit hit;
+			Vector3 hitPoint;
+			float y;
+			if (Physics.Raycast(Camera.main.ScreenPointToRay(context.ReadValue<Vector2>()), out hit, float.PositiveInfinity, validRayLayers))
+			{
+				hitPoint = hit.point;
+				hitPoint.y = 0;
+				y = hit.point.y;
+				Vector3 tempAimDir = (hitPoint - transform.position - playerMovement.orientation.forward * ((transform.position.y + playerMovement.orientation.localPosition.y) - y) * angleConstant).normalized;
+				aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
+
+			}
+			playerMovement.body.transform.forward = aimDir;
+
+			
+
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.Confined;
+		}
+	}
+
 
 	private void Update()
 	{
@@ -60,29 +93,13 @@ public class PlayerAim : MonoBehaviour
 			animator.Value.SetFloat(fwVelAnimationKey, fwVel);
 			animator.Value.SetFloat(lrVelAnimationKey, lrVel);
 		}
-		if (useMouse)
-		{
-			
-			RaycastHit hit;
-			Vector3 hitPoint;
-			float y;
-			if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit, float.PositiveInfinity, validRayLayers))
-			{
-				hitPoint = hit.point;
-				hitPoint.y = 0;
-				y = hit.point.y;
-				Vector3 tempAimDir = (hitPoint - transform.position - playerMovement.orientation.forward * ((transform.position.y + playerMovement.orientation.localPosition.y) - y) * angleConstant).normalized;
-				aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
-
-			}
-
-
-		}
+		
 	}
 
 	private void OnDestroy()
 	{
         aimAction.action.performed -= AimInput;
+		mouseAction.action.performed -= AimMouse;
     }
 
 	private void OnDrawGizmos()
