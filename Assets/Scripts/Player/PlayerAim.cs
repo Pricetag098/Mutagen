@@ -10,7 +10,24 @@ public class PlayerAim : MonoBehaviour
     PlayerMovement playerMovement;
     public Vector3 aimDir;
 
-	public bool useMouse;
+	public static bool UseMouse { get { return useMouse; }
+		set { 
+			useMouse = value;
+			if(useMouse == true)
+			{
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.Confined;
+			}
+			else
+			{
+				Cursor.visible = false;
+				Cursor.lockState = CursorLockMode.Locked;
+			}
+		
+		}
+	}
+		
+	static bool useMouse;
 	[SerializeField] Optional<Animator> animator;
 	Rigidbody rb;
 	public Optional<Image> cursor;
@@ -44,7 +61,7 @@ public class PlayerAim : MonoBehaviour
 
     void AimInput(InputAction.CallbackContext context)
 	{
-		if(useMouse) { return; }
+		if(UseMouse) { return; }
 		Vector2 readVal = context.ReadValue<Vector2>();
 		
 		
@@ -53,13 +70,12 @@ public class PlayerAim : MonoBehaviour
 		
 		playerMovement.body.transform.forward = aimDir;
 
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		
 	}
 
 	void AimMouse(InputAction.CallbackContext context)
 	{
-		if (useMouse)
+		if (UseMouse)
 		{
 
 			RaycastHit hit;
@@ -78,8 +94,7 @@ public class PlayerAim : MonoBehaviour
 
 			
 
-			Cursor.visible = true;
-			Cursor.lockState = CursorLockMode.Confined;
+			
 		}
 	}
 

@@ -1175,7 +1175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3349199110604620225}
   - component: {fileID: 23029346006533002}
-  - component: {fileID: 1105351855828749578}
+  - component: {fileID: 8124374150213023835}
   m_Layer: 0
   m_Name: FullScreen (1)
   m_TagString: Untagged
@@ -1252,9 +1252,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1105351855828749578}
-        m_TargetAssemblyTypeName: FullScreenBool, Assembly-CSharp
-        m_MethodName: SetBool
+      - m_Target: {fileID: 8124374150213023835}
+        m_TargetAssemblyTypeName: ControllerSettings, Assembly-CSharp
+        m_MethodName: Toggle
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1265,7 +1265,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
---- !u!114 &1105351855828749578
+--- !u!114 &8124374150213023835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1274,10 +1274,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4175844491539181127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627f73e566941484f939c0ed5b62de62, type: 3}
+  m_Script: {fileID: 11500000, guid: 69e5252ecb5d0a34fbd8e1a383248665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggle: {fileID: 0}
+  t: {fileID: 23029346006533002}
 --- !u!1 &4379671437456932236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,6 +3169,7 @@ MonoBehaviour:
   - {fileID: 7636786871606282554}
   dropDown: {fileID: 7266535632558381650}
   fullScreen: {fileID: 1926984528030121184}
+  firstThing: {fileID: 0}
 --- !u!1 &7055274060721197666
 GameObject:
   m_ObjectHideFlags: 0

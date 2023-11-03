@@ -14,6 +14,7 @@ public class PlayerInMenu : MonoBehaviour
     void Start()
     {
         DisablePlayer();
+        
     }
 
     void DisablePlayer()
@@ -37,7 +38,15 @@ public class PlayerInMenu : MonoBehaviour
             player.isKinematic = false;
             player.GetComponent<PlayerAim>().enabled = true;
             player.GetComponent<PlayerAbilityCaster>().enabled = true;
+			PlayerAim.UseMouse = PlayerAim.UseMouse;
+			enabled = false;
         });
     }
+	
+	private void Update()
+	{
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+	}
 
 }

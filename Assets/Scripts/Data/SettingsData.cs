@@ -13,4 +13,5 @@ public class SettingsData
     public float maxVolume = -80;
     public bool isFullScreen;
     public int qualityIndex;
+    public bool useMouse = true;
 }
