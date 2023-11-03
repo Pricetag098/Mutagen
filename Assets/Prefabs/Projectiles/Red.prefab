@@ -78,11 +78,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: {x: 0, y: -30, z: 0}
-  despawnOnHit: 1
+  despawnOnHit: 0
   vfx:
     enabled: 1
     val: {fileID: 11400000, guid: cb205c69870695c438fcd6ec5e257882, type: 2}
-  lifeTime: Infinity
+  lifeTime: 4
   velocityMultiplierOverLifetime:
     serializedVersion: 2
     m_Curve:
@@ -127,9 +127,9 @@ MonoBehaviour:
     damage: 20
     type: 2
     target: {fileID: 0}
-  tickTime: 0
+  tickTime: 3
   onHitEffects:
-  - {fileID: 11400000, guid: f8bfca9bcfd3ef846bbf1e2061e6e9e8, type: 2}
+  - {fileID: 11400000, guid: 7526dd9e4e820e746b8d75f2cd7126d5, type: 2}
   statusEffects: []
 --- !u!1001 &4553433876958456050
 PrefabInstance:

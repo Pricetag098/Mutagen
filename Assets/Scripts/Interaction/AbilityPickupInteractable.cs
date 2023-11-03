@@ -38,7 +38,7 @@ public class AbilityPickupInteractable : Interactable
 		player.abilitySelector.OpenWith(abilitys);
 		//player.EquipAbility(ability);
 		interactor.hasTarget = false;
-		//Destroy(agent.transform.parent.gameObject);
+		Destroy(transform.root.gameObject);
 		enabled = false; 
 	}
 	private void Awake()
