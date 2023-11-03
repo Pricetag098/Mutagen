@@ -71,6 +71,10 @@ public class SelectionUi : MonoBehaviour
         DOTween.Kill(this, true);
         openSequence = DOTween.Sequence(this);
         openSequence.SetUpdate(UpdateType.Normal, true);
+        openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
+		//openSequence.AsyncWaitForCompletion(() => { Time.timeScale = 0; });
+
+		openSequence.AppendCallback(() => { Time.timeScale = 0; });
 		for (int i = 0; i < 3; i++)
 		{
 			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, 0));
@@ -88,10 +92,6 @@ public class SelectionUi : MonoBehaviour
             
             openSequence.AppendInterval(buttonEntranceDelay);
 		}
-        openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
-		//openSequence.AsyncWaitForCompletion(() => { Time.timeScale = 0; });
-
-		openSequence.AppendCallback(() => { Time.timeScale = 0; });
 	}
     [ContextMenu("close")]
     public void Close()
