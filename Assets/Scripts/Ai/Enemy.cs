@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public EnemyAbilityCaster caster;
     public BehaviourTreeRunner behaviourTree;
     public Renderer renderer;
-    //public Color 
 
     [Header("Optional References")]
     public Optional<Material> invisMat;
@@ -45,6 +44,8 @@ public class Enemy : MonoBehaviour
     [Tooltip("In order of lowest to highest")]
     public Optional<int[]> healthState;
     public float flankDistance = 5;
+    [Min(0.1f)]
+    public float knockbackResist;
     float defaultSpeed;
 
     [Header("Timers")]
@@ -205,6 +206,7 @@ public class Enemy : MonoBehaviour
 
     public void KnockBack(Vector3 knockbackDirection) //set the ai's nav object position to give "skitter" effect
     {
+        knockbackDirection /= knockbackResist;
         transform.position +=  knockbackDirection;
     }
 
