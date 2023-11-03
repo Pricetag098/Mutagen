@@ -90,8 +90,11 @@ public class SelectionUi : MonoBehaviour
 			
 			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition, buttonEntryTime)).SetEase(Ease.InSine);
             
+            
             openSequence.AppendInterval(buttonEntranceDelay);
 		}
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 	}
     [ContextMenu("close")]
     public void Close()
@@ -115,7 +118,7 @@ public class SelectionUi : MonoBehaviour
         closeSequence.Join(DOTween.To(() => ppVolume.weight, x => ppVolume.weight = x, 0, openTime));
         
         closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
-
+        PlayerAim.UseMouse = PlayerAim.UseMouse;
     }
 
 
