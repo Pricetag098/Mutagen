@@ -19,6 +19,10 @@ public class HealthBar : MonoBehaviour
     {
         health.OnHit += OnHit;
 
+        //update health on load
+        hBar.fillAmount = health.health / health.maxHealth;
+        text.text = (int)health.health + " / " + health.maxHealth;
+        dBar.DOFillAmount(hBar.fillAmount, 3);
     }
     public void OnHit(DamageData damage)
     {
