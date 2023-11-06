@@ -10,6 +10,7 @@ public class PlayerInMenu : MonoBehaviour
     public CanvasGroup canvas,playerUi;
     public float fadeTime;
     public float animationTime;
+    public SpriteRenderer directionArrow;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,8 @@ public class PlayerInMenu : MonoBehaviour
         player.GetComponent<PlayerAim>().enabled = false;
         player.GetComponent<PlayerAbilityCaster>().enabled = false;
         player.GetComponentInChildren<Animator>().SetTrigger("Sit");
+
+        directionArrow.enabled = false;
     }
 
     public void EnablePLayer()
@@ -41,6 +44,8 @@ public class PlayerInMenu : MonoBehaviour
 			PlayerAim.UseMouse = PlayerAim.UseMouse;
 			enabled = false;
         });
+
+        directionArrow.enabled = true;
     }
 	
 	private void Update()
