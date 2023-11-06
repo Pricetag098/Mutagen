@@ -40,6 +40,13 @@ public class Ability : ScriptableObject
         passive,
         disabled
     }
+
+    public enum CastState 
+    {
+        none,
+        casting
+    }
+    public CastState castState;
     public CastTypes castType;
 	public void Equip(AbilityCaster abilityCaster)
     {

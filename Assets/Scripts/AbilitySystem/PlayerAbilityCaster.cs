@@ -55,6 +55,17 @@ public class PlayerAbilityCaster : MonoBehaviour
 	}
 	
 
+	bool CanCast(int index)
+	{
+		bool cast = true;
+		for(int i = 0; i < caster.abilities.Length;i++)
+		{
+			if (i == index)
+				continue;
+
+		}
+	}
+
 	void TryCast(InputAction action, int index)
 	{
 		
