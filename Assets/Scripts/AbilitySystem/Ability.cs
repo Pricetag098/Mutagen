@@ -22,7 +22,7 @@ public class Ability : ScriptableObject
     public Element element;
     public CastDelegate OnCast;
     public Optional<GameObject> pickupPrefab;
-
+    CastData lastCastData;
     //[System.Flags]
 	public enum SlotMask 
     { 
@@ -45,13 +45,22 @@ public class Ability : ScriptableObject
     public enum CastState 
     {
         none,
-        casting
+        windUp,
+        casting,
+        windDown
     }
     public CastState castState;
     public CastTypes castType;
+
+    public float windUptime;
+    public float windDownTime;
+    Timer windUpTimer,windDownTimer;
+    public float moveSpeedModifier;
 	public void Equip(AbilityCaster abilityCaster)
     {
         caster = abilityCaster;
+        windUpTimer = new Timer(windUptime, false);
+        windDownTimer = new Timer(windDownTime, false);
         OnEquip();
     }
 
@@ -71,8 +80,36 @@ public class Ability : ScriptableObject
 
     }
 
+    public void Tick()
+    {
+        
+        switch (castState)
+        {
+            case CastState.none:
+                break;
+            case CastState.windUp:
+				windUpTimer.Tick();
+				if (windUpTimer.complete)
+				{
+					castState = CastState.casting;
+					DoCast(lastCastData);
+				}
+				break;
+            case CastState.casting: 
+            break;
+            case CastState.windDown: 
+            if(windDownTimer.complete)
+            {
+                castState = CastState.none;
+                caster.ChangeSpeed(moveSpeedModifier);
+            }
+            break;
+        }
+		OnTick();
 
-    public virtual void Tick()
+	}
+
+    public virtual void OnTick()
     {
         
     }
@@ -84,7 +121,24 @@ public class Ability : ScriptableObject
 
     public void Cast(CastData data)
     {
-        DoCast(data);
+        switch (castState)
+        {
+            case CastState.none:
+                castState = CastState.windDown;
+                windUpTimer.Reset();
+                lastCastData = data;
+				caster.ChangeSpeed(-moveSpeedModifier);
+				break;
+            case CastState.casting:
+				DoCast(data);
+				break;
+        }
+        
+    }
+
+    protected void FinishCast()
+    {
+        windDownTimer.Reset();
     }
     protected virtual void DoCast(CastData data)
     {

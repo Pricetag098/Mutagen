@@ -76,13 +76,15 @@ public class PlayerAbilityCaster : MonoBehaviour
 		{
 			case Ability.CastTypes.passive:
 				movement.timeSinceLastInteruption = 0;
+				
 				caster.CastAbility(index, CreateCastData());
 				break;
 			case Ability.CastTypes.hold:
 				if (action.IsPressed())
 				{
                     movement.timeSinceLastInteruption = 0;
-                    caster.CastAbility(index, CreateCastData());
+					if (CanCast(index))
+						caster.CastAbility(index, CreateCastData());
                 }
 					
 				break;
@@ -90,7 +92,8 @@ public class PlayerAbilityCaster : MonoBehaviour
 				if (action.WasPressedThisFrame())
 				{
                     movement.timeSinceLastInteruption = 0;
-                    caster.CastAbility(index, CreateCastData());
+					if (CanCast(index))
+						caster.CastAbility(index, CreateCastData());
                 }	
 				break;
 			case Ability.CastTypes.disabled:

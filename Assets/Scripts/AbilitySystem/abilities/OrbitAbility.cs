@@ -59,7 +59,7 @@ public class OrbitAbility : Ability
         }
     }
 
-    public override void Tick()
+    public override void OnTick()
     {
         timer.Tick();
         for(int i = orbs.Count-1; i >=0 ; i--) 
