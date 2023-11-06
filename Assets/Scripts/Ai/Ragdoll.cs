@@ -39,14 +39,6 @@ public class Ragdoll : MonoBehaviour
         if (!dead)
             return;
 
-        //if (droppingAbility && !abilityDropped)
-        //{
-        //    abilityDropped = true;
-        //    SetDrop();
-        //}
-        //if (abilityDropped)
-        //    return;
-
         for (int i = 0; i < transform.parent.childCount; i++)
         {
             SecondOrderFollower follow;
@@ -69,7 +61,6 @@ public class Ragdoll : MonoBehaviour
 
             if (alpha <= -1)
             {
-                //transform.parent.gameObject.SetActive(false);
                 Destroy(transform.parent.gameObject);
             }
         }
@@ -77,20 +68,8 @@ public class Ragdoll : MonoBehaviour
 
     void SetDrop()
      {
-        //for (int i = 0; i < colliders.Length; i++)
-        //{
-        //    colliders[i].GetComponent<Collider>().enabled = false;
-        //    Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
-        //    rb.useGravity = false;
-        //    rb.velocity = Vector3.zero;
-        //}
 
-        //foreach (Renderer r in render)
-        //{
-        //    r.material.SetFloat("_RimLight", 1);
-        //}
-
-        GameObject go = Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(pickupPrefab, transform.position, new Quaternion(0,0,0,0));
         go.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
         AbilityPickupInteractable pickup = go.GetComponentInChildren<AbilityPickupInteractable>();
 
@@ -98,9 +77,21 @@ public class Ragdoll : MonoBehaviour
         int attemptCount = 0;
         bool full = false;
         int[] usedIndex = new int[pickup.abilitys.Length];
+        List<int> usedList = new List<int>();
 
         while (!full)
         {
+            //foreach(Ability ability in agent.manager.dropPool.abilities)
+            //{
+
+            //    for(int i = 0; i < agent.player.caster.abilities.Length; i++)
+            //    {
+            //        if (ability == agent.player.caster.abilities[i])
+            //            break;
+
+            //    }
+            //}
+
             int index = Random.Range(0, agent.manager.dropPool.abilities.Length);
 
             bool assigned = false;

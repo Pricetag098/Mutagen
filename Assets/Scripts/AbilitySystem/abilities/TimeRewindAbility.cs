@@ -90,7 +90,7 @@ public class TimeRewindAbility : Ability
 
     }
 
-    public override void Tick()
+    public override void OnTick()
     {
         timer.Tick();
 		if (linePrefab.Enabled)
