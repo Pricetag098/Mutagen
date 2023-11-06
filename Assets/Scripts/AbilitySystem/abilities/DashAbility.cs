@@ -34,7 +34,7 @@ public class DashAbility : Ability
 		dashTimer = new Timer(dashTime,false);
 		stam = maxStam;
 	}
-	public override void Tick()
+	public override void OnTick()
 	{
 		
 		if (dashing)

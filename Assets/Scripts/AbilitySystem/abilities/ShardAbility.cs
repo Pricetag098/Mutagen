@@ -29,7 +29,7 @@ public class ShardAbility : Ability
         }
     }
 
-    public override void Tick()
+    public override void OnTick()
     {
         timer.Tick();
     }

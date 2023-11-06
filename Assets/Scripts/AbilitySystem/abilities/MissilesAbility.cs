@@ -69,7 +69,7 @@ public class MissilesAbility : Ability
 
     }
 
-    public override void Tick()
+    public override void OnTick()
     {
         if (!held && chargeTime > 0)
         {
