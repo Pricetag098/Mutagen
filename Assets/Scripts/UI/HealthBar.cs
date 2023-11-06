@@ -31,8 +31,8 @@ public class HealthBar : MonoBehaviour
         
             Sequence sequence = DOTween.Sequence();
             sequence.Append(hitEffect.DOFade(1, 1));
+            sequence.Append(hitEffect.DOFade(0, 1));
             sequence.Append(dBar.DOFillAmount(hBar.fillAmount, 3));
-            sequence.Append(hitEffect.DOFade(0, 3));
         }
         if(freezeframeTime.Enabled)
         DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, freezeframeTime.Value).SetEase(Ease.InOutBounce).SetLoops(1,LoopType.Yoyo);
