@@ -23,6 +23,7 @@ public class FullScreenBool : MonoBehaviour, IDataPersistance<SettingsData>
     {
         isFullscreen = data.isFullScreen;
         SetBool(isFullscreen);
+        if(toggle)
         toggle.isOn = isFullscreen;
     }
 }

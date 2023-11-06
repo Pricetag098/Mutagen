@@ -1,71 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1285623435
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1285623436}
-  - component: {fileID: 1285623437}
-  - component: {fileID: 1285623438}
-  m_Layer: 10
-  m_Name: PickupInteract
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1285623436
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285623435}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5586068455558933387}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1285623437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285623435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eaa47c860734a94ba9f588bca6f8ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  priority: 0
-  abilitys:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  hoverText: {fileID: 0}
-  icon: {fileID: 0}
-  agent: {fileID: 8962174975456743336}
---- !u!135 &1285623438
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285623435}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &123069485850957136
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,7 +577,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836916350466513346}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1021,7 +955,6 @@ Transform:
   - {fileID: 3780012126785895345}
   - {fileID: 60378925308937080}
   - {fileID: 9220300258059560286}
-  - {fileID: 1285623436}
   m_Father: {fileID: 4630340342187268832}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2067,6 +2000,7 @@ GameObject:
   - component: {fileID: 8962174975456743336}
   - component: {fileID: 7829885259189179611}
   - component: {fileID: 2496971386840656133}
+  - component: {fileID: 255783008}
   m_Layer: 6
   m_Name: Nav
   m_TagString: Untagged
@@ -2103,7 +2037,7 @@ NavMeshAgent:
   m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 100
-  m_StoppingDistance: 7
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2143,7 +2077,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
-  - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
@@ -2189,13 +2122,14 @@ MonoBehaviour:
   castOrigin: {fileID: 9220300258059560286}
   defaultAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   curAbility: {fileID: 0}
-  projectileDeviation: 0
+  projectileDeviation: 50000
   rangedDeterence: 0
-  meleeDeterence: 0
+  meleeDeterence: 50
+  otherDeterence: 20
   repeatDeterence: 50
   distanceMultiplier: 0
   innerRange: 0
-  chanceDeductionRange: 10
+  chanceDeductionRange: 63.4
 --- !u!114 &8962174975456743336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2215,6 +2149,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   caster: {fileID: 0}
   behaviourTree: {fileID: 8962174975456743338}
+  renderer: {fileID: 4343672430762639437}
   invisMat:
     enabled: 0
     val: {fileID: 0}
@@ -2235,8 +2170,9 @@ MonoBehaviour:
   movementMultiplier: 1
   healthState:
     enabled: 1
-    val: 14000000e8030000d0070000
+    val: fa000000ee020000
   flankDistance: 5
+  knockbackResist: 5
   retaliateCooldown: 5
   stunDuration: 0
   delayMoveRange: 4
@@ -2280,10 +2216,22 @@ MonoBehaviour:
   - {fileID: 7408594282165958137}
   - {fileID: 7109460776529141666}
   - {fileID: 4343672430762639437}
-  pickup: {fileID: 1285623437}
+  pickupPrefab: {fileID: 7602296069947860300, guid: 7863c65ce8a98d84095bd014f004ce04, type: 3}
   fadeRate: 1
   ragdollSideForce: 0
   ragdollUpForce: 0
+--- !u!114 &255783008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3790244150921131975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6899cc08771d60d4b862c30f2f195bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3839801079526965267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5451,7 +5399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9220300258059560285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.156, z: 0.576}
+  m_LocalPosition: {x: 0, y: 0.1854, z: 0.3751}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

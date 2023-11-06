@@ -90,7 +90,10 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit hit;
         bool isGrounded = Physics.CheckSphere(groundingPoint.position, groundingRadius, groundingLayer) && Vector3.Dot(surfaceNormal, orientation.up) > minSurface;
-
+        if(isGrounded)
+        {
+            lastSafeLocation = transform.position;
+        }
         if (Physics.SphereCast(orientation.position, groundingRadius, -orientation.up, out hit, surfaceCheckRange * 5, groundingLayer))
         {
             surfaceNormal = hit.normal;
@@ -105,10 +108,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Move(MovementData data)
     {
-        Vector3 idealVel = Vector3.ProjectOnPlane((orientation.forward * inputDir.y + orientation.right * inputDir.x) * data.speed * playerStats.speedMulti, surfaceNormal);
+        Vector3 idealVel = Vector3.ProjectOnPlane((orientation.forward * inputDir.y + orientation.right * inputDir.x) * data.speed * Mathf.Max(0, playerStats.speedMulti), surfaceNormal);
         Vector3 vel = rb.velocity;
         Vector3 turningForce = idealVel - vel;
-        rb.AddForce(turningForce * data.accleration * playerStats.accelerationMulti);
+        rb.AddForce(turningForce * data.accleration);
 
         if (!touchingSurface)
         {

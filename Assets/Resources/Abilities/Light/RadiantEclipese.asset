@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336a04130e277a147b6ae89954b26f2c, type: 3}
   m_Name: RadiantEclipese
   m_EditorClassIdentifier: 
-  abilityName: Radiant Eclipse
-  abilityDescription: This small gate like device speeds up anything that pass through
-    it to incredible speeds.
+  abilityName: Radiant Lance
+  abilityDescription: 'A small gate like device  i atttached to my bow.
+
+    Arrows
+    that pass through it are acclerated charged with light and explode on impact'
   icon: {fileID: 21300000, guid: d557104c2474de64d9e41659fccfd84e, type: 3}
   element: 1
   pickupPrefab:
@@ -26,33 +28,15 @@ MonoBehaviour:
   releaseOnFullCharge: 1
   maxChargeTime: 0.5
   minChargeTime: 0.4
-  damageRange: 0
+  damageRange: 1
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 50
-      inSlope: 50
-      outSlope: 50
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
-      value: 75
+      value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 50
-      inSlope: -50
-      outSlope: -50
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -65,18 +49,27 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 100
-      inSlope: 0
-      outSlope: 0
+      value: 0
+      inSlope: 20
+      outSlope: 20
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.5
+      value: 10
+      inSlope: 100
+      outSlope: 100
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 100
-      inSlope: 0
-      outSlope: 0
+      inSlope: 180
+      outSlope: 180
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -85,12 +78,13 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedModifier: 0.8
-  onHitEffectList: []
+  onHitEffectList:
+  - {fileID: 11400000, guid: 0e76b26503b14a94a90de7b00cefc510, type: 2}
   aimAssist:
     maxRange: 5
     aimAssistLayer:
       serializedVersion: 2
-      m_Bits: 512
+      m_Bits: 2048
     directionWeight: 2.5
     distanceWeight: 2
     priorityWeight: 1

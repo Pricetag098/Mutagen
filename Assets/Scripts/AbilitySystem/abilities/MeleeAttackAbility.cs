@@ -6,6 +6,7 @@ using UnityEngine;
 public class MeleeAttackAbility : Ability
 {
     [SerializeField] float damage;
+	[SerializeField] int comboLength;
 	[SerializeField] float damageRange;
     [SerializeField] LayerMask targetLayers;
     [SerializeField] float swingsPerMin = 1000;
@@ -19,6 +20,7 @@ public class MeleeAttackAbility : Ability
 	Timer timer;
 	[SerializeField] string animationTrigger;
 	bool swung = false;
+	float maxStam,stamina;
 	protected override void OnEquip()
 	{
 		coolDown = 1.0f/ (swingsPerMin / 60.0f);
@@ -36,7 +38,14 @@ public class MeleeAttackAbility : Ability
 			swung = false;
         }
 	}
-	
+	protected override void OnUnEquip(Ability replacement)
+	{
+		if(swung)
+        {
+			caster.ChangeSpeed(speedModifier);
+			swung = false;
+		}
+	}
 	protected override void DoCast(CastData data)
 	{
 		if(timer.complete)
@@ -63,11 +72,12 @@ public class MeleeAttackAbility : Ability
 					healths.Add(hb.health);
 					OnHit(hb,data.aimDirection);
 
-                    damage += Random.Range(-damageRange, damageRange);
-                    if (damage < 0)
-                        damage = 0;
+					float tempdmg = damage;
+                    tempdmg += Random.Range(-damageRange, damageRange);
+                    if (tempdmg < 0)
+                        tempdmg = 0;
 
-                    hb.OnHit(CreateDamageData(damage));
+                    hb.OnHit(CreateDamageData(tempdmg));
 					Vector3 hitPoint = hit.point;
 					Vector3 hitNormal = hit.normal;
 					if (hitPoint == Vector3.zero)

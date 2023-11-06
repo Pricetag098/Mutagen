@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] InputActionProperty pauseAction;
     public SettingsMenu menu;
+	
+	
 
-    private void Start()
+	private void Start()
     {
-        pauseAction.action.performed += Pause;
+		PlayerSettingsHandler.instance.ReloadTargets();
+		pauseAction.action.performed += Pause;
     }
 
     private void OnEnable()
     {
         pauseAction.action.Enable();
+        
     }
 
     private void OnDisable()
@@ -23,7 +29,12 @@ public class PauseMenu : MonoBehaviour
         pauseAction.action.Disable();
     }
 
-    void Pause(InputAction.CallbackContext context)
+	private void OnDestroy()
+	{
+		pauseAction.action.performed -= Pause;
+	}
+
+	void Pause(InputAction.CallbackContext context)
     {
         menu.gameObject.SetActive(!menu.transform.gameObject.active);
 
@@ -40,4 +51,6 @@ public class PauseMenu : MonoBehaviour
         }
 
     }
+
+    
 }

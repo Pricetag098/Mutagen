@@ -187,6 +187,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Aim(Mouse)",
+                    "type": "Value",
+                    "id": "809ac09a-3ab2-4732-9716-0d56a718a381",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "15f49b42-9387-4555-a8ee-c9bcc2494cef",
@@ -265,17 +274,6 @@
                 },
                 {
                     "name": "",
-                    "id": "99c3f10b-1b58-4650-ba58-f6cee6e41baa",
-                    "path": "<Pointer>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse+keyboard",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "11493798-e8b5-4326-993e-7feeb8de5fbb",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -304,6 +302,17 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41870b78-a22b-4a43-ba85-a2397d157687",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim(Mouse)",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

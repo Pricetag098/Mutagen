@@ -16,6 +16,7 @@ public enum CheckType
     flanking,
     sightLine,
     abilityType,
+    isAbility,
     abilityCooldown
 }
 public enum AbilityCheckType
@@ -35,6 +36,7 @@ public class IfElseNode : CompositeNode
     public AbilityCheckType abilityCheck;
     public Optional<oneTimeCheck> oneTime;
     public Optional<int> cooldownCheckIndex;
+    public Optional<Ability> isAbility;
     public enum oneTimeCheck
     {
         Null,
@@ -66,8 +68,8 @@ public class IfElseNode : CompositeNode
             agent.retaliate = false;
             return false;
         }
-        else return true;
-
+        
+        return true;
     }
 
     bool stunnedCheck()
@@ -150,9 +152,10 @@ public class IfElseNode : CompositeNode
         if(Time.time - agent.delayMoveTimer > agent.delayMoveRange)
         {
             agent.delayMove = false;
+            Debug.Log(true);
             return true;
         }
-
+        Debug.Log(true);
         return true;
     }
 
@@ -198,8 +201,20 @@ public class IfElseNode : CompositeNode
     {
         AbilityCaster aCaster = agent.caster.caster;
         MeleeAttackAbility melee = aCaster.abilities[cooldownCheckIndex.Value] as MeleeAttackAbility;
+        EffectAuraAbility aura = aCaster.abilities[cooldownCheckIndex.Value] as EffectAuraAbility;
         DashAbility dash = aCaster.abilities[cooldownCheckIndex.Value] as DashAbility;
-        if (melee || dash)
+        DashApplysEffect dasheffect = aCaster.abilities[cooldownCheckIndex.Value] as DashApplysEffect;
+
+        //split
+        if (melee || aura)
+        {
+            float cooldown = aura != null ? aura.GetCoolDownPercent() : melee.GetCoolDownPercent();
+            if (cooldown < 0.9f)
+            {
+                return false;
+            }
+        }
+        if(dasheffect || dash)
         {
             float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
             if (cooldown < 0.9f)
@@ -209,6 +224,12 @@ public class IfElseNode : CompositeNode
         }
 
         return true;
+    }
+
+    bool isAbilityCheck()
+    {
+        EnemyAbilityCaster aCaster = agent.caster;
+        return aCaster.curAbility == isAbility.Value;
     }
 
     protected override State OnUpdate()
@@ -297,6 +318,7 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(second);
                 break;
 
+            #region abilityChecks
             case CheckType.abilityType:
                 if (abilityTypeCheck(abilityCheck))
                 {
@@ -313,6 +335,13 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(first);
                 else ChildUpdate(second);
                 break;
+
+            case CheckType.isAbility:
+                if (isAbilityCheck())
+                    ChildUpdate(first);
+                else ChildUpdate(second);
+                break;
+                #endregion
         }
         return State.Running;
     }

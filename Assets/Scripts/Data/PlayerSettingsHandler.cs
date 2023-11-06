@@ -78,4 +78,9 @@ public class PlayerSettingsHandler : MonoBehaviour
         return new List<IDataPersistance<SettingsData>>(list);
     }
 
+    public void ReloadTargets()
+    {
+		persistanceObjects = FindAllDataPersistance();
+	}
+
 }

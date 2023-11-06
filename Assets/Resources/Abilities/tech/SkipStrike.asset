@@ -16,7 +16,7 @@ MonoBehaviour:
   abilityDescription: A bundle of small devices they seem to record actions and play
     them back.
   icon: {fileID: 21300000, guid: e8c9a700de638b54a960bd01ed0ca12c, type: 3}
-  element: 0
+  element: 3
   pickupPrefab:
     enabled: 1
     val: {fileID: 4144943093994391956, guid: 92b8de6f98e37af468a386124acbf27e, type: 3}
@@ -24,13 +24,27 @@ MonoBehaviour:
   castType: 0
   Casts: 3
   rechargeTime: 1
-  iFramesGranted: 1
+  iFramesGranted: 0.2
   dashTime: 0.1
   dashDistance: 5
   endSpeed: 10
   dashFx:
     enabled: 0
     val: {fileID: 11400000, guid: b4cb71ef82df8b5469e334d75d3949ce, type: 2}
+  aimAssist:
+    maxRange: 100
+    aimAssistLayer:
+      serializedVersion: 2
+      m_Bits: 2048
+    directionWeight: 1
+    distanceWeight: 1
+    priorityWeight: 1
+    minDirectionValue: -1
+    assistWeight: 1
+  gcRange: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
   animationTrigger: 
   hitRadius: 2
   targetLayers:
@@ -38,4 +52,5 @@ MonoBehaviour:
     m_Bits: 64
   statusEffects:
   - {fileID: 11400000, guid: 2566acc351947304abaa98c4d942c0e2, type: 2}
-  onHitEffects: []
+  onHitEffects:
+  - {fileID: 11400000, guid: 0e76b26503b14a94a90de7b00cefc510, type: 2}

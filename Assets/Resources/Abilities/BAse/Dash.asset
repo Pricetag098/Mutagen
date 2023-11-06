@@ -23,11 +23,25 @@ MonoBehaviour:
   castType: 0
   Casts: 3
   rechargeTime: 1
-  iFramesGranted: 0.5
+  iFramesGranted: 0.2
   dashTime: 0.1
   dashDistance: 10
   endSpeed: 10
   dashFx:
     enabled: 1
     val: {fileID: 11400000, guid: 0fd72b9789a1a854f80df1c6a6bbad95, type: 2}
+  aimAssist:
+    maxRange: 50
+    aimAssistLayer:
+      serializedVersion: 2
+      m_Bits: 2048
+    directionWeight: 10
+    distanceWeight: 5
+    priorityWeight: 1
+    minDirectionValue: 0.5
+    assistWeight: 0
+  gcRange: 2
+  layer:
+    serializedVersion: 2
+    m_Bits: 1
   animationTrigger: 

@@ -13,13 +13,13 @@ public class EnemyManager : MonoBehaviour
 
     //empty list stats
     [HideInInspector] public bool empty;
-    public int listCount;
+    public int listCount; //will remove later
 
 
     [Header("DropStats")]
     public bool guaranteeDrop = true;
     [Range(0, 100)] public float dropChance;
-    public Ability[] dropPool;
+    public DropPool dropPool;
     bool hasDropped;
 
     [Header("Element")]
@@ -28,7 +28,7 @@ public class EnemyManager : MonoBehaviour
     public Material[] elementColours;
 
     //detection stat
-    bool activated;
+    [HideInInspector] public bool activated;
 
     //stalker stats/refs
     [HideInInspector] public List<Enemy> inFront = new List<Enemy>();
@@ -152,15 +152,13 @@ public class EnemyManager : MonoBehaviour
 
     public void Remove(Enemy agent)
     {
-        Debug.Log("Remove");
         enemyList.Remove(agent);
 
         listCount--;
 
-        if(listCount == enemyList.Count)
+        if(listCount == 0)
         {
             empty = true;
-            Debug.Log("Empty");
         }
 
         int emptyCount = 0;
@@ -211,15 +209,20 @@ public class EnemyManager : MonoBehaviour
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
             //Debug.Log("Hit");
-            if (activated)
-                return;
-
-            for (int i = 0; i < enemyList.Count; i++)
-            {
-                enemyList[i].enabled = true;
-                enemyList[i].Activate();
-            }
-            activated = true;
+            Activate();
         }
+    }
+
+    public void Activate()
+    {
+        if (activated)
+            return;
+
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            enemyList[i].enabled = true;
+            enemyList[i].Activate();
+        }
+        activated = true;
     }
 }

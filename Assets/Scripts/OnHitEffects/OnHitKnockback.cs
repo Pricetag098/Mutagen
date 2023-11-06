@@ -9,6 +9,8 @@ public class OnHitKnockback : OnHitEffect
 
     public override void OnHit(HitBox hitBox, Vector3 direction)
     {
+        if (direction == Vector3.zero)
+            return;
         Enemy enemy;
         if(hitBox.health.TryGetComponent(out enemy))
         {

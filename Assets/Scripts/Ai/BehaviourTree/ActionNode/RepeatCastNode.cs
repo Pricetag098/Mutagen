@@ -25,13 +25,14 @@ public class RepeatCastNode : ActionNode
         if (assigned)
         {
             ability = agent.caster.curAbility;
-            return;
+            //return;
         }
+        else ability = aCaster.abilities[abilityIndex];
 
-        ability = aCaster.abilities[abilityIndex];
+
         if (ability.castType == Ability.CastTypes.hold)
         {
-            castTime = 1;
+            //castTime = 1;
         }
 
         if (ability.GetType() == typeof(RangedAbility))
@@ -49,7 +50,11 @@ public class RepeatCastNode : ActionNode
     protected override State OnUpdate()
     {
         if (castCount >= repeatCount)
+        {
+            castCount = 0;
             return State.Success;
+        }
+
 
         if (waiting)
         {

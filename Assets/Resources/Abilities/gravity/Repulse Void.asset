@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336a04130e277a147b6ae89954b26f2c, type: 3}
   m_Name: Repulse Void
   m_EditorClassIdentifier: 
-  abilityName: Repulsar blast
-  abilityDescription: "This device when thrown this device forces everything back
-    from it \nI wonder if there's an equal and opposite force?"
+  abilityName: Repulse Vortex
+  abilityDescription: Evoke the power of a black hole that shoots towards your enemies,
+    doing significant damage and forcing them out of the way.
   icon: {fileID: 21300000, guid: 01aa025911e75f14bbad53d3980c78a0, type: 3}
   element: 2
   pickupPrefab:
@@ -25,32 +25,32 @@ MonoBehaviour:
   prefab: {fileID: 1036542219973673062, guid: 2fa21bb3276a36c478cb2c0444088914, type: 3}
   releaseOnFullCharge: 1
   maxChargeTime: 1.5
-  minChargeTime: 0.1
+  minChargeTime: 0.7
   damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
-      inSlope: 93.52764
-      outSlope: 93.52764
+      value: 2
+      inSlope: 52.150608
+      outSlope: 52.150608
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.52239263
-      value: 49.85815
-      inSlope: -1.6820694
-      outSlope: -1.6820694
+      time: 0.34515417
+      value: 20
+      inSlope: 1.0601128
+      outSlope: 1.0601128
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.36785227
+      inWeight: 0.10519281
+      outWeight: 0.28020695
     - serializedVersion: 3
       time: 1.5
-      value: 50
+      value: 35
       inSlope: 15.41073
       outSlope: 15.41073
       tangentMode: 0
@@ -64,43 +64,34 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0083351135
-      value: 10
-      inSlope: 310.76584
-      outSlope: 310.76584
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.2125
-    - serializedVersion: 3
-      time: 0.75
-      value: 100
-      inSlope: 1.4483032
-      outSlope: 1.4483032
-      tangentMode: 0
+      time: 0
+      value: 7.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.30388975
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.5
-      value: 75
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      time: 1
+      value: 7.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
       weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speedModifier: 0.6
+  speedModifier: 0.5
   onHitEffectList:
   - {fileID: 11400000, guid: f8bfca9bcfd3ef846bbf1e2061e6e9e8, type: 2}
   aimAssist:
     maxRange: 20
     aimAssistLayer:
       serializedVersion: 2
-      m_Bits: 512
+      m_Bits: 2048
     directionWeight: 10
     distanceWeight: 5
     priorityWeight: 1

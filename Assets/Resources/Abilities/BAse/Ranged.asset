@@ -120,17 +120,18 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedModifier: 0.6
-  onHitEffectList: []
+  onHitEffectList:
+  - {fileID: 11400000, guid: 0e76b26503b14a94a90de7b00cefc510, type: 2}
   aimAssist:
-    maxRange: 20
+    maxRange: 100
     aimAssistLayer:
       serializedVersion: 2
-      m_Bits: 512
-    directionWeight: 10
+      m_Bits: 2048
+    directionWeight: 15
     distanceWeight: 5
     priorityWeight: 1
-    minDirectionValue: 1
-    assistWeight: 0.5
+    minDirectionValue: 0.75
+    assistWeight: 0.75
   vfx:
     enabled: 0
     val: {fileID: 0}

@@ -15,16 +15,16 @@ MonoBehaviour:
   abilityName: 
   abilityDescription: 
   icon: {fileID: 0}
-  element: 0
+  element: 4
   pickupPrefab:
     enabled: 1
     val: {fileID: 7523146627320602946, guid: 405c1776749dd9748a6541306bcfda3e, type: 3}
-  slotMask: 2
+  slotMask: 1
   castType: 1
   prefab: {fileID: 4891474550695880070, guid: e556cfb0eeb19b74ca4c95995649923f, type: 3}
   releaseOnFullCharge: 1
   maxChargeTime: 1
-  minChargeTime: 0.4
+  minChargeTime: 0.1
   damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
@@ -84,7 +84,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   speedModifier: 0.6
-  onHitEffectList: []
+  onHitEffectList:
+  - {fileID: 11400000, guid: 40900c20f8ba461488953bbd2bca6363, type: 2}
   aimAssist:
     maxRange: 100
     aimAssistLayer:
