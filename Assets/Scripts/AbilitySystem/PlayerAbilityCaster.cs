@@ -62,8 +62,10 @@ public class PlayerAbilityCaster : MonoBehaviour
 		{
 			if (i == index)
 				continue;
-
+			if (caster.abilities[i].castState == Ability.CastState.casting)
+				cast = false;
 		}
+		return cast;
 	}
 
 	void TryCast(InputAction action, int index)
