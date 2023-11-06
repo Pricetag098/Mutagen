@@ -201,9 +201,20 @@ public class IfElseNode : CompositeNode
     {
         AbilityCaster aCaster = agent.caster.caster;
         MeleeAttackAbility melee = aCaster.abilities[cooldownCheckIndex.Value] as MeleeAttackAbility;
+        EffectAuraAbility aura = aCaster.abilities[cooldownCheckIndex.Value] as EffectAuraAbility;
         DashAbility dash = aCaster.abilities[cooldownCheckIndex.Value] as DashAbility;
         DashApplysEffect dasheffect = aCaster.abilities[cooldownCheckIndex.Value] as DashApplysEffect;
-        if (melee || dash || dasheffect)
+
+        //split
+        if (melee || aura)
+        {
+            float cooldown = aura != null ? aura.GetCoolDownPercent() : melee.GetCoolDownPercent();
+            if (cooldown < 0.9f)
+            {
+                return false;
+            }
+        }
+        if(dasheffect || dash)
         {
             float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
             if (cooldown < 0.9f)
