@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 1.14
     agentHeight: 1.97
     agentSlope: 35
-    agentClimb: 0.45
+    agentClimb: 0.7
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 2
     minRegionArea: 2
@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 49043296}
   - component: {fileID: 49043295}
   - component: {fileID: 49043294}
+  - component: {fileID: 49043298}
   m_Layer: 0
   m_Name: NavMeshObstacle
   m_TagString: Untagged
@@ -430,6 +431,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &49043298
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49043293}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &56210504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,7 +1065,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh587084
+  m_Name: pb_Mesh1058526
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5961,7 +5978,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh586516
+  m_Name: pb_Mesh1057940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7284,7 +7301,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh587142
+  m_Name: pb_Mesh1058584
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8809,7 +8826,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh586418
+  m_Name: pb_Mesh1057832
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11848,7 +11865,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh586966
+  m_Name: pb_Mesh1058402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13194,7 +13211,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh586372
+  m_Name: pb_Mesh1057786
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14283,18 +14300,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water Plane
       objectReference: {fileID: 0}
-    - target: {fileID: 699886427418610020, guid: d20614e2139b7104c814faf857e6cd0a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1380737963559108683, guid: d20614e2139b7104c814faf857e6cd0a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 1380737963559108686, guid: d20614e2139b7104c814faf857e6cd0a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3635145425554509112, guid: d20614e2139b7104c814faf857e6cd0a, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -14337,14 +14342,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3635145425554509112, guid: d20614e2139b7104c814faf857e6cd0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940762349872109863, guid: d20614e2139b7104c814faf857e6cd0a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8670079897740248311, guid: d20614e2139b7104c814faf857e6cd0a, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
