@@ -9,6 +9,7 @@ public class EMPClear : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log(collision.gameObject.layer == targetLayer);
         if(collision.gameObject.layer == targetLayer)
         {
             Debug.Log("Hit");
