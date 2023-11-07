@@ -9,21 +9,21 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] int comboLength;
 	[SerializeField] float damageRange;
     [SerializeField] LayerMask targetLayers;
-    [SerializeField] float swingsPerMin = 1000;
+    //[SerializeField] float swingsPerMin = 1000;
 	[SerializeField] float swingRadius,swingRange;
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
 	[SerializeField,Range(0,1)] float swingAgainProgress;
 	float angleCutoff;
-	float coolDown;
+	[SerializeField]float coolDown;
 	Timer timer;
 	[SerializeField] string animationTrigger;
 	bool swung = false;
-	float maxStam,stamina;
+	
 	protected override void OnEquip()
 	{
-		coolDown = 1.0f/ (swingsPerMin / 60.0f);
+		//coolDown = 1.0f/ (swingsPerMin / 60.0f);
 		//caster.ChangeSpeed(-speedModifier);
 
         timer = new Timer(coolDown,true);
@@ -91,11 +91,7 @@ public class MeleeAttackAbility : Ability
 			}
             
         }
-        if (timer.complete && swung)
-        {
-            FinishCast();
-            swung = false;
-        }
+        
 
     }
 	

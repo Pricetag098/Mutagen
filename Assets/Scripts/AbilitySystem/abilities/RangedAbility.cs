@@ -70,7 +70,14 @@ public class RangedAbility : Ability
         {
             
             if(chargeTime >= minChargeTime)
-            Launch();
+            {
+                Launch();
+            }
+            else
+            {
+                FinishCast();
+            }
+            
 
             
             startedCasting =false;

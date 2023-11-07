@@ -140,6 +140,7 @@ public class Ability : ScriptableObject
     protected void FinishCast()
     {
         windDownTimer.Reset();
+        castState = CastState.windDown;
     }
     protected virtual void DoCast(CastData data)
     {
