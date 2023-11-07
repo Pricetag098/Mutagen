@@ -62,12 +62,13 @@ public class CastAbilityNode : ActionNode
         {
             data.moveDirection = (blackboard.moveToPosition - agent.transform.position).normalized * 10;
         }
+        agent.AttackEffect();
 
-        if(rotate)
+        if (rotate)
             agent.transform.LookAt(blackboard.rotateTowardsObject.transform.position);
 
         if (!assigned)
-        aCaster.CastAbility(abilityIndex,data);
+            aCaster.CastAbility(abilityIndex, data);
         else
         {
             for(int i = 0; i < aCaster.abilities.Length; i++)

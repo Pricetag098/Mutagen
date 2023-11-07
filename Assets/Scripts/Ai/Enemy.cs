@@ -58,6 +58,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float retaliateTimer;
     [HideInInspector] public float stunnedTimer;
     float hitFlashTimer;
+    bool telegraph;
+    float telegraphTimer;
 
     #region startupfunctions
     void Awake()
@@ -146,6 +148,15 @@ public class Enemy : MonoBehaviour
         anim.Value.SetFloat("Speed", agent.speed);
 
 
+        if (telegraph)
+        {
+            if (Time.time - telegraphTimer > 0.5)
+            {
+                telegraph = false;
+                pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length);
+            }
+        }
+
         if (!hitEffect)
             return;
 
@@ -155,6 +166,13 @@ public class Enemy : MonoBehaviour
             hitEffect = false;
         }
 
+    }
+
+    public void AttackEffect()
+    {
+
+        telegraphTimer = Time.time;
+        pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length);
     }
 
     void OnHit(DamageData data)

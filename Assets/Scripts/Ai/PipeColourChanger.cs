@@ -8,14 +8,18 @@ public class PipeColourChanger : MonoBehaviour
 {
     public Renderer[] pipesMat;
 
+    [Tooltip("Make attacking matt last")]
+    public Material[] materials;
+    
+
 
     
 
-    public void Change(Material newMat)
+    public void Change(int index)
     {
         for (int i = 0; i < pipesMat.Length; i++)
         {
-            pipesMat[i].material = newMat;
+            pipesMat[i].material = materials[index];
         }
     }
 }
