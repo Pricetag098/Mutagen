@@ -8,6 +8,7 @@ public class FloatingTextManager : MonoBehaviour
     [Header("References")]
     [HideInInspector] public ObjectPooler pooler;
     public FloatingTextSettings settings;
+    [SerializeField] UITextColours colours;
     public int poolSize;
     [HideInInspector] public List<FloatingText> floatingTexts = new List<FloatingText>();
 
@@ -42,7 +43,7 @@ public class FloatingTextManager : MonoBehaviour
 
         floatingText.txt.text = ((int)data.damage).ToString();
         floatingText.txt.fontSize = settings.baseTextSize + (data.damage / 10);
-        floatingText.txt.color = settings.colors[(int)data.type];
+        floatingText.txt.color = colours.elementColours[(int)data.type];
 
         //motion
         floatingText.follow = data.target;

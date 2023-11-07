@@ -10,7 +10,7 @@ public class AbilityIcon : MonoBehaviour
     [SerializeField]Image cooldown;
     //temp code for colour on UI
     [SerializeField] Image border;
-    [SerializeField] FloatingTextSettings settings;
+    [SerializeField] UITextColours colours;
     bool active;
     // Start is called before the first frame update
     void Awake()
@@ -28,7 +28,7 @@ public class AbilityIcon : MonoBehaviour
         active = true;
         this.ability = ability;
         icon.sprite = ability.icon;
-        border.color = settings.colors[(int)ability.element];
+        border.color = colours.elementColours[(int)ability.element];
 	}
 
     // Update is called once per frame

@@ -70,7 +70,6 @@ public class Enemy : MonoBehaviour
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
         player = FindObjectOfType<PlayerAbilityCaster>();
-        //manager = FindObjectOfType<EnemyManager>().GetComponent<EnemyManager>();
     }
 
     private void Start()
@@ -88,6 +87,7 @@ public class Enemy : MonoBehaviour
 
         if(onActivate != null)
             onActivate();
+
     }
 
     public void Deactivate()
