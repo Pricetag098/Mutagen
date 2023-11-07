@@ -14,7 +14,7 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
-	
+	[SerializeField,Range(0,1)] float swingAgainProgress;
 	float angleCutoff;
 	float coolDown;
 	Timer timer;
@@ -34,7 +34,7 @@ public class MeleeAttackAbility : Ability
 		timer.Tick();
 		if(timer.complete && swung)
         {
-			
+			FinishCast();
 			swung = false;
         }
 	}
@@ -48,7 +48,7 @@ public class MeleeAttackAbility : Ability
 	}
 	protected override void DoCast(CastData data)
 	{
-		if(timer.complete)
+		if(timer.Progress >= swingAgainProgress)
 		{
 			swung = true;
 			
@@ -89,8 +89,15 @@ public class MeleeAttackAbility : Ability
 						hitvfx.Value.Play(hitPoint, hitNormal);
 				}
 			}
-		}
-	}
+            
+        }
+        if (timer.complete && swung)
+        {
+            FinishCast();
+            swung = false;
+        }
+
+    }
 	
 	
 	protected virtual void OnSwing(Vector3 origin,Vector3 direction)

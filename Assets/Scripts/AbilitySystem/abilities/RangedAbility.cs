@@ -45,7 +45,7 @@ public class RangedAbility : Ability
     {
 		if (!startedCasting)
 		{
-            caster.ChangeSpeed(-speedModifier);
+            
             startedCasting = true;
         }
         chargeTime = Mathf.Clamp(chargeTime + Time.deltaTime,0,maxChargeTime);
@@ -72,7 +72,7 @@ public class RangedAbility : Ability
             if(chargeTime >= minChargeTime)
             Launch();
 
-            caster.ChangeSpeed(speedModifier);
+            
             startedCasting =false;
             chargeTime = 0;
         }
@@ -99,6 +99,7 @@ public class RangedAbility : Ability
 
         if (caster.animator.Enabled)
             caster.animator.Value.SetTrigger(animationTrigger);
+        FinishCast();
     }
 
 	public override void OnDrawGizmos()
