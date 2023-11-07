@@ -52,13 +52,13 @@ MonoBehaviour:
   vfx:
     enabled: 0
     val: {fileID: 0}
-  lifeTime: Infinity
+  lifeTime: 5
   velocityMultiplierOverLifetime:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
     target: {fileID: 0}
   tickTime: 0.5
   onHitEffects:
-  - {fileID: 11400000, guid: 85463fef0c8e7d044ace5a12f893e584, type: 2}
+  - {fileID: 11400000, guid: 15c7d0839fc5ace4fb878ea1e3700374, type: 2}
   statusEffects: []
 --- !u!54 &4642083085112353960
 Rigidbody:
@@ -116,7 +116,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!1001 &435469946899526996
 PrefabInstance:
   m_ObjectHideFlags: 0

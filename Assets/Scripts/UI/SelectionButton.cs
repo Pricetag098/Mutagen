@@ -12,8 +12,9 @@ public class SelectionButton : MonoBehaviour, IPointerEnterHandler, ISelectHandl
     public Vector3 startPosition;
     Button button;
     public int index;
-    [SerializeField]Image oldIcon, newIcon;
+    [SerializeField]Image oldIcon, newIcon, outline;
     [SerializeField]TextMeshProUGUI title, description;
+    [SerializeField] UITextColours textColours;
     private void Awake()
     {
         button = GetComponent<Button>();
@@ -26,6 +27,7 @@ public class SelectionButton : MonoBehaviour, IPointerEnterHandler, ISelectHandl
         description.text = newAbility.abilityDescription;
         oldIcon.sprite = oldAbiliy.icon;
         newIcon.sprite = newAbility.icon;
+        outline.color = textColours.elementColours[(int)newAbility.element];
     }
 
 

@@ -11,5 +11,6 @@ public class SelfTargetAbility : Ability
     {
         Debug.Log("Heal");
         caster.ownerHealth.TakeDmg(CreateDamageData(damageAmount*Time.deltaTime));
+        FinishCast();
     }
 }

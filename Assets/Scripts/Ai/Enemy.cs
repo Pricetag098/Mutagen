@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public PlayerAbilityCaster player;
     [HideInInspector] public NavMeshAgent agent;
     public Health health;
-    public Animator anim;
+    public Optional<Animator> anim;
     public EnemyManager manager;
     [HideInInspector] public EnemyAbilityCaster caster;
     public BehaviourTreeRunner behaviourTree;
@@ -69,8 +69,7 @@ public class Enemy : MonoBehaviour
         behaviourTree = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
-        player = FindObjectOfType<PlayerAbilityCaster>().GetComponent<PlayerAbilityCaster>();
-        //manager = FindObjectOfType<EnemyManager>().GetComponent<EnemyManager>();
+        player = FindObjectOfType<PlayerAbilityCaster>();
     }
 
     private void Start()
@@ -84,10 +83,11 @@ public class Enemy : MonoBehaviour
     public void Activate()
     {
         behaviourTree.enabled = true;
-        anim.SetTrigger("Detected");
+        anim.Value.SetTrigger("Detected");
 
         if(onActivate != null)
             onActivate();
+
     }
 
     public void Deactivate()
@@ -142,7 +142,8 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        anim.SetFloat("Speed", agent.speed);
+        if(anim.Enabled)
+        anim.Value.SetFloat("Speed", agent.speed);
 
 
         if (!hitEffect)

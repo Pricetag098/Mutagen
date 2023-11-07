@@ -98,12 +98,13 @@ public class Ability : ScriptableObject
             case CastState.casting: 
             break;
             case CastState.windDown: 
-            if(windDownTimer.complete)
-            {
-                castState = CastState.none;
-                caster.ChangeSpeed(moveSpeedModifier);
-            }
-            break;
+                windDownTimer.Tick();
+                if(windDownTimer.complete)
+                {
+                    castState = CastState.none;
+                    caster.ChangeSpeed(moveSpeedModifier);
+                }
+                break;
         }
 		OnTick();
 
@@ -124,7 +125,7 @@ public class Ability : ScriptableObject
         switch (castState)
         {
             case CastState.none:
-                castState = CastState.windDown;
+                castState = CastState.windUp;
                 windUpTimer.Reset();
                 lastCastData = data;
 				caster.ChangeSpeed(-moveSpeedModifier);
@@ -139,6 +140,7 @@ public class Ability : ScriptableObject
     protected void FinishCast()
     {
         windDownTimer.Reset();
+        castState = CastState.windDown;
     }
     protected virtual void DoCast(CastData data)
     {

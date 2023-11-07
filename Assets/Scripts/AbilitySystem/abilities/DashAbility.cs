@@ -111,6 +111,7 @@ public class DashAbility : Ability
 		{
 			caster.rigidbody.Value.velocity = direction * endSpeed;
 		}
+		FinishCast();
 	}
 	protected virtual void WhileDashing()
 	{

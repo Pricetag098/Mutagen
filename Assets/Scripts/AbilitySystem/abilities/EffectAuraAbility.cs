@@ -24,7 +24,7 @@ public class EffectAuraAbility : Ability
     {
         if (!timer.complete)
             return;
-
+        FinishCast();
         data.origin = caster.transform.position;
         data.origin.y += offset;
 
