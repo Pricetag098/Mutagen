@@ -18,7 +18,7 @@ public class SetAnimationSpeed : SetterNode
 
     protected override State OnUpdate()
     {
-        agent.anim.SetFloat("AnimationSpeed", speed);
+        agent.anim.Value.SetFloat("AnimationSpeed", speed);
         return child.Update();
     }
 }

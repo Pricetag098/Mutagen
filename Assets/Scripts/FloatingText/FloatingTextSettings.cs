@@ -7,7 +7,7 @@ public class FloatingTextSettings : ScriptableObject
 {
     [Header("References")]
     public GameObject textPrefab;
-    public Color[] colors;
+    //public Color[] colors;
 
     [Header("Stats")]
     public float textDeviation;
