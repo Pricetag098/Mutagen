@@ -68,13 +68,18 @@ public class CastAbilityNode : ActionNode
             agent.transform.LookAt(blackboard.rotateTowardsObject.transform.position);
 
         if (!assigned)
+        {
+            agent.AttackEffect();
             aCaster.CastAbility(abilityIndex, data);
+        }
+
         else
         {
             for(int i = 0; i < aCaster.abilities.Length; i++)
             {
                 if(aCaster.abilities[i] == ability)
                 {
+                    agent.AttackEffect();
                     aCaster.CastAbility(i,data);
                 }
             }

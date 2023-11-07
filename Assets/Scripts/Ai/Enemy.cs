@@ -150,10 +150,10 @@ public class Enemy : MonoBehaviour
 
         if (telegraph)
         {
-            if (Time.time - telegraphTimer > 0.5)
+            if (Time.time - telegraphTimer > 0.1f)
             {
                 telegraph = false;
-                pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length);
+                pipeColourChanger.Value.Default();
             }
         }
 
@@ -172,7 +172,7 @@ public class Enemy : MonoBehaviour
     {
 
         telegraphTimer = Time.time;
-        pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length);
+        pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
     }
 
     void OnHit(DamageData data)

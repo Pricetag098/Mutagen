@@ -18,6 +18,6 @@ public class MoveState : State
 
     public override void Tick()
     {
-        manager.agent.SetDestination(manager.movementTarget.position);
+        manager.nav.SetDestination(manager.movementTarget.position);
     }
 }

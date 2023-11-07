@@ -152,7 +152,6 @@ public class IfElseNode : CompositeNode
         if(Time.time - agent.delayMoveTimer > agent.delayMoveRange)
         {
             agent.delayMove = false;
-            Debug.Log(true);
             return true;
         }
         Debug.Log(true);

@@ -2,17 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : MonoBehaviour
+[CreateAssetMenu(menuName = ("AI/States/AttackStates"))]
+public class AttackState : State
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] int abilityIndex;
+    [SerializeField] bool deviatedDirection;
+    [SerializeField] int castTime;
+    float timer;
+    Ability ability;
+
+    public override void OnEnter()
     {
-        
+        manager.movementPoint.speed = 0;
+        manager.nav.SetDestination(manager.nav.transform.position);
+        manager.casting = true;
+        ability = manager.caster.caster.abilities[abilityIndex];
+        timer = Time.time;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnExit()
     {
-        
+
+    }
+
+    public override void Tick()
+    {
+        Ability.CastData data = manager.caster.CreateCastData();
+        if (deviatedDirection)
+        {
+            float dev = Random.Range(-manager.caster.projectileDeviation, manager.caster.projectileDeviation);
+
+            data.aimDirection = new Vector3((manager.player.transform.position.x - manager.transform.position.x) + dev,
+                0, (manager.transform.position.z - manager.transform.position.z) + dev).normalized;
+        }
+
+        //if uses dash's put here
+
+        manager.agent.AttackEffect();
+
+        Debug.Log("Attack");
+
+        if(ability.castType == Ability.CastTypes.hold)
+        {
+            manager.caster.caster.CastAbility(abilityIndex, data);
+            if (Time.time - timer > castTime)
+            {
+                //finished casting
+                manager.casting = false;
+            }
+        }
+        else
+        {
+            manager.caster.caster.CastAbility(abilityIndex, data);
+            manager.casting = false;
+        }
+
     }
 }
