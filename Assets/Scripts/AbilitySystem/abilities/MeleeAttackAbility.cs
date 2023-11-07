@@ -9,21 +9,21 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] int comboLength;
 	[SerializeField] float damageRange;
     [SerializeField] LayerMask targetLayers;
-    [SerializeField] float swingsPerMin = 1000;
+    //[SerializeField] float swingsPerMin = 1000;
 	[SerializeField] float swingRadius,swingRange;
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
-	
+	[SerializeField,Range(0,1)] float comboWindow;
 	float angleCutoff;
-	float coolDown;
+	[SerializeField]float coolDown;
 	Timer timer;
 	[SerializeField] string animationTrigger;
 	bool swung = false;
-	float maxStam,stamina;
+	
 	protected override void OnEquip()
 	{
-		coolDown = 1.0f/ (swingsPerMin / 60.0f);
+		//coolDown = 1.0f/ (swingsPerMin / 60.0f);
 		//caster.ChangeSpeed(-speedModifier);
 
         timer = new Timer(coolDown,true);
@@ -34,7 +34,7 @@ public class MeleeAttackAbility : Ability
 		timer.Tick();
 		if(timer.complete && swung)
         {
-			
+			FinishCast();
 			swung = false;
         }
 	}
@@ -48,7 +48,7 @@ public class MeleeAttackAbility : Ability
 	}
 	protected override void DoCast(CastData data)
 	{
-		if(timer.complete)
+		if(timer.Progress >= comboWindow)
 		{
 			swung = true;
 			
@@ -89,8 +89,11 @@ public class MeleeAttackAbility : Ability
 						hitvfx.Value.Play(hitPoint, hitNormal);
 				}
 			}
-		}
-	}
+            
+        }
+        
+
+    }
 	
 	
 	protected virtual void OnSwing(Vector3 origin,Vector3 direction)

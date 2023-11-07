@@ -344,7 +344,9 @@ MonoBehaviour:
   player: {fileID: 0}
   agent: {fileID: 0}
   health: {fileID: 2298205099550627660}
-  anim: {fileID: 7051748979274945161}
+  anim:
+    enabled: 1
+    val: {fileID: 7051748979274945161}
   manager: {fileID: 0}
   caster: {fileID: 0}
   behaviourTree: {fileID: 2298205099550627661}
@@ -371,6 +373,7 @@ MonoBehaviour:
     enabled: 0
     val: 
   flankDistance: 5
+  knockbackResist: 0
   retaliateCooldown: 0
   stunDuration: 0
   delayMoveRange: 1
@@ -496,7 +499,7 @@ MonoBehaviour:
   facer: {fileID: 4172737547295073401}
   render:
   - {fileID: 7156923351064643498}
-  pickup: {fileID: 1068362164895292843}
+  pickupPrefab: {fileID: 0}
   fadeRate: 1
   ragdollSideForce: 0
   ragdollUpForce: 0
@@ -2075,7 +2078,6 @@ MonoBehaviour:
   - {fileID: 0}
   hoverText: {fileID: 0}
   icon: {fileID: 0}
-  agent: {fileID: 2298205099550627659}
 --- !u!1 &6049855717693762281
 GameObject:
   m_ObjectHideFlags: 0

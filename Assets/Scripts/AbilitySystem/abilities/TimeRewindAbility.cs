@@ -57,6 +57,7 @@ public class TimeRewindAbility : Ability
                 reversing = false;
 				body.SetActive(false);
 				lineRenderer.enabled = false;
+                FinishCast();
 			}
             else
             caster.transform.position = positionHistory[index].position;

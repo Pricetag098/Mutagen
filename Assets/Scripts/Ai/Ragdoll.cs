@@ -187,7 +187,7 @@ public class Ragdoll : MonoBehaviour
         }
 
         //disable components
-        agent.anim.enabled = false;
+        agent.anim.Value.enabled = false;
         agent.agent.enabled = false;
         agent.behaviourTree.enabled = false;
         //agent.enabled = false;

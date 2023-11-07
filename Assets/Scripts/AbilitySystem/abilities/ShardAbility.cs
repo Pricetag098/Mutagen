@@ -26,6 +26,7 @@ public class ShardAbility : Ability
             shard.transform.position = spawnPos;
             if (shard.TryGetComponent(out Health health))
                 health.Respawn();
+            FinishCast();
         }
     }
 
