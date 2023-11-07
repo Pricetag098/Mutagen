@@ -14,7 +14,7 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
-	[SerializeField,Range(0,1)] float swingAgainProgress;
+	[SerializeField,Range(0,1)] float comboWindow;
 	float angleCutoff;
 	[SerializeField]float coolDown;
 	Timer timer;
@@ -48,7 +48,7 @@ public class MeleeAttackAbility : Ability
 	}
 	protected override void DoCast(CastData data)
 	{
-		if(timer.Progress >= swingAgainProgress)
+		if(timer.Progress >= comboWindow)
 		{
 			swung = true;
 			
