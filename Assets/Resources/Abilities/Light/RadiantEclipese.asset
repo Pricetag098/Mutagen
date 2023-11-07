@@ -28,7 +28,7 @@ MonoBehaviour:
   releaseOnFullCharge: 1
   maxChargeTime: 0.5
   minChargeTime: 0.4
-  damageRange: 10
+  damageRange: 1
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
@@ -49,18 +49,27 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 100
-      inSlope: 0
-      outSlope: 0
+      value: 0
+      inSlope: 20
+      outSlope: 20
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
+      time: 0.5
+      value: 10
+      inSlope: 100
+      outSlope: 100
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
       time: 1
       value: 100
-      inSlope: 0
-      outSlope: 0
+      inSlope: 180
+      outSlope: 180
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

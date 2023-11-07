@@ -55,6 +55,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3474072954737233891, guid: ba30d8a3e1b8e644e96c557ad720dfdc, type: 3}
+      propertyPath: TriggerModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474072954737233891, guid: ba30d8a3e1b8e644e96c557ad720dfdc, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474072954737233891, guid: ba30d8a3e1b8e644e96c557ad720dfdc, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474072954737233891, guid: ba30d8a3e1b8e644e96c557ad720dfdc, type: 3}
+      propertyPath: CollisionModule.m_Planes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba30d8a3e1b8e644e96c557ad720dfdc, type: 3}
 --- !u!1001 &8917424774695719523
@@ -123,3 +139,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8593875573489360666, guid: 178489866c9c0ee4fb1d1250bacd7396, type: 3}
   m_PrefabInstance: {fileID: 8917424774695719523}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6328493076031166519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3175702367502518868, guid: 178489866c9c0ee4fb1d1250bacd7396, type: 3}
+  m_PrefabInstance: {fileID: 8917424774695719523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &546082840701524098
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328493076031166519}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 12
+  m_Center: {x: 0, y: 0, z: 0}

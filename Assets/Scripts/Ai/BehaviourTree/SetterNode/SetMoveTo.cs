@@ -99,7 +99,8 @@ public class SetMoveTo : SetterNode
         //Vector3 temp = hit.position;
         //temp.y = agent.transform.position.y;
 
-        Vector3 temp = (agent.transform.position - player.transform.position).normalized * awayDistance;
+        Vector3 temp = agent.transform.position + (agent.transform.position - player.transform.position).normalized * awayDistance;
+        //Debug.Log(temp);
 
         return temp;    
     }

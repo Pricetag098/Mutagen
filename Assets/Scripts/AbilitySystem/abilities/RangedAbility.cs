@@ -64,7 +64,7 @@ public class RangedAbility : Ability
 
     }
 
-    public override void Tick()
+    public override void OnTick()
     {
         if(!held && chargeTime > 0)
         {
