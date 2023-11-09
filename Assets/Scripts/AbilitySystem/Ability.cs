@@ -22,7 +22,7 @@ public class Ability : ScriptableObject
     public Element element;
     public CastDelegate OnCast;
     public Optional<GameObject> pickupPrefab;
-    CastData lastCastData;
+    protected CastData lastCastData;
     //[System.Flags]
 	public enum SlotMask 
     { 

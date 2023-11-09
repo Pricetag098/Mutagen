@@ -7,6 +7,8 @@ public class MeleeAttackAbility : Ability
 {
     [SerializeField] float damage;
 	[SerializeField] int comboLength;
+	int comboIndex = 0;
+	bool inputBuffered = false;
 	[SerializeField] float damageRange;
     [SerializeField] LayerMask targetLayers;
     //[SerializeField] float swingsPerMin = 1000;
@@ -14,13 +16,14 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
-	[SerializeField,Range(0,1)] float comboWindow;
+	[SerializeField,Range(0,1)] float bufferWindow;
 	float angleCutoff;
 	[SerializeField]float coolDown;
 	Timer timer;
 	[SerializeField] string animationTrigger;
-	bool swung = false;
 	
+	
+
 	protected override void OnEquip()
 	{
 		//coolDown = 1.0f/ (swingsPerMin / 60.0f);
@@ -32,65 +35,74 @@ public class MeleeAttackAbility : Ability
 	public override void OnTick()
 	{
 		timer.Tick();
-		if(timer.complete && swung)
-        {
-			FinishCast();
-			swung = false;
-        }
+		if (timer.complete && castState == CastState.casting)
+		{
+			if (inputBuffered)
+			{
+				inputBuffered = false;
+				if (OnCast != null)
+					OnCast(lastCastData);
+				timer.Reset();
+				OnSwing(lastCastData.origin, lastCastData.aimDirection);
+				if (caster.animator.Enabled)
+					caster.animator.Value.SetTrigger(animationTrigger);
+				List<Health> healths = new List<Health>();
+				if (swingvfx.Enabled)
+					swingvfx.Value.Play(lastCastData.origin, lastCastData.aimDirection, lastCastData.effectOrigin);
+				RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, lastCastData.aimDirection, swingRange, targetLayers);
+				foreach (RaycastHit hit in hits)
+				{
+					HitBox hb;
+					if (hit.collider.TryGetComponent(out hb))
+					{
+						if (healths.Contains(hb.health))
+							continue;
+						healths.Add(hb.health);
+						OnHit(hb, lastCastData.aimDirection);
+
+						float tempdmg = damage;
+						tempdmg += Random.Range(-damageRange, damageRange);
+						if (tempdmg < 0)
+							tempdmg = 0;
+
+						hb.OnHit(CreateDamageData(tempdmg));
+						Vector3 hitPoint = hit.point;
+						Vector3 hitNormal = hit.normal;
+						if (hitPoint == Vector3.zero)
+						{
+							hitPoint = hit.collider.ClosestPoint(lastCastData.origin);
+							hitNormal = lastCastData.origin - hitPoint;
+						}
+						if (hitvfx.Enabled)
+							hitvfx.Value.Play(hitPoint, hitNormal);
+					}
+				}
+				comboIndex++;
+			}
+			else
+			{
+				FinishCast();
+				comboIndex = 0;
+			}
+
+		}
+		
+
+
+
+
+		
 	}
 	protected override void OnUnEquip(Ability replacement)
 	{
-		if(swung)
-        {
-			
-			swung = false;
-		}
+		
 	}
 	protected override void DoCast(CastData data)
 	{
-		if(timer.Progress >= comboWindow)
+		if(!inputBuffered&&timer.Progress > bufferWindow && comboIndex < comboLength)
 		{
-			swung = true;
-			
-            if (OnCast != null)
-                OnCast(data);
-            timer.Reset();
-			OnSwing(data.origin, data.aimDirection);
-			if (caster.animator.Enabled)
-				caster.animator.Value.SetTrigger(animationTrigger);
-			List<Health> healths = new List<Health>();
-			if (swingvfx.Enabled)
-				swingvfx.Value.Play(data.origin, data.aimDirection,data.effectOrigin);
-			RaycastHit[] hits = Physics.SphereCastAll(data.origin, swingRadius, data.aimDirection, swingRange, targetLayers);
-			foreach (RaycastHit hit in hits)
-			{
-				HitBox hb;
-				if (hit.collider.TryGetComponent(out hb))
-				{
-					if (healths.Contains(hb.health))
-						continue;
-					healths.Add(hb.health);
-					OnHit(hb,data.aimDirection);
-
-					float tempdmg = damage;
-                    tempdmg += Random.Range(-damageRange, damageRange);
-                    if (tempdmg < 0)
-                        tempdmg = 0;
-
-                    hb.OnHit(CreateDamageData(tempdmg));
-					Vector3 hitPoint = hit.point;
-					Vector3 hitNormal = hit.normal;
-					if (hitPoint == Vector3.zero)
-					{
-						hitPoint = hit.collider.ClosestPoint(data.origin);
-						hitNormal = data.origin - hitPoint;
-					}
-					if (hitvfx.Enabled)
-						hitvfx.Value.Play(hitPoint, hitNormal);
-				}
-			}
-            
-        }
+			inputBuffered = true;
+		}
         
 
     }
