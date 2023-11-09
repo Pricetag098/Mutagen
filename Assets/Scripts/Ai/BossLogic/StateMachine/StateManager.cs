@@ -48,11 +48,9 @@ public class StateManager : MonoBehaviour
         {
             //if player is in front, do bite attack
             RaycastHit hit;
-            Vector3 cast = castOrigin.transform.position + transform.forward * 50;
-            cast.y = transform.position.y + 10;
-            if (Physics.SphereCast(castOrigin.position, 50f, cast, out hit, 101f, playerLayer))
+            if (Physics.SphereCast(castOrigin.position, 10f, transform.forward, out hit, 101f, playerLayer))
             {
-                if (curState != states[chompAttack])
+                //if (curState != states[chompAttack])
                 {
                     Debug.Log("Hit");
                     curState.OnExit();

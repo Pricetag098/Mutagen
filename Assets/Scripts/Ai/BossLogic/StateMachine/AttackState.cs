@@ -37,7 +37,7 @@ public class AttackState : State
         }
 
         //if uses dash's put here
-
+        if(manager.agent.pipeColourChanger.Enabled)
         manager.agent.AttackEffect();
 
         Debug.Log("Attack");
