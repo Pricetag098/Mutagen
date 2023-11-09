@@ -32,6 +32,7 @@ public class PlayerInMenu : MonoBehaviour
     {
         
         player.GetComponentInChildren<Animator>().SetTrigger("Stand");
+        canvas.interactable = false;
         Sequence sequence = DOTween.Sequence();
         sequence.Append(canvas.DOFade(0,fadeTime));
         sequence.Join(playerUi.DOFade(1, fadeTime));

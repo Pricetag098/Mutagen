@@ -20,22 +20,27 @@ MonoBehaviour:
     enabled: 1
     val: {fileID: 3311842869133973914, guid: 9485e04c4769e26498bf3963731cd73c, type: 3}
   slotMask: 0
+  castState: 0
   castType: 0
+  windUptime: 1
+  windDownTime: 1
+  moveSpeedModifier: 1
   damage: 25
+  comboLength: 0
   damageRange: 5
   targetLayers:
     serializedVersion: 2
     m_Bits: 64
-  swingsPerMin: 240
   swingRadius: 2
   swingRange: 2
   hitvfx:
     enabled: 1
     val: {fileID: 11400000, guid: cb205c69870695c438fcd6ec5e257882, type: 2}
   swingvfx:
-    enabled: 1
+    enabled: 0
     val: {fileID: 11400000, guid: b9b417e56f7561d41af7dc0c8e1aa99d, type: 2}
   hitEffects:
   - {fileID: 11400000, guid: 0e76b26503b14a94a90de7b00cefc510, type: 2}
-  speedModifier: 1
+  comboWindow: 0
+  coolDown: 1
   animationTrigger: Slash

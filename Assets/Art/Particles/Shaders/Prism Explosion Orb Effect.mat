@@ -9,23 +9,19 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Prism Explosion Orb Effect
   m_Shader: {fileID: -6465566751694194690, guid: 6b8a4091c3656da4ab1e41769fda064b, type: 3}
-  m_ValidKeywords:
-  - _ALPHATEST_ON
-  - _SURFACE_TYPE_TRANSPARENT
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
-  disabledShaderPasses:
-  - DepthOnly
+  m_CustomRenderQueue: 2450
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Noise:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9e6c527c97bfd2846a1e44fc72365304, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -46,25 +42,22 @@ Material:
     - _Blend: 0
     - _CastShadows: 1
     - _Cull: 2
-    - _Dissolve_Slider_1: 0
-    - _Dissolve_Slider_2: 0
-    - _DstBlend: 10
-    - _Emission_Power: 1
-    - _Frensel_Power: 0.48
+    - _Dissolve_Slider_1: 0.473
+    - _Dissolve_Slider_2: 0.358
+    - _DstBlend: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothstep: 0
-    - _SrcBlend: 5
-    - _Surface: 1
+    - _Smoothstep: 0.4
+    - _SrcBlend: 1
+    - _Surface: 0
     - _WorkflowMode: 1
     - _ZTest: 4
-    - _ZWrite: 0
+    - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 4, g: 3.654902, b: 0, a: 0}
-    - _Inside_Colour: {r: 0, g: 0, b: 0, a: 0}
-    - _Outside_Colour: {r: 0, g: 0, b: 0, a: 0}
+    - _Inside_Colour: {r: 2.9279854, g: 1.7843701, b: 0, a: 1}
+    - _Outside_Colour: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8546297704913611625
 MonoBehaviour:
