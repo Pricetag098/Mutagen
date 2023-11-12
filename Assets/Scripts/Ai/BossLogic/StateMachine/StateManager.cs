@@ -20,8 +20,12 @@ public class StateManager : MonoBehaviour
     State curState;
     public bool casting;
 
+    [Header("Stats")]
+    public float actionCooldown;
+    [HideInInspector] public float actionTimer;
+
     //readability
-    int rotating = 0; int chompAttack = 1;
+    int rotating = 0; int chompAttack = 1; int empAttack = 2;
 
     private void Start()
     {
@@ -29,9 +33,10 @@ public class StateManager : MonoBehaviour
         caster = GetComponent<EnemyAbilityCaster>();
         player = FindObjectOfType<PlayerMovement>();
         agent = FindObjectOfType<Enemy>();
-        foreach(State state in states)
+        for(int i = 0; i < states.Length; i++)
         {
-            state.manager = this;
+            states[i] = Instantiate(states[i]);
+            states[i].manager = this;
         }
 
         curState = states[0];
@@ -43,23 +48,27 @@ public class StateManager : MonoBehaviour
         //run current state
         curState.Tick();
 
-        //if not already casting ability
-        if (!casting)
+
+        if (casting || Time.time - actionTimer > actionCooldown)
+            return;
+
+
+        //if player is in front, do bite attack
+        RaycastHit hit;
+        if (Physics.SphereCast(castOrigin.position, 15f, transform.forward, out hit, 50f, playerLayer))
         {
-            //if player is in front, do bite attack
-            RaycastHit hit;
-            if (Physics.SphereCast(castOrigin.position, 10f, transform.forward, out hit, 101f, playerLayer))
+            if (curState != states[chompAttack])
             {
-                //if (curState != states[chompAttack])
-                {
-                    Debug.Log("Hit");
-                    curState.OnExit();
-                    curState = states[chompAttack];
-                    curState.OnEnter();
-                }
-                return;
+                Debug.Log("Hit");
+                curState.OnExit();
+                curState = states[chompAttack];
+                curState.OnEnter();
             }
-            Debug.Log("Cast");
+            return;
+        }
+        else
+        {
+
         }
 
         //normal movement
@@ -69,6 +78,7 @@ public class StateManager : MonoBehaviour
             curState = states[rotating];
             curState.OnEnter();
         }
+
     }
 
     private void OnDrawGizmos()

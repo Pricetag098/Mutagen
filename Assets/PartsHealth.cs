@@ -9,7 +9,7 @@ public class PartsHealth : MonoBehaviour
     HitBox hitBox;
     [Header("Stats")]
     [SerializeField] float maxPartHealth;
-    float curPartHealth;
+    [SerializeField] float curPartHealth;
 
 
     private void Start()

@@ -119,7 +119,7 @@ public class EnemyManager : MonoBehaviour
         //assigns the agents variables
 ;       enemyList.Add(agent);
         agent.manager = this;
-        agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
+        agent.GetComponentInChildren<FloatingTextTarget>().textManager = floatingTextManager;
         agent.player = player;
 
         if(agent.randoms.Enabled)

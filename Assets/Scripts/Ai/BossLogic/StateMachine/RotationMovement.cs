@@ -10,6 +10,7 @@ public class RotationMovement : MoveState
 
     public override void OnEnter()
     {
+        manager.nav.speed = agentSpeed;
         manager.movementPoint.speed = speed;
         manager.movementPoint.distanceFromCentre = distanceFromCentre;
         manager.movementTarget = manager.movementPoint.transform;

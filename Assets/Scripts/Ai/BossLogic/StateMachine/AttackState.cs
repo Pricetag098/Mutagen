@@ -5,28 +5,56 @@ using UnityEngine;
 [CreateAssetMenu(menuName = ("AI/States/AttackStates"))]
 public class AttackState : State
 {
+    [Header("Ability Stats")]
     [SerializeField] int abilityIndex;
     [SerializeField] bool deviatedDirection;
-    [SerializeField] int castTime;
+    [SerializeField] float castTime;
+    [Tooltip("How long after the attack before the boss can attack again")]
+    [SerializeField] float setActionCooldown;
     float timer;
     Ability ability;
 
+    [Header("Behaviour Stats")]
+    [SerializeField] float agentSpeed;
+    float baseSpeed;
+    [SerializeField] bool delay;
+    [SerializeField] float delayAmount;
+    float delayTimer;
+    bool focusCheck; bool focusBase;
+
     public override void OnEnter()
     {
-        manager.movementPoint.speed = 0;
+        manager.movementPoint.speed = agentSpeed;
+        baseSpeed = manager.nav.speed;
+        manager.nav.speed = agentSpeed;
         manager.nav.SetDestination(manager.nav.transform.position);
         manager.casting = true;
         ability = manager.caster.caster.abilities[abilityIndex];
+
+        //set timers
         timer = Time.time;
+
+        if(delay)
+            delayTimer = Time.time;
     }
 
     public override void OnExit()
     {
-
+        //how long after this ability finishes until the boss can do another attack
+        manager.actionCooldown = setActionCooldown;
+        manager.actionTimer = Time.time;
     }
 
     public override void Tick()
     {
+        //if (delay)
+        //{
+        //    if(Time.time - delayTimer < delayAmount)
+        //    {
+        //        return;
+        //    }
+        //}
+
         Ability.CastData data = manager.caster.CreateCastData();
         if (deviatedDirection)
         {

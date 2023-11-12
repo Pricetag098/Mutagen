@@ -14,10 +14,11 @@ public class Enemy : MonoBehaviour
     public Optional<Animator> anim;
     public EnemyManager manager;
     [HideInInspector] public EnemyAbilityCaster caster;
-    public BehaviourTreeRunner behaviourTree;
+
     public Renderer renderer;
 
     [Header("Optional References")]
+    public Optional<BehaviourTreeRunner> behaviourTree;
     public Optional<Material> invisMat;
     public Optional<PipeColourChanger> pipeColourChanger;
     [HideInInspector] public EventManager eventManager;
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
-        behaviourTree = GetComponent<BehaviourTreeRunner>();
+        behaviourTree.Value = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
         player = FindObjectOfType<PlayerAbilityCaster>();
@@ -84,7 +85,9 @@ public class Enemy : MonoBehaviour
     //used for idle animations and starting to attack the player
     public void Activate()
     {
-        behaviourTree.enabled = true;
+        if(behaviourTree.Enabled)
+        behaviourTree.Value.enabled = true;
+        if(anim.Enabled)
         anim.Value.SetTrigger("Detected");
 
         if(onActivate != null)
@@ -94,7 +97,8 @@ public class Enemy : MonoBehaviour
 
     public void Deactivate()
     {
-        behaviourTree.enabled = false;
+        if (behaviourTree.Enabled)
+            behaviourTree.Value.enabled = false;
         //this.enabled = false;
     }
 
@@ -138,7 +142,7 @@ public class Enemy : MonoBehaviour
 
     public void BindTree(BehaviourTree newTree)
     {
-        behaviourTree.tree = newTree.Clone();
+        behaviourTree.Value.tree = newTree.Clone();
     }
     #endregion
 
