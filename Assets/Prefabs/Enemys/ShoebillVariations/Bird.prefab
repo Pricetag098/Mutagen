@@ -1356,8 +1356,8 @@ MonoBehaviour:
     enabled: 0
     val: {fileID: 0}
   pipeColourChanger:
-    enabled: 0
-    val: {fileID: 0}
+    enabled: 1
+    val: {fileID: 1626858122150777281}
   eventManager: {fileID: 0}
   randoms:
     enabled: 0
@@ -1871,6 +1871,7 @@ GameObject:
   - component: {fileID: 2008015110128837335}
   - component: {fileID: 948599238542083665}
   - component: {fileID: 7069434849717745030}
+  - component: {fileID: 1626858122150777281}
   m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
@@ -1938,6 +1939,26 @@ MonoBehaviour:
   updateVals: 0
   fixedUpdate: 1
   target: {fileID: 4944713778633114468}
+--- !u!114 &1626858122150777281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880801520281668100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c490e37aaf29e17449a16e694b687a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pipesMat:
+  - {fileID: 6309803205863466370}
+  materials:
+  - {fileID: 2100000, guid: e542bdb1cdf760246a4ca45c8da1da30, type: 2}
+  - {fileID: 2100000, guid: d4e2fec9de8509f468d58effe3e5ce3b, type: 2}
+  - {fileID: 2100000, guid: 4b3617bcece35494f9dba5e66f2ca7f8, type: 2}
+  - {fileID: 2100000, guid: a307304ce00cc964fb15a4697b11ac84, type: 2}
+  - {fileID: 2100000, guid: ffe58ce3123ba9148aec43b7681dcbae, type: 2}
 --- !u!1 &4948094532950148828
 GameObject:
   m_ObjectHideFlags: 0
