@@ -6,66 +6,85 @@ using UnityEngine.AI;
 public class StateManager : MonoBehaviour
 {
     [Header("References")]
-    [HideInInspector] public NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent nav;
+    [HideInInspector] public Enemy agent;
+    [HideInInspector] public EnemyAbilityCaster caster;
     [SerializeField] LayerMask playerLayer;
+    [HideInInspector] public PlayerMovement player;
     public Transform castOrigin;
-    public Transform movementPoint;
+    public MovingPoint movementPoint;
     [HideInInspector] public Transform movementTarget;
 
     [Header("States")]
     public State[] states;
-    Optional<State> curState;
+    State curState;
     public bool casting;
 
+    [Header("Stats")]
+    public float actionCooldown;
+    [HideInInspector] public float actionTimer;
+
     //readability
-    int rotating = 0; int chompAttack = 1;
-
-
-
+    int rotating = 0; int chompAttack = 1; int empAttack = 2;
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        foreach(State state in states)
+        nav = GetComponent<NavMeshAgent>();
+        caster = GetComponent<EnemyAbilityCaster>();
+        player = FindObjectOfType<PlayerMovement>();
+        agent = FindObjectOfType<Enemy>();
+        for(int i = 0; i < states.Length; i++)
         {
-            state.manager = this;
+            states[i] = Instantiate(states[i]);
+            states[i].manager = this;
         }
+
+        curState = states[0];
+        curState.OnEnter();
     }
 
     private void Update()
     {
-        if(curState.Enabled)
-        curState.Value.Tick();
+        //run current state
+        curState.Tick();
 
+
+        if (casting || Time.time - actionTimer > actionCooldown)
+            return;
+
+
+        //if player is in front, do bite attack
         RaycastHit hit;
-        Vector3 cast = transform.position + Vector3.forward * 50;
-        cast.y = transform.position.y + 10;
-        if(Physics.SphereCast(castOrigin.position, 50f, cast, out hit, 101f, playerLayer))
+        if (Physics.SphereCast(castOrigin.position, 15f, transform.forward, out hit, 50f, playerLayer))
         {
-            Debug.Log("Hit");
+            if (curState != states[chompAttack])
+            {
+                Debug.Log("Hit");
+                curState.OnExit();
+                curState = states[chompAttack];
+                curState.OnEnter();
+            }
+            return;
+        }
+        else
+        {
+
         }
 
-
-
-
-        
-        if(curState.Value != states[rotating])
+        //normal movement
+        if (curState != states[rotating])
         {
-            if (curState.Enabled)
-                curState.Value.OnExit();
-            else
-                curState.Enabled = true;
-            curState.Value = states[rotating];
-            curState.Value.OnEnter(); 
+            curState.OnExit();
+            curState = states[rotating];
+            curState.OnEnter();
         }
 
     }
 
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
-        Vector3 draw = transform.position + Vector3.forward * 50;
+        Vector3 draw = castOrigin.transform.position + transform.forward * 50;
         draw.y = transform.position.y;
         Gizmos.DrawLine(transform.position, draw);
     }

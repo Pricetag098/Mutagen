@@ -10,6 +10,6 @@ public class ChangeBehaviourTreeEvent : Event
     public override void Play(Enemy agent)
     {
         used = true;
-        agent.behaviourTree.tree = newTree.Clone();
+        agent.behaviourTree.Value.tree = newTree.Clone();
     }
 }

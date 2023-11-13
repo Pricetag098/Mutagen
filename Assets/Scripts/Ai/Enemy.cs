@@ -14,10 +14,11 @@ public class Enemy : MonoBehaviour
     public Optional<Animator> anim;
     public EnemyManager manager;
     [HideInInspector] public EnemyAbilityCaster caster;
-    public BehaviourTreeRunner behaviourTree;
+
     public Renderer renderer;
 
     [Header("Optional References")]
+    public Optional<BehaviourTreeRunner> behaviourTree;
     public Optional<Material> invisMat;
     public Optional<PipeColourChanger> pipeColourChanger;
     [HideInInspector] public EventManager eventManager;
@@ -31,6 +32,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
     [HideInInspector] public bool isStunned;
+    [HideInInspector] public bool startedFiring;
+    [HideInInspector] public bool onCooldown;
     bool hitEffect;
 
     [Header("Declutter Stats")]
@@ -53,11 +56,16 @@ public class Enemy : MonoBehaviour
     public float stunDuration;
     [Range(0f,10f)]
     public float delayMoveRange;
+    //move these to blackboard
     [HideInInspector] public float defaultMovementSpeed;
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
     [HideInInspector] public float stunnedTimer;
+    [HideInInspector] public float firingTimer;
+    [HideInInspector] public float cooldownTimer;
     float hitFlashTimer;
+    bool telegraph;
+    float telegraphTimer;
 
     #region startupfunctions
     void Awake()
@@ -66,7 +74,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();    
         caster = GetComponent<EnemyAbilityCaster>();
-        behaviourTree = GetComponent<BehaviourTreeRunner>();
+        behaviourTree.Value = GetComponent<BehaviourTreeRunner>();
         eventManager = GetComponent<EventManager>();
         defaultMat = transform.parent.gameObject.GetComponentInChildren<Renderer>().material;
         player = FindObjectOfType<PlayerAbilityCaster>();
@@ -82,7 +90,9 @@ public class Enemy : MonoBehaviour
     //used for idle animations and starting to attack the player
     public void Activate()
     {
-        behaviourTree.enabled = true;
+        if(behaviourTree.Enabled)
+        behaviourTree.Value.enabled = true;
+        if(anim.Enabled)
         anim.Value.SetTrigger("Detected");
 
         if(onActivate != null)
@@ -92,7 +102,8 @@ public class Enemy : MonoBehaviour
 
     public void Deactivate()
     {
-        behaviourTree.enabled = false;
+        if (behaviourTree.Enabled)
+            behaviourTree.Value.enabled = false;
         //this.enabled = false;
     }
 
@@ -136,7 +147,7 @@ public class Enemy : MonoBehaviour
 
     public void BindTree(BehaviourTree newTree)
     {
-        behaviourTree.tree = newTree.Clone();
+        behaviourTree.Value.tree = newTree.Clone();
     }
     #endregion
 
@@ -145,6 +156,15 @@ public class Enemy : MonoBehaviour
         if(anim.Enabled)
         anim.Value.SetFloat("Speed", agent.speed);
 
+
+        if (telegraph)
+        {
+            if (Time.time - telegraphTimer > 0.1f)
+            {
+                telegraph = false;
+                pipeColourChanger.Value.Default();
+            }
+        }
 
         if (!hitEffect)
             return;
@@ -155,6 +175,13 @@ public class Enemy : MonoBehaviour
             hitEffect = false;
         }
 
+    }
+
+    public void AttackEffect()
+    {
+
+        telegraphTimer = Time.time;
+        pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
     }
 
     void OnHit(DamageData data)

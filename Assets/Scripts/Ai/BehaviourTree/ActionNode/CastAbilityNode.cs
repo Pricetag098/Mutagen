@@ -55,25 +55,36 @@ public class CastAbilityNode : ActionNode
 
             data.aimDirection = new Vector3((player.transform.position.x - agent.transform.position.x)
                 + dev, 0, (player.transform.position.z - agent.transform.position.z) + dev).normalized;
+        }
 
+        if (!agent.startedFiring)
+        {
+            agent.startedFiring = true;
+            agent.firingTimer = Time.time;
         }
 
         if (ability.GetType() == typeof (DashAbility) || ability.GetType() == typeof(DashApplysEffect))
         {
             data.moveDirection = (blackboard.moveToPosition - agent.transform.position).normalized * 10;
         }
+        agent.AttackEffect();
 
-        if(rotate)
+        if (rotate)
             agent.transform.LookAt(blackboard.rotateTowardsObject.transform.position);
 
         if (!assigned)
-        aCaster.CastAbility(abilityIndex,data);
+        {
+            agent.AttackEffect();
+            aCaster.CastAbility(abilityIndex, data);
+        }
+
         else
         {
             for(int i = 0; i < aCaster.abilities.Length; i++)
             {
                 if(aCaster.abilities[i] == ability)
                 {
+                    agent.AttackEffect();
                     aCaster.CastAbility(i,data);
                 }
             }

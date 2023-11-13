@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloatingTextTarget : MonoBehaviour
 {
-    Health health;
+    public Health health;
     [HideInInspector] public FloatingTextManager textManager;
 
     private void Awake()
@@ -14,6 +14,7 @@ public class FloatingTextTarget : MonoBehaviour
 
     private void Start()
     {
+        if(health == null)
         health = GetComponent<Health>();
         health.OnHit += OnHit;
     }
