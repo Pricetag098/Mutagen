@@ -55,7 +55,12 @@ public class CastAbilityNode : ActionNode
 
             data.aimDirection = new Vector3((player.transform.position.x - agent.transform.position.x)
                 + dev, 0, (player.transform.position.z - agent.transform.position.z) + dev).normalized;
+        }
 
+        if (!agent.startedFiring)
+        {
+            agent.startedFiring = true;
+            agent.firingTimer = Time.time;
         }
 
         if (ability.GetType() == typeof (DashAbility) || ability.GetType() == typeof(DashApplysEffect))

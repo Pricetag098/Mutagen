@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
     [HideInInspector] public bool isStunned;
+    [HideInInspector] public bool startedFiring;
+    [HideInInspector] public bool onCooldown;
     bool hitEffect;
 
     [Header("Declutter Stats")]
@@ -54,10 +56,13 @@ public class Enemy : MonoBehaviour
     public float stunDuration;
     [Range(0f,10f)]
     public float delayMoveRange;
+    //move these to blackboard
     [HideInInspector] public float defaultMovementSpeed;
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
     [HideInInspector] public float stunnedTimer;
+    [HideInInspector] public float firingTimer;
+    [HideInInspector] public float cooldownTimer;
     float hitFlashTimer;
     bool telegraph;
     float telegraphTimer;

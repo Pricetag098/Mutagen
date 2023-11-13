@@ -17,7 +17,8 @@ public enum CheckType
     sightLine,
     abilityType,
     isAbility,
-    abilityCooldown
+    abilityCooldown,
+    firingCooldown
 }
 public enum AbilityCheckType
 {
@@ -37,6 +38,7 @@ public class IfElseNode : CompositeNode
     public Optional<oneTimeCheck> oneTime;
     public Optional<int> cooldownCheckIndex;
     public Optional<Ability> isAbility;
+    public Optional<int> firingDuration, firingCooldown;
     public enum oneTimeCheck
     {
         Null,
@@ -231,6 +233,37 @@ public class IfElseNode : CompositeNode
         return aCaster.curAbility == isAbility.Value;
     }
 
+    bool isFiringCooldownCheck()
+    {
+        if (!agent.startedFiring)
+            return true;
+
+        if(Time.time - agent.firingTimer > firingDuration.Value)
+        {
+            Debug.Log("Done Firing");
+            if (!agent.onCooldown)
+            {
+                Debug.Log("Start Cooldown");
+                agent.onCooldown = true;
+                agent.cooldownTimer = Time.time;
+                return false;
+            }
+            else
+            {
+                if (Time.time - agent.cooldownTimer > firingCooldown.Value)
+                {
+                    agent.startedFiring = false;
+                    agent.onCooldown = false;
+                    return true;
+                }
+
+                return false;
+            }
+
+        }
+        return true;
+    }
+
     protected override State OnUpdate()
     {
         if (oneTime.Value != oneTimeCheck.Null && oneTime.Value == oneTimeCheck.Completed) 
@@ -289,6 +322,19 @@ public class IfElseNode : CompositeNode
                     ChildUpdate(first);
                 else
                     ChildUpdate(second);
+                break;
+
+            case CheckType.firingCooldown:
+                if (isFiringCooldownCheck())
+                {
+                    //Debug.Log("True");
+                    ChildUpdate(first);
+                }
+                else
+                {
+                    Debug.Log("False");
+                    ChildUpdate(second);
+                }
                 break;
             #endregion
 
