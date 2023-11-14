@@ -44,8 +44,7 @@ public class MeleeAttackAbility : Ability
 					OnCast(lastCastData);
 				timer.Reset();
 				OnSwing(lastCastData.origin, lastCastData.aimDirection);
-				if (caster.animator.Enabled)
-					caster.animator.Value.SetTrigger(animationTrigger);
+				TriggerAnimation(animationTrigger, coolDown);
 				List<Health> healths = new List<Health>();
 				if (swingvfx.Enabled)
 					swingvfx.Value.Play(lastCastData.origin, lastCastData.aimDirection, lastCastData.effectOrigin);

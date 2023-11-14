@@ -56,6 +56,9 @@ public class Ability : ScriptableObject
     public float windDownTime;
     Timer windUpTimer,windDownTimer;
     public float moveSpeedModifier;
+
+    public string windUpTrigger;
+    public string windDownTrigger;
 	public void Equip(AbilityCaster abilityCaster)
     {
         caster = abilityCaster;
@@ -129,6 +132,7 @@ public class Ability : ScriptableObject
                 windUpTimer.Reset();
                 lastCastData = data;
 				caster.ChangeSpeed(-moveSpeedModifier);
+                TriggerAnimation(windUpTrigger, windUptime);
 				break;
             case CastState.casting:
 				DoCast(data);
@@ -141,6 +145,7 @@ public class Ability : ScriptableObject
     {
         windDownTimer.Reset();
         castState = CastState.windDown;
+        TriggerAnimation(windDownTrigger, windDownTime);
     }
     protected virtual void DoCast(CastData data)
     {
@@ -173,5 +178,15 @@ public class Ability : ScriptableObject
         data.damage = damage;
         data.type = element;
         return data;
+    }
+
+    protected void TriggerAnimation(string trigger,float time)
+    {
+        if(caster.animator.Enabled)
+        {
+            caster.animator.Value.SetFloat("AnimationSpeed", 1 / time);
+            caster.animator.Value.SetTrigger(trigger);
+		}
+        
     }
 }
