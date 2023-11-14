@@ -47,14 +47,6 @@ public class AttackState : State
 
     public override void Tick()
     {
-        //if (delay)
-        //{
-        //    if(Time.time - delayTimer < delayAmount)
-        //    {
-        //        return;
-        //    }
-        //}
-
         Ability.CastData data = manager.caster.CreateCastData();
         if (deviatedDirection)
         {
@@ -68,22 +60,20 @@ public class AttackState : State
         if(manager.agent.pipeColourChanger.Enabled)
         manager.agent.AttackEffect();
 
-        Debug.Log("Attack");
-
-        if(ability.castType == Ability.CastTypes.hold)
+        if (ability.castType == Ability.CastTypes.hold)
         {
-            manager.caster.caster.CastAbility(abilityIndex, data);
+            for (int i = 0; i < manager.castOrigins.Length; i++)
+                manager.caster.caster.CastAbility(abilityIndex, data);
             if (Time.time - timer > castTime)
             {
                 //finished casting
                 manager.casting = false;
             }
-        }
-        else
-        {
-            manager.caster.caster.CastAbility(abilityIndex, data);
-            manager.casting = false;
+            return;
         }
 
+        for (int i = 0; i < manager.castOrigins.Length; i++)
+            manager.caster.caster.CastAbility(abilityIndex, data);
+        manager.casting = false;
     }
 }

@@ -11,11 +11,11 @@ public class StateManager : MonoBehaviour
     [HideInInspector] public EnemyAbilityCaster caster;
     [SerializeField] LayerMask playerLayer;
     [HideInInspector] public PlayerMovement player;
-    public Transform castOrigin;
+    public Transform[] castOrigins;
     public MovingPoint movementPoint;
     [HideInInspector] public Transform movementTarget;
 
-    [Header("States")]
+    [Header("States and State logic")]
     public State[] states;
     State curState;
     public bool casting;
@@ -48,14 +48,13 @@ public class StateManager : MonoBehaviour
         //run current state
         curState.Tick();
 
-
-        if (casting || Time.time - actionTimer > actionCooldown)
+        if (casting)
             return;
 
 
         //if player is in front, do bite attack
         RaycastHit hit;
-        if (Physics.SphereCast(castOrigin.position, 15f, transform.forward, out hit, 50f, playerLayer))
+        if (Physics.SphereCast(transform.position, 10f, transform.forward, out hit, 15f, playerLayer))
         {
             if (curState != states[chompAttack])
             {
@@ -78,13 +77,12 @@ public class StateManager : MonoBehaviour
             curState = states[rotating];
             curState.OnEnter();
         }
-
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
-        Vector3 draw = castOrigin.transform.position + transform.forward * 50;
+        Vector3 draw =  transform.position + (transform.forward) * 20;
         draw.y = transform.position.y;
         Gizmos.DrawLine(transform.position, draw);
     }

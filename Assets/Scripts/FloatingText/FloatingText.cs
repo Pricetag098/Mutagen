@@ -35,6 +35,8 @@ public class FloatingText
         go.transform.position = followCameraPos;
 
         followHealth = follow.GetComponent<Health>();
+        if(!followHealth)
+            followHealth = follow.GetComponentInParent<Health>();
 
         txt.outlineWidth = 0.5f;
         txt.outlineColor = Color.black;
