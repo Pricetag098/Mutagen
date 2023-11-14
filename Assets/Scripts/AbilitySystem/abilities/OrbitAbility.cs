@@ -94,6 +94,7 @@ public class OrbitAbility : Ability
                 orbs.Add(go);
             }
             timer.Reset();
+            FinishCast();
         }
     }
     public override float GetCoolDownPercent()
