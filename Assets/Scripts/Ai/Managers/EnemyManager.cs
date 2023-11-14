@@ -25,7 +25,6 @@ public class EnemyManager : MonoBehaviour
     [Header("Element")]
     int elementIndex;
     public Optional<Element> assignedElement;
-    public Material[] elementColours;
 
     //detection stat
     [HideInInspector] public bool activated;
@@ -120,7 +119,7 @@ public class EnemyManager : MonoBehaviour
         //assigns the agents variables
 ;       enemyList.Add(agent);
         agent.manager = this;
-        agent.GetComponent<FloatingTextTarget>().textManager = floatingTextManager;
+        agent.GetComponentInChildren<FloatingTextTarget>().textManager = floatingTextManager;
         agent.player = player;
 
         if(agent.randoms.Enabled)
@@ -132,7 +131,7 @@ public class EnemyManager : MonoBehaviour
         {
             int value = (int)assignedElement.Value;
             if(agent.pipeColourChanger.Enabled)
-            agent.pipeColourChanger.Value.Change(elementColours[value]);
+            agent.pipeColourChanger.Value.Change(value);
             if (caster.loadoutVariations.Count() -1 > elementIndex)
                 caster.AssignLoadout(caster.loadoutVariations[value]);
             else
@@ -147,7 +146,7 @@ public class EnemyManager : MonoBehaviour
             caster.AssignLoadout(caster.loadoutVariations[0]);
 
         if(agent.pipeColourChanger.Enabled)
-        agent.pipeColourChanger.Value.Change(elementColours[elementIndex]);
+        agent.pipeColourChanger.Value.Change(elementIndex);
     }
 
     public void Remove(Enemy agent)

@@ -10,10 +10,10 @@ public class RotationMovement : MoveState
 
     public override void OnEnter()
     {
-        MovingPoint point = manager.movementPoint.GetComponent<MovingPoint>();
-        point.speed = speed;
-        point.distanceFromCentre = distanceFromCentre;
-        manager.movementTarget = manager.movementPoint;
+        manager.nav.speed = agentSpeed;
+        manager.movementPoint.speed = speed;
+        manager.movementPoint.distanceFromCentre = distanceFromCentre;
+        manager.movementTarget = manager.movementPoint.transform;
     }
 
     public override void OnExit()
@@ -23,7 +23,7 @@ public class RotationMovement : MoveState
 
     public override void Tick()
     {
-        manager.agent.SetDestination(manager.movementTarget.position);
+        manager.nav.SetDestination(manager.movementTarget.position);
     }
 
 }
