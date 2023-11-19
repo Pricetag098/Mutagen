@@ -14,8 +14,7 @@ public class Enemy : MonoBehaviour
     public Optional<Animator> anim;
     public EnemyManager manager;
     [HideInInspector] public EnemyAbilityCaster caster;
-
-    public Renderer renderer;
+    public Renderer[] renderer;
 
     [Header("Optional References")]
     public Optional<BehaviourTreeRunner> behaviourTree;
@@ -44,12 +43,13 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     public float movementSpeed;
     public float movementMultiplier = 1;
-    [Tooltip("In order of lowest to highest")]
-    public Optional<int[]> healthState;
     public float flankDistance = 5;
     [Min(0.1f)]
     public float knockbackResist;
     float defaultSpeed;
+    [Tooltip("In order of lowest to highest")]
+    public Optional<int[]> healthState;
+
 
     [Header("Timers")]
     public float retaliateCooldown;
@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour
     {
         if (behaviourTree.Enabled)
             behaviourTree.Value.enabled = false;
+
         //this.enabled = false;
     }
 
@@ -171,7 +172,8 @@ public class Enemy : MonoBehaviour
 
         if(Time.time - hitFlashTimer > 0.1f)
         {
-            renderer.material.SetFloat("_RimLight", 0);
+            for (int i = 0; i < renderer.Count(); i++)
+                renderer[i].material.SetFloat("_RimLight", 0);
             hitEffect = false;
         }
 
@@ -188,8 +190,8 @@ public class Enemy : MonoBehaviour
     {
         if (!manager.activated)
             manager.Activate();
-
-        renderer.material.SetFloat("_RimLight", 1);
+        for(int i = 0; i < renderer.Count(); i++)
+            renderer[i].material.SetFloat("_RimLight", 1);
         hitEffect = true;
         hitFlashTimer = Time.time;
 
