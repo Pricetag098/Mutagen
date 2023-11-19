@@ -25,9 +25,9 @@ public class AttackState : State
     public override void OnEnter()
     {
         manager.movementPoint.speed = agentSpeed;
-        baseSpeed = manager.nav.speed;
+        //baseSpeed = manager.nav.speed;
         manager.nav.speed = agentSpeed;
-        manager.nav.SetDestination(manager.nav.transform.position);
+        //manager.nav.SetDestination(manager.nav.transform.position);
         manager.casting = true;
         ability = manager.caster.caster.abilities[abilityIndex];
 
@@ -40,21 +40,11 @@ public class AttackState : State
 
     public override void OnExit()
     {
-        //how long after this ability finishes until the boss can do another attack
-        manager.actionCooldown = setActionCooldown;
-        manager.actionTimer = Time.time;
+
     }
 
     public override void Tick()
     {
-        //if (delay)
-        //{
-        //    if(Time.time - delayTimer < delayAmount)
-        //    {
-        //        return;
-        //    }
-        //}
-
         Ability.CastData data = manager.caster.CreateCastData();
         if (deviatedDirection)
         {
@@ -68,22 +58,28 @@ public class AttackState : State
         if(manager.agent.pipeColourChanger.Enabled)
         manager.agent.AttackEffect();
 
-        Debug.Log("Attack");
-
-        if(ability.castType == Ability.CastTypes.hold)
+        if (ability.castType == Ability.CastTypes.hold)
         {
-            manager.caster.caster.CastAbility(abilityIndex, data);
+            for (int i = 0; i < manager.castOrigins.Length; i++)
+                manager.caster.caster.CastAbility(abilityIndex, data);
             if (Time.time - timer > castTime)
             {
+                //how long after this ability finishes until the boss can do another attack
+                manager.actionCooldown = setActionCooldown;
+                manager.actionTimer = Time.time;
                 //finished casting
                 manager.casting = false;
             }
-        }
-        else
-        {
-            manager.caster.caster.CastAbility(abilityIndex, data);
-            manager.casting = false;
+            return;
         }
 
+        for (int i = 0; i < manager.castOrigins.Length; i++)
+            manager.caster.caster.CastAbility(abilityIndex, data);
+
+        //how long after this ability finishes until the boss can do another attack
+        manager.actionCooldown = setActionCooldown;
+        manager.actionTimer = Time.time;
+
+        manager.casting = false;
     }
 }

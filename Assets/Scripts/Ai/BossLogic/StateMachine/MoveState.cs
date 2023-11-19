@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveState : State
 {
-    [SerializeField] protected float agentSpeed;
+
 
     public override void OnEnter()
     {
