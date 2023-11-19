@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour
     {
         if (behaviourTree.Enabled)
             behaviourTree.Value.enabled = false;
+
         //this.enabled = false;
     }
 
