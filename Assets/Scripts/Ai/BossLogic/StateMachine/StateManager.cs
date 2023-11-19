@@ -24,8 +24,10 @@ public class StateManager : MonoBehaviour
     public float actionCooldown;
     [HideInInspector] public float actionTimer;
 
-    //readability
-    int rotating = 0; int chompAttack = 1; int empAttack = 2;
+    //readability, phase 1
+    int rotating = 0; int chompAttack = 1; int shootAttack = 2;
+    //phase 2
+    int ramming = 3;
 
     private void Start()
     {
@@ -43,6 +45,20 @@ public class StateManager : MonoBehaviour
         curState.OnEnter();
     }
 
+    int getHealthState()
+    {
+        for (int i = 0; i < agent.healthState.Value.Length; i++)
+        {
+            if (i == agent.healthState.Value.Length - 1) return i;
+
+            if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
+            {
+                return i + 1;
+            }
+        }
+        return 0;
+    }
+
     private void Update()
     {
         //run current state
@@ -51,32 +67,59 @@ public class StateManager : MonoBehaviour
         if (casting)
             return;
 
+        //health state behaviour
+        switch (getHealthState())
+        {
+            case 0:
+                break;
+            case 1:
+                SecondBehaviour();
+                break;
+            case 2:
+                FirstBehaviour();
+                break;
 
+        }
+    }
+
+    void FirstBehaviour()
+    {
         //if player is in front, do bite attack
-        RaycastHit hit;
-        if (Physics.SphereCast(transform.position, 10f, transform.forward, out hit, 15f, playerLayer))
-        {
-            if (curState != states[chompAttack])
-            {
-                Debug.Log("Hit");
-                curState.OnExit();
-                curState = states[chompAttack];
-                curState.OnEnter();
-            }
-            return;
-        }
-        else
-        {
-
-        }
+        //RaycastHit hit;
+        //if (Physics.SphereCast(transform.position, 10f, transform.forward, out hit, 15f, playerLayer))
+        //{
+        //    if (curState != states[chompAttack])
+        //    {
+        //        Debug.Log("Hit");
+        //        curState.OnExit();
+        //        curState = states[chompAttack];
+        //        curState.OnEnter();
+        //    }
+        //    return;
+        //}
+        //else if (Time.time - actionTimer > actionCooldown)
+        //{
+        //    if(curState != states[shootAttack])
+        //    {
+        //        curState.OnExit();
+        //        curState = states[shootAttack];
+        //        curState.OnEnter();
+        //    }
+        //    return;
+        //}
 
         //normal movement
-        if (curState != states[rotating])
+        if (curState != states[ramming])
         {
             curState.OnExit();
-            curState = states[rotating];
+            curState = states[ramming];
             curState.OnEnter();
         }
+    }
+
+    void SecondBehaviour()
+    {
+
     }
 
     private void OnDrawGizmos()

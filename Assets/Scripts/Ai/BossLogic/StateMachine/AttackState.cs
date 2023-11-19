@@ -25,9 +25,9 @@ public class AttackState : State
     public override void OnEnter()
     {
         manager.movementPoint.speed = agentSpeed;
-        baseSpeed = manager.nav.speed;
+        //baseSpeed = manager.nav.speed;
         manager.nav.speed = agentSpeed;
-        manager.nav.SetDestination(manager.nav.transform.position);
+        //manager.nav.SetDestination(manager.nav.transform.position);
         manager.casting = true;
         ability = manager.caster.caster.abilities[abilityIndex];
 
@@ -40,9 +40,7 @@ public class AttackState : State
 
     public override void OnExit()
     {
-        //how long after this ability finishes until the boss can do another attack
-        manager.actionCooldown = setActionCooldown;
-        manager.actionTimer = Time.time;
+
     }
 
     public override void Tick()
@@ -66,6 +64,9 @@ public class AttackState : State
                 manager.caster.caster.CastAbility(abilityIndex, data);
             if (Time.time - timer > castTime)
             {
+                //how long after this ability finishes until the boss can do another attack
+                manager.actionCooldown = setActionCooldown;
+                manager.actionTimer = Time.time;
                 //finished casting
                 manager.casting = false;
             }
@@ -74,6 +75,11 @@ public class AttackState : State
 
         for (int i = 0; i < manager.castOrigins.Length; i++)
             manager.caster.caster.CastAbility(abilityIndex, data);
+
+        //how long after this ability finishes until the boss can do another attack
+        manager.actionCooldown = setActionCooldown;
+        manager.actionTimer = Time.time;
+
         manager.casting = false;
     }
 }
