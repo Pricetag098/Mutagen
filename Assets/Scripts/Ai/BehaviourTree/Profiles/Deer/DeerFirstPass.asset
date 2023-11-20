@@ -365,7 +365,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 0}
+  child: {fileID: 5914201671344842424}
   targetType: 0
 --- !u!114 &-1867153279579070601
 MonoBehaviour:
@@ -499,8 +499,6 @@ MonoBehaviour:
   - {fileID: 5914201671344842424}
   - {fileID: -2365547460815570020}
   - {fileID: -9164700597593632234}
-  - {fileID: 7030091551716453973}
-  - {fileID: 4017315318443509549}
   - {fileID: 691864018674607066}
   - {fileID: 2301273402380708455}
   blackboard:
@@ -554,7 +552,7 @@ MonoBehaviour:
   m_Name: IfElseNode
   m_EditorClassIdentifier: 
   state: 0
-  started: 0
+  started: 1
   guid: ce8be5abb789b554f9856e07215228f3
   position: {x: 42.000122, y: -562.9997}
   blackboard:
@@ -782,35 +780,6 @@ MonoBehaviour:
   assigned: 1
   rotate: 1
   deviatedDirection: 0
---- !u!114 &4017315318443509549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855db6ddb1b607f418736fb0e3aeb801, type: 3}
-  m_Name: AutoFail
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 7cf18fb9bc7e1a44b806f087e483ebc5
-  position: {x: -147.99956, y: -59.642487}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-    awayPosition: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  player: {fileID: 0}
-  description: 
 --- !u!114 &4699754144037577832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +892,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 7f1b48efeee4a0449b71d3a398ed741a
-  position: {x: 118.00025, y: -114.64253}
+  position: {x: 118, y: -129}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -995,37 +964,6 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: -1552835009440320118}
---- !u!114 &7030091551716453973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cead2c6ad9a9c724cb06b8fa093f10ad, type: 3}
-  m_Name: SetAnimationSpeed
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 49dabb64b7a036f47a0b017c27a23a39
-  position: {x: -166, y: -210}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-    awayPosition: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  player: {fileID: 0}
-  description: 
-  child: {fileID: 4017315318443509549}
-  speed: 1
 --- !u!114 &7928664492351683967
 MonoBehaviour:
   m_ObjectHideFlags: 0
