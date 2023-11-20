@@ -55,7 +55,7 @@ public class MissilesAbility : Ability
         }
         chargeTime = Mathf.Clamp(chargeTime + Time.deltaTime, 0, maxChargeTime);
         lastCastdata = data;
-
+        caster.UpdateDirection(data.aimDirection);
         held = true;
         if (chargeTime == maxChargeTime)
         {
