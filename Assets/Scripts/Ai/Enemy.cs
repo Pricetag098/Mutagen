@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
             return;
 
         int activeCount = Random.Range(1, 3);
-        for(int i = 0; i < activeCount; i++)
+        for (int i = 0; i < activeCount; i++)
         {
             int active = Random.Range(0, 3);
             if (!randoms.Value[active].activeInHierarchy)
@@ -125,7 +125,8 @@ public class Enemy : MonoBehaviour
                 else
                     active = 0;
             }
-                randoms.Value[active].active = false;
+
+            randoms.Value[active].active = false;
         }
 
         if (randoms.Value.Length < 3)
