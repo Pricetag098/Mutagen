@@ -130,7 +130,7 @@ public class AbilityCaster : MonoBehaviour
             return;
         if (rigidbody.Enabled)
         {
-            rigidbody.Value.GetComponent<PlayerMovement>().body.transform.forward = direction;
+            rigidbody.Value.GetComponent<PlayerMovement>().body.GetComponent<SecondOrderFacer>().targetVec = direction;
         }
         else
         {
