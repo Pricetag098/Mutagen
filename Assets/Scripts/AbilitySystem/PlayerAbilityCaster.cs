@@ -76,7 +76,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 		return cast;
 	}
 
-	void TryCast(InputAction action, int index)
+	bool TryCast(InputAction action, int index)
 	{
 		
 		
@@ -86,13 +86,18 @@ public class PlayerAbilityCaster : MonoBehaviour
 				movement.timeSinceLastInteruption = 0;
 				
 				caster.CastAbility(index, CreateCastData());
+				
 				break;
 			case Ability.CastTypes.hold:
 				if (action.IsPressed())
 				{
                     movement.timeSinceLastInteruption = 0;
 					if (CanCast(index))
-						caster.CastAbility(index, CreateCastData());
+					{
+                        caster.CastAbility(index, CreateCastData());
+						return true;
+                    }
+						
                 }
 					
 				break;
@@ -101,14 +106,21 @@ public class PlayerAbilityCaster : MonoBehaviour
 				{
                     movement.timeSinceLastInteruption = 0;
 					if (CanCast(index))
+					{
 						caster.CastAbility(index, CreateCastData());
+						return true;
+					}
+						
                 }	
 				break;
 			case Ability.CastTypes.disabled:
 				break;
-		}
 
-	}
+				
+		}
+        return false;
+
+    }
 
 	Ability.CastData CreateCastData()
 	{
