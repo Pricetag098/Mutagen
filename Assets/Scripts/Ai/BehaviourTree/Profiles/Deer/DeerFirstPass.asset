@@ -231,6 +231,15 @@ MonoBehaviour:
   cooldownCheckIndex:
     enabled: 0
     val: 0
+  isAbility:
+    enabled: 0
+    val: {fileID: 0}
+  firingDuration:
+    enabled: 0
+    val: 0
+  firingCooldown:
+    enabled: 0
+    val: 0
 --- !u!114 &-3724489099386066688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +365,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
-  child: {fileID: 8074204207949425845}
+  child: {fileID: 0}
   targetType: 0
 --- !u!114 &-1867153279579070601
 MonoBehaviour:
@@ -490,7 +499,6 @@ MonoBehaviour:
   - {fileID: 5914201671344842424}
   - {fileID: -2365547460815570020}
   - {fileID: -9164700597593632234}
-  - {fileID: 8074204207949425845}
   - {fileID: 7030091551716453973}
   - {fileID: 4017315318443509549}
   - {fileID: 691864018674607066}
@@ -580,6 +588,15 @@ MonoBehaviour:
   cooldownCheckIndex:
     enabled: 0
     val: 0
+  isAbility:
+    enabled: 0
+    val: {fileID: 0}
+  firingDuration:
+    enabled: 0
+    val: 0
+  firingCooldown:
+    enabled: 0
+    val: 0
 --- !u!114 &914403431866639793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,6 +677,15 @@ MonoBehaviour:
   cooldownCheckIndex:
     enabled: 0
     val: 0
+  isAbility:
+    enabled: 0
+    val: {fileID: 0}
+  firingDuration:
+    enabled: 0
+    val: 0
+  firingCooldown:
+    enabled: 0
+    val: 0
 --- !u!114 &2301273402380708455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,7 +763,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 2d619770cb6f3db40a9724ab0c9da755
-  position: {x: 481.00046, y: 1339.3574}
+  position: {x: 489.00027, y: 1353.0001}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -929,6 +955,15 @@ MonoBehaviour:
   cooldownCheckIndex:
     enabled: 0
     val: 0
+  isAbility:
+    enabled: 0
+    val: {fileID: 0}
+  firingDuration:
+    enabled: 0
+    val: 0
+  firingCooldown:
+    enabled: 0
+    val: 0
 --- !u!114 &6090306726537933267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,7 +994,6 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   children:
-  - {fileID: 7928664492351683967}
   - {fileID: -1552835009440320118}
 --- !u!114 &7030091551716453973
 MonoBehaviour:
@@ -976,7 +1010,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 49dabb64b7a036f47a0b017c27a23a39
-  position: {x: -115.99969, y: -178.64247}
+  position: {x: -166, y: -210}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -1023,53 +1057,6 @@ MonoBehaviour:
   description: Assign angle
   rotateSpeed: 0
   angle: 10
---- !u!114 &8074204207949425845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49148647554ec643b0c2b0d12d8dcbd, type: 3}
-  m_Name: IfElseNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 49e8703f2622f054b99119a2bbc811f7
-  position: {x: 126.00032, y: -278.6425}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-    awayPosition: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  player: {fileID: 0}
-  description: 
-  children:
-  - {fileID: 7030091551716453973}
-  - {fileID: 5914201671344842424}
-  checkType: 2
-  distanceCheck: 0
-  groupDistance:
-    enabled: 0
-    val: 0
-  groupCheckDistance:
-    enabled: 0
-    val: 0
-  abilityCheck: 0
-  oneTime:
-    enabled: 0
-    val: 0
-  cooldownCheckIndex:
-    enabled: 0
-    val: 0
 --- !u!114 &9185229369735936598
 MonoBehaviour:
   m_ObjectHideFlags: 0

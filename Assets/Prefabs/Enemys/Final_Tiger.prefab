@@ -978,8 +978,11 @@ MonoBehaviour:
   floor:
     serializedVersion: 2
     m_Bits: 2147483647
+  targetVec: {x: 0, y: 0, z: 0}
   fixedUpdate: 1
-  target: {fileID: 4843620124752478611}
+  target:
+    enabled: 1
+    val: {fileID: 4843620124752478611}
 --- !u!114 &3766127744580271322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1398,6 +1401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multi: 1
   health: {fileID: 8962174975456743340}
+  partBrokenMulti: 1.5
 --- !u!135 &6828975028066128872
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2150,8 +2154,11 @@ MonoBehaviour:
     val: {fileID: 343049529420119189}
   manager: {fileID: 0}
   caster: {fileID: 0}
-  behaviourTree: {fileID: 8962174975456743338}
-  renderer: {fileID: 4343672430762639437}
+  renderer:
+  - {fileID: 0}
+  behaviourTree:
+    enabled: 0
+    val: {fileID: 0}
   invisMat:
     enabled: 0
     val: {fileID: 0}
@@ -2166,15 +2173,17 @@ MonoBehaviour:
   flanking: 0
   retaliate: 0
   isStunned: 0
+  startedFiring: 0
+  onCooldown: 0
   retreatingTimer: 2
   isSeperating: 0
   movementSpeed: 20
   movementMultiplier: 1
+  flankDistance: 5
+  knockbackResist: 5
   healthState:
     enabled: 1
     val: fa000000ee020000
-  flankDistance: 5
-  knockbackResist: 5
   retaliateCooldown: 5
   stunDuration: 0
   delayMoveRange: 4
@@ -2182,6 +2191,8 @@ MonoBehaviour:
   delayMoveTimer: 0
   retaliateTimer: 0
   stunnedTimer: 0
+  firingTimer: 0
+  cooldownTimer: 0
 --- !u!114 &7829885259189179611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,6 +2205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
   textManager: {fileID: 0}
 --- !u!114 &2496971386840656133
 MonoBehaviour:

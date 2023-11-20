@@ -15,7 +15,7 @@ public class RotationMovement : State
         manager.movementPoint.speed = speed;
         manager.movementPoint.movementType = MovementType.rotating;
         manager.movementPoint.distanceFromCentre = distanceFromCentre;
-        manager.movementTarget = manager.movementPoint.transform;
+        manager.movementTarget = manager.movementPoint.rotating.transform;
     }
 
     public override void OnExit()
