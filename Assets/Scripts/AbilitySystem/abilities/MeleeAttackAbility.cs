@@ -18,8 +18,8 @@ public class MeleeAttackAbility : Ability
 	[SerializeField] protected List<OnHitEffect> hitEffects;
 	[SerializeField,Range(0,1)] float bufferWindow;
 	float angleCutoff;
-	[SerializeField]float coolDown;
-	Timer timer;
+	[SerializeField]float swingTime,coolDown;
+	Timer swingtimer,coolDownTimer;
 	[SerializeField] string animationTrigger;
 	
 	
@@ -29,22 +29,24 @@ public class MeleeAttackAbility : Ability
 		//coolDown = 1.0f/ (swingsPerMin / 60.0f);
 		//caster.ChangeSpeed(-speedModifier);
 
-        timer = new Timer(coolDown,true);
+        swingtimer = new Timer(swingTime,true);
+		coolDownTimer = new Timer(coolDown, true);
 	}
 
 	public override void OnTick()
 	{
-		timer.Tick();
-		if (timer.complete && castState == CastState.casting)
+		swingtimer.Tick();
+		coolDownTimer.Tick();
+		if (swingtimer.complete && castState == CastState.casting && coolDownTimer.complete)
 		{
 			if (inputBuffered)
 			{
 				inputBuffered = false;
 				if (OnCast != null)
 					OnCast(lastCastData);
-				timer.Reset();
+				swingtimer.Reset();
 				OnSwing(lastCastData.origin, lastCastData.aimDirection);
-				TriggerAnimation(animationTrigger, coolDown);
+				TriggerAnimation(animationTrigger, swingTime);
 				List<Health> healths = new List<Health>();
 				if (swingvfx.Enabled)
 					swingvfx.Value.Play(lastCastData.origin, lastCastData.aimDirection, lastCastData.effectOrigin);
@@ -82,6 +84,7 @@ public class MeleeAttackAbility : Ability
 			{
 				FinishCast();
 				comboIndex = 0;
+				coolDownTimer.Reset();
 			}
 
 		}
@@ -98,7 +101,7 @@ public class MeleeAttackAbility : Ability
 	}
 	protected override void DoCast(CastData data)
 	{
-		if(!inputBuffered&&timer.Progress > bufferWindow && comboIndex < comboLength)
+		if(!inputBuffered&&swingtimer.Progress > bufferWindow && comboIndex < comboLength)
 		{
 			inputBuffered = true;
 		}
@@ -126,6 +129,6 @@ public class MeleeAttackAbility : Ability
 
 	public override float GetCoolDownPercent()
 	{
-		return timer.Progress;
+		return coolDownTimer.Progress;
 	}
 }
