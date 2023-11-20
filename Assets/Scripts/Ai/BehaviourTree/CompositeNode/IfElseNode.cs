@@ -38,7 +38,7 @@ public class IfElseNode : CompositeNode
     public Optional<oneTimeCheck> oneTime;
     public Optional<int> cooldownCheckIndex;
     public Optional<Ability> isAbility;
-    public Optional<int> firingDuration, firingCooldown;
+    public Optional<float> firingDuration, firingCooldown;
     public enum oneTimeCheck
     {
         Null,
