@@ -123,4 +123,18 @@ public class AbilityCaster : MonoBehaviour
             abilities[i].OnDrawGizmos();
         }
     }
+
+    public void UpdateDirection(Vector3 direction)
+    {
+        if (direction == Vector3.zero)
+            return;
+        if (rigidbody.Enabled)
+        {
+            rigidbody.Value.GetComponent<PlayerMovement>().body.GetComponent<SecondOrderFacer>().targetVec = direction;
+        }
+        else
+        {
+            //Jason do stuff here pls
+        }
+    }
 }

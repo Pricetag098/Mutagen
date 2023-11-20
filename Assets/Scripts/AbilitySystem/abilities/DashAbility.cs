@@ -58,7 +58,19 @@ public class DashAbility : Ability
 
 	public override float GetCoolDownPercent()
 	{
-		return stam / maxStam;
+		if (dashing)
+		{
+			return dashTimer.Progress;
+		}
+		if (!canUse)
+		{
+			return stam / maxStam;
+		}
+		else
+		{
+			return Mathf.Clamp01(stam/rechargeTime);
+		}
+		
 	}
 	protected override void DoCast(CastData data)
 	{
@@ -86,8 +98,12 @@ public class DashAbility : Ability
 
             if (OnCast != null)
                 OnCast(data);
-			
-        }
+
+		}
+		else
+		{
+
+		}
 
 
 	}
