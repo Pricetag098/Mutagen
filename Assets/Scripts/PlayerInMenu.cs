@@ -24,13 +24,13 @@ public class PlayerInMenu : MonoBehaviour
         player.GetComponent<PlayerAim>().enabled = false;
         player.GetComponent<PlayerAbilityCaster>().enabled = false;
         player.GetComponentInChildren<Animator>().SetTrigger("Sit");
-
+        playerUi.gameObject.SetActive(false);
         directionArrow.enabled = false;
     }
 
     public void EnablePLayer()
     {
-        
+        playerUi.gameObject.SetActive(true);
         player.GetComponentInChildren<Animator>().SetTrigger("Stand");
         canvas.interactable = false;
         Sequence sequence = DOTween.Sequence();
