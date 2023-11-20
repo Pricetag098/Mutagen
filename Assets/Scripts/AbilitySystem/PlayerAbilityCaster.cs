@@ -39,16 +39,19 @@ public class PlayerAbilityCaster : MonoBehaviour
 
 	private void Update()
 	{
-		TryCast(abilityBasic.action, 0);
-		TryCast(abilityDash.action, 2);
-		TryCast(abilityAction2.action, 1);
-		TryCast(abilityAction3.action, 3);
-		TryCast(abilityAction4.action, 4);
         //Check if none of the abilitys are casting
         if (CanCast(-1))
         {
             caster.UpdateDirection(movement.movementDir);
         }
+
+        TryCast(abilityBasic.action, 0);
+		TryCast(abilityDash.action, 2);
+		TryCast(abilityAction2.action, 1);
+		TryCast(abilityAction3.action, 3);
+		TryCast(abilityAction4.action, 4);
+        
+        
     }
 	private void OnDisable()
 	{
