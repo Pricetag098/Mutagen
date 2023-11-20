@@ -44,7 +44,12 @@ public class PlayerAbilityCaster : MonoBehaviour
 		TryCast(abilityAction2.action, 1);
 		TryCast(abilityAction3.action, 3);
 		TryCast(abilityAction4.action, 4);
-	}
+        //Check if none of the abilitys are casting
+        if (CanCast(-1))
+        {
+            caster.UpdateDirection(movement.movementDir);
+        }
+    }
 	private void OnDisable()
 	{
 		abilityBasic.action.Disable();
@@ -52,6 +57,9 @@ public class PlayerAbilityCaster : MonoBehaviour
 		abilityAction2.action.Disable();
 		abilityAction3.action.Disable();
 		abilityAction4.action.Disable();
+		
+
+		
 	}
 	
 
@@ -107,7 +115,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 		Ability.CastData data = new Ability.CastData();
 		data.origin = movement.orientation.position;
 		data.aimDirection = aim.aimDir;
-		data.moveDirection = movement.movementDir;
+		data.moveDirection = movement.body.transform.forward;
 		data.effectOrigin = castOrigin;
 		return data;
 	}

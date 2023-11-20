@@ -128,6 +128,8 @@ public class Ability : ScriptableObject
         switch (castState)
         {
             case CastState.none:
+                if (GetCoolDownPercent() < 1)
+                    break;
                 castState = CastState.windUp;
                 windUpTimer.Reset();
                 lastCastData = data;
