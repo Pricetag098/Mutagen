@@ -76,6 +76,7 @@ public class Ability : ScriptableObject
     {
         replacement.OnCast += OnCast;
         OnUnEquip(replacement);
+        FinishCast();
     }
 
     protected virtual void OnUnEquip(Ability replacement)
@@ -145,6 +146,8 @@ public class Ability : ScriptableObject
 
     protected void FinishCast()
     {
+        if (castState != CastState.casting)
+            return;
         windDownTimer.Reset();
         castState = CastState.windDown;
         TriggerAnimation(windDownTrigger, windDownTime);
