@@ -86,11 +86,13 @@ public class StateManager : MonoBehaviour
                 break;
         }
 
-        if (Time.time - specialAttackTimer > specialAttackCooldown) canCastSpecial = true;
+
     }
 
     void FirstBehaviour()
     {
+        if (Time.time - specialAttackTimer > specialAttackCooldown) canCastSpecial = true;
+
         //if player is in front, do bite attack
         RaycastHit hit;
         if (Physics.SphereCast(transform.position, 10f, transform.forward, out hit, 15f, playerLayer))
@@ -103,11 +105,6 @@ public class StateManager : MonoBehaviour
             }
             return;
         }
-        //else if (canCastSpecial)
-        //{
-
-
-        //}
         //select from ranged attacks
         else if (Time.time - actionTimer > actionCooldown)
         {
@@ -117,12 +114,12 @@ public class StateManager : MonoBehaviour
                 curState = states[shootAttack];
                 curState.OnEnter();
             }
-            //else if(curState != states[blackHoleAttack])
-            //{
-            //    curState.OnExit();
-            //    curState = states[blackHoleAttack];
-            //    curState.OnEnter();
-            //}
+            else if (canCastSpecial && curState != states[blackHoleAttack])
+            {
+                curState.OnExit();
+                curState = states[blackHoleAttack];
+                curState.OnEnter();
+            }
             return;
         }
 
@@ -140,7 +137,11 @@ public class StateManager : MonoBehaviour
     {
 
 
+        //else if (canCastSpecial)
+        //{
 
+        //  return;
+        //}
 
 
         //normal movement

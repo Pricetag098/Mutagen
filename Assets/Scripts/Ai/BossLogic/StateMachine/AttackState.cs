@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = ("AI/States/AttackStates"))]
@@ -15,6 +16,7 @@ public class AttackState : State
     Ability ability;
 
     [Header("Behaviour Stats")]
+    public float cooldown;
     [SerializeField] float agentSpeed;
     float baseSpeed;
     [SerializeField] protected bool delay;
@@ -28,6 +30,7 @@ public class AttackState : State
         //baseSpeed = manager.nav.speed;
         //manager.nav.speed = agentSpeed;
         //manager.nav.SetDestination(manager.nav.transform.position);
+        manager.movementTarget = manager.movementPoint.rotating.transform;
         manager.casting = true;
         ability = manager.caster.caster.abilities[abilityIndex];
 
@@ -40,13 +43,11 @@ public class AttackState : State
 
     public override void OnExit()
     {
-
+        manager.specialAttackCooldown = cooldown;
     }
 
     public override void Tick()
     {
-        Debug.Log("Casting " + this.name);
-
         Ability.CastData data = manager.caster.CreateCastData();
         if (deviatedDirection)
         {
