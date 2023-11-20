@@ -16,13 +16,11 @@ public class SettingsMenu : MonoBehaviour
     public GameObject firstThing;
 	void Start()
     {
+        if (gameObject.active)
+            gameObject.SetActive(false);
         //DontDestroyOnLoad(gameObject);
     }
-	private void Awake()
-	{
-		
 
-	}
 	public void SetAllVolume(float val1, float val2, float val3)
     {
         sliders[0].SetFloat(val1);

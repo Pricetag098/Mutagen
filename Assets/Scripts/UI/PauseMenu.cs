@@ -17,9 +17,6 @@ public class PauseMenu : MonoBehaviour
     {
 		PlayerSettingsHandler.instance.ReloadTargets();
 		pauseAction.action.performed += Pause;
-
-        if (enabled)
-            enabled = false;
     }
 
     private void OnEnable()
