@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f088f90b81d91c4d96fb7607ed93fc3, type: 3}
   m_Name: Missiles
   m_EditorClassIdentifier: 
-  abilityName: Warhead Barrage
+  abilityName: Missile barrage
   abilityDescription: Deploy a swarm of missiles that lock on to your enemies. The
     longer you hold the attack, more missiles are deployed.
   icon: {fileID: 21300000, guid: 8c1ebacbade592541b4c8f669c3878c4, type: 3}
@@ -21,7 +21,13 @@ MonoBehaviour:
     enabled: 1
     val: {fileID: 3243613965223437803, guid: 5706c2f8eb820634ab1fdf524af33b94, type: 3}
   slotMask: 1
+  castState: 0
   castType: 1
+  windUptime: 0.5
+  windDownTime: 0.2
+  moveSpeedModifier: 1
+  windUpTrigger: Start Cast
+  windDownTrigger: End Cast
   prefab: {fileID: 7812541140757809946, guid: c74cf4b0f9d13514781a62cf3253ac1f, type: 3}
   releaseOnFullCharge: 1
   damage: 5

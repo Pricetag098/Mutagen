@@ -15,10 +15,6 @@ public class EMPAttackState : AttackState
     float castCount;
 
 
-
-    [Header("Behaviour Stats")]
-    public float cooldown;
-
     public override void OnEnter()
     {
         base.OnEnter();
@@ -30,7 +26,7 @@ public class EMPAttackState : AttackState
     public override void OnExit()
     {
         base.OnExit();
-        manager.specialAttackCooldown = cooldown;
+
         manager.movementPoint.transform.position = manager.movementPoint.startPos;
 
         castCount = 0;

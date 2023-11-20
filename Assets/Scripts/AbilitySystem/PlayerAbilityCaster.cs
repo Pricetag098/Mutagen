@@ -39,16 +39,19 @@ public class PlayerAbilityCaster : MonoBehaviour
 
 	private void Update()
 	{
-		TryCast(abilityBasic.action, 0);
-		TryCast(abilityDash.action, 2);
-		TryCast(abilityAction2.action, 1);
-		TryCast(abilityAction3.action, 3);
-		TryCast(abilityAction4.action, 4);
         //Check if none of the abilitys are casting
         if (CanCast(-1))
         {
             caster.UpdateDirection(movement.movementDir);
         }
+
+        TryCast(abilityBasic.action, 0);
+		TryCast(abilityDash.action, 2);
+		TryCast(abilityAction2.action, 1);
+		TryCast(abilityAction3.action, 3);
+		TryCast(abilityAction4.action, 4);
+        
+        
     }
 	private void OnDisable()
 	{
@@ -76,7 +79,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 		return cast;
 	}
 
-	void TryCast(InputAction action, int index)
+	bool TryCast(InputAction action, int index)
 	{
 		
 		
@@ -86,13 +89,18 @@ public class PlayerAbilityCaster : MonoBehaviour
 				movement.timeSinceLastInteruption = 0;
 				
 				caster.CastAbility(index, CreateCastData());
+				
 				break;
 			case Ability.CastTypes.hold:
 				if (action.IsPressed())
 				{
                     movement.timeSinceLastInteruption = 0;
 					if (CanCast(index))
-						caster.CastAbility(index, CreateCastData());
+					{
+                        caster.CastAbility(index, CreateCastData());
+						return true;
+                    }
+						
                 }
 					
 				break;
@@ -101,14 +109,21 @@ public class PlayerAbilityCaster : MonoBehaviour
 				{
                     movement.timeSinceLastInteruption = 0;
 					if (CanCast(index))
+					{
 						caster.CastAbility(index, CreateCastData());
+						return true;
+					}
+						
                 }	
 				break;
 			case Ability.CastTypes.disabled:
 				break;
-		}
 
-	}
+				
+		}
+        return false;
+
+    }
 
 	Ability.CastData CreateCastData()
 	{

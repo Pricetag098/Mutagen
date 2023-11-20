@@ -1373,8 +1373,11 @@ MonoBehaviour:
   floor:
     serializedVersion: 2
     m_Bits: 2147483647
+  targetVec: {x: 0, y: 0, z: 0}
   fixedUpdate: 1
-  target: {fileID: 4011060687625559464}
+  target:
+    enabled: 1
+    val: {fileID: 4011060687625559464}
 --- !u!114 &1238117163977272138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,10 +1809,10 @@ MonoBehaviour:
   manager: {fileID: 0}
   caster: {fileID: 0}
   renderer:
-  - {fileID: 0}
+  - {fileID: 7412119237863741989}
   behaviourTree:
     enabled: 1
-    val: {fileID: 0}
+    val: {fileID: 647904883047142289}
   invisMat:
     enabled: 0
     val: {fileID: 0}
@@ -1879,8 +1882,12 @@ MonoBehaviour:
   hb: {fileID: 495153374445034290}
   colliders:
   - {fileID: 3441193055107455113}
-  follower: {fileID: 1238117163977272138}
-  facer: {fileID: 9088010546826795165}
+  follower:
+    enabled: 0
+    val: {fileID: 0}
+  facer:
+    enabled: 0
+    val: {fileID: 0}
   render:
   - {fileID: 7412119237863741989}
   pickupPrefab: {fileID: 7836955829115722246, guid: 08f091975e782e5428de3e79dff56ffb, type: 3}

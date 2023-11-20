@@ -116,8 +116,8 @@ public class MissilesAbility : Ability
                 }
             }
 		}
-        
-        
+
+        FinishCast();
         
         if (OnCast != null)
             OnCast(lastCastdata);

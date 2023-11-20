@@ -64,11 +64,12 @@ public class PlayerAim : MonoBehaviour
 		if(UseMouse) { return; }
 		Vector2 readVal = context.ReadValue<Vector2>();
 		
+		playerMovement.body.transform.forward = aimDir;
 		
 		Vector3 tempAimDir = playerMovement.orientation.forward * readVal.y + playerMovement.orientation.right * readVal.x;
 		aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
 		
-		//playerMovement.body.transform.forward = aimDir;
+	//	playerMovement.body.transform.forward = aimDir;
 
 		
 	}
@@ -90,7 +91,7 @@ public class PlayerAim : MonoBehaviour
 				aimDir = new Vector3(tempAimDir.x, 0, tempAimDir.z);
 
 			}
-			//playerMovement.body.transform.forward = aimDir;
+		//	playerMovement.body.transform.forward = aimDir;
 
 			
 

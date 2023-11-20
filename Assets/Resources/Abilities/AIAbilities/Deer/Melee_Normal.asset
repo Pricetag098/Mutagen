@@ -25,8 +25,8 @@ MonoBehaviour:
   windUptime: 0
   windDownTime: 0
   moveSpeedModifier: 0
-  windUpTrigger: 
-  windDownTrigger: 
+  windUpTrigger: StartAttack
+  windDownTrigger: EndAttack
   damage: 10
   comboLength: 1
   damageRange: 0
@@ -35,6 +35,7 @@ MonoBehaviour:
     m_Bits: 8
   swingRadius: 10
   swingRange: 10
+  useMoveDir: 0
   hitvfx:
     enabled: 0
     val: {fileID: 0}
@@ -44,5 +45,6 @@ MonoBehaviour:
   hitEffects:
   - {fileID: 11400000, guid: 40900c20f8ba461488953bbd2bca6363, type: 2}
   bufferWindow: 0
-  coolDown: 0.1
+  swingTime: 0.65
+  coolDown: 0.5
   animationTrigger: Attack

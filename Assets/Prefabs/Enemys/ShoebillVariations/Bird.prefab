@@ -1350,8 +1350,11 @@ MonoBehaviour:
     val: {fileID: 6133422335050182817}
   manager: {fileID: 0}
   caster: {fileID: 0}
-  behaviourTree: {fileID: 3109258454431184229}
-  renderer: {fileID: 6309803205863466370}
+  renderer:
+  - {fileID: 6309803205863466370}
+  behaviourTree:
+    enabled: 1
+    val: {fileID: 3109258454431184229}
   invisMat:
     enabled: 0
     val: {fileID: 0}
@@ -1366,15 +1369,17 @@ MonoBehaviour:
   flanking: 0
   retaliate: 0
   isStunned: 0
+  startedFiring: 0
+  onCooldown: 0
   retreatingTimer: 2
   isSeperating: 0
   movementSpeed: 15
   movementMultiplier: 1
+  flankDistance: 5
+  knockbackResist: 1
   healthState:
     enabled: 0
     val: 
-  flankDistance: 5
-  knockbackResist: 1
   retaliateCooldown: 0
   stunDuration: 0
   delayMoveRange: 1
@@ -1382,6 +1387,8 @@ MonoBehaviour:
   delayMoveTimer: 0
   retaliateTimer: 0
   stunnedTimer: 0
+  firingTimer: 0
+  cooldownTimer: 0
 --- !u!114 &3109258454431184226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1480,6 +1487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b0fc708898e35418a72345e46ccc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
   textManager: {fileID: 0}
 --- !u!114 &8630449307238892081
 MonoBehaviour:
@@ -1496,8 +1504,12 @@ MonoBehaviour:
   hb: {fileID: 8496643042579400190}
   colliders:
   - {fileID: 627609372034429025}
-  follower: {fileID: 7069434849717745030}
-  facer: {fileID: 948599238542083665}
+  follower:
+    enabled: 0
+    val: {fileID: 0}
+  facer:
+    enabled: 0
+    val: {fileID: 0}
   render:
   - {fileID: 6309803205863466370}
   pickupPrefab: {fileID: 4301961444541319988, guid: b907453a9f023974f9f0ad3e801f49f9, type: 3}
@@ -1919,8 +1931,11 @@ MonoBehaviour:
   floor:
     serializedVersion: 2
     m_Bits: 2147483647
+  targetVec: {x: 0, y: 0, z: 0}
   fixedUpdate: 1
-  target: {fileID: 4944713778633114468}
+  target:
+    enabled: 1
+    val: {fileID: 4944713778633114468}
 --- !u!114 &7069434849717745030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3253,6 +3268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multi: 1
   health: {fileID: 3109258454431184228}
+  partBrokenMulti: 1.5
 --- !u!135 &620705288271911604
 SphereCollider:
   m_ObjectHideFlags: 0

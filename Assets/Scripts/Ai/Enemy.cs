@@ -182,7 +182,8 @@ public class Enemy : MonoBehaviour
 
     public void AttackEffect()
     {
-
+        if (!pipeColourChanger.Enabled)
+            return;
         telegraphTimer = Time.time;
         pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
     }
@@ -212,7 +213,7 @@ public class Enemy : MonoBehaviour
     {
         manager.Remove(this);
         manager.enemyList.Remove(this);
-        //enabled = false;
+        enabled = false;
     }
 
     //speed functions

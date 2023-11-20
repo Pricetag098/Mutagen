@@ -35,7 +35,11 @@ public class ExplodeOnDeath : MonoBehaviour
                     hb.OnHit(damage2);
                 }
             }
-            GetComponent<PooledObject>().Despawn();
+            PooledObject pooled;
+            if (TryGetComponent<PooledObject>(out pooled))
+            {
+                pooled.Despawn();
+            }
         }
         else
         {
@@ -52,7 +56,11 @@ public class ExplodeOnDeath : MonoBehaviour
                     hb.OnHit(damage);
                 }
             }
-            GetComponent<PooledObject>().Despawn();
+            PooledObject pooled;
+            if (TryGetComponent<PooledObject>(out pooled))
+            {
+                pooled.Despawn();
+            }
         }
         
     }

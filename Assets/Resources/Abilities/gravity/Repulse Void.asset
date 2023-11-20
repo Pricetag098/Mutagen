@@ -23,13 +23,15 @@ MonoBehaviour:
   slotMask: 3
   castState: 0
   castType: 1
-  windUptime: 0
-  windDownTime: 0
-  moveSpeedModifier: 0
+  windUptime: 0.2
+  windDownTime: 0.2
+  moveSpeedModifier: 1
+  windUpTrigger: Start Cast
+  windDownTrigger: End Cast
   prefab: {fileID: 1036542219973673062, guid: 2fa21bb3276a36c478cb2c0444088914, type: 3}
   releaseOnFullCharge: 1
   maxChargeTime: 1.5
-  minChargeTime: 0.7
+  minChargeTime: 0.2
   damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
@@ -88,7 +90,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speedModifier: 0.5
+  speedModifier: 1
   onHitEffectList:
   - {fileID: 11400000, guid: f8bfca9bcfd3ef846bbf1e2061e6e9e8, type: 2}
   aimAssist:
