@@ -20,14 +20,20 @@ public class StateManager : MonoBehaviour
     State curState;
     public bool casting;
 
+
     [Header("Stats")]
     public float actionCooldown;
     [HideInInspector] public float actionTimer;
 
+    //special actions that are occasional attacks
+    [HideInInspector] public bool canCastSpecial;
+    [HideInInspector] public float specialAttackTimer;
+    [HideInInspector] public float specialAttackCooldown;
+
     //readability, phase 1
-    int rotating = 0; int chompAttack = 1; int shootAttack = 2;
+    int rotating = 0; int chompAttack = 1; int shootAttack = 2; int blackHoleAttack = 3;
     //phase 2
-    int ramming = 3;
+    int ramming = 4;
 
     private void Start()
     {
@@ -78,35 +84,64 @@ public class StateManager : MonoBehaviour
             case 2:
                 FirstBehaviour();
                 break;
-
         }
+
+        if (Time.time - specialAttackTimer > specialAttackCooldown) canCastSpecial = true;
     }
 
     void FirstBehaviour()
     {
         //if player is in front, do bite attack
-        //RaycastHit hit;
-        //if (Physics.SphereCast(transform.position, 10f, transform.forward, out hit, 15f, playerLayer))
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position, 10f, transform.forward, out hit, 15f, playerLayer))
+        {
+            if (curState != states[chompAttack])
+            {
+                curState.OnExit();
+                curState = states[chompAttack];
+                curState.OnEnter();
+            }
+            return;
+        }
+        //else if (canCastSpecial)
         //{
-        //    if (curState != states[chompAttack])
-        //    {
-        //        Debug.Log("Hit");
-        //        curState.OnExit();
-        //        curState = states[chompAttack];
-        //        curState.OnEnter();
-        //    }
-        //    return;
+
+
         //}
-        //else if (Time.time - actionTimer > actionCooldown)
-        //{
-        //    if(curState != states[shootAttack])
-        //    {
-        //        curState.OnExit();
-        //        curState = states[shootAttack];
-        //        curState.OnEnter();
-        //    }
-        //    return;
-        //}
+        //select from ranged attacks
+        else if (Time.time - actionTimer > actionCooldown)
+        {
+            if (curState != states[shootAttack])
+            {
+                curState.OnExit();
+                curState = states[shootAttack];
+                curState.OnEnter();
+            }
+            //else if(curState != states[blackHoleAttack])
+            //{
+            //    curState.OnExit();
+            //    curState = states[blackHoleAttack];
+            //    curState.OnEnter();
+            //}
+            return;
+        }
+
+
+        //normal movement
+        if (curState != states[rotating])
+        {
+            curState.OnExit();
+            curState = states[rotating];
+            curState.OnEnter();
+        }
+    }
+
+    void SecondBehaviour()
+    {
+
+
+
+
 
         //normal movement
         if (curState != states[ramming])
@@ -115,11 +150,6 @@ public class StateManager : MonoBehaviour
             curState = states[ramming];
             curState.OnEnter();
         }
-    }
-
-    void SecondBehaviour()
-    {
-
     }
 
     private void OnDrawGizmos()
