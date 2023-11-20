@@ -153,6 +153,8 @@ public class EnemyManager : MonoBehaviour
     {
         enemyList.Remove(agent);
 
+        agent.GetComponent<Enemy>().enabled = false;
+
         listCount--;
 
         if(listCount == 0)

@@ -11,8 +11,8 @@ public class Ragdoll : MonoBehaviour
     Health health;
     public HitBox hb;
     public GameObject[] colliders;
-    public SecondOrderFollower follower;
-    public SecondOrderFacer facer;
+    public Optional<SecondOrderFollower> follower;
+    public Optional<SecondOrderFacer> facer;
     public Renderer[] render;
     public GameObject pickupPrefab;
     Enemy agent;
@@ -81,23 +81,12 @@ public class Ragdoll : MonoBehaviour
 
         while (!full)
         {
-            //foreach(Ability ability in agent.manager.dropPool.abilities)
-            //{
-
-            //    for(int i = 0; i < agent.player.caster.abilities.Length; i++)
-            //    {
-            //        if (ability == agent.player.caster.abilities[i])
-            //            break;
-
-            //    }
-            //}
-
             int index = Random.Range(0, agent.manager.dropPool.abilities.Length);
 
             bool assigned = false;
-            for(int i = 0; i < usedIndex.Length; i++)
+            for (int i = 0; i < usedIndex.Length; i++)
             {
-                if(droppedAbilities[i] != null)
+                if (droppedAbilities[i] != null)
                 {
                     for (int j = 0; j < agent.player.caster.abilities.Length; j++)
                     {
@@ -114,7 +103,7 @@ public class Ragdoll : MonoBehaviour
             }
             if (!assigned)
             {
-                for(int i = 0; i < droppedAbilities.Length; i++)
+                for (int i = 0; i < droppedAbilities.Length; i++)
                 {
                     //find slot that hasnt been assigned
                     if (droppedAbilities[i] == null)
@@ -130,7 +119,7 @@ public class Ragdoll : MonoBehaviour
 
             if (attemptCount >= 15)
             {
-                for(int i = 0; i < droppedAbilities.Length; i++)
+                for (int i = 0; i < droppedAbilities.Length; i++)
                 {
                     if (droppedAbilities[i] == null)
                     {
@@ -152,7 +141,7 @@ public class Ragdoll : MonoBehaviour
                 }
 
             }
-            if(count == droppedAbilities.Length)
+            if (count == droppedAbilities.Length)
             {
                 full = true;
             }
@@ -176,8 +165,10 @@ public class Ragdoll : MonoBehaviour
 
         for (int i = 0; i < transform.parent.childCount; i++)
         {
-            follower.enabled = false;
-            facer.enabled = false;
+            if(follower.Enabled)
+            follower.Value.enabled = false;
+            if(facer.Enabled)
+            facer.Value.enabled = false;
 
             Collider col;
             if (transform.parent.GetChild(i).TryGetComponent<Collider>(out col))
@@ -187,10 +178,12 @@ public class Ragdoll : MonoBehaviour
         }
 
         //disable components
+        if(agent.anim.Enabled)
         agent.anim.Value.enabled = false;
         agent.agent.enabled = false;
+        if(agent.behaviourTree.Enabled)
         agent.behaviourTree.Value.enabled = false;
-        //agent.enabled = false;
+        agent.enabled = false;
 
         Rigidbody rb = null;
         

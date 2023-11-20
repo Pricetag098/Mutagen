@@ -23,7 +23,6 @@ public class MoveToNode : ActionNode
             if (Vector3.Distance(blackboard.moveToPosition, agent.transform.position) < 5)
                 return State.Success;
 
-            Debug.Log("Running");
             agent.agent.SetDestination(blackboard.moveToPosition);
             return State.Running;
         }
@@ -32,7 +31,5 @@ public class MoveToNode : ActionNode
             agent.agent.SetDestination(blackboard.moveToPosition);
             return State.Success;
         }
-
-
     }
 }
