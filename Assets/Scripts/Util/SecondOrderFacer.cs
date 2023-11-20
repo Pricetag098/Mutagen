@@ -77,6 +77,6 @@ public class SecondOrderFacer : MonoBehaviour
 			z.Update(timeStep, targetVec.z));
 
 		
-		transform.forward = newPos;
+		transform.forward = newPos.normalized;
 	}
 }
