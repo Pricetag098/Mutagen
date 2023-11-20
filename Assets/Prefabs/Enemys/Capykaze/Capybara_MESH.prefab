@@ -18,6 +18,9 @@ GameObject:
   - component: {fileID: 8260377647897323931}
   - component: {fileID: 8260377647897325156}
   - component: {fileID: 8260377647897323923}
+  - component: {fileID: 65133472}
+  - component: {fileID: 6964408697124659332}
+  - component: {fileID: 5254440836575378591}
   m_Layer: 0
   m_Name: Capybara_MESH
   m_TagString: Untagged
@@ -146,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multi: 1
-  health: {fileID: 0}
+  health: {fileID: 8260377647897323931}
   partBrokenMulti: 1.5
 --- !u!114 &8260377647897323931
 MonoBehaviour:
@@ -214,6 +217,113 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.1942155
-  m_BaseOffset: 1.0971078
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &65133472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260377647897325157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71ffac82d604ef5469ac1a07e3470031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  agent: {fileID: 0}
+  health: {fileID: 8260377647897323931}
+  anim:
+    enabled: 0
+    val: {fileID: 0}
+  manager: {fileID: 0}
+  caster: {fileID: 0}
+  renderer: []
+  behaviourTree:
+    enabled: 0
+    val: {fileID: 0}
+  invisMat:
+    enabled: 0
+    val: {fileID: 0}
+  pipeColourChanger:
+    enabled: 0
+    val: {fileID: 0}
+  eventManager: {fileID: 0}
+  randoms:
+    enabled: 0
+    val: []
+  delayMove: 0
+  flanking: 0
+  retaliate: 0
+  isStunned: 0
+  startedFiring: 0
+  onCooldown: 0
+  retreatingTimer: 2
+  isSeperating: 0
+  movementSpeed: 0
+  movementMultiplier: 1
+  flankDistance: 5
+  knockbackResist: 0
+  healthState:
+    enabled: 0
+    val: 
+  retaliateCooldown: 0
+  stunDuration: 0
+  delayMoveRange: 0
+  defaultMovementSpeed: 0
+  delayMoveTimer: 0
+  retaliateTimer: 0
+  stunnedTimer: 0
+  firingTimer: 0
+  cooldownTimer: 0
+--- !u!114 &6964408697124659332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260377647897325157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cebef52fc49e04f91a92316feaa48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caster: {fileID: 0}
+  curLoadout: {fileID: 0}
+  loadoutVariations: []
+  castOrigin: {fileID: 0}
+  defaultAbility: {fileID: 0}
+  curAbility: {fileID: 0}
+  projectileDeviation: 0
+  rangedDeterence: 0
+  meleeDeterence: 0
+  otherDeterence: 0
+  repeatDeterence: 0
+  distanceMultiplier: 0
+  innerRange: 0
+  chanceDeductionRange: 0
+--- !u!114 &5254440836575378591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260377647897325157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8423282bae720a44d8f7d27921492767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - {fileID: 0}
+  animator:
+    enabled: 0
+    val: {fileID: 0}
+  ownerHealth: {fileID: 0}
+  rigidbody:
+    enabled: 0
+    val: {fileID: 0}
+  castBool: 1
+  baseAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
