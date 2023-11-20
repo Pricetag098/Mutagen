@@ -13,6 +13,8 @@ public class MeleeAttackAbility : Ability
     [SerializeField] LayerMask targetLayers;
     //[SerializeField] float swingsPerMin = 1000;
 	[SerializeField] float swingRadius,swingRange;
+
+	[SerializeField] bool useMoveDir = false;
 	[SerializeField] Optional<VfxSpawnRequest> hitvfx;
 	[SerializeField] Optional<VfxSpawnRequest> swingvfx;
 	[SerializeField] protected List<OnHitEffect> hitEffects;
@@ -48,9 +50,11 @@ public class MeleeAttackAbility : Ability
 				OnSwing(lastCastData.origin, lastCastData.aimDirection);
 				TriggerAnimation(animationTrigger, swingTime);
 				List<Health> healths = new List<Health>();
+
+				Vector3 dir = useMoveDir ? lastCastData.moveDirection : lastCastData.aimDirection;
 				if (swingvfx.Enabled)
-					swingvfx.Value.Play(lastCastData.origin, lastCastData.moveDirection, lastCastData.effectOrigin);
-				RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, lastCastData.moveDirection, swingRange, targetLayers);
+					swingvfx.Value.Play(lastCastData.origin, dir, lastCastData.effectOrigin);
+				RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, dir, swingRange, targetLayers);
 				foreach (RaycastHit hit in hits)
 				{
 					HitBox hb;
