@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
 	public Vector3 movementDir;
 	Vector3 lastSafeLocation;
+    public Animator animator;
 
     [System.Serializable]
     class MovementData
@@ -67,6 +68,11 @@ public class PlayerMovement : MonoBehaviour
         if(movementDir == Vector3.zero)
         {
             timeSinceLastInteruption = 0;
+            animator.SetBool("Moving", false);
+        }
+        if(movementDir != Vector3.zero)
+        {
+            animator.SetBool("Moving", true);
         }
     }
 
