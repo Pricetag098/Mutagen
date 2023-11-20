@@ -25,8 +25,10 @@ MonoBehaviour:
   windUptime: 0
   windDownTime: 0
   moveSpeedModifier: 0
+  windUpTrigger: StartAttack
+  windDownTrigger: EndAttack
   damage: 10
-  comboLength: 0
+  comboLength: 1
   damageRange: 0
   targetLayers:
     serializedVersion: 2
@@ -42,5 +44,5 @@ MonoBehaviour:
   hitEffects:
   - {fileID: 11400000, guid: 40900c20f8ba461488953bbd2bca6363, type: 2}
   bufferWindow: 0
-  coolDown: 0
-  animationTrigger: Attack1
+  coolDown: 0.4
+  animationTrigger: Attack

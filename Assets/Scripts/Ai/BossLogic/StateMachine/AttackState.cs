@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = ("AI/States/AttackStates"))]
@@ -15,19 +16,21 @@ public class AttackState : State
     Ability ability;
 
     [Header("Behaviour Stats")]
+    public float cooldown;
     [SerializeField] float agentSpeed;
     float baseSpeed;
-    [SerializeField] bool delay;
-    [SerializeField] float delayAmount;
-    float delayTimer;
-    bool focusCheck; bool focusBase;
+    [SerializeField] protected bool delay;
+    [SerializeField] protected float delayAmount;
+    protected float delayTimer;
 
     public override void OnEnter()
     {
-        manager.movementPoint.speed = agentSpeed;
-        baseSpeed = manager.nav.speed;
-        manager.nav.speed = agentSpeed;
-        manager.nav.SetDestination(manager.nav.transform.position);
+        //movement set
+        //manager.movementPoint.speed = agentSpeed;
+        //baseSpeed = manager.nav.speed;
+        //manager.nav.speed = agentSpeed;
+        //manager.nav.SetDestination(manager.nav.transform.position);
+        manager.movementTarget = manager.movementPoint.rotating.transform;
         manager.casting = true;
         ability = manager.caster.caster.abilities[abilityIndex];
 
@@ -40,21 +43,11 @@ public class AttackState : State
 
     public override void OnExit()
     {
-        //how long after this ability finishes until the boss can do another attack
-        manager.actionCooldown = setActionCooldown;
-        manager.actionTimer = Time.time;
+        manager.specialAttackCooldown = cooldown;
     }
 
     public override void Tick()
     {
-        //if (delay)
-        //{
-        //    if(Time.time - delayTimer < delayAmount)
-        //    {
-        //        return;
-        //    }
-        //}
-
         Ability.CastData data = manager.caster.CreateCastData();
         if (deviatedDirection)
         {
@@ -65,25 +58,32 @@ public class AttackState : State
         }
 
         //if uses dash's put here
+
         if(manager.agent.pipeColourChanger.Enabled)
-        manager.agent.AttackEffect();
+            manager.agent.AttackEffect();
 
-        Debug.Log("Attack");
-
-        if(ability.castType == Ability.CastTypes.hold)
+        if (ability.castType == Ability.CastTypes.hold)
         {
-            manager.caster.caster.CastAbility(abilityIndex, data);
+            for (int i = 0; i < manager.castOrigins.Length; i++)
+                manager.caster.caster.CastAbility(abilityIndex, data);
             if (Time.time - timer > castTime)
             {
+                //how long after this ability finishes until the boss can do another attack
+                manager.actionCooldown = setActionCooldown;
+                manager.actionTimer = Time.time;
                 //finished casting
                 manager.casting = false;
             }
-        }
-        else
-        {
-            manager.caster.caster.CastAbility(abilityIndex, data);
-            manager.casting = false;
+            return;
         }
 
+        for (int i = 0; i < manager.castOrigins.Length; i++)
+            manager.caster.caster.CastAbility(abilityIndex, data);
+
+        //how long after this ability finishes until the boss can do another attack
+        manager.actionCooldown = setActionCooldown;
+        manager.actionTimer = Time.time;
+
+        manager.casting = false;
     }
 }

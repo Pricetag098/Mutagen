@@ -12,14 +12,25 @@ public class SecondOrderFacer : MonoBehaviour
 
 	public bool projectToFloor;
 	public LayerMask floor;
+	public Vector3 targetVec;
 
-	public bool fixedUpdate;
-	public Transform target;
+    public bool fixedUpdate;
+	public Optional<Transform> target;
 	private void Start()
 	{
-		x = new SecondOrderDynamics(f, zeta, r, target.forward.x);
-		y = new SecondOrderDynamics(f, zeta, r, target.forward.y);
-		z = new SecondOrderDynamics(f, zeta, r, target.forward.z);
+		if (target.Enabled)
+		{
+			x = new SecondOrderDynamics(f, zeta, r, target.Value.forward.x);
+			y = new SecondOrderDynamics(f, zeta, r, target.Value.forward.y);
+			z = new SecondOrderDynamics(f, zeta, r, target.Value.forward.z);
+		}
+		else
+		{
+            x = new SecondOrderDynamics(f, zeta, r, transform.forward.x);
+            y = new SecondOrderDynamics(f, zeta, r, transform.forward.y);
+            z = new SecondOrderDynamics(f, zeta, r, transform.forward.z);
+        }
+		
 	}
 
 	private void Update()
@@ -47,8 +58,8 @@ public class SecondOrderFacer : MonoBehaviour
 			y.UpdateKVals(f, zeta, r);
 			z.UpdateKVals(f, zeta, r);
 		}
-
-		Vector3 targetVec = target.forward;
+		if(target.Enabled)
+			targetVec = target.Value.forward;
 
 		if (projectToFloor)
 		{
@@ -66,6 +77,6 @@ public class SecondOrderFacer : MonoBehaviour
 			z.Update(timeStep, targetVec.z));
 
 		
-		transform.forward = newPos;
+		transform.forward = newPos.normalized;
 	}
 }

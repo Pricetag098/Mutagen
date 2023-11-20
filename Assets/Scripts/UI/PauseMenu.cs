@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,6 +17,9 @@ public class PauseMenu : MonoBehaviour
     {
 		PlayerSettingsHandler.instance.ReloadTargets();
 		pauseAction.action.performed += Pause;
+
+        if (enabled)
+            enabled = false;
     }
 
     private void OnEnable()

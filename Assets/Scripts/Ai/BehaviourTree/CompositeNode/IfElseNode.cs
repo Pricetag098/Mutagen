@@ -240,10 +240,8 @@ public class IfElseNode : CompositeNode
 
         if(Time.time - agent.firingTimer > firingDuration.Value)
         {
-            Debug.Log("Done Firing");
             if (!agent.onCooldown)
             {
-                Debug.Log("Start Cooldown");
                 agent.onCooldown = true;
                 agent.cooldownTimer = Time.time;
                 return false;

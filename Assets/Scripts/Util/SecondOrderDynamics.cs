@@ -34,6 +34,8 @@ public class SecondOrderDynamics
 
     public float Update(float T , float x)
 	{
+        if (T == 0)
+            return y;
         float xd = (x - xp) /T;
         xp = x;
 

@@ -11,21 +11,29 @@ public class StateManager : MonoBehaviour
     [HideInInspector] public EnemyAbilityCaster caster;
     [SerializeField] LayerMask playerLayer;
     [HideInInspector] public PlayerMovement player;
-    public Transform castOrigin;
+    public Transform[] castOrigins;
     public MovingPoint movementPoint;
     [HideInInspector] public Transform movementTarget;
 
-    [Header("States")]
+    [Header("States and State logic")]
     public State[] states;
     State curState;
     public bool casting;
+
 
     [Header("Stats")]
     public float actionCooldown;
     [HideInInspector] public float actionTimer;
 
-    //readability
-    int rotating = 0; int chompAttack = 1; int empAttack = 2;
+    //special actions that are occasional attacks
+    [HideInInspector] public bool canCastSpecial;
+    [HideInInspector] public float specialAttackTimer;
+    [HideInInspector] public float specialAttackCooldown;
+
+    //readability, phase 1
+    int rotating = 0; int chompAttack = 1; int shootAttack = 2; int blackHoleAttack = 3;
+    //phase 2
+    int ramming = 4;
 
     private void Start()
     {
@@ -43,33 +51,78 @@ public class StateManager : MonoBehaviour
         curState.OnEnter();
     }
 
+    int getHealthState()
+    {
+        for (int i = 0; i < agent.healthState.Value.Length; i++)
+        {
+            if (i == agent.healthState.Value.Length - 1) return i;
+
+            if (agent.health.health > agent.healthState.Value[i] && agent.health.health <= agent.healthState.Value[i + 1])
+            {
+                return i + 1;
+            }
+        }
+        return 0;
+    }
+
     private void Update()
     {
         //run current state
         curState.Tick();
 
-
-        if (casting || Time.time - actionTimer > actionCooldown)
+        if (casting)
             return;
 
+        //health state behaviour
+        switch (getHealthState())
+        {
+            case 0:
+                break;
+            case 1:
+                SecondBehaviour();
+                break;
+            case 2:
+                FirstBehaviour();
+                break;
+        }
+
+
+    }
+
+    void FirstBehaviour()
+    {
+        if (Time.time - specialAttackTimer > specialAttackCooldown) canCastSpecial = true;
 
         //if player is in front, do bite attack
         RaycastHit hit;
-        if (Physics.SphereCast(castOrigin.position, 15f, transform.forward, out hit, 50f, playerLayer))
+        if (Physics.SphereCast(transform.position, 10f, transform.forward, out hit, 15f, playerLayer))
         {
             if (curState != states[chompAttack])
             {
-                Debug.Log("Hit");
                 curState.OnExit();
                 curState = states[chompAttack];
                 curState.OnEnter();
             }
             return;
         }
-        else
+        //select from ranged attacks
+        else if (Time.time - actionTimer > actionCooldown)
         {
-
+            if (curState != states[shootAttack])
+            {
+                curState.OnExit();
+                curState = states[shootAttack];
+                curState.OnEnter();
+            }
+            else if (canCastSpecial && curState != states[blackHoleAttack])
+            {
+                curState.OnExit();
+                curState = states[blackHoleAttack];
+                curState.OnEnter();
+            }
+            return;
         }
+
 
         //normal movement
         if (curState != states[rotating])
@@ -78,13 +131,32 @@ public class StateManager : MonoBehaviour
             curState = states[rotating];
             curState.OnEnter();
         }
+    }
 
+    void SecondBehaviour()
+    {
+
+
+        //else if (canCastSpecial)
+        //{
+
+        //  return;
+        //}
+
+
+        //normal movement
+        if (curState != states[ramming])
+        {
+            curState.OnExit();
+            curState = states[ramming];
+            curState.OnEnter();
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
-        Vector3 draw = castOrigin.transform.position + transform.forward * 50;
+        Vector3 draw =  transform.position + (transform.forward) * 20;
         draw.y = transform.position.y;
         Gizmos.DrawLine(transform.position, draw);
     }

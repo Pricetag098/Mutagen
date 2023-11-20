@@ -49,8 +49,8 @@ public class MeleeAttackAbility : Ability
 				TriggerAnimation(animationTrigger, swingTime);
 				List<Health> healths = new List<Health>();
 				if (swingvfx.Enabled)
-					swingvfx.Value.Play(lastCastData.origin, lastCastData.aimDirection, lastCastData.effectOrigin);
-				RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, lastCastData.aimDirection, swingRange, targetLayers);
+					swingvfx.Value.Play(lastCastData.origin, lastCastData.moveDirection, lastCastData.effectOrigin);
+				RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, lastCastData.moveDirection, swingRange, targetLayers);
 				foreach (RaycastHit hit in hits)
 				{
 					HitBox hb;

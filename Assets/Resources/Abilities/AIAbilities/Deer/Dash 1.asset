@@ -20,7 +20,13 @@ MonoBehaviour:
     enabled: 1
     val: {fileID: 4217279357165032702, guid: e2087d269a236d648b5f3707cf85733e, type: 3}
   slotMask: 2
+  castState: 0
   castType: 0
+  windUptime: 0
+  windDownTime: 0
+  moveSpeedModifier: 0
+  windUpTrigger: 
+  windDownTrigger: 
   Casts: 2
   rechargeTime: 4
   iFramesGranted: 0.5
@@ -30,4 +36,18 @@ MonoBehaviour:
   dashFx:
     enabled: 0
     val: {fileID: 0}
+  aimAssist:
+    maxRange: 100
+    aimAssistLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    directionWeight: 1
+    distanceWeight: 1
+    priorityWeight: 1
+    minDirectionValue: -1
+    assistWeight: 1
+  gcRange: 10000
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
   animationTrigger: Dash
