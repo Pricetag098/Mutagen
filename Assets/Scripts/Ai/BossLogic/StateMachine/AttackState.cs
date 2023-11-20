@@ -17,16 +17,16 @@ public class AttackState : State
     [Header("Behaviour Stats")]
     [SerializeField] float agentSpeed;
     float baseSpeed;
-    [SerializeField] bool delay;
-    [SerializeField] float delayAmount;
-    float delayTimer;
-    bool focusCheck; bool focusBase;
+    [SerializeField] protected bool delay;
+    [SerializeField] protected float delayAmount;
+    protected float delayTimer;
 
     public override void OnEnter()
     {
-        manager.movementPoint.speed = agentSpeed;
+        //movement set
+        //manager.movementPoint.speed = agentSpeed;
         //baseSpeed = manager.nav.speed;
-        manager.nav.speed = agentSpeed;
+        //manager.nav.speed = agentSpeed;
         //manager.nav.SetDestination(manager.nav.transform.position);
         manager.casting = true;
         ability = manager.caster.caster.abilities[abilityIndex];
@@ -45,6 +45,8 @@ public class AttackState : State
 
     public override void Tick()
     {
+        Debug.Log("Casting " + this.name);
+
         Ability.CastData data = manager.caster.CreateCastData();
         if (deviatedDirection)
         {
@@ -55,8 +57,9 @@ public class AttackState : State
         }
 
         //if uses dash's put here
+
         if(manager.agent.pipeColourChanger.Enabled)
-        manager.agent.AttackEffect();
+            manager.agent.AttackEffect();
 
         if (ability.castType == Ability.CastTypes.hold)
         {
