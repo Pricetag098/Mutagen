@@ -20,9 +20,9 @@ public class SelectionUi : MonoBehaviour
     public Volume ppVolume;
     [SerializeField]Ability[] abilityOptions;
 
-    [SerializeField] int healAmount;
+    [SerializeField] int healAmount = 100;
     //temp
-    bool first = true;
+    bool first;
 
     private void Awake()
     {
@@ -37,6 +37,9 @@ public class SelectionUi : MonoBehaviour
 		DOTween.defaultTimeScaleIndependent = true;
 		Close();
 		DOTween.Kill(this, true);
+
+        //temp
+        first = true;
 	}
 
 	public void OpenWith(Ability[] abilities)
@@ -104,12 +107,12 @@ public class SelectionUi : MonoBehaviour
     [ContextMenu("close")]
     public void Close()
     {
-        if (!first)
+        if (first)
         {
-            first = true;
+            first = false;
             //heal
             DamageData data = new DamageData();
-            data.damage = healAmount; data.target = playerAbilityCaster.gameObject; data.type = Element.Light;
+            data.damage = -healAmount; data.target = playerAbilityCaster.gameObject; data.type = Element.Light;
             playerAbilityCaster.GetComponent<Health>().TakeDmg(data);
         }
 

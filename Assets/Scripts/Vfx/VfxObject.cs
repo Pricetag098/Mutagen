@@ -26,7 +26,7 @@ public class VfxObject : MonoBehaviour
 
 	private void Update()
 	{
-		if (hasTarget)
+		if (hasTarget && target != null)
 			transform.position = target.position;
 	}
 
