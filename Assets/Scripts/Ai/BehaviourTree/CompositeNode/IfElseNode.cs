@@ -324,15 +324,9 @@ public class IfElseNode : CompositeNode
 
             case CheckType.firingCooldown:
                 if (isFiringCooldownCheck())
-                {
-                    //Debug.Log("True");
                     ChildUpdate(first);
-                }
                 else
-                {
-                    Debug.Log("False");
                     ChildUpdate(second);
-                }
                 break;
             #endregion
 
