@@ -19,6 +19,11 @@ public class SelectionUi : MonoBehaviour
     public Vector3 buttonOffset;
     public Volume ppVolume;
     [SerializeField]Ability[] abilityOptions;
+
+    [SerializeField] int healAmount = 100;
+    //temp
+    bool first;
+
     private void Awake()
     {
         playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
@@ -32,6 +37,9 @@ public class SelectionUi : MonoBehaviour
 		DOTween.defaultTimeScaleIndependent = true;
 		Close();
 		DOTween.Kill(this, true);
+
+        //temp
+        first = true;
 	}
 
 	public void OpenWith(Ability[] abilities)
@@ -99,6 +107,16 @@ public class SelectionUi : MonoBehaviour
     [ContextMenu("close")]
     public void Close()
     {
+        if (first)
+        {
+            first = false;
+            //heal
+            DamageData data = new DamageData();
+            data.damage = -healAmount; data.target = playerAbilityCaster.gameObject; data.type = Element.Light;
+            playerAbilityCaster.GetComponent<Health>().TakeDmg(data);
+        }
+
+
         open = false;
         DOTween.Kill(this,true);
         closeSequence = DOTween.Sequence(this);
@@ -120,8 +138,6 @@ public class SelectionUi : MonoBehaviour
         closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
         PlayerAim.UseMouse = PlayerAim.UseMouse;
     }
-
-
    
     void Update()
     {

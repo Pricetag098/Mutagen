@@ -38,7 +38,7 @@ public class IfElseNode : CompositeNode
     public Optional<oneTimeCheck> oneTime;
     public Optional<int> cooldownCheckIndex;
     public Optional<Ability> isAbility;
-    public Optional<int> firingDuration, firingCooldown;
+    public Optional<float> firingDuration, firingCooldown;
     public enum oneTimeCheck
     {
         Null,
@@ -324,15 +324,9 @@ public class IfElseNode : CompositeNode
 
             case CheckType.firingCooldown:
                 if (isFiringCooldownCheck())
-                {
-                    //Debug.Log("True");
                     ChildUpdate(first);
-                }
                 else
-                {
-                    Debug.Log("False");
                     ChildUpdate(second);
-                }
                 break;
             #endregion
 
