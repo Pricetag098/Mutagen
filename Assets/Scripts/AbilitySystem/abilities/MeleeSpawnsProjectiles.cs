@@ -8,6 +8,7 @@ public class MeleeSpawnsProjectiles : MeleeAttackAbility
     [SerializeField] float projectileSpeed = 1;
     [SerializeField] float projectileDamage = 1;
     ObjectPooler pooler;
+    [SerializeField] AimAssist aimAssist;
     protected override void OnEquip()
     {
         base.OnEquip();
@@ -18,6 +19,7 @@ public class MeleeSpawnsProjectiles : MeleeAttackAbility
 
     protected override void OnSwing(Vector3 origin, Vector3 direction)
     {
+        direction = aimAssist.GetAssistedAimDir(direction, origin, projectileSpeed);
         pooler.Spawn().GetComponent<Projectile>().Launch(origin, direction * projectileSpeed, CreateDamageData(projectileDamage), hitEffects);
     }
 }

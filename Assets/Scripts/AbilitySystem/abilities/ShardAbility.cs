@@ -34,4 +34,9 @@ public class ShardAbility : Ability
     {
         timer.Tick();
     }
+
+    public override float GetCoolDownPercent()
+    {
+        return timer.Progress;
+    }
 }

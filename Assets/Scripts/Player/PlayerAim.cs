@@ -118,10 +118,10 @@ public class PlayerAim : MonoBehaviour
 		mouseAction.action.performed -= AimMouse;
     }
 
-	private void OnDrawGizmos()
+	/*private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
         if(Application.isPlaying)
         Gizmos.DrawRay(playerMovement.orientation.position, aimDir * 5);
-	}
+	}*/
 }
