@@ -47,7 +47,7 @@ public class MeleeAttackAbility : Ability
 				if (OnCast != null)
 					OnCast(lastCastData);
 				swingtimer.Reset();
-				OnSwing(lastCastData.origin, lastCastData.aimDirection);
+				
 				TriggerAnimation(animationTrigger, swingTime);
 				List<Health> healths = new List<Health>();
 
@@ -55,7 +55,8 @@ public class MeleeAttackAbility : Ability
 				if (swingvfx.Enabled)
 					swingvfx.Value.Play(lastCastData.origin, dir, lastCastData.effectOrigin);
 				RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, dir, swingRange, targetLayers);
-				foreach (RaycastHit hit in hits)
+                OnSwing(lastCastData.origin, dir);
+                foreach (RaycastHit hit in hits)
 				{
 					HitBox hb;
 					if (hit.collider.TryGetComponent(out hb))
