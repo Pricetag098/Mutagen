@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f40001e31e60b8849a0a85a4dbd4932d, type: 3}
+  m_Name: PhotonFlash 1
+  m_EditorClassIdentifier: 
+  abilityName: Photon Blitz
+  abilityDescription: Charge up your power and dash forward striking enemies around
+    you with radiant smite.
+  icon: {fileID: 21300000, guid: 5e70f367721c72145b03530b7bcc3926, type: 3}
+  element: 4
+  pickupPrefab:
+    enabled: 1
+    val: {fileID: 3592728007348239100, guid: a4bba8cdf17037240a3623f30e0c4d29, type: 3}
+  slotMask: 2
+  castState: 0
+  castType: 0
+  windUptime: 0
+  windDownTime: 0
+  moveSpeedModifier: 0
+  windUpTrigger: Start Dash
+  windDownTrigger: End Dash
+  Casts: 2
+  rechargeTime: 2.5
+  iFramesGranted: 0.2
+  dashTime: 0.5
+  dashDistance: 10
+  endSpeed: 15
+  dashFx:
+    enabled: 1
+    val: {fileID: 11400000, guid: c18fe9a9f98382146ad4a301140a84c7, type: 2}
+  aimAssist:
+    maxRange: 100
+    aimAssistLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    directionWeight: 5
+    distanceWeight: 5
+    priorityWeight: 1
+    minDirectionValue: 0.75
+    assistWeight: 1
+  gcRange: 2
+  layer:
+    serializedVersion: 2
+    m_Bits: 1
+  animationTrigger: 
+  hitRadius: 2
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  statusEffects:
+  - {fileID: 11400000, guid: 763dcae5fff9eae4eaffcc2d0313a3ab, type: 2}
+  onHitEffects:
+  - {fileID: 11400000, guid: 0e76b26503b14a94a90de7b00cefc510, type: 2}

@@ -25,7 +25,7 @@ MonoBehaviour:
   slotMask: 1
   castState: 0
   castType: 1
-  windUptime: 0.4
+  windUptime: 0.1
   windDownTime: 0.2
   moveSpeedModifier: 1
   windUpTrigger: Charge
@@ -33,20 +33,29 @@ MonoBehaviour:
   prefab: {fileID: 7080620132596766156, guid: 3055013c72812bd49bafe6171c8f49bf, type: 3}
   releaseOnFullCharge: 1
   maxChargeTime: 0.5
-  minChargeTime: 0.4
+  minChargeTime: 0.25
   damageRange: 5
   chargeDamageCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

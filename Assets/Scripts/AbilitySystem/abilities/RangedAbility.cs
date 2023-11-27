@@ -48,6 +48,7 @@ public class RangedAbility : Ability
             
             startedCasting = true;
         }
+
         chargeTime = Mathf.Clamp(chargeTime + Time.deltaTime,0,maxChargeTime);
         lastCastdata = data;
         caster.UpdateDirection(data.aimDirection);
@@ -58,10 +59,8 @@ public class RangedAbility : Ability
 			{
                 
                 held = false;
-            }
-                
+            }   
         }
-
     }
 
     public override void OnTick()
@@ -77,8 +76,6 @@ public class RangedAbility : Ability
             {
                 FinishCast();
             }
-            
-
             
             startedCasting =false;
             chargeTime = 0;

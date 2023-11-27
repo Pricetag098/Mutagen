@@ -38,7 +38,7 @@ public class IfElseNode : CompositeNode
     public Optional<oneTimeCheck> oneTime;
     public Optional<int> cooldownCheckIndex;
     public Optional<Ability> isAbility;
-    public Optional<int> firingDuration, firingCooldown;
+    public Optional<float> firingDuration, firingCooldown;
     public enum oneTimeCheck
     {
         Null,
@@ -217,7 +217,7 @@ public class IfElseNode : CompositeNode
         }
         if(dasheffect || dash)
         {
-            float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
+            float cooldown = dash != null ? dash.GetCoolDownPercent() : dasheffect.GetCoolDownPercent();
             if (cooldown < 0.9f)
             {
                 return false;
@@ -324,15 +324,9 @@ public class IfElseNode : CompositeNode
 
             case CheckType.firingCooldown:
                 if (isFiringCooldownCheck())
-                {
-                    //Debug.Log("True");
                     ChildUpdate(first);
-                }
                 else
-                {
-                    Debug.Log("False");
                     ChildUpdate(second);
-                }
                 break;
             #endregion
 
