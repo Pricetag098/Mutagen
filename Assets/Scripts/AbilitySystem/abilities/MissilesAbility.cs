@@ -109,7 +109,7 @@ public class MissilesAbility : Ability
                     tempdmg += Random.Range(-damageRange, damageRange);
                     if (tempdmg < 0)
                         tempdmg = 0;
-                    projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, CreateDamageData(tempdmg),projectileSpeed,hb);
+                    projectileSpawner.Spawn().GetComponent<Missile>().Launch(lastCastdata.origin, midPoint, hb.transform, CreateDamageData(tempdmg),projectileSpeed,hb,targetLayers);
 
                     if (caster.animator.Enabled)
                         caster.animator.Value.SetTrigger(animationTrigger);

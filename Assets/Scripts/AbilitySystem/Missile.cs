@@ -13,16 +13,17 @@ public class Missile : MonoBehaviour
     [SerializeField] Optional<VfxSpawnRequest> hitfx;
     [SerializeField, Range(0, 1)] float targetingPoint = .5f;
     [SerializeField] float randRadius;
-    [SerializeField] LayerMask layer;
+    LayerMask layer;
     [SerializeField] float hitRadius;
     Vector3 rand;
-    public void Launch(Vector3 origin,Vector3 mid,Transform target,DamageData damage,float speed,HitBox hitBox)
+    public void Launch(Vector3 origin,Vector3 mid,Transform target,DamageData damage,float speed,HitBox hitBox,LayerMask layerMask)
 	{
         this.origin = origin;
         this.mid = mid;
         this.target = target;
         this.damageData = damage;
         this.hitBox = hitBox;
+        layer = layerMask;
 
         hitBox.health.OnDeath += RemoveTarget;
 
