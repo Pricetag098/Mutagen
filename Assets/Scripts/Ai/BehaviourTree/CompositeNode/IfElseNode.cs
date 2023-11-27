@@ -217,7 +217,7 @@ public class IfElseNode : CompositeNode
         }
         if(dasheffect || dash)
         {
-            float cooldown = dash != null ? dash.GetCoolDownPercent() : melee.GetCoolDownPercent();
+            float cooldown = dash != null ? dash.GetCoolDownPercent() : dasheffect.GetCoolDownPercent();
             if (cooldown < 0.9f)
             {
                 return false;
