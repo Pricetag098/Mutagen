@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(menuName = "Abilities/Melee")]
 public class MeleeAttackAbility : Ability
@@ -23,7 +24,7 @@ public class MeleeAttackAbility : Ability
 	[SerializeField]float swingTime,coolDown;
 	Timer swingtimer,coolDownTimer;
 	[SerializeField] string animationTrigger;
-	
+	[SerializeField] float pushForce;
 	
 
 	protected override void OnEquip()
@@ -54,7 +55,21 @@ public class MeleeAttackAbility : Ability
 				Vector3 dir = useMoveDir ? lastCastData.moveDirection : lastCastData.aimDirection;
 				if (swingvfx.Enabled)
 					swingvfx.Value.Play(lastCastData.origin, dir, lastCastData.effectOrigin);
-				RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, dir, swingRange, targetLayers);
+
+
+				//force the user in the swing direction
+                Enemy enemy;
+                if (caster.TryGetComponent(out enemy))
+                {
+                    enemy.KnockBack(dir * pushForce);
+
+                }
+                Rigidbody rb;
+                if (caster.TryGetComponent(out rb))
+                {
+                    rb.AddForce(dir * pushForce, ForceMode.VelocityChange);
+                }
+                RaycastHit[] hits = Physics.SphereCastAll(lastCastData.origin, swingRadius, dir, swingRange, targetLayers);
 				foreach (RaycastHit hit in hits)
 				{
 					HitBox hb;
