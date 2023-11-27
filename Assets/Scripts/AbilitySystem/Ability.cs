@@ -192,6 +192,5 @@ public class Ability : ScriptableObject
             caster.animator.Value.SetFloat("AnimationSpeed", 1 / time);
             caster.animator.Value.SetTrigger(trigger);
 		}
-        
     }
 }
