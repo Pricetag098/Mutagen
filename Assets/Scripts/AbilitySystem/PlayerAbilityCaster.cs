@@ -78,7 +78,7 @@ public class PlayerAbilityCaster : MonoBehaviour
 		}
 		return cast;
 	}
-
+	
 	bool TryCast(InputAction action, int index)
 	{
 		
