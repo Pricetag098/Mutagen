@@ -22,11 +22,11 @@ MonoBehaviour:
   slotMask: 2
   castState: 0
   castType: 0
-  windUptime: 0
-  windDownTime: 0
+  windUptime: 1.25
+  windDownTime: 0.2
   moveSpeedModifier: 0
-  windUpTrigger: Start Dash
-  windDownTrigger: End Dash
+  windUpTrigger: StartAttack
+  windDownTrigger: EndAttack
   Casts: 2
   rechargeTime: 2.5
   iFramesGranted: 0.2
@@ -37,7 +37,7 @@ MonoBehaviour:
     enabled: 0
     val: {fileID: 0}
   aimAssist:
-    maxRange: 100
+    maxRange: 1000
     aimAssistLayer:
       serializedVersion: 2
       m_Bits: 8
