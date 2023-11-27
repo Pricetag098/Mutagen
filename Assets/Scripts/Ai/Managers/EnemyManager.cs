@@ -178,7 +178,6 @@ public class EnemyManager : MonoBehaviour
 
         if(emptyCount == managers.Count)
         {
-            Debug.Log("Disable");
             //disable exit
             GameObject exit = FindObjectOfType<Exit>().transform.GetChild(0).gameObject;
             exit.SetActive(false);

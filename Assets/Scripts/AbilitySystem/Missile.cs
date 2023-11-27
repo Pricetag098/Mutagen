@@ -11,13 +11,19 @@ public class Missile : MonoBehaviour
     Timer timer;
     DamageData damageData;
     [SerializeField] Optional<VfxSpawnRequest> hitfx;
-    public void Launch(Vector3 origin,Vector3 mid,Transform target,DamageData damage,float speed,HitBox hitBox)
+    [SerializeField, Range(0, 1)] float targetingPoint = .5f;
+    [SerializeField] float randRadius;
+    LayerMask layer;
+    [SerializeField] float hitRadius;
+    Vector3 rand;
+    public void Launch(Vector3 origin,Vector3 mid,Transform target,DamageData damage,float speed,HitBox hitBox,LayerMask layerMask)
 	{
         this.origin = origin;
         this.mid = mid;
         this.target = target;
         this.damageData = damage;
         this.hitBox = hitBox;
+        layer = layerMask;
 
         hitBox.health.OnDeath += RemoveTarget;
 
@@ -33,22 +39,40 @@ public class Missile : MonoBehaviour
 
 	private void Disable()
 	{
-        hitBox.OnHit(damageData);
+        Collider[] colliders = Physics.OverlapSphere(transform.position,hitRadius,layer);
+        List<Health> healths = new List<Health>();
+        foreach(Collider collider in colliders)
+        {
+            if(collider.TryGetComponent(out HitBox hitbox))
+            {
+                if (!healths.Contains(hitBox.health))
+                {
+                    healths.Add(hitBox.health);
+                    hitbox.OnHit(damageData);
+                }
+                
+            }
+        }
         if(hitfx.Enabled)
             hitfx.Value.Play(transform.position, -transform.forward);
         RemoveTarget(new DamageData());
         
 	}
-
-	private void Update()
+    Vector3 targetPos;
+    private void Update()
 	{
 		timer.Tick();
 
         float t = timer.Progress;
+        if(t < targetingPoint)
+        {
+            targetPos = target.position;
+        }
         
-        transform.position = QaudraticLerp(origin,mid,target.position,t);
+        
+        transform.position = QaudraticLerp(origin,mid,targetPos,t);
 
-        transform.forward = Vector3.Lerp(mid - origin, target.position - mid,t);
+        transform.forward = Vector3.Lerp(mid - origin, targetPos - mid,t);
 
 
 	}

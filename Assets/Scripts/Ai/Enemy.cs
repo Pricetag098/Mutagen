@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     public float movementSpeed;
     public float movementMultiplier = 1;
     public float flankDistance = 5;
-    [Min(0.1f)]
+    [Range(0.1f, 50f)]
     public float knockbackResist;
     float defaultSpeed;
     [Tooltip("In order of lowest to highest")]
@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour
     [Header("Timers")]
     public float retaliateCooldown;
     public float stunDuration;
+    [Range(0f, 1f)]
+    public float onHitFlashTime;
     [Range(0f,10f)]
     public float delayMoveRange;
     //move these to blackboard
@@ -158,7 +160,7 @@ public class Enemy : MonoBehaviour
         if(anim.Enabled)
         anim.Value.SetFloat("Speed", agent.speed);
 
-
+        //changes pipecolour when about to attack
         if (telegraph)
         {
             if (Time.time - telegraphTimer > 0.1f)
@@ -168,10 +170,11 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        //on hit effect for player feedback
         if (!hitEffect)
             return;
 
-        if(Time.time - hitFlashTimer > 0.1f)
+        if(Time.time - hitFlashTimer > onHitFlashTime)
         {
             for (int i = 0; i < renderer.Count(); i++)
                 renderer[i].material.SetFloat("_RimLight", 0);

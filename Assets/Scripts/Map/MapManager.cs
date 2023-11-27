@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class MapManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] Image splashImage;
     [SerializeField] TextMeshProUGUI mapName;
     [SerializeField] InputActionProperty inputAction;
-    [SerializeField] float fadeTime = 3;
+    [SerializeField] float fadeTime = 3,waitTime = 1;
     public MapPath path;
     bool loadingMap;
     public int mapTeir = 0;
@@ -51,23 +52,18 @@ public class MapManager : MonoBehaviour
 
     void LevelLoaded(Scene scene, LoadSceneMode mode)
 	{
-        loadingMap = false;
-	}
+        //loadingMap = false;
+        Sequence s = DOTween.Sequence(this);
+        
+        
+        //s.AppendCallback(() => { operation.allowSceneActivation = true; });
+        //s.AppendInterval(waitTime);
+        s.Append(group.DOFade(0, fadeTime));
+    }
 
     private void Update()
     {
-        if(loadingMap)
-        {
-            group.alpha += Time.unscaledDeltaTime / fadeTime;
-            group.interactable = true;
-            group.blocksRaycasts = true;
-        }
-        else
-        {
-            group.alpha -= Time.unscaledDeltaTime;
-            group.interactable = false;
-            group.blocksRaycasts = false;
-        }
+        
     }
 
     public static void LoadNext()
@@ -91,19 +87,31 @@ public class MapManager : MonoBehaviour
     {
         instance.DoLoadMap(map);
     }
-
+    Map mapToLoad;
     void DoLoadMap(Map map)
     {
         if(operation != null)
         if (!operation.isDone)
             Debug.LogError("Error Loading Two Maps @ once");
         Time.timeScale = 0;
+        loadingMap = true;
         mapName.text = map.mapName;
         splashImage.sprite = map.splashScreen;
-        operation = SceneManager.LoadSceneAsync(map.sceneBuildIndex,LoadSceneMode.Single);
-        operation.allowSceneActivation = false;
-        loadingMap = true;
-        inputAction.action.Enable();
+        
+        Sequence s = DOTween.Sequence(this);
+        s.Append(group.DOFade(1, fadeTime));
+        s.AppendCallback(() => {
+            operation = SceneManager.LoadSceneAsync(map.sceneBuildIndex, LoadSceneMode.Single);
+            operation.allowSceneActivation = false;
+        });
+        s.AppendInterval(waitTime);
+        s.AppendCallback(() => { operation.allowSceneActivation = true; loadingMap = false; });
+        
+        
+        mapToLoad = map;
+
+        
+        
         
     }
     [ContextMenu("Test")]

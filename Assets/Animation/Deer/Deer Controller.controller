@@ -104,31 +104,31 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6119823399006159839}
-    m_Position: {x: 390, y: -120, z: 0}
+    m_Position: {x: 400, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -199668478110759609}
-    m_Position: {x: 660, y: 20, z: 0}
+    m_Position: {x: 650, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4032763177991921942}
-    m_Position: {x: 410, y: 20, z: 0}
+    m_Position: {x: 400, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8027966900520524663}
-    m_Position: {x: 170, y: 30, z: 0}
+    m_Position: {x: 160, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3571686036807400930}
-    m_Position: {x: 430, y: 140, z: 0}
+    m_Position: {x: 390, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8776448962281413043}
     m_Position: {x: 220, y: 330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4546040932658634312}
-    m_Position: {x: 650, y: -230, z: 0}
+    m_Position: {x: 640, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8188081136145402625}
-    m_Position: {x: 410, y: -230, z: 0}
+    m_Position: {x: 400, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6064303636220676036}
-    m_Position: {x: 180, y: -230, z: 0}
+    m_Position: {x: 170, y: -290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2335808077571948709}
     m_Position: {x: 242.84784, y: 434.5, z: 0}
@@ -153,7 +153,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: EndAttack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4032763177991921942}
   m_Solo: 0
@@ -501,10 +504,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: EndAttack
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -199668478110759609}
   m_Solo: 0
