@@ -1,15 +1,17 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] InputActionProperty pauseAction;
     public SettingsMenu menu;
+    public Volume PP;
 	
 	
 
@@ -37,21 +39,26 @@ public class PauseMenu : MonoBehaviour
 
 	void Pause(InputAction.CallbackContext context)
     {
-        menu.gameObject.SetActive(!menu.transform.gameObject.active);
-
+        menu.gameObject.SetActive(!menu.gameObject.active);
+        //close
         if (!menu.gameObject.active)
         {
-            Time.timeScale = 1;
             PlayerSettingsHandler.instance.SaveGame();
-        }
+            PP.weight = 0;
+            Time.timeScale = 1;
 
+
+        }
+        //open
         else
         {
-            Time.timeScale = 0;
             PlayerSettingsHandler.instance.LoadGame();
+            PP.weight = 1;
+            Time.timeScale = 0;
         }
 
     }
+
 
     
 }
