@@ -10,10 +10,7 @@ using UnityEngine.Rendering;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] InputActionProperty pauseAction;
-    public SettingsMenu menu;
-    public Volume PP;
-	
-	
+    public SettingsMenu menu;	
 
 	private void Start()
     {
@@ -43,22 +40,14 @@ public class PauseMenu : MonoBehaviour
         //close
         if (!menu.gameObject.active)
         {
-            PlayerSettingsHandler.instance.SaveGame();
-            PP.weight = 0;
             Time.timeScale = 1;
-
-
+            PlayerSettingsHandler.instance.SaveGame();
         }
         //open
         else
         {
-            PlayerSettingsHandler.instance.LoadGame();
-            PP.weight = 1;
             Time.timeScale = 0;
+            PlayerSettingsHandler.instance.LoadGame();
         }
-
     }
-
-
-    
 }
