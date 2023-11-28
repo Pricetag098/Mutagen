@@ -41,12 +41,9 @@ public class HealthBar : MonoBehaviour
         text.text = (int)health.health + " / " + health.maxHealth;
         dBar.DOFillAmount(hBar.fillAmount, 3);
 
+        //hit effect
 
 	}
     //Async example
     public Image hitEffect;
-
-    
-    
-
 }
