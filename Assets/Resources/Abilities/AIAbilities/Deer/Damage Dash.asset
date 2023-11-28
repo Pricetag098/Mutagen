@@ -22,14 +22,14 @@ MonoBehaviour:
   slotMask: 2
   castState: 0
   castType: 0
-  windUptime: 1.25
-  windDownTime: 0.2
+  windUptime: 0.75
+  windDownTime: 0.25
   moveSpeedModifier: 0
   windUpTrigger: StartAttack
   windDownTrigger: EndAttack
   Casts: 2
-  rechargeTime: 2.5
-  iFramesGranted: 0.2
+  rechargeTime: 1.75
+  iFramesGranted: 0
   dashTime: 0.1
   dashDistance: 15
   endSpeed: 15
@@ -41,17 +41,17 @@ MonoBehaviour:
     aimAssistLayer:
       serializedVersion: 2
       m_Bits: 8
-    directionWeight: 1
-    distanceWeight: 1
-    priorityWeight: 1
-    minDirectionValue: -1
-    assistWeight: 1
+    directionWeight: 0
+    distanceWeight: 0
+    priorityWeight: 0
+    minDirectionValue: 0
+    assistWeight: 0.1
   gcRange: 10000
   layer:
     serializedVersion: 2
     m_Bits: 8
   animationTrigger: Attack
-  hitRadius: 4
+  hitRadius: 1
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
