@@ -54,9 +54,9 @@ public class EMPAttackState : AttackState
 
         Ability.CastData data = manager.caster.CreateCastData();
 
-        if (manager.agent.pipeColourChanger.Enabled)
+        /*if (manager.agent.pipeColourChanger.Enabled)
             manager.agent.AttackEffect();
-
+*/
         //change cast origins to random points within cast area
         for (int i = 0; i < manager.castOrigins.Length; i++)
             manager.caster.caster.CastAbility(abilityIndex, data);
