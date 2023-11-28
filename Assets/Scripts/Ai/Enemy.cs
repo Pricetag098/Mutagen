@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour
     [Tooltip("In order of lowest to highest")]
     public Optional<int[]> healthState;
 
-
     [Header("Timers")]
     public float retaliateCooldown;
     public float stunDuration;
@@ -160,15 +159,15 @@ public class Enemy : MonoBehaviour
         if(anim.Enabled)
         anim.Value.SetFloat("Speed", agent.speed);
 
-        //changes pipecolour when about to attack
-        if (telegraph)
-        {
-            if (Time.time - telegraphTimer > 0.1f)
-            {
-                telegraph = false;
-                pipeColourChanger.Value.Default();
-            }
-        }
+        ////changes pipecolour when about to attack
+        //if (telegraph)
+        //{
+        //    if (Time.time - telegraphTimer > 0.1f)
+        //    {
+        //        telegraph = false;
+        //        pipeColourChanger.Value.Default();
+        //    }
+        //}
 
         //on hit effect for player feedback
         if (!hitEffect)
@@ -183,13 +182,13 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void AttackEffect()
-    {
-        if (!pipeColourChanger.Enabled)
-            return;
-        telegraphTimer = Time.time;
-        pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
-    }
+    //public void AttackEffect()
+    //{
+    //    if (!pipeColourChanger.Enabled)
+    //        return;
+    //    telegraphTimer = Time.time;
+    //    pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
+    //}
 
     void OnHit(DamageData data)
     {
