@@ -84,6 +84,7 @@ public class Ragdoll : MonoBehaviour
             int index = Random.Range(0, agent.manager.dropPool.abilities.Length);
 
             bool assigned = false;
+            //avoid assigning abilities the player already has
             for (int i = 0; i < usedIndex.Length; i++)
             {
                 if (droppedAbilities[i] != null)
@@ -115,9 +116,11 @@ public class Ragdoll : MonoBehaviour
                 }
             }
 
+            //count attempts to assign not used ability, fail after a number of attempts-
+            //in order to avoid soft locking the game
             attemptCount++;
 
-            if (attemptCount >= 15)
+            if (attemptCount >= 25)
             {
                 for (int i = 0; i < droppedAbilities.Length; i++)
                 {
@@ -131,14 +134,16 @@ public class Ragdoll : MonoBehaviour
             int count = 0;
             for (int i = 0; i < droppedAbilities.Length; i++)
             {
-                if (droppedAbilities[i] == null)
-                {
-                    break;
-                }
-                else
+                if (droppedAbilities[i] != null)
                 {
                     count++;
+                    continue;
+                    //break;
                 }
+                //else
+                //{
+                //    count++;
+                //}
 
             }
             if (count == droppedAbilities.Length)

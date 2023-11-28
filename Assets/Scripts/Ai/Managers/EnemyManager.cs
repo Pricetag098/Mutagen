@@ -13,8 +13,7 @@ public class EnemyManager : MonoBehaviour
 
     //empty list stats
     [HideInInspector] public bool empty;
-    public int listCount; //will remove later
-
+    public int listCount;
 
     [Header("DropStats")]
     public bool guaranteeDrop = true;

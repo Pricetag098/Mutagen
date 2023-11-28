@@ -67,14 +67,14 @@ public class CastAbilityNode : ActionNode
         {
             data.moveDirection = (blackboard.moveToPosition - agent.transform.position).normalized * 10;
         }
-        agent.AttackEffect();
+        //agent.AttackEffect();
 
         if (rotate)
             agent.transform.LookAt(blackboard.rotateTowardsObject.transform.position);
 
         if (!assigned)
         {
-            agent.AttackEffect();
+            //agent.AttackEffect();
             aCaster.CastAbility(abilityIndex, data);
         }
 
@@ -84,7 +84,7 @@ public class CastAbilityNode : ActionNode
             {
                 if(aCaster.abilities[i] == ability)
                 {
-                    agent.AttackEffect();
+                    //agent.AttackEffect();
                     aCaster.CastAbility(i,data);
                 }
             }

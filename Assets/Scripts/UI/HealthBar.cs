@@ -12,7 +12,7 @@ public class HealthBar : MonoBehaviour
     public Image hBar;
     public Image dBar;
     public TMP_Text text;
-    public float damageThreshhold = 0;
+    public float damageThreshhold = 300;
     public Optional<float> freezeframeTime;
 
     private void Start()
@@ -26,7 +26,7 @@ public class HealthBar : MonoBehaviour
     }
     public void OnHit(DamageData damage)
     {
-        if(damage.damage >= damageThreshhold)
+        if(health.health < damageThreshhold)
         {
         
             Sequence sequence = DOTween.Sequence();
@@ -41,12 +41,9 @@ public class HealthBar : MonoBehaviour
         text.text = (int)health.health + " / " + health.maxHealth;
         dBar.DOFillAmount(hBar.fillAmount, 3);
 
+        //hit effect
 
 	}
     //Async example
     public Image hitEffect;
-
-    
-    
-
 }
