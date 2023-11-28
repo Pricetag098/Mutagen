@@ -125,6 +125,10 @@ public class MapManager : MonoBehaviour
 
     public static void SetupPlayer(GameObject player,Transform entrance)
 	{
+        if(instance.mapTeir == 0)
+        {
+            player.GetComponent<AbilityCaster>().SetAllAbilities(instance.defaultLoadout.abilities);
+        }
         
         if(instance.playerData != null)
 		{
