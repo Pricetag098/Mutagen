@@ -15,8 +15,8 @@ public class PlayerDeath : MonoBehaviour
 
     void Die(DamageData data)
     {
+        GetComponent<PlayerAbilityCaster>().SetAllAbilities(null);
         MapManager.ResetProgress();
         MapManager.LoadMap(deathScreen);
     }
-
 }

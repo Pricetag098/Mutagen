@@ -22,7 +22,9 @@ public class MapManager : MonoBehaviour
     bool loadingMap;
     public int mapTeir = 0;
 
+    //resetting
     public PlayerData playerData = null;
+    public Loadout defaultLoadout;
 
 
     private void Awake()
@@ -41,13 +43,14 @@ public class MapManager : MonoBehaviour
             SceneManager.sceneLoaded += LevelLoaded;
             playerData = null;
         }
-        
     }
 
     public static void ResetProgress()
     {
         instance.mapTeir = 0;
         instance.playerData = null;
+
+        
     }
 
     void LevelLoaded(Scene scene, LoadSceneMode mode)
@@ -150,13 +153,11 @@ public class MapManager : MonoBehaviour
         }
         
     }
-    
-	
-	void InputFinishLoading(InputAction.CallbackContext context)
+
+    void InputFinishLoading(InputAction.CallbackContext context)
     {
         FinishLoadingMap();
     }
-
 
     public class PlayerData
 	{
