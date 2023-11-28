@@ -8,6 +8,7 @@ public class Exit : MonoBehaviour
 	{
 		HitBox hitBox = other.GetComponent<HitBox>();
 		MapManager.SavePlayer(hitBox.health.gameObject, transform);
+
 		MapManager.LoadNext();
 	}
 }
