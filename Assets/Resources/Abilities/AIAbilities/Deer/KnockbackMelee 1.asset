@@ -22,29 +22,30 @@ MonoBehaviour:
   slotMask: 0
   castState: 0
   castType: 1
-  windUptime: 0
-  windDownTime: 0
+  windUptime: 0.75
+  windDownTime: 0.5
   moveSpeedModifier: 0
-  windUpTrigger: StartAttack1
-  windDownTrigger: EndAttack1
-  damage: 15
+  windUpTrigger: StartAttack
+  windDownTrigger: EndAttack
+  damage: 30
   comboLength: 1
   damageRange: 0
   targetLayers:
     serializedVersion: 2
     m_Bits: 8
-  swingRadius: 1.6
-  swingRange: 2
+  swingRadius: 10
+  swingRange: 10
   useMoveDir: 0
   hitvfx:
     enabled: 1
     val: {fileID: 11400000, guid: cb205c69870695c438fcd6ec5e257882, type: 2}
   swingvfx:
-    enabled: 1
+    enabled: 0
     val: {fileID: 11400000, guid: aedb923031924204d912b49413da1f74, type: 2}
   hitEffects:
   - {fileID: 11400000, guid: f8bfca9bcfd3ef846bbf1e2061e6e9e8, type: 2}
   bufferWindow: 0
   swingTime: 0.65
   coolDown: 0.8
-  animationTrigger: Attack1
+  animationTrigger: Attack
+  pushForce: 10

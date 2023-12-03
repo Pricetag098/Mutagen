@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     float defaultSpeed;
     [Tooltip("In order of lowest to highest")]
     public Optional<int[]> healthState;
-
+    int hitCount;
 
     [Header("Timers")]
     public float retaliateCooldown;
@@ -160,15 +160,15 @@ public class Enemy : MonoBehaviour
         if(anim.Enabled)
         anim.Value.SetFloat("Speed", agent.speed);
 
-        //changes pipecolour when about to attack
-        if (telegraph)
-        {
-            if (Time.time - telegraphTimer > 0.1f)
-            {
-                telegraph = false;
-                pipeColourChanger.Value.Default();
-            }
-        }
+        ////changes pipecolour when about to attack
+        //if (telegraph)
+        //{
+        //    if (Time.time - telegraphTimer > 0.1f)
+        //    {
+        //        telegraph = false;
+        //        pipeColourChanger.Value.Default();
+        //    }
+        //}
 
         //on hit effect for player feedback
         if (!hitEffect)
@@ -183,35 +183,15 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void AttackEffect()
-    {
-        if (!pipeColourChanger.Enabled)
-            return;
-        telegraphTimer = Time.time;
-        pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
-    }
+    //public void AttackEffect()
+    //{
+    //    if (!pipeColourChanger.Enabled)
+    //        return;
+    //    telegraphTimer = Time.time;
+    //    pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
+    //}
 
-    void OnHit(DamageData data)
-    {
-        if (!manager.activated)
-            manager.Activate();
-        for(int i = 0; i < renderer.Count(); i++)
-            renderer[i].material.SetFloat("_RimLight", 1);
-        hitEffect = true;
-        hitFlashTimer = Time.time;
-
-        retaliate = true;
-        retaliateTimer = Time.time;
-    }
-
-    public void SetStunned(float stunTime)
-    {
-        stunDuration = stunTime;
-        isStunned = true;
-        stunnedTimer = Time.time;
-    }
-
-    //removes ememy from manager list
+    //removes enemy from manager list
     void OnDie(DamageData data)
     {
         manager.Remove(this);
@@ -219,30 +199,11 @@ public class Enemy : MonoBehaviour
         enabled = false;
     }
 
-    //speed functions
-    public void ChangeMovementSpeed(float speed)
-    {
-        movementSpeed = speed;
-        agent.speed = movementSpeed;
-    }
-
-    public void ChangeMovementMultiplier(float multi)
-    {
-        movementMultiplier = multi;
-        ChangeMovementSpeed(movementSpeed * movementMultiplier);
-    }
-
-    //movement functions
+    #region movement
     public void Flank()
     {
         Vector3 playerFlank = player.transform.position + (-player.transform.forward * flankDistance);
         agent.SetDestination(playerFlank);
-    }
-
-    public void KnockBack(Vector3 knockbackDirection) //set the ai's nav object position to give "skitter" effect
-    {
-        knockbackDirection /= knockbackResist;
-        transform.position +=  knockbackDirection;
     }
 
     public bool Seperating()
@@ -260,4 +221,70 @@ public class Enemy : MonoBehaviour
         isSeperating = true;
         return true;
     }
+
+    public void ChangeMovementSpeed(float speed)
+    {
+        movementSpeed = speed;
+        agent.speed = movementSpeed;
+    }
+
+    public void ChangeMovementMultiplier(float multi)
+    {
+        movementMultiplier = multi;
+        ChangeMovementSpeed(movementSpeed * movementMultiplier);
+    }
+    #endregion
+
+    #region onHitEffects
+    void OnHit(DamageData data)
+    {
+        //if not activated, activate all in managers list
+        if (!manager.activated)
+            manager.Activate();
+
+        //hit stun armour
+        hitCount++;
+
+        //activate flash effect, will change depending on hit armour count
+        for (int i = 0; i < renderer.Count(); i++)
+        {
+            if (hitCount >= 3)
+            {
+                renderer[i].material.SetFloat("_RimLight", 1);
+                renderer[i].material.SetColor("_RimLightColor", new Color(0, 0, 1, 1));
+                hitCount = 0;
+            }
+            else
+            {
+                renderer[i].material.SetFloat("_RimLight", 1);
+                renderer[i].material.SetColor("_RimLightColor", new Color(1, 1, 0, 1));
+            }
+        }
+
+        hitEffect = true;
+        hitFlashTimer = Time.time;
+
+        //retaliate
+        retaliate = true;
+        retaliateTimer = Time.time;
+    }
+
+    public void SetStunned(float stunTime)
+    {
+        if (hitCount >= 3)
+            return;
+        stunDuration = stunTime;
+        isStunned = true;
+        stunnedTimer = Time.time;
+    }
+
+    public void KnockBack(Vector3 knockbackDirection) //set the ai's nav object position to give "skitter" effect
+    {
+        if(hitCount >= 3)
+            knockbackDirection = Vector3.zero;
+        else
+        knockbackDirection /= knockbackResist;
+        transform.position +=  knockbackDirection;
+    }
+    #endregion
 }

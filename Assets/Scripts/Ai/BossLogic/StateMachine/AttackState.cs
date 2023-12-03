@@ -59,8 +59,8 @@ public class AttackState : State
 
         //if uses dash's put here
 
-        if(manager.agent.pipeColourChanger.Enabled)
-            manager.agent.AttackEffect();
+    /*    if(manager.agent.pipeColourChanger.Enabled)
+            manager.agent.AttackEffect();*/
 
         if (ability.castType == Ability.CastTypes.hold)
         {

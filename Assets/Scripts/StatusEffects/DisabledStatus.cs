@@ -16,12 +16,11 @@ public class DisabledStatus : StatusEffect
     public override void Tick()
     {
         if(timer.complete)
-            health.RemoveStatusEffect(this);
-        
+            health.RemoveStatusEffect(this);        
     }
     public override void Combine(StatusEffect effect)
     {
-        DisabledStatus status=effect as DisabledStatus;
+        DisabledStatus status = effect as DisabledStatus;
         timer.maxTime += status.duration;
     }
     protected override void OnRemove()
