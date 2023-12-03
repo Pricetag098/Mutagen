@@ -49,7 +49,4 @@ public class ColourChanger : MonoBehaviour
         hitFlashTimer = Time.time;
 
     }
-
-
-
 }
