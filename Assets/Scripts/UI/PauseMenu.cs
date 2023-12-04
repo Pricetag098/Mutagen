@@ -69,11 +69,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void Open()
     {
-        Debug.Log("Open");
-
         //if (open)
         //    return;
-
 
         open=true;
         DOTween.Kill(this, true);
@@ -97,8 +94,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Close()
     {
-        Debug.Log("Close");
-
         //if (!open)
         //    return;
         open = false;
