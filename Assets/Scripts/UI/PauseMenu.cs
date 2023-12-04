@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
     public SettingsMenu settingsMenu;
 
     public RectTransform menu, circle;
-    public CanvasGroup canvasGroup, bgCanvasGroup;
+    public CanvasGroup canvasGroup, bgCanvasGroup,playerUi;
     public RingSpinner ringSpinner;
     Vector2 circlePoint;
 
@@ -83,6 +83,7 @@ public class PauseMenu : MonoBehaviour
         canvasGroup.alpha = 1;
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
+        playerUi.DOFade(0, speed).SetUpdate(true);
         Sequence s = DOTween.Sequence(this);
         s.SetUpdate(true);
         s.Append(circle.DOAnchorPos(circlePoint,speed)).SetEase(Ease.InSine);
@@ -98,7 +99,9 @@ public class PauseMenu : MonoBehaviour
         //    return;
         open = false;
         DOTween.Kill(this, true);
+        
         Time.timeScale = 1;
+        playerUi.DOFade(1, speed);
         PlayerSettingsHandler.instance.SaveGame();
         menu.localScale = Vector3.one;
         menu.anchoredPosition = Vector2.zero;

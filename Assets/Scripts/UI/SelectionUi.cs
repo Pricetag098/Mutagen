@@ -19,7 +19,7 @@ public class SelectionUi : MonoBehaviour
     public Vector3 buttonOffset;
     public Volume ppVolume;
     [SerializeField]Ability[] abilityOptions;
-
+    public CanvasGroup ui;
     [SerializeField] int healAmount = 100;
     //temp
     bool first;
@@ -80,9 +80,9 @@ public class SelectionUi : MonoBehaviour
         openSequence = DOTween.Sequence(this);
         openSequence.SetUpdate(UpdateType.Normal, true);
         openSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, openTime));
-		//openSequence.AsyncWaitForCompletion(() => { Time.timeScale = 0; });
-
-		openSequence.AppendCallback(() => { Time.timeScale = 0; });
+        //openSequence.AsyncWaitForCompletion(() => { Time.timeScale = 0; });
+        ui.DOFade(0, .1f).SetUpdate(true);
+        openSequence.AppendCallback(() => { Time.timeScale = 0; });
 		for (int i = 0; i < 3; i++)
 		{
 			openSequence.Append(buttons[i].GetComponent<RectTransform>().DOAnchorPos(buttons[i].startPosition + buttonOffset, 0));
@@ -116,7 +116,7 @@ public class SelectionUi : MonoBehaviour
             playerAbilityCaster.GetComponent<Health>().TakeDmg(data);
         }
 
-
+        ui.DOFade(1, .1f).SetUpdate(true);
         open = false;
         DOTween.Kill(this,true);
         closeSequence = DOTween.Sequence(this);
