@@ -1,7 +1,5 @@
 using DG.Tweening;
-
 using UnityEngine;
-
 using UnityEngine.InputSystem;
 
 
@@ -69,10 +67,14 @@ public class PauseMenu : MonoBehaviour
             
         }
     }
-    void Open()
+    public void Open()
     {
+        Debug.Log("Open");
+
         if (open)
             return;
+
+
         open=true;
         DOTween.Kill(this, true);
         PlayerSettingsHandler.instance.LoadGame();
@@ -95,6 +97,8 @@ public class PauseMenu : MonoBehaviour
 
     void Close()
     {
+        Debug.Log("Close");
+
         if (!open)
             return;
         open = false;
