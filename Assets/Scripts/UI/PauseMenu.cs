@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
 		PlayerSettingsHandler.instance.ReloadTargets();
 		pauseAction.action.performed += Pause;
         circlePoint = circle.anchoredPosition;
-        open = true;
+        open = false;
         Close();
         DOTween.Kill(this, true);
     }
@@ -71,8 +71,8 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Open");
 
-        if (open)
-            return;
+        //if (open)
+        //    return;
 
 
         open=true;
@@ -99,8 +99,8 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Close");
 
-        if (!open)
-            return;
+        //if (!open)
+        //    return;
         open = false;
         DOTween.Kill(this, true);
         Time.timeScale = 1;
