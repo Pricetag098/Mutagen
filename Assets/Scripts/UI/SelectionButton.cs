@@ -30,7 +30,6 @@ public class SelectionButton : MonoBehaviour, IPointerEnterHandler, ISelectHandl
         outline.color = textColours.elementColours[(int)newAbility.element];
     }
 
-
     public void TweenScale(float variable)
     {
         transform.DOScale(variable, timeToTween);

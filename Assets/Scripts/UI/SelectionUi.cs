@@ -138,9 +138,4 @@ public class SelectionUi : MonoBehaviour
         closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
         PlayerAim.UseMouse = PlayerAim.UseMouse;
     }
-   
-    void Update()
-    {
-        
-    }
 }
