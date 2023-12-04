@@ -102,6 +102,7 @@ public class MapManager : MonoBehaviour
         splashImage.sprite = map.splashScreen;
         
         Sequence s = DOTween.Sequence(this);
+        s.SetUpdate(true);
         s.Append(group.DOFade(1, fadeTime));
         s.AppendCallback(() => {
             operation = SceneManager.LoadSceneAsync(map.sceneBuildIndex, LoadSceneMode.Single);

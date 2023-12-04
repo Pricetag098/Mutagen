@@ -12,13 +12,14 @@ public class SettingsMenu : MonoBehaviour
     public VolumeSlider[] sliders;
     public QualityDropDown dropDown;
     public FullScreenBool fullScreen;
-	
+
+    
     public GameObject firstThing;
 	void Start()
     {
-        if (gameObject.active)
-            gameObject.SetActive(false);
+        
         //DontDestroyOnLoad(gameObject);
+        
     }
 
 	public void SetAllVolume(float val1, float val2, float val3)
@@ -78,4 +79,6 @@ public class SettingsMenu : MonoBehaviour
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 	}
+
+    
 }
