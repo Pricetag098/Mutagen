@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public bool delayMove;
     [HideInInspector] public bool flanking;
     [HideInInspector] public bool retaliate;
-    [HideInInspector] public bool isStunned;
     [HideInInspector] public bool startedFiring;
     [HideInInspector] public bool onCooldown;
     bool hitEffect;
@@ -53,7 +52,6 @@ public class Enemy : MonoBehaviour
 
     [Header("Timers")]
     public float retaliateCooldown;
-    public float stunDuration;
     [Range(0f, 1f)]
     public float onHitFlashTime;
     [Range(0f,10f)]
@@ -62,7 +60,6 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public float defaultMovementSpeed;
     [HideInInspector] public float delayMoveTimer;
     [HideInInspector] public float retaliateTimer;
-    [HideInInspector] public float stunnedTimer;
     [HideInInspector] public float firingTimer;
     [HideInInspector] public float cooldownTimer;
     float hitFlashTimer;
@@ -160,16 +157,6 @@ public class Enemy : MonoBehaviour
         if(anim.Enabled)
         anim.Value.SetFloat("Speed", agent.speed);
 
-        ////changes pipecolour when about to attack
-        //if (telegraph)
-        //{
-        //    if (Time.time - telegraphTimer > 0.1f)
-        //    {
-        //        telegraph = false;
-        //        pipeColourChanger.Value.Default();
-        //    }
-        //}
-
         //on hit effect for player feedback
         if (!hitEffect)
             return;
@@ -182,14 +169,6 @@ public class Enemy : MonoBehaviour
         }
 
     }
-
-    //public void AttackEffect()
-    //{
-    //    if (!pipeColourChanger.Enabled)
-    //        return;
-    //    telegraphTimer = Time.time;
-    //    pipeColourChanger.Value.Change(pipeColourChanger.Value.materials.Length - 1);
-    //}
 
     //removes enemy from manager list
     void OnDie(DamageData data)
@@ -267,15 +246,6 @@ public class Enemy : MonoBehaviour
         //retaliate
         retaliate = true;
         retaliateTimer = Time.time;
-    }
-
-    public void SetStunned(float stunTime)
-    {
-        if (hitCount >= 3)
-            return;
-        stunDuration = stunTime;
-        isStunned = true;
-        stunnedTimer = Time.time;
     }
 
     public void KnockBack(Vector3 knockbackDirection) //set the ai's nav object position to give "skitter" effect

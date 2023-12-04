@@ -1,7 +1,5 @@
 using DG.Tweening;
-
 using UnityEngine;
-
 using UnityEngine.InputSystem;
 
 
@@ -24,7 +22,7 @@ public class PauseMenu : MonoBehaviour
 		PlayerSettingsHandler.instance.ReloadTargets();
 		pauseAction.action.performed += Pause;
         circlePoint = circle.anchoredPosition;
-        open = true;
+        open = false;
         Close();
         DOTween.Kill(this, true);
     }
@@ -69,10 +67,14 @@ public class PauseMenu : MonoBehaviour
             
         }
     }
-    void Open()
+    public void Open()
     {
-        if (open)
-            return;
+        Debug.Log("Open");
+
+        //if (open)
+        //    return;
+
+
         open=true;
         DOTween.Kill(this, true);
         PlayerSettingsHandler.instance.LoadGame();
@@ -94,10 +96,12 @@ public class PauseMenu : MonoBehaviour
         s.Join(bgCanvasGroup.DOFade(1, speed));
     }
 
-    void Close()
+    public void Close()
     {
-        if (!open)
-            return;
+        Debug.Log("Close");
+
+        //if (!open)
+        //    return;
         open = false;
         DOTween.Kill(this, true);
         
