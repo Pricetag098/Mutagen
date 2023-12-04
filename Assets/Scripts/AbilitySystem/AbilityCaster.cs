@@ -12,8 +12,8 @@ public class AbilityCaster : MonoBehaviour
 
     //cast stats
     public bool castBool = true;
-    float castTimer;
-    float lastCastDisable;
+    [HideInInspector] public float castTimer;
+    [HideInInspector] public float lastCastDisable;
 
     Optional<PlayerStats> playerStats;
     const string baseAbilityPath = "Abilities/Empty";

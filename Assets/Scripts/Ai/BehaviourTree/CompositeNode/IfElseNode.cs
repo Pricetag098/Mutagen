@@ -74,18 +74,18 @@ public class IfElseNode : CompositeNode
         return true;
     }
 
-    bool stunnedCheck()
-    {
-        if (!agent.isStunned)
-            return false;
+    //bool stunnedCheck()
+    //{
+    //    if (!agent.caster.caster.castBool)
+    //        return false;
 
-        if(Time.time - agent.stunnedTimer > agent.stunDuration)
-        {
-            agent.isStunned = false;
-            return false;
-        }
-        return true;
-    }
+    //    if(Time.time - agent.caster.caster.lastCastDisable > agent.caster.caster.castTimer)
+    //    {
+    //        agent.isStunned = false;
+    //        return false;
+    //    }
+    //    return true;
+    //}
 
     int healthCheck()
     {
@@ -302,7 +302,7 @@ public class IfElseNode : CompositeNode
                 break;
 
             case CheckType.isStunned:
-                if (stunnedCheck())
+                if (!agent.caster.caster.canCast())
                     ChildUpdate(first);
                 else ChildUpdate(second);
                 break;
