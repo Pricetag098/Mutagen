@@ -52,10 +52,10 @@ public class PauseMenu : MonoBehaviour
 
 	void Pause(InputAction.CallbackContext context)
     {
-        open = !open;
+        
         
         //close
-        if (!open)
+        if (open)
         {
             
             Close();
