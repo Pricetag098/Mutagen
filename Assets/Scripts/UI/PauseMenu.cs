@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
 		PlayerSettingsHandler.instance.ReloadTargets();
 		pauseAction.action.performed += Pause;
         circlePoint = circle.anchoredPosition;
+        open = true;
         Close();
         DOTween.Kill(this, true);
     }
@@ -52,25 +53,30 @@ public class PauseMenu : MonoBehaviour
 	void Pause(InputAction.CallbackContext context)
     {
         open = !open;
-        DOTween.Kill(this,true);
+        
         //close
         if (!open)
         {
-            Time.timeScale = 1;
-            PlayerSettingsHandler.instance.SaveGame();
+            
             Close();
         }
         //open
         else
         {
             
-            Time.timeScale = 0;
+            
             Open();
-            PlayerSettingsHandler.instance.LoadGame();
+            
         }
     }
     void Open()
     {
+        if (open)
+            return;
+        open=true;
+        DOTween.Kill(this, true);
+        PlayerSettingsHandler.instance.LoadGame();
+        Time.timeScale = 0;
         ringSpinner.rotationSpeed = 5;
         menu.localScale = Vector3.zero;
         menu.anchoredPosition = circlePoint;
@@ -89,6 +95,12 @@ public class PauseMenu : MonoBehaviour
 
     void Close()
     {
+        if (!open)
+            return;
+        open = false;
+        DOTween.Kill(this, true);
+        Time.timeScale = 1;
+        PlayerSettingsHandler.instance.SaveGame();
         menu.localScale = Vector3.one;
         menu.anchoredPosition = Vector2.zero;
         circle.anchoredPosition = circlePoint;
