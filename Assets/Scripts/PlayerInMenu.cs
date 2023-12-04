@@ -8,6 +8,7 @@ public class PlayerInMenu : MonoBehaviour
 
     public Rigidbody player;
     public CanvasGroup canvas,playerUi;
+    public GameObject[] objectsToDisable;
     public float fadeTime;
     public float animationTime;
     public SpriteRenderer directionArrow;
@@ -24,13 +25,17 @@ public class PlayerInMenu : MonoBehaviour
         player.GetComponent<PlayerAim>().enabled = false;
         player.GetComponent<PlayerAbilityCaster>().enabled = false;
         player.GetComponentInChildren<Animator>().SetTrigger("Sit");
-        playerUi.gameObject.SetActive(false);
+        //playerUi.gameObject.SetActive(false);
+        foreach(GameObject disable in objectsToDisable)
+            disable.SetActive(false);
         directionArrow.enabled = false;
     }
 
     public void EnablePLayer()
     {
-        playerUi.gameObject.SetActive(true);
+        //playerUi.gameObject.SetActive(true);
+        foreach (GameObject disable in objectsToDisable)
+            disable.SetActive(true);
         player.GetComponentInChildren<Animator>().SetTrigger("Stand");
         canvas.interactable = false;
         Sequence sequence = DOTween.Sequence();

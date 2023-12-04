@@ -69,7 +69,7 @@ public class PauseMenu : MonoBehaviour
             
         }
     }
-    void Open()
+    public void Open()
     {
         if (open)
             return;
@@ -93,7 +93,7 @@ public class PauseMenu : MonoBehaviour
         s.Join(bgCanvasGroup.DOFade(1, speed));
     }
 
-    void Close()
+    public void Close()
     {
         if (!open)
             return;
