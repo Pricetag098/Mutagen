@@ -50,10 +50,10 @@ public class PauseMenu : MonoBehaviour
 
 	void Pause(InputAction.CallbackContext context)
     {
-        open = !open;
+        
         
         //close
-        if (!open)
+        if (open)
         {
             
             Close();
@@ -95,7 +95,7 @@ public class PauseMenu : MonoBehaviour
         s.Join(bgCanvasGroup.DOFade(1, speed));
     }
 
-    void Close()
+    public void Close()
     {
         Debug.Log("Close");
 
