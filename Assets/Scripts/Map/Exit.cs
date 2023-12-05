@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Exit : MonoBehaviour
 {
@@ -11,4 +12,9 @@ public class Exit : MonoBehaviour
 
 		MapManager.LoadNext();
 	}
+	private void Quit()
+	{
+        MapManager.LoadNext();
+    }
 }
+

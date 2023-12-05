@@ -212,7 +212,8 @@ MonoBehaviour:
   buttonOffset: {x: -500, y: 0, z: 0}
   ppVolume: {fileID: 9004608646994525723}
   abilityOptions: []
-  healAmount: 0
+  ui: {fileID: 0}
+  healAmount: 100
 --- !u!114 &4973770740285714887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,7 +923,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1209374548628007853}
         m_TargetAssemblyTypeName: SelectionUi, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: Heal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1610,7 +1611,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1635,6 +1636,7 @@ GameObject:
   - component: {fileID: 3283686368088415409}
   - component: {fileID: 7111417477423554869}
   - component: {fileID: 3250671675715855340}
+  - component: {fileID: 1748072959360799519}
   m_Layer: 5
   m_Name: Background (1)
   m_TagString: Untagged
@@ -1700,6 +1702,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1748072959360799519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6121155081250443590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &6210520139218884934
 GameObject:
   m_ObjectHideFlags: 0
