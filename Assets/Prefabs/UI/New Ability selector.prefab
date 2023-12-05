@@ -212,7 +212,8 @@ MonoBehaviour:
   buttonOffset: {x: -500, y: 0, z: 0}
   ppVolume: {fileID: 9004608646994525723}
   abilityOptions: []
-  healAmount: 0
+  ui: {fileID: 0}
+  healAmount: 100
 --- !u!114 &4973770740285714887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,7 +923,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1209374548628007853}
         m_TargetAssemblyTypeName: SelectionUi, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: Heal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
