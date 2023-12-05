@@ -205,6 +205,12 @@ public class EnemyManager : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         HitBox player;
+        Enemy enemy;
+        if(collision.gameObject.TryGetComponent<Enemy>(out enemy))
+        {
+            return;
+        }
+
         if(collision.gameObject.TryGetComponent<HitBox>(out player))
         {
             //Debug.Log("Hit");
