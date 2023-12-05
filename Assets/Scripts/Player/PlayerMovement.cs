@@ -65,15 +65,7 @@ public class PlayerMovement : MonoBehaviour
         inputDir = moveDir.action.ReadValue<Vector2>();
 		movementDir = orientation.forward * inputDir.y + orientation.right * inputDir.x;
 		timeSinceLastInteruption += Time.deltaTime;
-        if(movementDir == Vector3.zero)
-        {
-            timeSinceLastInteruption = 0;
-            animator.SetBool("Moving", false);
-        }
-        if(movementDir != Vector3.zero)
-        {
-            animator.SetBool("Moving", true);
-        }
+        animator.SetFloat("Vel", Vector3.Dot(body.transform.forward, rb.velocity));
     }
 
 	private void FixedUpdate()

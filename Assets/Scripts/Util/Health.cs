@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     public float health;
     public float maxHealth = 100;
-
+    public Optional<Animator> animator;
     public float iFrames;
     [SerializeField] float maxIFrames = float.PositiveInfinity;
     public delegate void Action();
@@ -33,7 +33,8 @@ public class Health : MonoBehaviour
         health = Mathf.Clamp(health -data.damage,0,maxHealth);
         if(OnHit != null)
         OnHit(data);
-
+        if (animator.Enabled)
+            animator.Value.SetTrigger("Hit");
         if (health <= 0)
 		{
             Die(data);
