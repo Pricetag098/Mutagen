@@ -105,10 +105,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.27139992
-  m_Height: 1.2117958
-  m_Direction: 2
-  m_Center: {x: 0.064297974, y: 0.54580915, z: 0.028957367}
+  m_Radius: 0.54
+  m_Height: 2.97
+  m_Direction: 1
+  m_Center: {x: 0.064297974, y: 1.13, z: 0.028957367}
 --- !u!54 &8260377647897323928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -167,6 +167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 1
+  animator:
+    enabled: 0
+    val: {fileID: 0}
   iFrames: 0
   maxIFrames: 0
   canHaveStatusEffects: 1
@@ -259,7 +262,6 @@ MonoBehaviour:
   delayMove: 0
   flanking: 0
   retaliate: 0
-  isStunned: 0
   startedFiring: 0
   onCooldown: 0
   retreatingTimer: 2
@@ -272,13 +274,11 @@ MonoBehaviour:
     enabled: 0
     val: 
   retaliateCooldown: 0
-  stunDuration: 0
   onHitFlashTime: 0.4
   delayMoveRange: 0
   defaultMovementSpeed: 0
   delayMoveTimer: 0
   retaliateTimer: 0
-  stunnedTimer: 0
   firingTimer: 0
   cooldownTimer: 0
 --- !u!114 &6964408697124659332
@@ -330,6 +330,8 @@ MonoBehaviour:
     enabled: 0
     val: {fileID: 0}
   castBool: 1
+  castTimer: 0
+  lastCastDisable: 0
   baseAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
 --- !u!114 &65133475
 MonoBehaviour:
