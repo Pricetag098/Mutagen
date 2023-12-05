@@ -37,6 +37,6 @@ public class DragonBody : MonoBehaviour
         transform.rotation = desiredRotation;
 
         // Look at the target
-        Quaternion.LookRotation(targetPosition);
+        transform.rotation = Quaternion.LookRotation(targetPosition);
     }
 }
