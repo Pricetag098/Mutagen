@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -122,12 +123,28 @@ public class Ragdoll : MonoBehaviour
 
             if (attemptCount >= 25)
             {
-                for (int i = 0; i < droppedAbilities.Length; i++)
+                //for (int i = 0; i < droppedAbilities.Length; i++)
+                //{
+                //    if (droppedAbilities[i] == null)
+                //    {
+                //        droppedAbilities[i] = agent.manager.dropPool.abilities[index];
+                //    }
+                //}
+
+                for(int i = 0; i < agent.manager.dropPool.abilities.Length; i++)
                 {
-                    if (droppedAbilities[i] == null)
+                    for(int j = 0; j < droppedAbilities.Length; j++)
                     {
-                        droppedAbilities[i] = agent.manager.dropPool.abilities[index];
+                        if (agent.manager.dropPool.abilities[i] != agent.caster.caster.abilities[j] && 
+                            agent.manager.dropPool.abilities[i] != droppedAbilities[j])
+                        {
+                            if(droppedAbilities[j] == null)
+                            {
+                                droppedAbilities[j] = agent.manager.dropPool.abilities[i];
+                            }
+                        }
                     }
+
                 }
             }
 
