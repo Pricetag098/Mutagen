@@ -30,8 +30,8 @@ MonoBehaviour:
   windDownTrigger: End Cast
   prefab: {fileID: 8606946681965044731, guid: c1ded1cf40fd0c948aa81d34c5ae156f, type: 3}
   releaseOnFullCharge: 1
-  maxChargeTime: 1
-  minChargeTime: 0.2
+  maxChargeTime: 0.2
+  minChargeTime: 0.1
   damageRange: 3
   chargeDamageCurve:
     serializedVersion: 2
@@ -61,10 +61,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 5
-      inSlope: 5.2173357
-      outSlope: 5.2173357
+      time: -0.011688232
+      value: 10
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -72,8 +72,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.9583435
       value: 10
-      inSlope: 5.2173357
-      outSlope: 5.2173357
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -81,7 +81,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speedModifier: 0.6
+  speedModifier: 0.8
   onHitEffectList:
   - {fileID: 11400000, guid: 15c7d0839fc5ace4fb878ea1e3700374, type: 2}
   aimAssist:

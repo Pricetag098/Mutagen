@@ -107,15 +107,6 @@ public class SelectionUi : MonoBehaviour
     [ContextMenu("close")]
     public void Close()
     {
-        if (first)
-        {
-            first = false;
-            //heal
-            DamageData data = new DamageData();
-            data.damage = -healAmount; data.target = playerAbilityCaster.gameObject; data.type = Element.Light;
-            playerAbilityCaster.GetComponent<Health>().TakeDmg(data);
-        }
-
         ui.DOFade(1, .1f).SetUpdate(true);
         open = false;
         DOTween.Kill(this,true);
@@ -137,5 +128,15 @@ public class SelectionUi : MonoBehaviour
         
         closeSequence.Join(DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 1, openTime));
         PlayerAim.UseMouse = PlayerAim.UseMouse;
+    }
+
+    public void Heal()
+    {
+        //heal
+        DamageData data = new DamageData();
+        data.damage = -healAmount; data.target = playerAbilityCaster.gameObject; data.type = Element.Light;
+        playerAbilityCaster.GetComponent<Health>().TakeDmg(data);
+
+        Close();
     }
 }
