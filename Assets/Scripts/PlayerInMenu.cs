@@ -11,7 +11,6 @@ public class PlayerInMenu : MonoBehaviour
     public GameObject[] partsToDisable;
     public float fadeTime;
     public float animationTime;
-    public SpriteRenderer directionArrow;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +27,6 @@ public class PlayerInMenu : MonoBehaviour
         //playerUi.gameObject.SetActive(false);
         foreach(GameObject disable in partsToDisable)
         disable.SetActive(false);
-        directionArrow.enabled = false;
     }
 
     public void EnablePLayer()
@@ -51,7 +49,6 @@ public class PlayerInMenu : MonoBehaviour
 			enabled = false;
         });
 
-        directionArrow.enabled = true;
     }
 	
 	private void Update()
