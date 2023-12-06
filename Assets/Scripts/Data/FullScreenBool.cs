@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FullScreenBool : MonoBehaviour, IDataPersistance<SettingsData>
 {
-    bool isFullscreen;
+    public bool isFullscreen;
     public Toggle toggle;
 
     public void SetBool(bool set)

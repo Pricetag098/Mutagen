@@ -13,6 +13,8 @@ public class TransparencyScript : MonoBehaviour
     public float timeToFade;
     public bool reset;
 
+    [SerializeField] bool disable;
+
     void Start()
     {
     }
@@ -56,17 +58,30 @@ public class TransparencyScript : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
         reset = false;
+
+        Enemy enemy;
+        if (other.gameObject.TryGetComponent<Enemy>(out enemy) || other.GetComponentInChildren<Enemy>())
+        {
+            return;
+        }
+
         if (other.GetComponent<HitBox>())
         {
             if ( alpha != -1)
             {
                 fade = true;
+            }
+            if (disable)
+            {
+                foreach(var piece in Pieces)
+                {
+                    piece.gameObject.active = false;
+                }
             }
         }
     }

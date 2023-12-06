@@ -33,6 +33,36 @@ MonoBehaviour:
   away: 1
   type: 0
   awayDistance: 10
+--- !u!114 &-8583939926857815225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b768a3f269c0784699d610667715fb8, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 1352cf2a7b8a06e468ec03dded51c9b0
+  position: {x: 476.00052, y: 1296.0001}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  duration: 0.1
 --- !u!114 &-7965268996679188033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,6 +799,7 @@ MonoBehaviour:
   description: 
   children:
   - {fileID: 1114006253222998810}
+  - {fileID: -8583939926857815225}
   - {fileID: -1475386262077271576}
 --- !u!114 &-1475386262077271576
 MonoBehaviour:
@@ -785,7 +816,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 78fa84f3ccb9a9c429f3f371cb5e80b6
-  position: {x: 588.8287, y: 1310}
+  position: {x: 644, y: 1294}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -950,6 +981,7 @@ MonoBehaviour:
   - {fileID: -2840130148559806946}
   - {fileID: -4356225603313843682}
   - {fileID: -6208382544848785416}
+  - {fileID: -8583939926857815225}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
