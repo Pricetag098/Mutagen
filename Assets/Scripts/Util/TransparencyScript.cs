@@ -65,7 +65,7 @@ public class TransparencyScript : MonoBehaviour
         reset = false;
 
         Enemy enemy;
-        if (other.gameObject.TryGetComponent<Enemy>(out enemy))
+        if (other.gameObject.TryGetComponent<Enemy>(out enemy) || other.GetComponentInChildren<Enemy>())
         {
             return;
         }
