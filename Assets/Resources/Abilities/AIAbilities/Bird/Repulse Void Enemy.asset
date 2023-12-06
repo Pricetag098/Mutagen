@@ -18,20 +18,20 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: aa2a8edc6426f494c8e277c49e9da9f7, type: 3}
   element: 4
   pickupPrefab:
-    enabled: 1
+    enabled: 0
     val: {fileID: 7523146627320602946, guid: 405c1776749dd9748a6541306bcfda3e, type: 3}
   slotMask: 1
   castState: 0
   castType: 1
-  windUptime: 0.1
-  windDownTime: 0.1
+  windUptime: 1
+  windDownTime: 1
   moveSpeedModifier: 0
   windUpTrigger: Roar start
   windDownTrigger: Roar end
   prefab: {fileID: 1036542219973673062, guid: b1d25dda67dabe44a8131425e491b9aa, type: 3}
   releaseOnFullCharge: 1
-  maxChargeTime: 1
-  minChargeTime: 0.5
+  maxChargeTime: 0.2
+  minChargeTime: 0.1
   damageRange: 0
   chargeDamageCurve:
     serializedVersion: 2
@@ -62,9 +62,9 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 10
+      value: 40
       inSlope: 15.041264
-      outSlope: 26.666666
+      outSlope: 6.6666665
       tangentMode: 69
       weightedMode: 0
       inWeight: 0.33333334
@@ -72,11 +72,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1.5
       value: 50
-      inSlope: -5.2746506
-      outSlope: -5.2746506
+      inSlope: 0.37749022
+      outSlope: 0.37749022
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.22852129
+      inWeight: 0.20833333
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
