@@ -10,11 +10,15 @@ public class DisabledStatus : StatusEffect
     protected override void OnAdd()
     {
         timer = new Timer(duration, false);
-        AbilityCaster caster;
-        if(health.TryGetComponent<AbilityCaster>(out caster))
+
+        if(health.TryGetComponent(out AbilityCaster abilityCaster))
         {
-            caster.castBool = false;
+            abilityCaster.castBool = false;
         }
+        
+
+
+
     }
 
     public override void Tick()
@@ -29,6 +33,9 @@ public class DisabledStatus : StatusEffect
     }
     protected override void OnRemove()
     {
-        health.GetComponent<AbilityCaster>().castBool = true;
+        if (health.TryGetComponent(out AbilityCaster abilityCaster))
+        {
+            abilityCaster.castBool = true;
+        }
     }
 }

@@ -26,7 +26,7 @@ public class SelectionUi : MonoBehaviour
 
     private void Awake()
     {
-        playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
+        
         buttons = GetComponentsInChildren<SelectionButton>();
         group = GetComponent<CanvasGroup>();
 
@@ -34,7 +34,8 @@ public class SelectionUi : MonoBehaviour
 	}
 	private void Start()
 	{
-		DOTween.defaultTimeScaleIndependent = true;
+        playerAbilityCaster = FindObjectOfType<PlayerAbilityCaster>();
+        DOTween.defaultTimeScaleIndependent = true;
 		Close();
 		DOTween.Kill(this, true);
 
