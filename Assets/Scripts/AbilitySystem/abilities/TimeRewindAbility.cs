@@ -121,11 +121,8 @@ public class TimeRewindAbility : Ability
         timer = new Timer(coolDown);
         body = Instantiate(bodyPrefab);
 
-
-
         //test
         positionHistory.Clear();
-        Debug.Log("Equip");
         positionHistory.Add(new TimeData(caster.transform.position, Time.time));
 
 	}
