@@ -84,6 +84,8 @@ public class Enemy : MonoBehaviour
         health.OnHit += OnHit;
         health.OnDeath += OnDie;
         defaultSpeed = movementSpeed;
+
+
     }
 
     //used for idle animations and starting to attack the player
