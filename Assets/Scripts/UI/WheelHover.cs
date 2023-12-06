@@ -11,6 +11,9 @@ public class WheelHover : MonoBehaviour, IPointerEnterHandler, ISelectHandler, I
     public float tweenScale;
     RingSpinner ringSpinner;
     public float speed = .1f;
+
+    bool selected;
+
     private void Awake()
     {
         ringSpinner = GetComponentInParent<RingSpinner>();
