@@ -32,6 +32,7 @@ public class CameraControlField : MonoBehaviour
 
     private void play()
     {
+        if(Boss.Enabled)
         Boss.Value.SetTrigger("Play");
     }
 }
