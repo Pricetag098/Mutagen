@@ -87,6 +87,9 @@ public class RangedAbility : Ability
     
     protected virtual void Launch()
     {
+
+        Debug.Log("Launch");
+
         if(vfx.Enabled)
             vfx.Value.Play(lastCastdata.origin, lastCastdata.aimDirection);
         float chargeVal = (chargeTime - minChargeTime) / (maxChargeTime - minChargeTime);

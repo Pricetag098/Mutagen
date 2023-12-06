@@ -208,6 +208,7 @@ public class EnemyManager : MonoBehaviour
         Enemy enemy;
         if(collision.gameObject.TryGetComponent<Enemy>(out enemy))
         {
+
             return;
         }
 

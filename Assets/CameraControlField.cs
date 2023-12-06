@@ -15,15 +15,17 @@ public class CameraControlField : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider other)
     {
-        cameraControler.Bind(target);
-        play();
+        HitBox hb;
+        if(other.TryGetComponent<HitBox>(out hb))
+        {
+            if (hb.GetComponentInParent<PlayerAbilityCaster>())
+            {
+                cameraControler.Bind(target);
+                play();
+            }
+        }
     }
     private void OnTriggerExit(Collider other)
     {
