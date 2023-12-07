@@ -9,7 +9,8 @@ public class Credits : MonoBehaviour
     public CanvasGroup group;
     public float scrollTime,fadeTime;
     public RectTransform EndPos;
-    void Open()
+    
+    public void Open()
     {
         Sequence s = DOTween.Sequence(this);
         s.Append(group.DOFade(1, fadeTime));
