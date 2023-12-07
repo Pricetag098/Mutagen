@@ -85,24 +85,24 @@ public class Ragdoll : MonoBehaviour
             int index = Random.Range(0, agent.manager.dropPool.abilities.Length);
 
             bool assigned = false;
-            //avoid assigning abilities the player already has
+            //avoid assigning abilities the player already has or is already a drop
             for (int i = 0; i < usedIndex.Length; i++)
             {
-                if (droppedAbilities[i] != null)
+                if (index == usedIndex[i])
                 {
-                    for (int j = 0; j < agent.player.caster.abilities.Length; j++)
-                    {
-                        if (index == usedIndex[i])
-                        {
-                            if (agent.player.caster.abilities[j])
-                            {
-                                assigned = true;
-                            }
-                        }
+                    assigned = true;
 
-                    }
                 }
             }
+
+            for (int i = 0; i < agent.player.caster.abilities.Length; i++)
+            {
+                if (agent.manager.dropPool.abilities[index] == agent.player.caster.abilities[i])
+                {
+                    assigned = true;
+                }
+            }
+
             if (!assigned)
             {
                 for (int i = 0; i < droppedAbilities.Length; i++)
@@ -123,24 +123,35 @@ public class Ragdoll : MonoBehaviour
 
             if (attemptCount >= 25)
             {
-                //for (int i = 0; i < droppedAbilities.Length; i++)
-                //{
-                //    if (droppedAbilities[i] == null)
-                //    {
-                //        droppedAbilities[i] = agent.manager.dropPool.abilities[index];
-                //    }
-                //}
-
+                //fairly innefficient will replace later
                 for(int i = 0; i < agent.manager.dropPool.abilities.Length; i++)
                 {
-                    for(int j = 0; j < droppedAbilities.Length; j++)
+                    for (int j = 0; j < usedIndex.Length; j++)
                     {
-                        if (agent.manager.dropPool.abilities[i] != agent.caster.caster.abilities[j] && 
-                            agent.manager.dropPool.abilities[i] != droppedAbilities[j])
+                        if (index == usedIndex[j])
                         {
-                            if(droppedAbilities[j] == null)
+                            assigned = true;
+
+                        }
+                    }
+
+                    for (int j = 0; j < agent.player.caster.abilities.Length; j++)
+                    {
+                        if (agent.manager.dropPool.abilities[i] == agent.player.caster.abilities[j])
+                        {
+                            assigned = true;
+                        }
+                    }
+                    if (!assigned)
+                    {
+                        for (int j = 0; j < droppedAbilities.Length; j++)
+                        {
+                            //find slot that hasnt been assigned
+                            if (droppedAbilities[j] == null)
                             {
                                 droppedAbilities[j] = agent.manager.dropPool.abilities[i];
+                                usedIndex[j] = i;
+                                break;
                             }
                         }
                     }
@@ -155,12 +166,7 @@ public class Ragdoll : MonoBehaviour
                 {
                     count++;
                     continue;
-                    //break;
                 }
-                //else
-                //{
-                //    count++;
-                //}
 
             }
             if (count == droppedAbilities.Length)
