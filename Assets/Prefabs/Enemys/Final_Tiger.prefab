@@ -2038,8 +2038,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 8
-  m_Speed: 10
-  m_Acceleration: 15
+  m_Speed: 14
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 100
   m_StoppingDistance: 3
@@ -2088,7 +2088,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
-  - {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   animator:
     enabled: 1
     val: {fileID: 343049529420119189}
@@ -2133,13 +2132,13 @@ MonoBehaviour:
   defaultAbility: {fileID: 11400000, guid: cdcbb4459a4d0764495a2912c809e460, type: 2}
   curAbility: {fileID: 0}
   projectileDeviation: 50000
-  rangedDeterence: 0
+  rangedDeterence: 1
   meleeDeterence: 0
   otherDeterence: 0
-  repeatDeterence: 50
+  repeatDeterence: 100
   distanceMultiplier: 0
   innerRange: 0
-  chanceDeductionRange: 63.4
+  chanceDeductionRange: 20
 --- !u!114 &8962174975456743336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2185,7 +2184,7 @@ MonoBehaviour:
   movementSpeed: 20
   movementMultiplier: 1
   flankDistance: 5
-  knockbackResist: 5
+  knockbackResist: 50
   healthState:
     enabled: 1
     val: fa000000ee020000
