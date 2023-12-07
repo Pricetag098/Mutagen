@@ -19,7 +19,9 @@ public class AssignAbilityNode : SetterNode
 
     protected override State OnUpdate()
     {
+        if(agent.caster.curAbility == null)
         agent.caster.GetAbility(excludedAbility.Value);
+
         return child.Update();
     }
 }

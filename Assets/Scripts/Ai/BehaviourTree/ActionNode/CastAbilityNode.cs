@@ -86,6 +86,8 @@ public class CastAbilityNode : ActionNode
                 {
                     //agent.AttackEffect();
                     aCaster.CastAbility(i,data);
+                    Debug.Log(aCaster.abilities[i]);
+                    caster.curAbility = null;
                 }
             }
         }

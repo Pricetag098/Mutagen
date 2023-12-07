@@ -93,6 +93,7 @@ public class RepeatCastNode : ActionNode
                 if (aCaster.abilities[i] == ability)
                 {
                     aCaster.CastAbility(i, data);
+                    caster.curAbility = null;
                 }
             }
         }
