@@ -18,7 +18,6 @@ public class HealthBar : MonoBehaviour
     private void Start()
     {
         health.OnHit += OnHit;
-
         //update health on load
         hBar.fillAmount = health.health / health.maxHealth;
         text.text = (int)health.health + " / " + health.maxHealth;
@@ -41,9 +40,16 @@ public class HealthBar : MonoBehaviour
         text.text = (int)health.health + " / " + health.maxHealth;
         dBar.DOFillAmount(hBar.fillAmount, 3);
 
-        //hit effect
+        if(damage.damage < 0 ){
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(healEffect.DOFade(1, 1));
+            sequence.Append(healEffect.DOFade(0, 1));
+            sequence.Append(dBar.DOFillAmount(hBar.fillAmount, 3));
 
-	}
+        }
+
+    }
     //Async example
     public Image hitEffect;
+    public Image healEffect;
 }
