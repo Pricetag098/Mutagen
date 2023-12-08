@@ -6,6 +6,8 @@ using UnityEngine;
 public class SoundPlayer : MonoBehaviour
 {
     public bool playOnAwake = false;
+    public float timer; 
+    public float que;
     public List<AudioClip> clips = new List<AudioClip>();
     public float pitchRange = 0f;
     public float basePitch = 1;
@@ -18,12 +20,17 @@ public class SoundPlayer : MonoBehaviour
         {
             Play();
         }
+        que = Random.Range(3,5);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        timer += Time.deltaTime;
+        if(timer >= que)
+        {
+            Play();
+        }
     }
 
     public void Play()
