@@ -491,8 +491,8 @@ MonoBehaviour:
   player: {fileID: 0}
   description: 
   children:
+  - {fileID: 1552633919210452205}
   - {fileID: 5072289595125340672}
-  - {fileID: 2688361115908347410}
 --- !u!114 &-3000924072364138514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
   - {fileID: -2906457756156193826}
   - {fileID: -6334037692608688277}
   - {fileID: 788373974249771728}
-  - {fileID: 2688361115908347410}
+  - {fileID: 1552633919210452205}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
     rotateTowardsObject: {fileID: 0}
@@ -824,6 +824,40 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   description: 
+--- !u!114 &1552633919210452205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34aede98b48b2a245aca954813cc061f, type: 3}
+  m_Name: CastAbilityNode
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 93ce237527c54444b97972d6f5dcd485
+  position: {x: -254, y: 750}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    rotateTowardsObject: {fileID: 0}
+    targetPosition: {x: 0, y: 0, z: 0}
+    abilities: []
+    manager: {fileID: 0}
+    awayPosition: {x: 0, y: 0, z: 0}
+  agent: {fileID: 0}
+  caster: {fileID: 0}
+  abilities: []
+  manager: {fileID: 0}
+  player: {fileID: 0}
+  description: 
+  abilityIndex: 2
+  tempCastTime: 0
+  assigned: 1
+  rotate: 1
+  deviatedDirection: 1
 --- !u!114 &2428127745852379947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,41 +914,6 @@ MonoBehaviour:
   firingCooldown:
     enabled: 0
     val: 0
---- !u!114 &2688361115908347410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b057a989e2c76144ba4840403edcddcd, type: 3}
-  m_Name: RepeatCastNode
-  m_EditorClassIdentifier: 
-  state: 0
-  started: 0
-  guid: 36d44246e6161244aa3b666695b1a326
-  position: {x: -261, y: 739}
-  blackboard:
-    moveToPosition: {x: 0, y: 0, z: 0}
-    rotateTowardsObject: {fileID: 0}
-    targetPosition: {x: 0, y: 0, z: 0}
-    abilities: []
-    manager: {fileID: 0}
-    awayPosition: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
-  caster: {fileID: 0}
-  abilities: []
-  manager: {fileID: 0}
-  player: {fileID: 0}
-  description: 
-  abilityIndex: 2
-  repeatCount: 3
-  waitTime: 0.5
-  assigned: 1
-  rotate: 1
-  deviatedDirection: 1
 --- !u!114 &2980768739605291930
 MonoBehaviour:
   m_ObjectHideFlags: 0

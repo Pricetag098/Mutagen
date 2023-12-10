@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4642083085112353960}
   - component: {fileID: 2400442915030101014}
   - component: {fileID: 4212404786647033476}
+  - component: {fileID: 1141642634062193726}
   m_Layer: 8
   m_Name: BlackHole 1
   m_TagString: Untagged
@@ -237,10 +238,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
+  timer: 0
+  que: 0
   clips:
   - {fileID: 8300000, guid: 085fe1a0e530db14c8960696b94c72c7, type: 3}
   pitchRange: 1
   basePitch: 1
+--- !u!135 &1141642634062193726
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8606946681965044731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &435469946899526996
 PrefabInstance:
   m_ObjectHideFlags: 0

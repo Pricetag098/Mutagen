@@ -25,6 +25,7 @@ public enum AbilityCheckType
     Melee,
     Ranged,
     Dash,
+    EffectAura
 }
 
 public class IfElseNode : CompositeNode
@@ -193,6 +194,8 @@ public class IfElseNode : CompositeNode
 
             case AbilityCheckType.Dash:
                 return abil.GetType() == typeof(DashAbility) || abil.GetType() == typeof(DashApplysEffect);
+            case AbilityCheckType.EffectAura:
+                return abil.GetType() == typeof(EffectAuraAbility);
             default:
                 return false;
         }
